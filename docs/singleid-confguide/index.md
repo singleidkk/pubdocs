@@ -14,7 +14,7 @@ SingleIDのウェブ管理画面には、管理者ポータルおよびユーザ
 ### 管理者ポータルへのログイン
 
 1. SingleIDの**[ホームページ](https://www.singleid.jp)**へアクセスします。
-2. **[製品ログイン一覧](https://www.singleid.jp/poc-login/)**をクリックします。
+2. **[製品ログイン一覧](https://www.singleid.jp/product-login/)**をクリックします。
 3. **管理者ポータルログイン**をクリックします。
 4. 管理者のアカウント情報でログインします。
 !!! info
@@ -23,7 +23,7 @@ SingleIDのウェブ管理画面には、管理者ポータルおよびユーザ
 ### ユーザポータルへのログイン
 
 1. SingleIDの**[ホームページ](https://www.singleid.jp)**へアクセスします。
-2. **[製品ログイン一覧](https://www.singleid.jp/poc-login/)**をクリックします。
+2. **[製品ログイン一覧](https://www.singleid.jp/product-login/)**をクリックします。
 3. **ユーザポータルログイン**をクリックします。
 4. ユーザのアカウント情報でログインします。 
 
