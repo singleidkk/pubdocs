@@ -3,11 +3,13 @@ site_url: https://docs.singleid.jp/
 
 theme:
   name: readthedocs
-  language: ja
-  palette:
-    primary: blue
-    accent: blue
-  features:
+  include_homepage_in_sidebar: false
+  locale: ja
+#  language: ja
+#  palette:
+#    primary: blue
+#    accent: blue
+#  features:
 #    - navigation.tabs
 #    - navigation.tabs.sticky
 #    - navigation.sections
