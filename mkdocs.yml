@@ -1,0 +1,43 @@
+site_name: SingleID Document
+site_url: https://docs.singleid.jp/
+
+theme:
+  name: readthedocs
+  language: ja
+  palette:
+    primary: blue
+    accent: blue
+  features:
+#    - navigation.tabs
+#    - navigation.tabs.sticky
+#    - navigation.sections
+#    - navigation.indexes
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search:
+      lang: ja
+
+copyright: Copyright &copy; 2021 - 2022 SingleID K.K.
+
+nav:
+  - HOME: index.md
+  - SingleID設定ガイド:
+    - はじめに: singleid-confguide/index.md
+    - ユーザ: singleid-confguide/user.md
+    - グループ: singleid-confguide/group.md
+    - 認証:
+      - LDAP: singleid-confguide/ldap.md
+      - RADIUS: singleid-confguide/radius.md
+      - 証明書: singleid-confguide/pki.md
+      - アプリ連携: singleid-confguide/app_integration.md
