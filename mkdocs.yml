@@ -1,21 +1,38 @@
 site_name: SingleID Document
 site_url: https://docs.singleid.jp/
 
+#theme:
+#  name: readthedocs
+#  include_homepage_in_sidebar: false
+#  locale: ja
+
 theme:
-  name: readthedocs
-  include_homepage_in_sidebar: false
-  locale: ja
-#  language: ja
-#  palette:
-#    primary: blue
-#    accent: blue
-#  features:
-#    - navigation.tabs
-#    - navigation.tabs.sticky
-#    - navigation.sections
-#    - navigation.indexes
+  name: material
+  language: ja
+  palette: 
+    - scheme: default
+      primary: black
+      accent: red
+      toggle:
+        icon: material/toggle-switch 
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: red
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+
+extra:
+  generator: false
 
 markdown_extensions:
+  - toc:
+      permalink: true
   - admonition
   - pymdownx.details
   - pymdownx.superfences
