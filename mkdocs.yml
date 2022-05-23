@@ -61,8 +61,8 @@ nav:
       - 証明書: singleid-adminguide/pki.md
       - アプリ連携: singleid-adminguide/app_integration.md
     - 管理:
-      - 基本情報（組織アカウント）: singleid-userguide/accountinfo.md
-      - 管理者: singleid-userguide/admin.md
-      - 詳細設定: singleid-userguide/setting.md
+      - 基本情報（組織アカウント）: singleid-adminguide/accountinfo.md
+      - 管理者: singleid-adminguide/admin.md
+      - 詳細設定: singleid-adminguide/setting.md
   - SingleIDユーザガイド:
     - はじめに: singleid-userguide/index.md
