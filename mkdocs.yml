@@ -64,5 +64,6 @@ nav:
       - 基本情報（組織アカウント）: singleid-adminguide/accountinfo.md
       - 管理者: singleid-adminguide/admin.md
       - 詳細設定: singleid-adminguide/setting.md
+    - サポート: singleid-adminguide/support.md
   - SingleIDユーザガイド:
     - はじめに: singleid-userguide/index.md

@@ -1,4 +1,4 @@
-### ユーザポータルへのログイン
+### ユーザポータルのログイン
 
 1. SingleIDの**[ホームページ](https://www.singleid.jp)**へアクセスします。
 2. **[製品ログイン一覧](https://www.singleid.jp/product-login/)**をクリックします。
