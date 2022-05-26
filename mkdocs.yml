@@ -25,7 +25,7 @@ theme:
   features:
 #    - navigation.tabs
 #    - navigation.tabs.sticky
-    - navigation.expand
+#    - navigation.expand
 
 extra:
   generator: false
@@ -67,3 +67,8 @@ nav:
     - サポート: singleid-adminguide/support.md
   - SingleIDユーザガイド:
     - はじめに: singleid-userguide/index.md
+    - アカウント: singleid-userguide/account.md
+    - パスワード: singleid-userguide/password.md
+    - オーセンティケーター: singleid-userguide/authenticator.md
+    - セッション: session.md
+  - 設定例: https://www.singleid.jp/techinfo_category/pocguide/
