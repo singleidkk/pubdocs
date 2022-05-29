@@ -1,7 +1,9 @@
+/* 画像の輪郭の縁取り */
 img {
-    border: solid
+    border: solid;
 }
 
+/* メニューのアクティブな項目の文字を大文字にする */
 .md-nav__link--active {
     font-weight: bold;
     color: var(--md-typeset-a-color);
