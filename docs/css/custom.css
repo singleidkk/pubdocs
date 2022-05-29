@@ -2,6 +2,11 @@ img {
     border: solid
 }
 
+.md-nav__link--active {
+    font-weight: bold;
+    color: var(--md-typeset-a-color);
+}
+
 .md-typeset h1 {
     font-weight: bold;
     border-bottom: solid 2px #757575;
