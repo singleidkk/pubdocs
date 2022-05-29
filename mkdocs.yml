@@ -31,6 +31,7 @@ extra:
   generator: false
 
 extra_css:
+  - "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
   - "/css/custom.css"
 
 markdown_extensions:
@@ -45,6 +46,9 @@ markdown_extensions:
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 plugins:
   - search:
@@ -72,7 +76,7 @@ nav:
     - アカウント: singleid-userguide/account.md
     - パスワード: singleid-userguide/password.md
     - オーセンティケーター: singleid-userguide/authenticator.md
-    - セッション: session.md
+    - セッション: singleid-userguide/session.md
   - SingleIDサポートセンター:
     - はじめに: supportcenter/index.md
     - お客様向け: 
