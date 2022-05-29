@@ -1,0 +1,31 @@
+img {
+    border: solid
+}
+
+.md-typeset h1 {
+    /*font-size: 24pt;*/
+    font-weight: bold;
+    border-bottom: solid 2px #1a69d2;
+    padding-bottom: 5px;
+}
+  .md-typeset h2 {
+    border-bottom: 1px dotted #888;
+}
+
+.md-typeset > ::before {
+    font-family: "FontAwesome";
+    margin-right: .3em;
+    display: inline-block !important;
+}
+
+.md-typeset h1::before {
+    content: "\f02d " !important;
+}
+
+.md-typeset h2::before {
+    content: "\f0a9" !important;
+}
+
+.md-typeset h3::before {
+    content: "\f061" !important;
+}
