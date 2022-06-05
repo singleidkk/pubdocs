@@ -71,6 +71,13 @@ nav:
       - 基本情報（組織アカウント）: singleid-adminguide/accountinfo.md
       - 管理者: singleid-adminguide/admin.md
       - 詳細設定: singleid-adminguide/setting.md
+  - SingleIDアプリ連携ガイド:
+    - はじめに: singleid-appguide/index.md
+    - Nextcloud: singleid-appguide/nextcloud.md
+    - WaWaOffice: singleid-appguide/wawaoffice.md
+    - atpocket: singleid-appguide/atpocket.md
+    - HarmonyConnect: singleid-appguide/harmonyconnect.md
+    - Redmine: singleid-appguide/redmine.md
   - SingleIDユーザガイド:
     - はじめに: singleid-userguide/index.md
     - アカウント: singleid-userguide/account.md
