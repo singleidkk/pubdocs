@@ -1,12 +1,12 @@
 #HOME
 
-[SingleID管理者ガイド](./singleid-adminguide/index.md)
+[管理者ガイド](./singleid-adminguide/index.md)
 
 [アプリ連携設定](./singleid-appguide/index.md)
 
-[SingleIDユーザガイド](./singleid-userguide/index.md)
+[ユーザガイド](./singleid-userguide/index.md)
 
-[SingleIDサポートセンター](./supportcenter/index.md)
+[サポートセンター](./supportcenter/index.md)
 
 [設定例](https://www.singleid.jp/techinfo_category/pocguide/)
 

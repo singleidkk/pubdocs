@@ -58,7 +58,7 @@ copyright: Copyright &copy; 2021 - 2022 SingleID K.K.
 
 nav:
   - HOME: index.md
-  - SingleID管理者ガイド:
+  - 管理者ガイド:
     - はじめに: singleid-adminguide/index.md
     - ユーザ: singleid-adminguide/user.md
     - グループ: singleid-adminguide/group.md
@@ -71,20 +71,20 @@ nav:
       - 基本情報（組織アカウント）: singleid-adminguide/accountinfo.md
       - 管理者: singleid-adminguide/admin.md
       - 詳細設定: singleid-adminguide/setting.md
-  - SingleIDアプリ連携ガイド:
+  - アプリ連携ガイド:
     - はじめに: singleid-appguide/index.md
     - Nextcloud: singleid-appguide/nextcloud.md
     - WaWaOffice: singleid-appguide/wawaoffice.md
     - atpocket: singleid-appguide/atpocket.md
     - HarmonyConnect: singleid-appguide/harmonyconnect.md
     - Redmine: singleid-appguide/redmine.md
-  - SingleIDユーザガイド:
+  - ユーザガイド:
     - はじめに: singleid-userguide/index.md
     - アカウント: singleid-userguide/account.md
     - パスワード: singleid-userguide/password.md
     - オーセンティケーター: singleid-userguide/authenticator.md
     - セッション: singleid-userguide/session.md
-  - SingleIDサポートセンター:
+  - サポートセンター:
     - はじめに: supportcenter/index.md
     - お客様向け: 
       - 新規のお問い合わせ: supportcenter/new_ticket.md
