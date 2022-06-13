@@ -8,9 +8,9 @@
 
 * PAP
 * CHAP
-* MSCHAP
+* MSCHAPv2
 * EAP-TLS
-* EAP-TLS-PAP
+* EAP-TTLS-PAP
 * PEAP(MSCHAPv2)
 
 ワンタイムパスワード認証を行う場合には、以下の認証方式のみサポートします。

@@ -1,14 +1,22 @@
-# WiFiアクセス-パスワード認証
+# 無線LANアクセス-パスワード認証
 ## 目的
-SingleIDのユーザで、Check Point FWのWiFIアクセスポイントへアクセスします。
+SingleIDのユーザで、Check Point FWの無線LANアクセスポイントへアクセスします。
 接続する際の認証方式は、パスワードです。
+
+パスワード認証方式でサポートしている認証プロトコルは以下です。
+
+* PAP
+* CHAP
+* MSCHAPv2
+* EAP-TTLS-PAP
+* PEAP(MSCHAPv2)
 
 ## 環境
 ### ユーザの情報
 user1
 
 ### グループの情報
-wifi-access-users
+singleid-wlan-access-users
 
 ### RADIUSの情報
 
@@ -52,8 +60,12 @@ wifi-access-users
     !!! info
         選択するサーバの番号により、RADIUSサーバのポート番号が異なります。サーバが1の場合には、UDP1812です。**SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**にサーバの番号と通信ポート番号の対応が記載されています。
 
-4. **VPNアクセスの認証**タブへ移動します。
+4. **無線アクセスの認証**タブへ移動します。
 5. **許可グループ**の設定で許可したいグループをダブルクリックし、許可へ移動させます。許可するグループは、[グループの情報](#グループの情報)を参照します。
+    
+    !!! info
+        接続可能なSSIDを制限したい場合には、SSID入力欄に、接続を許可したいSSIDを入力します。
+
 6. **登録**ボタンをクリックします。
 
 ### Check Point FWの設定
@@ -74,54 +86,40 @@ wifi-access-users
 
 4. **適用**ボタンをクリックします。
 
-#### リモートアクセスユーザの認証の設定
-1. **Check Point FW GUI＞VPN＞認証サーバ**画面へ移動します。
-2. **RADIUS ユーザの権限**をクリックします。**RADIUS設定**画面がポップアップします。
-3. **RADIUS認証をユーザ認識、リモートアクセス、ホットスポットに有効にする**を✅し、**適用**ボタンをクリックします。
+#### 無線LANアクセスユーザの認証の設定
+1. **Check Point FW GUI＞デバイス＞ワイヤレス**画面へ移動します。
+2. **設定の編集**をクリックします。**編集**画面がポップアップします。
+3. **ワイヤレスセキュリティ**ブロックにおいて、**保護されているネットワーク（推奨）**を選択し、以下のように設定し、**適用**ボタンをクリックします。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **セキュリティタイプ** | WPA2（最も安全） |
+    | **暗号化タイプ** | CCMP-AES（最も安全） |
+    | **認証方式** | RADIUSサーバ（エンタープライズモード）|
 
 ## 動作確認方法
-### WiFiアクセスの認証（パスワード認証）
+### 無線LANアクセスの認証（EAP-TTLS-PAP方式のパスワード認証）
+#### Windows 10/11 の場合
 
-#### リモートアクセスクライアントのインストール
-Check Point FWのリモートアクセスクライアントである、 Check Point Remote Access VPN Clients をインストールしていない場合には、以下よりダウンロードしてインストールします。
+1. Check Point FWの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
 
-[ダウンロード](https://supportcenter.checkpoint.com/supportcenter/portal?version=&amp;os=&amp;productTab=downloads&amp;product=175&amp;eventSubmit_doShowproductpage=){ target=_blank .md-button .md-button--primary }
+    [![Screenshot](/images/image-34.png)](/images/image-34.png)
 
-#### 接続先の設定
+2. SingleIDのユーザ（user1）の認証情報を入力し、**OK**ボタンをクリックします。
 
-1. Check Point Remote Access VPN Clientsを起動して、新規サイトを作成します。サイトウィザードが表示されたら、**Next**ボタンをクリックします。
+    [![Screenshot](/images/image-41.png)](/images/image-41.png)
 
-    [![Screenshot](/images/image-24.png)](/images/image-24.png)
+3. 接続先が正しいかどうかの確認を要求されます。**証明書の詳しい内容の表示**でRADIUSサーバのサーバ証明書の情報が表示されますので、接続先の確認を行います。
 
-2. **Server address or Name**に、Check Point FWのWANのIPアドレスを入力し、**Next**ボタンをクリックします。
+    | **項目** | **内容** |
+    | :--- | :--- |
+    | **発行先** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブのホスト名 |
+    | **発行元** | R3 |
 
-    [![Screenshot](/images/image-25.png)](/images/image-25.png)
+4. 接続先が正しければ、**接続**ボタンをクリックします。
 
-3. **VPN Client (Default)**が選択されていることを確認し、**Next**ボタンをクリックします。
+    [![Screenshot](/images/image-48.png)](/images/image-48.png)
 
-    [![Screenshot](/images/image-26.png)](/images/image-26.png)
+5. 接続成功したことを確認します。
 
-4. **Username and  Password**を選択し、**Next**ボタンをクリックします。
-
-    [![Screenshot](/images/image-27.png)](/images/image-27.png)
-
-6. **Site created successfully**が表示されたら、サイトが無事作成されました。**Finish**ボタンをクリックします。
-
-    [![Screenshot](/images/image-29.png)](/images/image-29.png)
-
-#### VPN接続
-
-1. **Connect**ボタンをクリックします。 
-
-    [![Screenshot](/images/image-30.png)](/images/image-30.png)
-
-2. **Site**に、作成した接続先を選択します。
-
-3. SingleIDのユーザ（user1）でログインを試み、ログインが成功することを確認します。
-
-    [![Screenshot](/images/image-31.png)](/images/image-31.png)
-
-4. **Details**ボタンをクリックすると、詳細が表示され、user1で、RADIUS認証が行われて、接続が成功したことが確認できます。
-
-    [![Screenshot](/images/image-32.png)](/images/image-32.png)
-
+    [![Screenshot](/images/image-39.png)](/images/image-39.png)

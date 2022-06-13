@@ -1,6 +1,6 @@
-# リモートアクセスVPN-パスワード認証
+# 管理者ログイン-パスワード認証
 ## 目的
-SingleIDのユーザで、Check Point FWへVPNを使ってリモートアクセスします。
+SingleIDのユーザで、Check Point FWへ管理者権限でログインします。
 接続する際の認証方式は、パスワードです。
 
 ## 環境
@@ -8,7 +8,7 @@ SingleIDのユーザで、Check Point FWへVPNを使ってリモートアクセ�
 user1
 
 ### グループの情報
-singleid-remote-access-users
+singleid-system-administrators
 
 ### RADIUSの情報
 
@@ -52,8 +52,17 @@ singleid-remote-access-users
     !!! info
         選択するサーバの番号により、RADIUSサーバのポート番号が異なります。サーバが1の場合には、UDP1812です。**SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**にサーバの番号と通信ポート番号の対応が記載されています。
 
-4. **VPNアクセスの認証**タブへ移動します。
+4. **管理アクセスの認証**タブへ移動します。
 5. **許可グループ**の設定で許可したいグループをダブルクリックし、許可へ移動させます。許可するグループは、[グループの情報](#グループの情報)を参照します。
+    
+    !!! info
+        必要に応じて権限を設定します。権限の詳細については、Check Point FWの管理者ガイドをご確認ください。
+
+        * スーパー管理者
+        * 読み取り専用管理者
+        * ネットワーキング管理者
+        * モバイル管理者
+
 6. **登録**ボタンをクリックします。
 
 ### Check Point FWの設定
@@ -74,54 +83,21 @@ singleid-remote-access-users
 
 4. **適用**ボタンをクリックします。
 
-#### リモートアクセスユーザの認証の設定
-1. **Check Point FW GUI＞VPN＞認証サーバ**画面へ移動します。
-2. **RADIUS ユーザの権限**をクリックします。**RADIUS設定**画面がポップアップします。
-3. **RADIUS認証をユーザ認識、リモートアクセス、ホットスポットに有効にする**を✅し、**適用**ボタンをクリックします。
+#### 管理者ログインの認証の設定
+1. **Check Point FW GUI＞デバイス＞管理者**画面へ移動します。
+2. **権限の編集**をクリックします。**RADIUS認証**画面がポップアップします。
+3. 以下を設定し、**適用**ボタンをクリックします。
+    
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **管理者のRADIUS認証を有効にする** | ✅ |
+    | **RADIUSサーバで定義されたロールを使用** | 選択 |
 
 ## 動作確認方法
-### リモートアクセスVPNの認証（パスワード認証）
+### 管理者ログインの認証（パスワード認証）
 
-#### リモートアクセスクライアントのインストール
-Check Point FWのリモートアクセスクライアントである、 Check Point Remote Access VPN Clients をインストールしていない場合には、以下よりダウンロードしてインストールします。
+1. **Check Point FW GUI** https://Check PointのIP:4434/ へアクセスします。
+2. SingleIDのユーザ（user1）でログインを試み、ログインが成功することを確認します。
 
-[ダウンロード](https://supportcenter.checkpoint.com/supportcenter/portal?version=&amp;os=&amp;productTab=downloads&amp;product=175&amp;eventSubmit_doShowproductpage=){ target=_blank .md-button .md-button--primary }
-
-#### 接続先の設定
-
-1. Check Point Remote Access VPN Clientsを起動して、新規サイトを作成します。サイトウィザードが表示されたら、**Next**ボタンをクリックします。
-
-    [![Screenshot](/images/image-24.png)](/images/image-24.png)
-
-2. **Server address or Name**に、Check Point FWのWANのIPアドレスを入力し、**Next**ボタンをクリックします。
-
-    [![Screenshot](/images/image-25.png)](/images/image-25.png)
-
-3. **VPN Client (Default)**が選択されていることを確認し、**Next**ボタンをクリックします。
-
-    [![Screenshot](/images/image-26.png)](/images/image-26.png)
-
-4. **Username and  Password**を選択し、**Next**ボタンをクリックします。
-
-    [![Screenshot](/images/image-27.png)](/images/image-27.png)
-
-6. **Site created successfully**が表示されたら、サイトが無事作成されました。**Finish**ボタンをクリックします。
-
-    [![Screenshot](/images/image-29.png)](/images/image-29.png)
-
-#### VPN接続
-
-1. **Connect**ボタンをクリックします。 
-
-    [![Screenshot](/images/image-30.png)](/images/image-30.png)
-
-2. **Site**に、作成した接続先を選択します。
-
-3. SingleIDのユーザでログインを試み、ログインが成功することを確認します。
-
-    [![Screenshot](/images/image-31.png)](/images/image-31.png)
-
-4. **Details**ボタンをクリックすると、詳細が表示され、SingleIDのユーザで、RADIUS認証が行われて、接続が成功したことが確認できます。
-
-    [![Screenshot](/images/image-32.png)](/images/image-32.png)
+    [![Screenshot](/images/image-cp-login.png)](/images/image-cp-login.png)
 
