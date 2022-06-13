@@ -124,7 +124,7 @@ Check Point FWのリモートアクセスクライアントである、 Check Po
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **user name** | **Browse**をクリックし、ダウンロードした**SingleIDのユーザ**[（参照）](#ユーザの情報)のクライアント証明書を選択します。 |
-    | **password** | クライアント証明書のパスワードを入力します。クライアント証明書のパスワードは、**SingleIDのユーザ名**[（参照）]](#ユーザの情報)と同一です。 |
+    | **password** | クライアント証明書のパスワードを入力します。クライアント証明書のパスワードは、**SingleIDのユーザ名**[（参照）](#ユーザの情報)と同一です。 |
 
     [![Screenshot](/images/image-cpvpnclient-importcert.png)](/images/image-cpvpnclient-importcert.png)
 
