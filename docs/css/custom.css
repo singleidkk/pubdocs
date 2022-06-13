@@ -53,12 +53,6 @@ img {
     content:"\f0da" !important;
 }
 
-#.md-typeset a:not([class])::before {
-#    font-family: "FontAwesome";
-#    margin-right: .2em;
-#    content: "\f14c";
-#}
-
 .md-typeset a:not([class]) {
     border-bottom: 1px dotted #757575;
 }
@@ -90,4 +84,9 @@ img {
 
 .md-typeset i.fa {
     text-indent: 0em;
+}
+
+th {
+    background-color:#757575 !important;
+    color: #ffffff !important;
 }

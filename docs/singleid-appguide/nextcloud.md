@@ -57,10 +57,10 @@
     | **IDプロバイダのオプションの表示名** | SingleID ログイン |
     | **Identity Providerデータ** ||
     | **IdPエンティティの識別子** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013）|
-    | **SPが認証要求メッセージを送信するIdPのターゲットURI** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **SPがSLO要求を送信するIdPのURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **IdPがSLOレスポンスを提供するURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **IdPの公開鍵X.509証明書** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAg3MDAwMDA4MTA……..）をコピーして、入力します。 |
+    | **SPが認証要求メッセージを送信するIdPのターゲットURI** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
+    | **SPがSLO要求を送信するIdPのURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
+    | **IdPがSLOレスポンスを提供するURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
+    | **IdPの公開鍵X.509証明書** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..）をコピーして、入力します。 |
     | **属性のマッピング** ||
     | **表示名にマップする属性** | username |
     | **電子メールアドレスにマップする属性** | email |
