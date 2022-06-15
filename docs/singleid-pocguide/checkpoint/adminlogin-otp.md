@@ -1,14 +1,14 @@
-# リモートアクセスVPN-パスワード認証
+# 管理者ログイン-２要素認証（パスワード認証＋ワンタイムパスワード認証）
 ## 目的
-SingleIDのユーザで、Check Point FWへVPNを使ってリモートアクセスします。
-接続する際の認証方式は、パスワードです。
+SingleIDのユーザで、Check Point FWへ管理者権限でログインします。
+接続する際の認証方式は、２要素認証（パスワード認証＋ワンタイムパスワード認証）です。
 
 ## 環境
 ### ユーザの情報
 user1
 
 ### グループの情報
-singleid-remote-access-users
+singleid-system-administrators
 
 ### RADIUSの情報
 
@@ -45,15 +45,24 @@ singleid-remote-access-users
     | :--- | :--- |
     | **有効/無効** | 有効 |
     | **サーバ** | 1 |
-    | **ワンタイムパスワード強制** | 無効 |
+    | **ワンタイムパスワード強制** | 有効 |
     | **IPアドレス** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのIPアドレス**を参照 |
     | **シークレット** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
     
     !!! info
         選択するサーバの番号により、RADIUSサーバのポート番号が異なります。サーバが1の場合には、UDP1812です。**SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**にサーバの番号と通信ポート番号の対応が記載されています。
 
-4. **VPNアクセスの認証**タブへ移動します。
+4. **管理アクセスの認証**タブへ移動します。
 5. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
+    
+    !!! info
+        必要に応じて権限を設定します。権限の詳細については、Check Point FWの管理者ガイドをご確認ください。
+
+        * スーパー管理者
+        * 読み取り専用管理者
+        * ネットワーキング管理者
+        * モバイル管理者
+
 6. **登録**ボタンをクリックします。
 
 ### Check Point FWの設定
@@ -74,54 +83,63 @@ singleid-remote-access-users
 
 4. **適用**ボタンをクリックします。
 
-#### リモートアクセスユーザの認証の設定
-1. **Check Point FW GUI＞VPN＞認証サーバ**画面へ移動します。
-2. **RADIUS ユーザの権限**をクリックします。**RADIUS設定**画面がポップアップします。
-3. **RADIUS認証をユーザ認識、リモートアクセス、ホットスポットに有効にする**を✅し、**適用**ボタンをクリックします。
+#### 管理者ログインの認証の設定
+1. **Check Point FW GUI＞デバイス＞管理者**画面へ移動します。
+2. **権限の編集**をクリックします。**RADIUS認証**画面がポップアップします。
+3. 以下を設定し、**適用**ボタンをクリックします。
+    
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **管理者のRADIUS認証を有効にする** | ✅ |
+    | **RADIUSサーバで定義されたロールを使用** | 選択 |
 
 ## 動作確認方法
-### リモートアクセスVPNの認証（パスワード認証）
+### 管理者ログインの認証（パスワード認証＋ワンタイムパスワード認証）
+#### ソフトウェアトークンのインストール
+ソフトウェアトークンとして、以下のiPhoneおよびAndroidのモバイルアプリが利用できます。どちらかのアプリをスマートフォンまたはタブレットへインストールします。
 
-#### リモートアクセスクライアントのインストール
-Check Point FWのリモートアクセスクライアントである、 Check Point Remote Access VPN Clients をインストールしていない場合には、以下よりダウンロードしてインストールします。
+* FreeOTP
+* Google Authenticator
 
-[ダウンロード](https://supportcenter.checkpoint.com/supportcenter/portal?version=&amp;os=&amp;productTab=downloads&amp;product=175&amp;eventSubmit_doShowproductpage=){ target=_blank .md-button .md-button--primary }
+#### SingleIDへソフトウェアトークンの登録
 
-#### 接続先の設定
+!!! warning
+    **SingleIDへソフトウェアトークンの登録**を行っていないユーザは、ワンタイムパスワードは無効となり、パスワードでの認証となります。
 
-1. Check Point Remote Access VPN Clientsを起動して、新規サイトを作成します。サイトウィザードが表示されたら、**Next**ボタンをクリックします。
+1. **SingleIDのユーザ**[（参照）](#ユーザの情報)で、SingleIDの[**ユーザポータル**](https://www.singleid.jp/product-login/)へログインします。
+2. **SingleID ユーザポータル＞オーセンティケーター**画面へ移動します。
+3. **QRコード**が表示されていることを確認します。
 
-    [![Screenshot](/images/image-24.png)](/images/image-24.png)
+    [![Screenshot](/images/image-account-1.png)](/images/image-account-1.png)
 
-2. **Server address or Name**に、Check Point FWのWANのIPアドレスを入力し、**Next**ボタンをクリックします。
+4. スマートフォンまたはタブレットへインストールしたソフトウェアトークンアプリを起動します。（ここでは、**Google Authenticator**を利用します。）
+5. **＋**をクリックし、新規アカウントを追加します。
 
-    [![Screenshot](/images/image-25.png)](/images/image-25.png)
+    [![Screenshot](/images/image-token-1.png)](/images/image-token-1.png)
 
-3. **VPN Client (Default)**が選択されていることを確認し、**Next**ボタンをクリックします。
+6. **QRコードをスキャン**をクリックし、ユーザポータルに表示されているQRコードを読み取ります。
 
-    [![Screenshot](/images/image-26.png)](/images/image-26.png)
+    [![Screenshot](/images/image-token-2.png)](/images/image-token-2.png)
 
-4. **Username and Password**を選択し、**Next**ボタンをクリックします。
+7. **アカウントを追加**をクリックし、アカウントを追加します。
 
-    [![Screenshot](/images/image-27.png)](/images/image-27.png)
+    [![Screenshot](/images/image-token-3.png)](/images/image-token-3.png)
 
-6. **Site created successfully**が表示されたら、サイトが無事作成されました。**Finish**ボタンをクリックします。
+8. 表示されていの数字**を**SingleID ユーザポータル＞オーセンティケーター**画面の**ワンタイムコード**へ入力し、**保存**ボタンをクリックし、オーセンティケーターを登録します。
 
-    [![Screenshot](/images/image-29.png)](/images/image-29.png)
+    [![Screenshot](/images/image-token-4.png)](/images/image-token-4.png)
 
-#### VPN接続
+    !!! info
+        ソフトウェアトークンの6桁の数字の表示は、30秒ごとに変わります。変わる前に、オーセンティケーターの登録を完了させる必要があります。登録する途中で、ソフトウェアトークンの数字が変わってしまった場合には、変わった数字を登録します。
 
-1. **Connect**ボタンをクリックします。 
+#### Check Point FW GUIへログイン
+1. **Check Point FW GUI** https://Check PointのIP:4434/ へアクセスします。
+2.  以下の情報でログインを試み、ログインが成功することを確認します。
 
-    [![Screenshot](/images/image-30.png)](/images/image-30.png)
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **ユーザ名** | [SingleIDのユーザの情報](#ユーザの情報)を参照 |
+    | **パスワード** | **ユーザのパスワード**と**ソフトウェアトークンに表示されたワンタイムパスワード**を:（コロン）でつなげた文字列を入力します。（例：password:123456）|
 
-2. **Site**に、作成した接続先を選択します。
-
-3. **SingleIDのユーザ**[（参照）](#ユーザの情報)でログインを試み、ログインが成功することを確認します。
-
-    [![Screenshot](/images/image-31.png)](/images/image-31.png)
-
-4. **Details**ボタンをクリックすると、詳細が表示され、**SingleIDのユーザ**[（参照）](#ユーザの情報)で、RADIUS認証が行われて、接続が成功したことが確認できます。
-
-    [![Screenshot](/images/image-32.png)](/images/image-32.png)
+    [![Screenshot](/images/image-cp-login.png)](/images/image-cp-login.png)
 

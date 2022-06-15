@@ -17,9 +17,8 @@
     [![Screenshot](/images/2022-06-06_20-01-59.png)](/images/2022-06-06_20-01-59.png)
 
 6. **SSO 有効/無効**を**有効**に設定します。
-7. **URL**に、**https://cloudinfra-gw.portal.checkpoint.com/api/saml/sso**を設定します。
-8. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、Harmony Connectの設定を行うときに必要となります。
-9. **登録**ボタンをクリックして、アプリを登録します。
+7. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、Harmony Connectの設定を行うときに必要となります。
+8. **登録**ボタンをクリックして、アプリを登録します。
     
     [![Screenshot](/images/2022-06-06_20-02-58.png)](/images/2022-06-06_20-02-58.png)
 
@@ -118,3 +117,5 @@ Harmony Connectクライアントから認証するメールアドレスをア�
     
     [![Screenshot](/images/2022-06-07_12-40-21.png)](/images/2022-06-07_12-40-21.png)
 
+    !!! info
+        **Gourps have been resolved properly from your Identity Provider**が**:fontawesome-solid-circle-check:**とならない場合には、ユーザがグループに属していない事が考えられます。SingleIDのユーザがグループに属していることを確認してください。
