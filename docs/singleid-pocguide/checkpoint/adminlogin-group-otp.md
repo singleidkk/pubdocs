@@ -1,14 +1,21 @@
-# 管理者ログイン-パスワード認証
+# 管理者ログイン-２要素認証（パスワード認証＋ワンタイムパスワード認証）
 ## 目的
 SingleIDのユーザで、Check Point FWへ管理者権限でログインします。
-接続する際の認証方式は、パスワードです。
+接続する際の認証方式は、２要素認証（パスワード認証＋ワンタイムパスワード認証）です。
 
 ## 環境
 ### ユーザの情報
-user1
+| **ユーザ名** | **姓（英字）** | **名（英字）** | **メールアドレス** |
+| :--- | :--- | :--- | :--- |
+| user1 | user1 | user1 | user1@poc.singleid.jp |
+
+!!! info
+    メールアドレス: 受信可能なメールアドレスを指定してください。
 
 ### グループの情報
-singleid-system-administrators
+| **グループ名** | **メンバー** | **動作** |
+| :--- | :--- | :--- |
+| singleid-system-administrators | user1 | 管理者ログイン可能 |
 
 ### RADIUSの情報
 
@@ -45,8 +52,8 @@ singleid-system-administrators
     | :--- | :--- |
     | **有効/無効** | 有効 |
     | **サーバ** | 1 |
-    | **ワンタイムパスワード強制** | 無効 |
-    | **IPアドレス** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのIPアドレス**を参照 |
+    | **ワンタイムパスワード強制** | 有効 |
+    | **IP or ホスト名** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのIPアドレス**を参照 |
     | **シークレット** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
     
     !!! info
@@ -90,14 +97,56 @@ singleid-system-administrators
     
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **管理者のRADIUS認証を有効にする** | ✅ |
+    | **管理者のRADIUS認証を有効にする** | :fontawesome-regular-square-check: |
     | **RADIUSサーバで定義されたロールを使用** | 選択 |
 
 ## 動作確認方法
-### 管理者ログインの認証（パスワード認証）
+### 管理者ログインの認証（パスワード認証＋ワンタイムパスワード認証）
+#### ソフトウェアトークンのインストール
+ソフトウェアトークンとして、以下のiPhoneおよびAndroidのモバイルアプリが利用できます。どちらかのアプリをスマートフォンまたはタブレットへインストールします。
 
+* FreeOTP
+* Google Authenticator
+
+#### SingleIDへソフトウェアトークンの登録
+
+!!! warning
+    **SingleIDへソフトウェアトークンの登録**を行っていないユーザは、ワンタイムパスワードは無効となり、パスワードでの認証となります。
+
+1. **SingleIDのユーザ**[（参照）](#ユーザの情報)で、SingleIDの[**ユーザポータル**](https://www.singleid.jp/product-login/)へログインします。
+2. **SingleID ユーザポータル＞オーセンティケーター**画面へ移動します。
+3. **QRコード**が表示されていることを確認します。
+
+    [![Screenshot](/images/image-account-1.png)](/images/image-account-1.png)
+
+4. スマートフォンまたはタブレットへインストールしたソフトウェアトークンアプリを起動します。（ここでは、**Google Authenticator**を利用します。）
+5. **＋**をクリックし、新規アカウントを追加します。
+
+    [![Screenshot](/images/image-token-1.png)](/images/image-token-1.png)
+
+6. **QRコードをスキャン**をクリックし、ユーザポータルに表示されているQRコードを読み取ります。
+
+    [![Screenshot](/images/image-token-2.png)](/images/image-token-2.png)
+
+7. **アカウントを追加**をクリックし、アカウントを追加します。
+
+    [![Screenshot](/images/image-token-3.png)](/images/image-token-3.png)
+
+8. 表示されていの数字**を**SingleID ユーザポータル＞オーセンティケーター**画面の**ワンタイムコード**へ入力し、**保存**ボタンをクリックし、オーセンティケーターを登録します。
+
+    [![Screenshot](/images/image-token-4.png)](/images/image-token-4.png)
+
+    !!! info
+        ソフトウェアトークンの6桁の数字の表示は、30秒ごとに変わります。変わる前に、オーセンティケーターの登録を完了させる必要があります。登録する途中で、ソフトウェアトークンの数字が変わってしまった場合には、変わった数字を登録します。
+
+#### Check Point FW GUIへログイン
 1. **Check Point FW GUI** https://Check PointのIP:4434/ へアクセスします。
-2. **SingleIDのユーザ**[（参照）](#ユーザの情報)でログインを試み、ログインが成功することを確認します。
+2.  以下の情報でログインを試み、ログインが成功することを確認します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **ユーザ名** | [SingleIDのユーザの情報](#ユーザの情報)を参照 |
+    | **パスワード** | **ユーザのパスワード**と**ソフトウェアトークンに表示されたワンタイムパスワード**を:（コロン）でつなげた文字列を入力します。（例：password:123456）|
 
     [![Screenshot](/images/image-cp-login.png)](/images/image-cp-login.png)
 
