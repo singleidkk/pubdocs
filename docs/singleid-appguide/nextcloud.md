@@ -51,12 +51,12 @@
 
     | **Nextcloudの設定項目** | **設定内容** |
     | :--- | :--- |
-    | **グローバル設定** | ✅Nextcloud デスクトップクライアントにSAML認証を使用する（ユーザーの再認証が必要）<br>✅複数のユーザーのバックエンド（LDAPなど）の使用を許可する |
+    | **グローバル設定** | :fontawesome-regular-square-check:Nextcloud デスクトップクライアントにSAML認証を使用する（ユーザーの再認証が必要）<br>:fontawesome-regular-square-check:複数のユーザーのバックエンド（LDAPなど）の使用を許可する |
     | **一般** ||
     | **UIDをマップする属性** | username |
     | **IDプロバイダのオプションの表示名** | SingleID ログイン |
     | **Identity Providerデータ** ||
-    | **IdPエンティティの識別子** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013）|
+    | **IdPエンティティの識別子** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013）|
     | **SPが認証要求メッセージを送信するIdPのターゲットURI** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
     | **SPがSLO要求を送信するIdPのURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
     | **IdPがSLOレスポンスを提供するURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
@@ -69,7 +69,7 @@
 ## プロビジョニング
 NextCloudは、SAMLのJITプロビジョニングに対応しています。上記設定により、NextCloudへユーザが自動的に作成されます。その際、SingleIDのグループ情報もプロビジョニングされます。
 
-プロビジョニングを無効にしたい場合には、**SSOとSAML認証**の設定画面のグローバル設定にて、**ほかのバックエンドにアカウントが存在する場合のみ、認証を許可します。**を✅してください。
+プロビジョニングを無効にしたい場合には、**SSOとSAML認証**の設定画面のグローバル設定にて、**ほかのバックエンドにアカウントが存在する場合のみ、認証を許可します。**を:fontawesome-regular-square-check:してください。
 
 ## アプリにユーザ追加
 1. SingleID 管理者ポータル＞認証＞アプリ連携画面へ移動します。

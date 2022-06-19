@@ -45,13 +45,13 @@
 
     | **Redmineの設定項目** | **設定内容** |
     | :--- | :--- |
-    | Enabled | ✅ |
+    | Enabled | :fontawesome-regular-square-check: |
     | **Client ID** | Redmineのログイン画面URLを指定します。<br><br>（例：https://redmine.example.com/） |
     | **OpenID Connect server url** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。issuerの値（URL）を入力します。<br><br>（例：https://auth-01-0001.dev.singleid.jp/auth/realms/90000013） |
     | **Client Secret** | SingleIDに設定した認証シークレットを入力します。 |
     | **OpenID Connect scopes** | openid,profile,email |
-    | **Login Selector** | ✅ |
-    | **Create user if not exists** | ✅ |
+    | **Login Selector** | :fontawesome-regular-square-check: |
+    | **Create user if not exists** | :fontawesome-regular-square-check: |
     
     [![Screenshot](/images/2022-06-09_1-47-34.png)](/images/2022-06-09_1-47-34.png)
 
