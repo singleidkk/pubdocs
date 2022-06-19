@@ -21,7 +21,7 @@
 
 6. **SSO 有効/無効**を**有効**に設定します。
 7. **URL**に、RedmineのURLを設定します。
-8. **認証シークレット**に、Redmineと連携するための認証シークレット（任意の文字列）を設定します。
+8. **認証シークレット**に、Redmineと連携するための認証シークレット（任意の文字列）を設定します。この認証シークレットは、Redmineの設定を行うときに必要となります。
 9. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、Redmineの設定を行うときに必要となります。
 10. **登録**ボタンをクリックして、アプリを登録します。
     
@@ -61,7 +61,9 @@ Redmine Openid Connect pluginは、OIDCのJITプロビジョニングに対応�
 !!! warning
     SingleIDのグループ情報はプロビジョニングされません。
 
-プロビジョニングを無効にしたい場合には、**OpenID Connect Configuration**の設定画面にて、**Create user if not exists**を無効にしてください。
+**Redmineのシステム管理者の権限をSingleIDのグループのメンバーに付与したい場合**には、**OpenID Connect Configuration**の設定画面にて、権限を付与したいSingleIDのグループの名前を**Admins group (members of this group are treated as admin)**へ設定してください。
+
+**プロビジョニングを無効にしたい場合**には、**OpenID Connect Configuration**の設定画面にて、**Create user if not exists**を無効にしてください。
 
 ## アプリにユーザ追加
 1. SingleID 管理者ポータル＞認証＞アプリ連携画面へ移動します。
