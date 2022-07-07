@@ -8,6 +8,6 @@
 
 [サポートセンター](./supportcenter/index.md)
 
-[設定例](./singleid-appguide/index.md)
+[設定例](./singleid-pocguide/index.md)
 
 [よくある質問](./faq/index.md)
