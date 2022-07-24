@@ -41,9 +41,9 @@
     | :--- | :--- |
     | **SAML認証の利用** | 有効 |
     | **SAML認証の利用を必須にする** | 無効<br>（有効にすると標準のユーザID、パスワードでのログインはできなくなります。SingleIDとSAMLで認証できることが確認できるまでは、有効にしないでください。）|
-    | **IdPログインURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **IdPログアウトURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **IdPの公開鍵の証明書** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAg3MDAwMDA4MTA……..）をコピーして、テキストファイルとして保存します。そのファイルをアップロードします。 |
+    | **IdPログインURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml`） |
+    | **IdPログアウトURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml`） |
+    | **IdPの公開鍵の証明書** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAg3MDAwMDA4MTA……..`）をコピーして、テキストファイルとして保存します。そのファイルをアップロードします。 |
 
     [![Screenshot](/images/image-4-1024x455.png)](/images/image-4-1024x455.png)
 
@@ -72,3 +72,9 @@ SingleIDおよび@pocketの両方に存在するユーザのみが、シング�
 3. SingleIDのログイン画面が表示されます。すでに、SingleIDへログイン中であれば、ログイン画面は表示されず、@pocketへログインできます。
     
     [![Screenshot](/images/image-7-1024x462.png)](/images/image-7-1024x462.png)
+
+## ダイレクトログインの無効化
+!!! danger
+    以下は、ダイレクトログインを無効化する方法です。必ずSAML認証により**管理者権限**でログインできることを確認できてから、実施するようにしてください。SAML認証ができない状態で、ダイレクトログインを無効化すると@pocketへログインできなくなります。
+
+**SAML認証設定**の設定画面の**SAML認証の利用を必須にする**を**有効**にします。
