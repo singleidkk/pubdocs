@@ -1,4 +1,4 @@
-# WaWaOfficeのアプリ連携
+# 奉行クラウドのアプリ連携
 ## シングルサインオン
 ### SingleIDのアプリ連携設定
 1. SingleID 管理者ポータル＞認証＞アプリ連携画面へ移動します。
@@ -6,57 +6,61 @@
     
     [![Screenshot](/images/image-1.png)](/images/image-1.png)
 
-3. アプリカタログが表示されるので、WaWaofficeの**登録**ボタンをクリックします。
+3. アプリカタログが表示されるので、奉行クラウドの**登録**ボタンをクリックします。
     
-    [![Screenshot](/images/2022-06-05_13-22-11.png)](/images/2022-06-05_13-22-11.png)
+    [![Screenshot](/images/2022-07-24_19-43-54.png)](/images/2022-07-24_19-43-54.png)
 
 4. **アプリ登録**画面がポップアップします。**情報**タブの**名前**に、アプリを識別できるような名前を、半角小文字の英数字、**-（ハイフン）**、**_（アンダースコア）**で設定します。
 5. **シングルサインオン**タブに移動します。
     
-    [![Screenshot](/images/2022-06-05_13-23-10-1024x596.png)](/images/2022-06-05_13-23-10-1024x596.png)
+    [![Screenshot](/images/2022-07-24_19-46-11.png)](/images/2022-07-24_19-46-11.png)
 
 6. **SSO 有効/無効**を有効に設定します。
-7. **URL**に、WaWaofficeのURLを設定します。
-8. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、WaWaofficeの設定を行うときに必要となります。
-9. **登録**ボタンをクリックして、アプリを登録します。
+7. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、奉行クラウドの設定を行うときに必要となります。
+8. **識別子(URL)**に、奉行クラウドのSAML設定の識別子を設定します。
     
-    [![Screenshot](/images/2022-06-05_13-25-25-1024x596.png)](/images/2022-06-05_13-25-25-1024x596.png)
+    !!! info
+        **識別子(URL)**は、奉行クラウドの管理ポータル＞ログイン＞SAML認証の画面の**利用の手引き**をクリックして確認することができます。
 
-### WaWaofficeのSAML認証設定
-1. WaWaofficeへ管理者権限を持つユーザでログインします。
+9.  **認証応答URL**に、奉行クラウドのSAML設定の認証応答URLを設定します。
+
+    !!! info
+        **認証応答URL**は、奉行クラウドの管理ポータル＞ログイン＞SAML認証の画面の**利用の手引き**をクリックして確認することができます。
+
+10. **登録**ボタンをクリックして、アプリを登録します。
     
-    [![Screenshot](/images/2022-04-14_9-54-58.png)](/images/2022-04-14_9-54-58.png)
+    [![Screenshot](/images/2022-07-24_19-48-38.png)](/images/2022-07-24_19-48-38.png)
 
-2. 画面右上のアイコンをクリックして、プルダウンメニューの**管理者設定**を選択し、設定画面へ移動します。
-
-    [![Screenshot](/images/2022-04-14_9-59-58.png)](/images/2022-04-14_9-59-58.png)
-
-3. **管理者システム設定**をクリックし、システム設定画面へ移動します。
+### 奉行クラウドのSAML認証設定
+1. 奉行クラウドの管理ポータルへ管理者権限を持つユーザでログインします。
     
-    [![Screenshot](/images/image-8-1024x184.png)](/images/image-8-1024x184.png)
+    [![Screenshot](/images/2022-07-24_19-54-41.png)](/images/2022-07-24_19-54-41.png)
 
-4. **外部サイトSAML認証設定**をクリックし、SAML設定画面へ移動します。
-    
-    [![Screenshot](/images/2022-04-14_10-04-55-1024x549.png)](/images/2022-04-14_10-04-55-1024x549.png)
+2. 奉行クラウドの管理ポータル＞ログイン＞SAML認証へ移動します。
 
-5. 以下の内容で設定し、**更新**をクリックします。
+    [![Screenshot](/images/2022-07-24_20-35-42.png)](/images/2022-07-24_20-35-42.png)
 
-    | **WaWaOfficeの設定項目** | **設定内容** |
+
+3. 以下の内容で設定し、**更新**をクリックします。
+
+    | **奉行クラウドの設定項目** | **設定内容** |
     | :--- | :--- |
-    | **SAML認証利用設定** | 使用する |
-    | **Identity Provider(IdP)設定** ||
-    | **エンティティID** | WaWaOfficeのログイン画面URLを指定します。<br>（例：https://asp11.wawa.ne.jp/demo-XwqPX1Eq/） |
-    | **ログインページURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **ログアウトページURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **IdPの公開鍵証明書** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAg3MDAwMDA4MTA……..）をコピーして、テキストファイルとして保存します。そのファイルをアップロードします。 |
-    | **ログインIDがセットされている要素** | NameID要素 |
+    | **SAML 認証を利用する ** | :fontawesome-regular-square-check: |
+    | **連携する Identity Provider（ IdP ）の設定** ||
+    | **識別子** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013`） |
+    | **認証エンドポイントURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml`） |
+    | **署名の検証に使用する公開鍵証明書** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAg3MDAwMDA4MTA……..`）をコピーして、テキストファイルとして保存します。そのファイルをアップロードします。 |
+    | **SAML 認証応答の設定** ||
+    | **ＯＢＣｉＤがセットされている要素** | Subject要素 - NameID要素 |
+    | **パスワード認証の設定** ||
+    | **SAML 認証とパスワード認証の両方を利用する** | 利用者が認証方法を選択する |
 
-    [![Screenshot](/images/2022-04-14_10-17-29.png)](/images/2022-04-14_10-17-29.png)
+    [![Screenshot](/images/2022-07-24_20-39-30.png)](/images/2022-07-24_20-39-30.png)
 
 ## プロビジョニング
-SingleIDからWaWaOfficeへのユーザおよびグループのプロビジョニングには、対応しておりません。
+SingleIDから奉行クラウドへのユーザのプロビジョニングには、対応しておりません。
 
-SingleIDおよびWaWaOfficeの両方に存在するユーザのみが、シングルサインオン可能です。同一のユーザおよびグループをSingleIDおよびWaWaofficeへ登録してください。
+SingleIDおよび奉行クラウドの両方に存在するユーザのみが、シングルサインオン可能です。同一のユーザをSingleIDおよび奉行クラウドへ登録してください。
 
 ## アプリにユーザ追加
 1. SingleID 管理者ポータル＞認証＞アプリ連携画面へ移動します。
@@ -70,13 +74,15 @@ SingleIDおよびWaWaOfficeの両方に存在するユーザのみが、シン�
     [![Screenshot](/images/image-5.png)](/images/image-5.png)
 
 ## 動作確認
-1. WaWaOfficeのログイン画面へアクセスします。
-2. SingleIDのログイン画面が表示されます。すでに、SingleIDへログイン中であれば、ログイン画面は表示されず、WaWaOfficeへログインできます。
+1. ブラウザで、奉行クラウドの管理ポータルへアクセスします。
+2. **シングルサインオン**ボタンが追加されていることを確認します。
+
+    [![Screenshot](/images/2022-07-24_21-05-46.png)](/images/2022-07-24_21-05-46.png)
+
+3. **シングルサインオン**ボタンをクリックします。
+4. SingleIDのログイン画面が表示されます。すでに、SingleIDへログイン中であれば、ログイン画面は表示されず、奉行クラウドへログインできます。
     
     [![Screenshot](/images/image-7-1024x462.png)](/images/image-7-1024x462.png)
 
-!!! warning
-    WaWaOfficeのSAML認証を**使用する**にした場合、WaWaOfficeのログイン画面が出なくなり、SingleIDによるシングルサインオンのみでのログインに制限されます。もし、設定を間違えた等、WaWaOfficeのログイン画面からのログインが必要な場合は、URLの末尾にadminlogin.htmlを付けてアクセスしてください。
-
-    例：https://asp11.wawa.ne.jp/demo-XwqPX1Eq/adminlogin.html
-
+!!! info
+    同様に、奉行クラウドのクライアントソフトウェアを利用したシングルサインオンも可能です。

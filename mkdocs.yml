@@ -82,6 +82,7 @@ nav:
     - atpocket: singleid-appguide/atpocket.md
     - HarmonyConnect: singleid-appguide/harmonyconnect.md
     - Redmine: singleid-appguide/redmine.md
+    - 奉行クラウド: singleid-appguide/bugyo-cloud.md
   - ユーザガイド:
     - はじめに: singleid-userguide/index.md
     - アカウント: singleid-userguide/account.md
