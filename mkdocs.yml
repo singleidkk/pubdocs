@@ -76,13 +76,7 @@ nav:
       - 管理者: singleid-adminguide/admin.md
       - 詳細設定: singleid-adminguide/setting.md
   - アプリ連携ガイド:
-    - はじめに: singleid-appguide/index.md
-    - Nextcloud: singleid-appguide/nextcloud.md
-    - WaWaOffice: singleid-appguide/wawaoffice.md
-    - atpocket: singleid-appguide/atpocket.md
-    - HarmonyConnect: singleid-appguide/harmonyconnect.md
-    - Redmine: singleid-appguide/redmine.md
-    - 奉行クラウド: singleid-appguide/bugyo-cloud.md
+    - アプリ一覧: singleid-appguide/index.md
   - ユーザガイド:
     - はじめに: singleid-userguide/index.md
     - アカウント: singleid-userguide/account.md
