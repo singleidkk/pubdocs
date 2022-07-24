@@ -46,10 +46,11 @@
     | **Redmineの設定項目** | **設定内容** |
     | :--- | :--- |
     | Enabled | :fontawesome-regular-square-check: |
-    | **Client ID** | Redmineのログイン画面URLを指定します。<br><br>（例：https://redmine.example.com/） |
-    | **OpenID Connect server url** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。issuerの値（URL）を入力します。<br><br>（例：https://auth-01-0001.dev.singleid.jp/auth/realms/90000013） |
+    | **Client ID** | Redmineのログイン画面URLを指定します。<br><br>（例：`https://redmine.example.com/`） |
+    | **OpenID Connect server url** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。issuerの値（URL）を入力します。<br><br>（例：`https://auth-01-0001.dev.singleid.jp/auth/realms/90000013`） |
     | **Client Secret** | SingleIDに設定した認証シークレットを入力します。 |
-    | **OpenID Connect scopes** | openid,profile,email |
+    | **OpenID Connect scopes** | openid |
+    | **Admins group (members of this group are treated as admin)** | admin |
     | **Login Selector** | :fontawesome-regular-square-check: |
     | **Create user if not exists** | :fontawesome-regular-square-check: |
     
@@ -60,8 +61,6 @@ Redmine Openid Connect pluginは、OIDCのJITプロビジョニングに対応�
 
 !!! warning
     SingleIDのグループ情報はプロビジョニングされません。
-
-**Redmineのシステム管理者の権限をSingleIDのグループのメンバーに付与したい場合**には、**OpenID Connect Configuration**の設定画面にて、権限を付与したいSingleIDのグループの名前を**Admins group (members of this group are treated as admin)**へ設定してください。
 
 **プロビジョニングを無効にしたい場合**には、**OpenID Connect Configuration**の設定画面にて、**Create user if not exists**を無効にしてください。
 
@@ -76,6 +75,28 @@ Redmine Openid Connect pluginは、OIDCのJITプロビジョニングに対応�
     
     [![Screenshot](/images/image-5.png)](/images/image-5.png)
 
+## 管理者権限の付与
+Redmineへシステム管理者権限でログインできる権限をSingleIDのユーザへ付与します。
+
+1. SingleID 管理者ポータル＞認証＞アプリ連携画面へ移動します。
+2. 登録したアプリの列にある**アプリロール**ボタンをクリックします。
+3. **アプリロール登録**ボタンをクリックします。
+
+    [![Screenshot](/images/2022-07-25_3-52-16.png)](/images/2022-07-25_3-52-16.png)
+
+4. **アプリロール登録**画面がポップアップします。**ロール名**として、**Redmine Openid Connect plugin**の**Admins group (members of this group are treated as admin)**に設定した**admin**を入力し、**登録**ボタンをクリックして、アプリロールを登録します。
+    
+    [![Screenshot](/images/2022-07-25_3-57-50.png)](/images/2022-07-25_3-57-50.png)
+
+5. 登録した**admin**アプリロールの列にある**チェックボックス**を選択します。
+6. **ユーザ追加**ボタンをクリックします。
+    
+    [![Screenshot](/images/2022-07-25_4-12-47.png)](/images/2022-07-25_4-12-47.png)
+
+7. **アプリロールユーザ追加**画面がポップアップします。**admin**アプリロールへ追加したい**ユーザ名**を選択し、**登録**ボタンをクリックして、アプリロールへユーザを追加します。
+    
+    [![Screenshot](/images/2022-07-25_4-17-00.png)](/images/2022-07-25_4-17-00.png)
+
 ## 動作確認
 1. Redmineのログイン画面へアクセスします。
 2. **Login with SSO**ボタンが追加されていることを確認します。
@@ -86,3 +107,11 @@ Redmine Openid Connect pluginは、OIDCのJITプロビジョニングに対応�
 4. SingleIDのログイン画面が表示されます。すでに、SingleIDへログイン中であれば、ログイン画面は表示されず、Redmineへログインできます。
     
     [![Screenshot](/images/image-7-1024x462.png)](/images/image-7-1024x462.png)
+
+## ダイレクトログインの無効化
+**Redmine Openid Connect plugin**の**Login Selector**を**無効**にします。
+
+!!! warning
+    **Redmine Openid Connect plugin**の**Login Selector**を**無効**にした場合、Redmineのログイン画面が出なくなり、SingleIDによるシングルサインオンのみでのログインに制限されます。もし、設定を間違えた等、Redmineのログイン画面からのログインが必要な場合は、URLの末尾にlocal_login=trueを付けてアクセスしてください。
+    
+    例：`https://redmine.example.com/login?local_login=true`

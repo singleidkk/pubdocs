@@ -61,11 +61,11 @@
     | **UIDをマップする属性** | username |
     | **IDプロバイダのオプションの表示名** | SingleID ログイン |
     | **Identity Providerデータ** ||
-    | **IdPエンティティの識別子** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013）|
-    | **SPが認証要求メッセージを送信するIdPのターゲットURI** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **SPがSLO要求を送信するIdPのURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **IdPがSLOレスポンスを提供するURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml） |
-    | **IdPの公開鍵X.509証明書** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..）をコピーして、入力します。 |
+    | **IdPエンティティの識別子** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013`）|
+    | **SPが認証要求メッセージを送信するIdPのターゲットURI** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml`） |
+    | **SPがSLO要求を送信するIdPのURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml`） |
+    | **IdPがSLOレスポンスを提供するURL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml`） |
+    | **IdPの公開鍵X.509証明書** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。 |
     | **属性のマッピング** ||
     | **表示名にマップする属性** | username |
     | **電子メールアドレスにマップする属性** | email |
@@ -105,7 +105,7 @@ NextCloudは、SAMLのJITプロビジョニングに対応しています。上�
 
 ## ダイレクトログインの無効化
 !!! danger
-    以下は、ダイレクトログインを無効化する方法です。必ずSAML認証により管理者権限でログインできることを確認できてから、実施するようにしてください。SAML認証ができない状態で、ダイレクトログインを無効化するとNextcloudへログインできなくなります。
+    以下は、ダイレクトログインを無効化する方法です。必ずSAML認証により**管理者権限**でログインできることを確認できてから、実施するようにしてください。SAML認証ができない状態で、ダイレクトログインを無効化するとNextcloudへログインできなくなります。
 
-**SSOとSAML認証**の設定画面の**利用者別設定**ボタンをクリックして、ユーザを指定して、パスワードログインを無効化します。
+**SSOとSAML認証**の設定画面の**グローバル設定**の**複数のユーザーのバックエンド（LDAPなど）の使用を許可する**を**無効**にします。
     [![Screenshot](/images/2022-07-25_2-46-35.png)](/images/2022-07-25_2-46-35.png)
