@@ -1,0 +1,106 @@
+site_name: SingleID Document
+site_url: https://pubdocs.singleid.jp/
+
+#theme:
+#  name: readthedocs
+#  include_homepage_in_sidebar: false
+#  locale: ja
+
+theme:
+  name: material
+  language: ja
+  palette: 
+    - scheme: default
+      primary: black
+      accent: red
+      toggle:
+        icon: material/toggle-switch 
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: red
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  features:
+#    - navigation.tabs
+#    - navigation.tabs.sticky
+#    - navigation.expand
+
+extra:
+  generator: false
+
+extra_css:
+  - "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  - "/css/custom.css"
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - markdown.extensions.toc:
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+      permalink: "\ue157"
+
+plugins:
+  - search:
+      lang: ja
+
+copyright: Copyright &copy; 2021 - 2022 SingleID K.K.
+
+nav:
+  - HOME: index.md
+  - 管理者ガイド:
+    - はじめに: singleid-adminguide/index.md
+    - ユーザ: singleid-adminguide/user.md
+    - グループ: singleid-adminguide/group.md
+    - 認証:
+      - LDAP: singleid-adminguide/ldap.md
+      - RADIUS: singleid-adminguide/radius.md
+      - 証明書: singleid-adminguide/pki.md
+    - アプリ連携:
+      - アプリ一覧: singleid-adminguide/app_integration.md
+    - セキュリティ診断: singleid-adminguide/security_check.md
+    - 管理:
+      - 基本情報（組織アカウント）: singleid-adminguide/accountinfo.md
+      - 管理者: singleid-adminguide/admin.md
+      - 詳細設定: singleid-adminguide/setting.md
+  - ユーザガイド:
+    - はじめに: singleid-userguide/index.md
+    - アカウント: singleid-userguide/account.md
+    - パスワード: singleid-userguide/password.md
+    - オーセンティケーター: singleid-userguide/authenticator.md
+    - セッション: singleid-userguide/session.md
+  - サポートセンター:
+    - はじめに: supportcenter/index.md
+    - お客様向け: 
+      - 新規のお問い合わせ: supportcenter/new_ticket.md
+      - 進捗状況の確認: supportcenter/status_check.md
+      - コメントの追加: supportcenter/add_comment.md
+    - MSP提供事業者様向け:
+      - サポートフロー: supportcenter/msp_flow.md
+      - 新規お問い合わせ内容の確認: supportcenter/msp_check_new_ticket.md
+      - サポート担当者の割り当て: supportcenter/msp_assign_support_rep.md
+      - ステータスの変更: supportcenter/msp_change_status.md
+      - 担当者の変更: supportcenter/msp_change_support_rep.md
+      - コメントの追加: supportcenter/msp_add_comment.md
+      - エスカレーション: supportcenter/msp_escalation.md
+      - お問い合わせ終了: supportcenter/msp_close.md
+    - 用語:
+      - お問い合わせのステータス: supportcenter/status.md
+  - アプリ連携ガイド: singleid-appguide/index.md
+  - 設定例: singleid-pocguide/index.md
+  - セキュリティ診断: singleid-security-check/index.md
+  - よくある質問: faq/index.md
