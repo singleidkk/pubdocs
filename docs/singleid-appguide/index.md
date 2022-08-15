@@ -6,4 +6,4 @@
 * [Gitea](gitea.md)　近日公開予定
 * [奉行クラウド](bugyo-cloud.md)
 * [サイボウズ](cybozu.md)
-* [Salesforce](salesforce.md)　近日公開予定
+* [Salesforce](salesforce.md)

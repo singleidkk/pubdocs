@@ -101,6 +101,6 @@ nav:
     - 用語:
       - お問い合わせのステータス: supportcenter/status.md
   - アプリ連携ガイド: singleid-appguide/index.md
-  - 設定例: singleid-pocguide/index.md
+  - ネットワーク機器連携の設定例: singleid-pocguide/index.md
   - セキュリティ診断: singleid-security-check/index.md
   - よくある質問: faq/index.md

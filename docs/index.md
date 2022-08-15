@@ -8,7 +8,7 @@
 
 [アプリ連携設定](./singleid-appguide/index.md)
 
-[設定例](./singleid-pocguide/index.md)
+[ネットワーク機器連携の設定例](./singleid-pocguide/index.md)
 
 [セキュリティ診断](./singleid-security-check/index.md)
 
