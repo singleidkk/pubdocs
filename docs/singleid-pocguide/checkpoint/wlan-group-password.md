@@ -5,9 +5,6 @@ SingleIDのユーザで、Check Point FWの無線LANアクセスポイントへ�
 
 パスワード認証方式でサポートしている認証プロトコルは以下です。
 
-* PAP
-* CHAP
-* MSCHAPv2
 * EAP-TTLS-PAP
 * PEAP(MSCHAPv2)
 
