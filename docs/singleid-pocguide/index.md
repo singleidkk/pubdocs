@@ -5,4 +5,4 @@
 * [Fortigate](./fortigate/)
 * [SubGate AP](./subgate_ap/)
 * [YAMAHA RTXシリーズ](./yamaha_rtx/)　
-* [YAMAHA WLXシリーズ](./yamaha_wlx/)　近日公開予定
+* [YAMAHA WLXシリーズ](./yamaha_wlx/)
