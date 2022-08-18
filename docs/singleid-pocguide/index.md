@@ -1,8 +1,9 @@
 認証システムとしてSingleIDを利用したネットワーク機器連携の設定例です。
 
 * [Anti Spreader](./anti_spreader/)
-* [Check Point](./checkpoint/)
-* [Fortigate](./fortigate/)
+* [Check Point Quantum Spark](./checkpoint/)
+* [Fortigate NGFW](./fortigate/)
 * [SubGate AP](./subgate_ap/)
-* [YAMAHA RTXシリーズ](./yamaha_rtx/)　
+* [YAMAHA RTXシリーズ](./yamaha_rtx/)
+* [YAMAHA UTXシリーズ](./yamaha_utx/)　
 * [YAMAHA WLXシリーズ](./yamaha_wlx/)
