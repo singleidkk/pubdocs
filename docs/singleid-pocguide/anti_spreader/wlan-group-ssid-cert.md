@@ -10,7 +10,6 @@ SingleIDのユーザで、Anti Spreaderの無線LANアクセスポイントへ�
 | **ユーザ名** | **姓（英字）** | **名（英字）** | **メールアドレス** |
 | :--- | :--- | :--- | :--- |
 | user1 | user1 | user1 | user1@poc.singleid.jp |
-| user2 | user2 | user2 | user2@poc.singleid.jp |
 
 !!! info
     メールアドレス: 受信可能なメールアドレスを指定してください。
@@ -18,8 +17,7 @@ SingleIDのユーザで、Anti Spreaderの無線LANアクセスポイントへ�
 ### グループの情報
 | **グループ名** | **メンバー** | **接続可能な無線LANアクセスポイントのSSID** | **動作** |
 | :--- | :--- | :--- | :--- |
-| singleid-wlan-access-users | user1 | SSIDの指定なし | すべての無線LANアクセスポイントへアクセス可能 |
-| restricted-wlan-access-users | user2 | restricted-wlan-access | このSSIDの無線LANアクセスポイントのみにアクセス可能 |
+| restricted-wlan-access-users | user1 | restricted-wlan-access | このSSIDの無線LANアクセスポイントのみにアクセス可能 |
 
 ### RADIUSの情報
 
@@ -85,10 +83,11 @@ SingleIDのユーザで、Anti Spreaderの無線LANアクセスポイントへ�
 #### RADIUSサーバの設定
 1. **Anti Spreader GUI＞無線＞一般設定**画面へ移動します。
 2. 2.4GHzまたは5GHzの必要な周波数の**修正**ボタンをクリックします。WiFi Setup画面を表示します。
-3. **WiFi Security**セクションで、以下を設定します。
+3. 以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
+    | **ネットワーク名(SSID)** | [グループの情報](#グループの情報)の**接続可能な無線LANアクセスポイントのSSID**を参照 |
     | **暗号化方式**| WPA2-enterprise |
     | **RADIUS Server** | 外部認証サーバー |
     | **RADIUS Server IP** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
@@ -96,15 +95,6 @@ SingleIDのユーザで、Anti Spreaderの無線LANアクセスポイントへ�
     | **アクセスパスワード** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
 
 4. **保存**ボタンをクリックします。
-
-#### 無線LANアクセスポイントの複製
-1. **Anti Spreader GUI＞デバイス＞ワイヤレス**画面へ移動します。
-2. 設定した無線LANアクセスポイントの**複製**ボタンをクリックします。**編集**画面がポップアップします。
-3. 以下のように設定し、**適用**ボタンをクリックします。 設定済みの無線LANアクセスポイントを複製したため、**ワイヤレスセキュリティ**ブロックの設定変更は不要です。
-
-    | **設定項目** | **設定内容** |
-    | :--- | :--- |
-    | **ネットワーク名（SSID）** | [グループ情報の**接続可能な無線LANアクセスポイントのSSID**を参照](#グループの情報) |
 
 ## 動作確認方法
 ### 無線LANアクセスの認証（EAP-TLS方式のクライアント証明書認証）
