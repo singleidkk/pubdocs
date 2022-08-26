@@ -7,3 +7,4 @@
 * [奉行クラウド](bugyo-cloud.md)
 * [サイボウズ](cybozu.md)
 * [Salesforce](salesforce.md)
+* [AWS IAM](aws_iam.md)
