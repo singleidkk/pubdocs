@@ -1,6 +1,6 @@
 認証システムとしてSingleIDを利用したネットワーク機器連携の設定例です。
 
-* [Anti Spreader](./anti_spreader/)
+* [Anti Spreader](./anti_spreader_ap/)
 * [Check Point Quantum Spark](./checkpoint/)
 * [Fortigate NGFW](./fortigate/)
 * [SubGate AP](./subgate_ap/)
