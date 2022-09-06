@@ -25,9 +25,9 @@
     [![Screenshot](/images/image-2-1024x606.png)](/images/image-2-1024x606.png)
 
 6. **SSO 有効/無効**を**有効**に設定します。
-7. **URL**に、NextcloudのURLを設定します。
+7. **URL**に、NextcloudのURLを設定します。（例：`https://nextcloud.example.com`形式 または　`https://nextcloud.example.com/index.php`形式 ）
 8. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、Nextcloudの設定を行うときに必要となります。
-9. **登録**ボタンをクリックして、アプリを登録します。
+9.  **登録**ボタンをクリックして、アプリを登録します。
     
     [![Screenshot](/images/2022-06-04_20-57-43-1024x608.png)](/images/2022-06-04_20-57-43-1024x608.png)
 
