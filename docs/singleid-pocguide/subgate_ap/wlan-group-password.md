@@ -109,7 +109,7 @@ SingleIDのユーザで、SubGate APの無線LANアクセスポイントへア�
 
     | **項目** | **内容** |
     | :--- | :--- |
-    | **発行先** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブのホスト名 |
+    | **発行先** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのホスト名** |
     | **発行元** | R3 |
 
     [![Screenshot](/images/image-48.png)](/images/image-48.png)
