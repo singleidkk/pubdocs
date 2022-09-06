@@ -1,6 +1,6 @@
 # 無線LANアクセス グループによるアクセス制限-クライアント証明書認証
 ## 目的
-SingleIDのユーザで、Anti Spreader APの無線LANアクセスポイントへアクセスします。
+SingleIDのユーザで、Anti Spreader アクセスポイントの無線LANアクセスポイントへアクセスします。
 接続する際の認証方式は、クライアント証明書認証（EAP-TLS）です。
 
 ## 環境
@@ -24,7 +24,7 @@ SingleIDのユーザで、Anti Spreader APの無線LANアクセスポイント�
 | **RADIUSサーバのホスト名** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**です。 |
 | **RADIUSサーバのIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**IPアドレス**です。 |
 | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**です。ここでは、デフォルトUDP1812を使用します。 |
-| **RADIUSクライアントのIPアドレス** | **Anti Spreader AP**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
+| **RADIUSクライアントのIPアドレス** | **Anti Spreader アクセスポイント**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
 | **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**antispreader**とします。 |
 
 ## 設定方法
@@ -54,7 +54,7 @@ SingleIDのユーザで、Anti Spreader APの無線LANアクセスポイント�
 #### RADIUSの設定
 1. **SingleID 管理者ポータル＞認証＞RADIUS**画面の**簡易設定**タブへ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**Anti Spreader AP**の**登録**ボタンをクリックします。**Anti Spreader AP**画面がポップアップします。
+3. カタログから**Anti Spreader アクセスポイント**の**登録**ボタンをクリックします。**Anti Spreader アクセスポイント**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -76,13 +76,13 @@ SingleIDのユーザで、Anti Spreader APの無線LANアクセスポイント�
 
 7. **登録**ボタンをクリックします。
 
-### Anti Spreader APの設定
+### Anti Spreader アクセスポイントの設定
 #### ローカル管理者でログイン
-1. **Anti Spreader AP GUI**へアクセスします。
+1. **Anti Spreader アクセスポイント GUI**へアクセスします。
 2. ローカル管理者のユーザ名、パスワードを入力し、**LOGIN**をクリックします。
 
 #### RADIUSサーバの設定
-1. **Anti Spreader AP GUI＞無線＞一般設定**画面へ移動します。
+1. **Anti Spreader アクセスポイント GUI＞無線＞一般設定**画面へ移動します。
 2. 2.4GHzまたは5GHzの必要な周波数の**修正**ボタンをクリックします。WiFi Setup画面を表示します。
 3. **WiFi Security**セクションで、以下を設定します。
 
@@ -133,8 +133,8 @@ SingleIDのユーザで、Anti Spreader APの無線LANアクセスポイント�
 
     [![Screenshot](/images/image-certinstall-6.png)](/images/image-certinstall-6.png)
 
-#### Anti Spreader APの無線LANアクセスポイントへ接続（Windows 10/11 の場合）
-1. Anti Spreader APの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
+#### Anti Spreader アクセスポイントの無線LANアクセスポイントへ接続（Windows 10/11 の場合）
+1. Anti Spreader アクセスポイントの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
 
     [![Screenshot](/images/image-34.png)](/images/image-34.png)
 

@@ -1,4 +1,4 @@
-# Anti Spreader APの設定例一覧
+# Anti Spreader アクセスポイントの設定例一覧
 ## パスワード認証
 * [無線LANアクセス グループによるアクセス制限](wlan-group-password.md)
 * [無線LANアクセス グループごとに、接続可能な無線LANアクセスポイントをSSIDで制限](wlan-group-ssid-password.md)
