@@ -1,9 +1,7 @@
-# 自動割当可能なM365ライセンス一覧
-
-M365のテナントに、下表に記載のM365ライセンスがある場合に、自動的にユーザに割り当てます。割当可能なライセンス数がない　または　割当可能なライセンス種類が複数ある場合には、自動的に割り当てることができません。
+# 自動割当可能なMicrosoft 365ライセンス一覧
 
 ライセンスの情報については、[ライセンスのための製品名とサービス プラン 識別子](https://learn.microsoft.com/ja-jp/azure/active-directory/enterprise-users/licensing-service-plan-reference
-)を参考にしています。
+){target=_blank}を参考にしています。
 
 | 製品名 | 文字列 ID | GUID |
 | :-- | :-- | :-- |
