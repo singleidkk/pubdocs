@@ -4,7 +4,7 @@
 * [AWS IAM](aws_iam.md)
 * [Gitea](gitea.md)　近日公開予定
 * [HarmonyConnect](harmonyconnect.md)
-* [Microsoft 365](microsoft_365.md)
+* [Microsoft 365](microsoft_365/)
 * [Nextcloud](nextcloud.md)
 * [Redmine](redmine.md)
 * [Salesforce](salesforce.md)
