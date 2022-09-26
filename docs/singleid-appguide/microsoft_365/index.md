@@ -203,20 +203,18 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     $domain = "xxxxx.singleid.jp" 
     $AppName = "m365"
     $IdpIssuer = "https://auth-02-0001.dev.singleid.jp/auth/realms/90000013" 
-    $MySigningCert = "MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw…….." 
+    $IdpSigningCert = "MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw…….." 
     $BrandName = "SingleID"
     $IdpEndpoint = $IdpIssuer + "/protocol/saml"
-    $PassiveLogOnUrl = $IdpEndpoint + "/clients/" + $AppName 
-    $ActiveLogOnUrl = $IdpEndpoint + "/clients/" + $AppName 
     $LogOffUrl = "https://portal.office.com" 
     $Protocol = "SAMLP" 
     Set-MsolDomainAuthentication `
         -DomainName $domain `
         -FederationBrandName $BrandName `
         -Authentication Federated `
-        -PassiveLogOnUri $PassiveLogOnUrl `
-        -ActiveLogOnUri $ActiveLogOnUrl `
-        -SigningCertificate $MySigningCert `
+        -PassiveLogOnUri $IdpEndpoint `
+        -ActiveLogOnUri $IdpEndpoint `
+        -SigningCertificate $IdpSigningCert `
         -IssuerUri $IdpIssuer `
         -LogOffUri $LogOffUrl `
         -PreferredAuthenticationProtocol $Protocol
