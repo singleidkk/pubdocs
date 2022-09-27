@@ -1,5 +1,7 @@
 # Microsoft 365（M365）連携
 
+設定を始める前に、[一般的な考慮事項](considerations.md)をお読みください。
+
 #### M365を新規導入する場合
 
 [事前作業のM365のカスタムドメイン設定](#m365のカスタムドメイン設定)から始めてください。
@@ -111,15 +113,10 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
 15. 以下のアクセス許可を全て追加します。すべて選択したら**アクセス許可の追加**ボタンをクリックします。
 
-    * Application.ReadWrite.All
     * Directory.ReadWrite.All
-    * Domain.ReadWrite.All
     * Group.ReadWrite.All
     * GroupMember.ReadWrite.All
-    * Member.Read.Hidden
     * Organization.ReadWrite.All
-    * Policy.Read.All
-    * RoleManagement.ReadWrite.Directory
     * User.ReadWrite.All
 
 16. 追加したアクセス許可が一覧に表示されたことを確認し、**管理者の同意を与えます**ボタンをクリックします。
@@ -243,7 +240,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
 [![Screenshot](/images/2022-09-26_19-00-03.png)](/images/2022-09-26_19-00-03.png)
 
-SAML設定が有効となるまで、2時間ほどかかる場合があります。しばらくたってからお試しください。
+Microsoftのドキュメントによると、SAML設定が有効となるまで、2時間ほどかかる場合があります。しばらくたってからお試しください。
 
 #### M365のログイン画面で、アカウント保護にご協力くださいの画面が表示された場合
 

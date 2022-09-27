@@ -95,9 +95,12 @@ SG2412G(config)#no mds mac-flooding enable
 
 #### 送信元のIPアドレスとデフォルトルートの設定
 SingleIDのクラウドRADIUSと通信するために、デフォルトVLAN(vlan1.1)に送信元となるIPアドレス　および　デフォルトルートをAnti Spreader セキュアスイッチに設定します。送信元となるIPアドレスおよびデフォルトルートは、環境により異なるため適切なIPアドレスを設定します。
-```
+``` title=送信元のIPアドレス設定
 SG2412G(config)interface vlan1.1
- ip address <送信元のIPアドレス>/<送信元のIPアドレスのネットマスク>
+SG2412G(config-if)ip address <送信元のIPアドレス>/<送信元のIPアドレスのネットマスク>
+```
+
+``` title=デフォルートの設定
 SG2412G(config)ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアドレス>
 ```
 
