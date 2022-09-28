@@ -63,7 +63,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **名前** | 任意です。（例：SingleID） |
-    | **サポートされているアカウントの種類** | この組織ディレクトリのみに含まれるアカウント (gonextstep のみ - シングル テナント) |
+    | **サポートされているアカウントの種類** | この組織ディレクトリのみに含まれるアカウント (シングル テナント) |
 
     [![Screenshot](/images/2022-09-26_7-55-21.png)](/images/2022-09-26_7-55-21.png)
 
@@ -121,7 +121,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
 16. 追加したアクセス許可が一覧に表示されたことを確認し、**管理者の同意を与えます**ボタンをクリックします。
 
-    [![Screenshot](/images/2022-09-26_10-37-47.png)](/images/2022-09-26_10-37-47.png)
+    [![Screenshot](/images/2022-09-28_15-40-18.png)](/images/2022-09-28_15-40-18.png)
 
 17. **はい**をクリックします。
 
@@ -163,13 +163,14 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     | :--- | :--- |
     | **ディレクトリ (テナント) ID** | [M365のアプリ登録](#m365のアプリ登録)の手順6参照 |
     | **アプリケーション (クライアント) ID** | [M365のアプリ登録](#m365のアプリ登録)の手順6参照 |
-    | **クライアント シークレット** | [M365のアプリ登録](#m365のアプリ登録)の手順10参照 | 
+    | **クライアント シークレット** | [M365のアプリ登録](#m365のアプリ登録)の手順10参照 |
+    | **ライセンスの自動割当** | 有効（詳細は、[自動割当可能なライセンス](microsoft_365_autoassign.md)を参照） | 
 
     [![Screenshot](/images/2022-09-26_3-15-14.png)](/images/2022-09-26_3-15-14.png)
 
 ### SingleIDのアプリにユーザ追加
 1. **SingleID 管理者ポータル＞アプリ連携＞アプリ一覧**画面へ移動します。
-2. 登録したアプリの列にある**チェックボックス**を選択します。
+2. 登録したアプリの列にある*cd ..*チェックボックス**を選択します。
 3. **ユーザ追加**ボタンをクリックします。
     
     [![Screenshot](/images/image-4.png)](/images/image-4.png)
@@ -196,7 +197,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     | $IdpIssuer | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013`） |
     | $MySigningCert | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。 |
 
-    ``` powershell title="PowerShell"
+    ``` powershell title="PowerShellのサンプルスクリプト"
     $domain = "xxxxx.singleid.jp" 
     $AppName = "m365"
     $IdpIssuer = "https://auth-02-0001.dev.singleid.jp/auth/realms/90000013" 
@@ -246,7 +247,7 @@ Microsoftのドキュメントによると、SAML設定が有効となるまで�
 
 [![Screenshot](/images/2022-09-26_17-38-02.png)](/images/2022-09-26_17-38-02.png)
 
-セキュリティの既定値が有効化されています。以下の手順に従い、無効化します。
+**セキュリティの既定値**が**有効化**されています。以下の手順に従い、**無効化**します。
 
 1. [Azureポータル](https://portal.azure.com){target=_blank}へ全体管理者でログインします。
 2. **Azure Active Directory**管理画面に移動します。（画面上部の検索ボックスに**Active**と入力し、表示された**Azure Active Directory**をクリックします。）
@@ -263,7 +264,7 @@ Microsoftのドキュメントによると、SAML設定が有効となるまで�
 
 [![Screenshot](/images/2022-09-26_18-11-23.png)](/images/2022-09-26_18-11-23.png)
 
-M365の**パスワード リセットのセルフサービス**が**有効**となっています。SingleIDで認証するユーザに対して、M365のセルフパスワードリセットを無効化します。
+M365の**パスワード リセットのセルフサービス**が**有効**となっています。SingleIDで認証するユーザに対して、M365のセルフパスワードリセットを**無効化**します。
 
 1. [Azureポータル](https://portal.azure.com){target=_blank}へ全体管理者でログインします。
 2. **Azure Active Directory**管理画面に移動します。（画面上部の検索ボックスに**Active**と入力し、表示された**Azure Active Directory**をクリックします。）
