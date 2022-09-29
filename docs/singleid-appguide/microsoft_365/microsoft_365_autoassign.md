@@ -1,4 +1,12 @@
-# 自動割当可能なMicrosoft 365ライセンス一覧
+# Microsoft 365（M365）ライセンスの自動割当
+
+## M365ライセンスの自動割当の制限
+
+* **自動割当可能なM365ライセンス一覧**にあるライセンスを契約していること
+* **自動割当可能なM365ライセンス一覧**にある複数種類のライセンスを契約していないこと
+* 利用可能なライセンス数があること
+
+## 自動割当可能なM365ライセンス一覧
 
 ライセンスの情報については、[ライセンスのための製品名とサービス プラン 識別子](https://learn.microsoft.com/ja-jp/azure/active-directory/enterprise-users/licensing-service-plan-reference
 ){target=_blank}を参考にしています。
