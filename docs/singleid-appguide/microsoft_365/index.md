@@ -1,6 +1,6 @@
 # Microsoft 365（M365）連携
 
-設定を始める前に、[一般的な考慮事項](considerations.md)をお読みください。
+設定を始める前に、[一般的な考慮事項](./considerations.md)をお読みください。
 
 #### M365を新規導入する場合
 
@@ -19,25 +19,25 @@
         Azure AD ConnectやIDプロバイダーとの同期設定をしたことがある場合には、既に、**オンプレミスの不変ID（immutableID）**がM365のユーザへ設定されているため、SingleIDとの同期設定前に、SingleIDに取り込む必要があります。過去に、同期設定をしたことがある場合には、ご相談ください。
 
 * SingleIDユーザの組織のメールアドレスとUPNが同じであること
-* M365の全体管理者はシングルサインオンするカスタムドメインとは異なるドメインに配置されていること
+* M365のグローバル管理者はxxxxx.onmicrosoft.comドメインにいること
 
 ## 事前作業
 ### M365のカスタムドメイン設定
 SingleIDのユーザの組織のメールアドレスのメールドメインをM365のカスタムドメインとして追加します。M365の契約時に提供される**xxxxx.onmicrosoft.com**ドメインは**既定**のドメインとして設定し、シングルサインオンの対象となるドメインとして利用できません。
 
 #### カスタムドメインの追加方法
-1. [Microsoft 365 の管理センター](https://admin.microsoft.com/){target=_blank}に全体管理者でログインします。
+1. [Microsoft 365 の管理センター](https://admin.microsoft.com/){target=_blank}にグローバル管理者でログインします。
 2. **設定＞ドメイン**画面へ移動します。
 3. **ドメインの追加**ボタンをクリックします。
 4. 追加するドメインの名前を入力し、**このドメインを使用する**ボタンをクリックします。
-5. ドメインの所有を確認する方法を選択します。
-6. Microsoft がドメインを使用するために必要なDNS変更を行います。
+5. **ドメインの所有を確認する方法**を選択します。
+6. Microsoftがドメインを使用するために必要な**DNS変更**を行います。
 7. **完了**ボタンをクリックします。
 
 詳細は、[Microsoft 365 のヘルプ記事](https://learn.microsoft.com/ja-jp/microsoft-365/admin/setup/add-domain?view=o365-worldwide){target=_blank}を参照してください。
 
 #### xxxxx.onmicrosoft.comドメインを既定のドメインにする方法
-1. [Microsoft 365 の管理センター](https://admin.microsoft.com/){target=_blank}に全体管理者でログインします。
+1. [Microsoft 365 の管理センター](https://admin.microsoft.com/){target=_blank}にグローバル管理者でログインします。
 2. **設定＞ドメイン**画面へ移動します。
 3. **ドメイン**画面で、xxxxx.onmicrosoft.comドメインを選択します。
 4. **既定に設定**ボタンをクリックします。
@@ -46,10 +46,16 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
 !!! info
     Exchange Onlineが生成する組織外向けの配信不能通知（NDR）の送信元メールアドレスは、**postmaster@組織の既定のドメイン**です。そのため、NDRの送信元は、**postmaster@xxxxx.onmicrosoft.com**となります。組織外向けのNDRの送信元メールアドレスを変更したい場合には、Windows PowerShell `Set-TransportConfig`コマンドを使用します。詳細は、[Exchange Onlineの記事](https://learn.microsoft.com/ja-jp/exchange/mail-flow-best-practices/configure-external-postmaster-address){target=_blank}を参照してください。
-    
+
+#### 緊急アクセス用アカウントの作成
+グローバル管理者が、シングルサインオンするカスタムドメインにしかいない場合、フェデレーション（SAML）による認証ができない状況に陥ると、グローバル管理者としてM365にログインすることができなくなってしまいます。そのため、必ず、緊急アクセス用アカウントとして、**xxxxx.onmicrosoft.comドメインにグローバル管理者のロールを割当てたユーザを作成**しておきます。
+
+!!! info
+    緊急アクセス用アカウントには、様々な要件があります。詳しくは、[Azure AD で緊急アクセス用管理者アカウントを管理する](https://learn.microsoft.com/ja-jp/azure/active-directory/roles/security-emergency-access){target=_blank}を参照してください。
+
 ## シングルサインオンおよびプロビジョニング設定
 ### M365のアプリ登録
-1. [Azureポータル](https://portal.azure.com){target=_blank}へ全体管理者でログインします。
+1. [Azureポータル](https://portal.azure.com){target=_blank}へグローバル管理者でログインします。
 2. **Azure Active Directory**管理画面に移動します。（画面上部の検索ボックスに**Active**と入力し、表示された**Azure Active Directory**をクリックします。）
 
     [![Screenshot](/images/2022-09-26_7-46-39.png)](/images/2022-09-26_7-46-39.png)
@@ -71,7 +77,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
     [![Screenshot](/images/2022-09-26_7-55-21.png)](/images/2022-09-26_7-55-21.png)
 
-6. **アプリケーション (クライアント) ID**、**ディレクトリ (テナント) ID**の値をコピーして、保存しておきます。
+6. **アプリケーション (クライアント) ID**、**ディレクトリ (テナント) ID**は、SingleIDのアプリ登録のプロビジョニング設定で必要となります。**値をコピーして、保存**しておきます。
 
     [![Screenshot](/images/2022-09-26_8-53-32.png)](/images/2022-09-26_8-53-32.png)
 
@@ -115,7 +121,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
     [![Screenshot](/images/2022-09-26_9-52-01.png)](/images/2022-09-26_9-52-01.png)
 
-15. 以下のアクセス許可を全て追加します。すべて選択したら**アクセス許可の追加**ボタンをクリックします。
+15. 以下のアクセス許可を全て追加します。全て選択したら**アクセス許可の追加**ボタンをクリックします。
 
     * Directory.ReadWrite.All
     * Group.ReadWrite.All
@@ -158,8 +164,8 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     * **無効**の場合、SingleIDのM365アプリからユーザを削除した際、M365ではユーザはライセンスが適用されたまま無効化されます。必要に応じて、M365管理センターから、ユーザのライセンス解除またはユーザ削除を手動で行ってください。
     * **削除**の場合、SingleIDのM365アプリからユーザを削除した際、M365のユーザも削除されます。
 
-    !!! danger
-        M365のユーザが削除されるとユーザに関連付くデータも削除されます。[元従業員を削除し、データをセキュリティで保護する](https://learn.microsoft.com/ja-jp/microsoft-365/admin/add-users/remove-former-employee?view=o365-worldwide){target=_blank}を参照し、適切にデータを保護してください。
+        !!! danger
+            M365のユーザが削除されるとユーザに関連付くデータも削除されます。[元従業員を削除し、データをセキュリティで保護する](https://learn.microsoft.com/ja-jp/microsoft-365/admin/add-users/remove-former-employee?view=o365-worldwide){target=_blank}を参照し、適切にデータを保護してください。
 
 11. 以下の内容で設定し、**登録**ボタンをクリックします。
 
@@ -174,7 +180,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
 ### SingleIDのアプリにユーザ追加
 1. **SingleID 管理者ポータル＞アプリ連携＞アプリ一覧**画面へ移動します。
-2. 登録したアプリの列にある*cd ..*チェックボックス**を選択します。
+2. 登録したアプリの列にある**チェックボックス**を選択します。
 3. **ユーザ追加**ボタンをクリックします。
     
     [![Screenshot](/images/image-4.png)](/images/image-4.png)
@@ -184,7 +190,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     [![Screenshot](/images/image-5.png)](/images/image-5.png)
 
 ### 動作確認（ユーザ/グループ同期）
-1. [Microsoft 365 の管理センター](https://admin.microsoft.com/){target=_blank}に全体管理者でログインします。
+1. [Microsoft 365 の管理センター](https://admin.microsoft.com/){target=_blank}にグローバル管理者でログインします。
 2. **ユーザー＞アクティブなユーザー**画面および**チームとグループ＞アクティブなチームとグループ**画面へ移動し、以下のことを確認します。
 
     * アプリに追加したユーザが作成されていること
@@ -192,16 +198,16 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     * ユーザに適切なライセンスが割当てられていること
 
         !!! info
-            ライセンスの自動割当によりライセンスが割当てられていない場合には、手動で、ユーザにライセンスを割当ててください。Azure AD Premium P1ライセンスを契約している場合には、セキュリティグループのグループメンバーにライセンスを割当てる方法もございます。
+            ライセンスの自動割当によりライセンスが割当てられていない場合には、手動で、ユーザにライセンスを割当てるか、[M365ライセンスの自動割当の代替案](./microsoft_365_autoassign.md#m365ライセンスの自動割当の代替案)を検討してください。
 
-### M365のSAML認証設定
-1. 全体管理者として Azure AD ディレクトリにログインします。
+### M365のフェデレーション（SAML）設定
+1. PowerShellで、グローバル管理者としてAzure ADにログインします。
 
     ``` powershell title="PowerShell"
     Connect-MsolService
     ```
 
-2. シングルサインオンするカスタムドメインにSAMLの設定を行います。下表のように、環境に合わせて、PowerShellの変数を変更してから、実行してください。
+2. シングルサインオンするカスタムドメインにフェデレーション（SAML）設定を行います。PowerShellのサンプルスクリプトの変数を環境に合わせて値を変更してから、実行します。
 
     | PowerShellの変数 | 変数の値 |
     | :--- | :--- |
@@ -231,7 +237,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
         -PreferredAuthenticationProtocol $Protocol
     ```
 
-3. SAMLの設定が行えたことを確認します。シングルサインオンするカスタムドメイン**Verified Federated**となっていればSMAL設定がされています。
+3. フェデレーション（SAML）設定が行えたことを確認します。シングルサインオンするカスタムドメイン**Verified Federated**となっていればフェデレーション（SAML）設定がされています。
 
     ``` powershell title="PowerShell"
     Get-MsolDomain 
@@ -246,7 +252,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
 ### 動作確認（シングルサインオン）
 1. https://portal.office.com へアクセスします。
-2. ユーザ同期されM365に登録されたユーザを入力して、**次へ**をクリックします。
+2. ユーザ同期されM365に作成されたユーザを入力して、**次へ**をクリックします。
 
     [![Screenshot](/images/2022-09-26_18-57-56.png)](/images/2022-09-26_18-57-56.png)
 
@@ -254,7 +260,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
 [![Screenshot](/images/2022-09-26_19-00-03.png)](/images/2022-09-26_19-00-03.png)
 
-Microsoftのドキュメントによると、SAML設定が有効となるまで、2時間ほどかかる場合があります。しばらくたってからお試しください。
+Microsoftのドキュメントによると、フェデレーション（SAML）設定が有効となるまで、2時間ほどかかる場合があります。しばらくたってからお試しください。
 
 #### M365のログイン画面で、アカウント保護にご協力くださいの画面が表示された場合
 
@@ -262,7 +268,7 @@ Microsoftのドキュメントによると、SAML設定が有効となるまで�
 
 **セキュリティの既定値**が**有効化**されています。以下の手順に従い、**無効化**します。
 
-1. [Azureポータル](https://portal.azure.com){target=_blank}へ全体管理者でログインします。
+1. [Azureポータル](https://portal.azure.com){target=_blank}へグローバル管理者でログインします。
 2. **Azure Active Directory**管理画面に移動します。（画面上部の検索ボックスに**Active**と入力し、表示された**Azure Active Directory**をクリックします。）
 
     [![Screenshot](/images/2022-09-26_7-46-39.png)](/images/2022-09-26_7-46-39.png)
@@ -279,7 +285,7 @@ Microsoftのドキュメントによると、SAML設定が有効となるまで�
 
 M365の**パスワード リセットのセルフサービス**が**有効**となっています。SingleIDで認証するユーザに対して、M365のセルフパスワードリセットを**無効化**します。
 
-1. [Azureポータル](https://portal.azure.com){target=_blank}へ全体管理者でログインします。
+1. [Azureポータル](https://portal.azure.com){target=_blank}へグローバル管理者でログインします。
 2. **Azure Active Directory**管理画面に移動します。（画面上部の検索ボックスに**Active**と入力し、表示された**Azure Active Directory**をクリックします。）
 
     [![Screenshot](/images/2022-09-26_7-46-39.png)](/images/2022-09-26_7-46-39.png)
@@ -290,6 +296,6 @@ M365の**パスワード リセットのセルフサービス**が**有効**と�
 
     [![Screenshot](/images/2022-09-26_18-50-27.png)](/images/2022-09-26_18-50-27.png)
 
-## 補足
+## その他資料
 * [M365連携機能の仕様](./featuires.md)
 * [M365連携のよくある質問](./faq.md)
