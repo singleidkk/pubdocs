@@ -6,6 +6,13 @@
 Set-MsolDomainAuthentication -DomainName <カスタムドメイン> -Authentication managed
 ```
 
+## カスタムドメインのフェデレーション（SAML）設定内容を確認するにはどうしたらよいですか。
+フェデレーション（SAML）設定内容を確認したいカスタムドメインを指定して、以下のコマンドを実行します。
+
+``` powershell title="PowerShell"
+Get-MsolDomainFederationSettings -DomainName <カスタムドメイン>
+```
+
 ## SingleIDのM365アプリからユーザを削除するとM365からもユーザは削除されますか。
 **デフォルト設定**ではユーザは削除されずに、ライセンスが割当てられた状態で**無効化**されます。
 
@@ -20,3 +27,11 @@ Set-MsolDomainAuthentication -DomainName <カスタムドメイン> -Authenticat
 ## ライセンスの自動割当を有効にしているのに、ユーザ同期でM365に同期されたユーザにライセンスが割当てられていません。
 
 [M365ライセンスの自動割当の制限](./microsoft_365_autoassign.md#m365ライセンスの自動割当の制限)に該当している可能性があります。
+
+## SingleIDのユーザが、M365へ同期されません。何が原因でしょうか。
+以下のことをご確認ください。
+
+* M365の**アプリ**登録
+* M365の**カスタムドメイン**の登録
+* SingleIDのアプリの**プロビジョニング**設定
+* SingleIDのアプリに追加したユーザのメールアドレスの**メールドメイン**とM365の**カスタムドメイン**が同一であること

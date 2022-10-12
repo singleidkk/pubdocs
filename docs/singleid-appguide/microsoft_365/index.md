@@ -209,7 +209,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     | $domain | シングルサインオンするカスタムドメイン |
     | $AppName | [SingleIDのアプリ連携設定](#singleidのアプリ連携設定)の手順5で設定した名前 |
     | $IdpIssuer | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013`） |
-    | $MySigningCert | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。 |
+    | $IdpSigningCert | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。 |
 
     ``` powershell title="PowerShellのサンプルスクリプト"
     $domain = "xxxxx.singleid.jp" 
@@ -218,7 +218,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     $IdpSigningCert = "MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw…….." 
     $BrandName = "SingleID"
     $IdpEndpoint = $IdpIssuer + "/protocol/saml"
-    $LogOffUrl = "https://portal.office.com" 
+    $LogOffUrl = $IdpIssuer + "/protocol/openid-connect/logout" 
     $Protocol = "SAMLP" 
     Set-MsolDomainAuthentication `
         -DomainName $domain `
