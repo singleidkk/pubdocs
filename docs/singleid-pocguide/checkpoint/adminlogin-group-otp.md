@@ -133,7 +133,7 @@ SingleIDのユーザで、Check Point FWへ管理者権限でログインしま�
 
     [![Screenshot](/images/image-token-3.png)](/images/image-token-3.png)
 
-8. 表示されていの数字**を**SingleID ユーザポータル＞オーセンティケーター**画面の**ワンタイムコード**へ入力し、**保存**ボタンをクリックし、オーセンティケーターを登録します。
+8. **表示されている数字**を**SingleID ユーザポータル＞オーセンティケーター**画面の**ワンタイムコード**へ入力し、**保存**ボタンをクリックし、オーセンティケーターを登録します。
 
     [![Screenshot](/images/image-token-4.png)](/images/image-token-4.png)
 

@@ -1,6 +1,6 @@
 # 管理者ログイン-２要素認証（パスワード認証＋ワンタイムパスワード認証）
 ## 目的
-SingleIDのユーザで、YAMAHA UTXへ管理者権限でログインします。
+SingleIDのユーザで、FortiGateへ管理者権限でログインします。
 接続する際の認証方式は、２要素認証（パスワード認証＋ワンタイムパスワード認証）です。
 
 ## 環境
@@ -24,8 +24,8 @@ SingleIDのユーザで、YAMAHA UTXへ管理者権限でログインします�
 | **RADIUSサーバのホスト名** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**です。 |
 | **RADIUSサーバのIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**IPアドレス**です。 |
 | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**です。ここでは、デフォルトUDP1812を使用します。 |
-| **RADIUSクライアントのIPアドレス** | **YAMAHA UTX**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
-| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**yamahautx**とします。 |
+| **RADIUSクライアントのIPアドレス** | **FortiGate**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
+| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**fortigate**とします。 |
 
 ## 設定方法
 ### SingleIDの設定
@@ -46,7 +46,7 @@ SingleIDのユーザで、YAMAHA UTXへ管理者権限でログインします�
 #### RADIUSの設定
 1. **SingleID 管理者ポータル＞認証＞RADIUS**画面の**簡易設定**タブへ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**YAMAHA UTXシリーズ**の**登録**ボタンをクリックします。**YAMAHA UTXシリーズ**画面がポップアップします。
+3. カタログから**FortiGate NGFW**の**登録**ボタンをクリックします。**FortiGate NGFW**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -62,47 +62,94 @@ SingleIDのユーザで、YAMAHA UTXへ管理者権限でログインします�
 
 5. **管理アクセスの認証**タブへ移動します。
 6. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
-    
-    !!! info
-        必要に応じて権限を設定します。権限の詳細については、YAMAHA UTXの管理者ガイドをご確認ください。
+7. 必要に応じて権限を設定します。ここでは、**super_admin_readonly**を選択します。以下の権限の詳細については、FortiGateの管理者ガイドをご確認ください。
 
-        * スーパー管理者
-        * 読み取り専用管理者
-        * ネットワーキング管理者
-        * モバイル管理者
+    * prof_admin
+    * super_admin
+    * super_admin_readonly
+    * radius_user_access1（ユーザ独自で作成したプロファイル）
+    * radius_user_access2（ユーザ独自で作成したプロファイル）
+    * radius_user_access3（ユーザ独自で作成したプロファイル）
 
-7. **登録**ボタンをクリックします。
+8. **登録**ボタンをクリックします。
 
-### YAMAHA UTXの設定
+### FortiGateの設定
 #### ローカル管理者でログイン
-1. **YAMAHA UTX GUI** https://YAMAHA UTXのIP:4434/ へアクセスします。
+1. **FortiGate GUI** https://FortiGateの管理IPアドレス/ へアクセスします。
 2. ローカル管理者のユーザ名、パスワードを入力し、**ログイン**をクリックします。
 
 #### RADIUSサーバの設定
-1. **YAMAHA UTX GUI＞デバイス＞管理者**画面へ移動します。
-2. **RADIUSの設定**をクリックします。**RADIUSサーバの設定**画面がポップアップします。
+1. **FortiGate GUI＞ユーザ＆認証＞RADIUSサーバ**画面へ移動します。
+2. **新規作成**ボタンをクリックします。**新規RADIUSサーバ設定**画面がポップアップします。
 3. 以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **IPv4アドレス** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
-    | **ポート** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
-    | **共有秘密キー** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
+    | **プライマリサーバ/セカンダリサーバ** | |
+    | **名前** | 任意の文字列を設定します。（例：SingleID_RADIUS） |
+    | **認証方式** | **指定 PAP**を選択 |
+    | **IP/名前** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
+    | **シークレット** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
 
-4. **適用**ボタンをクリックします。
+    !!! info
+        **接続をテスト**ボタンをクリックし、接続が成功しない場合には、以下をご確認ください。
+        
+        * 設定内容が間違いないこと
+        * FortiGateからSingleIDのRADIUSサーバのIPアドレスへ接続可能であること
 
-#### 管理者ログインの認証の設定
-1. **YAMAHA UTX GUI＞デバイス＞管理者**画面へ移動します。
-2. **権限の編集**をクリックします。**RADIUS認証**画面がポップアップします。
-3. 以下を設定し、**適用**ボタンをクリックします。
-    
+    !!! warning
+        SingleIDのRADIUSサーバでは、FortiGateのVPNアクセスや管理アクセスのみ認証可能となるように制限をかけているため、**ユーザクレデンシャルをテスト**ボタンをクリックし、正しいユーザ情報を入力しても成功となりませんが、問題ではありません。
+
+    [![Screenshot](/images/fortigate-10.png)](/images/fortigate-10.png)
+
+4. **OK**ボタンをクリックします。
+
+#### ユーザグループの設定
+1. **FortiGate GUI＞ユーザ＆認証＞ユーザグループ**画面へ移動します。
+2. **新規作成**ボタンをクリックします。**新規ユーザグループ**画面がポップアップします。
+3. 以下を設定します。
+
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **管理者のRADIUS認証を有効にする** | :fontawesome-regular-square-check: |
-    | **RADIUSサーバで定義されたロールを使用** | 選択 |
+    | **名前** | 任意の文字列を設定します。（例：SingleID） |
+    | **タイプ** | **ファイアウォール**を選択 |
+    | **リモートグループ** | **リモートサーバ：SingleID_RADIUS（[RADIUSサーバの設定](#radiusサーバの設定)の手順3で設定したサーバの名前）　グループ：すべて**を追加 |
+
+    [![Screenshot](/images/fortigate-2.png)](/images/fortigate-2.png)
+
+4. **OK**を クリックします。
+
+#### 管理者の設定
+1. **FortiGate GUI＞システム＞管理者**画面へ移動します。
+2. **新規作成＞管理者**ボタンをクリックします。**新規管理者**画面がポップアップします。
+3. 以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **ユーザ名** | 任意の文字列を設定します。（例：SingleID） |
+    | **タイプ** | **リモートサーバグループのすべてのユーザと一致**を選択 |
+    | **管理者プロファイル** | **admin_no_access**を選択 |
+    | **リモートユーザグループ** | **SingleID**（[ユーザグループの設定](#ユーザグループの設定)の手順3で設定したユーザグループの名前）を選択 |
+
+    [![Screenshot](/images/fortigate-15.png)](/images/fortigate-15.png)
+
+4. **OK**を クリックします。
+5. グループ（[ユーザグループの設定](#ユーザグループの設定)の手順3で設定したユーザグループの名前）のメンバーは、**admin_no_access**プロファイルにより管理者権限はありません。しかし、以下のコマンドを実行することで、RADIUSサーバで認証が成功した場合に、指定したプロファイル（例：super_admin_readonly）で上書きできます。
+
+    ``` title="FortiGate CLI"
+    # config system admin
+        edit "SingleID"
+        set accprofile-override enable
+    end
+    ```
+
+    !!! info
+        Fortinet社の以下の情報を参考にさせていただきました。<br>
+        [Technical Tip: Remote admin login with Radius selecting admin access account profile](https://community.fortinet.com/t5/FortiAuthenticator/Technical-Tip-Remote-admin-login-with-Radius-selecting-admin/ta-p/192308?externalID=FD36127){ target=_blank }
 
 ## 動作確認方法
 ### 管理者ログインの認証（パスワード認証＋ワンタイムパスワード認証）
+
 #### ソフトウェアトークンのインストール
 ソフトウェアトークンとして、以下のiPhoneおよびAndroidのモバイルアプリが利用できます。どちらかのアプリをスマートフォンまたはタブレットへインストールします。
 
@@ -140,14 +187,38 @@ SingleIDのユーザで、YAMAHA UTXへ管理者権限でログインします�
     !!! info
         ソフトウェアトークンの6桁の数字の表示は、30秒ごとに変わります。変わる前に、オーセンティケーターの登録を完了させる必要があります。登録する途中で、ソフトウェアトークンの数字が変わってしまった場合には、変わった数字を登録します。
 
-#### YAMAHA UTX GUIへログイン
-1. **YAMAHA UTX GUI** https://YAMAHA UTXのIP:4434/ へアクセスします。
-2.  以下の情報でログインを試み、ログインが成功することを確認します。
+#### FortiGate GUIへログイン
+1. **FortiGate GUI** https://FortiGateの管理IPアドレス/ へアクセスします。
+2. 以下の情報でログインを試みます。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **ユーザ名** | [SingleIDのユーザの情報](#ユーザの情報)を参照 |
     | **パスワード** | **ユーザのパスワード**と**ソフトウェアトークンに表示されたワンタイムパスワード**を:（コロン）でつなげた文字列を入力します。（例：password:123456）|
 
-    [![Screenshot](/images/image-cp-login.png)](/images/image-cp-login.png)
+    [![Screenshot](/images/fortigate-16.png)](/images/fortigate-16.png)
 
+3. **SingleIDのユーザ**でログインできたことを確認します。
+
+    [![Screenshot](/images/fortigate-17.png)](/images/fortigate-17.png)
+
+### 補足
+以下の画面が表示されたときには、CLIで設定を確認し、**set accprofile-override enable**がセットされていることを確認してください。
+
+[![Screenshot](/images/fortigate-18.png)](/images/fortigate-18.png)
+
+``` title="FortiGate CLI"
+# config system admin
+(admin) # edit "SingleID"
+(SingleID) # show
+config system admin
+    edit "SingleID"
+        set remote-auth enable
+        set accprofile "admin_no_access"
+        set vdom "root"
+        set wildcard enable
+        set remote-group "SingleID"
+        set accprofile-override enable
+    next
+end
+```
