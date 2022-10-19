@@ -62,7 +62,8 @@ SingleIDのユーザで、Sophos FirewallへVPNを使ってリモートアクセ
 
 5. **その他の認証**タブへ移動します。
 6. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
-7. **登録**ボタンをクリックします。
+7. **グループ名**には、Sophos Firewallのグループ名を入力します。認証成功したユーザは、ここで指定したグループのメンバーとなります。指定しない場合には、**Open Group**のメンバーとなります。ここでは、**vpngroup**を設定します。
+8. **登録**ボタンをクリックします。
 
 ### Sophos Firewallの設定
 #### ローカル管理者でログイン
@@ -70,66 +71,102 @@ SingleIDのユーザで、Sophos FirewallへVPNを使ってリモートアクセ
 2. ローカル管理者のユーザ名、パスワードを入力し、**ログイン**をクリックします。
 
 #### RADIUSサーバの設定
-1. **Sophos Firewall 管理GUI＞デバイス＞管理者**画面へ移動します。
-2. **RADIUSの設定**をクリックします。**RADIUSサーバの設定**画面がポップアップします。
+1. **Sophos Firewall 管理GUI＞設定＞認証＞サーバー**画面へ移動します。
+2. **追加**ボタンをクリックします。**認証サーバ**の設定画面が表示されます。
 3. 以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **IPv4アドレス** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
-    | **ポート** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
-    | **共有秘密キー** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
+    | **サーバの種類** | RADIUSサーバー |
+    | **サーバ名** | 任意（例：SingleID_RADIUS） |
+    | **サーバーIP** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
+    | **認証ポート** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
+    | **共有シークレット** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
+    | **グループ名の属性** | Filter-Id |
+
+4. **接続のテスト**ボタンをクリックし、[SingleIDのユーザ](#ユーザの情報)の認証情報を入力し、RADIUS認証が成功することを確認します。
+5. 成功が確認出来たら**保存**ボタンをクリックして設定を保存します。
+
+#### サービスの認証方法の設定
+1. **Sophos Firewall 管理GUI＞設定＞認証＞サービス**画面へ移動します。
+2. 以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **ユーザーポータルの認証方法** | [RADIUSサーバの設定](#radiusサーバの設定)で追加した認証サーバを選択します。ユーザポータルからユーザ自身でSophos Connect（VPNクライアントソフトウェア）をダウンロードするために、ユーザポータルへアクセス可能とするためです。 |
+    | **SSL VPN 認証方法** | [RADIUSサーバの設定](#radiusサーバの設定)で追加した認証サーバを選択します。 |
+
+#### グループの登録
+1. **Sophos Firewall 管理GUI＞設定＞認証＞グループ**画面へ移動します。
+2. **追加**ボタンをクリックし、以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **グループ名** | vpngroup（[RADIUSの設定](#radiusの設定)の手順3で設定したグループ名です。） |
+    | **グループの種類** | **ノーマル**を選択 |
+    | **ネット閲覧クォータ** | **Unlimited Internet Access**を選択 |
+    | **アクセス時間** | **Allowed all the time**を選択 |
+    | **IPsec リモートアクセス** | **有効**を選択 |
+
+3. **保存**ボタンをクリックします。
+
+#### リモートアクセスVPN（SSL VPN）の設定
+1. **Sophos Firewall 管理GUI＞設定＞リモートアクセスVPN＞SSL VPN**画面へ移動します。
+2. **追加**ボタンをクリックします。
+3. 以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **名前** | 任意（例：SingleID_SSLVPN） |
+    | **ポリシーメンバー** | vpngroup（[グループの設定](#グループの設定)で登録したグループ名です。） |
+    | **デフォルトのゲートウェイとして使用** | VPN接続した際に、インターネット通信を含むすべての通信をSophos Firewallを経由させたい場合に、有効します。 |
+    | **許可するネットワークリソース (IPv4)** | **デフォルトのゲートウェイとして使用**を無効にした場合には、接続可能なLAN側のネットワークを設定します。 |
 
 4. **適用**ボタンをクリックします。
 
-#### リモートアクセスユーザの認証の設定
-1. **Sophos Firewall 管理GUI＞VPN＞認証サーバ**画面へ移動します。
-2. **RADIUS ユーザの権限**をクリックします。**RADIUS設定**画面がポップアップします。
-3. **RADIUS認証をユーザ認識、リモートアクセス、ホットスポットに有効にする**を:fontawesome-regular-square-check:し、**適用**ボタンをクリックします。
+#### ファイアウォールルールの作成
+1. **Sophos Firewall 管理GUI＞保護＞ルールとポリシー＞ファイアウォールルール**画面へ移動します。
+2. **ファイアウォールルールの追加＞新しいファイアウォールルール**ボタンをクリックします。
+3. VPNクライアントからアクセスしたいリソースへのルールを設定します。
 
 ## 動作確認方法
+### Sophos Firewall ユーザポータルへログイン
+1. **Sophos Firewall ユーザポータル** https://SophosのIP/ へアクセスします。
+2. **SingleIDのユーザ**[（参照）](#ユーザの情報)でログインします。
+
+### Sophos Connect（VPNクライアントソフトウェア）のダウンロードおよびインストール
+1. **Sophos Firewall ユーザポータル＞VPN**画面へ移動します。
+2. **Download for Windows**をクリックし、インストールファイル（SophosConnect_2.2.75_(IPsec_and_SSLVPN).msi）をダウンロードします。
+
+    [![Screenshot](/images/2022-10-19_18-21-45.png)](/images/2022-10-19_18-21-45.png)
+
+3. インストールファイル（SophosConnect_2.2.75_(IPsec_and_SSLVPN).msi）をダブルクリックして、インストールします。インストールには、Windowsの管理者権限が必要です。
+
+### SSL VPN configurationのダウンロード
+1. **Sophos Firewall ユーザポータル＞VPN**画面へ移動します。
+2. **SSL VPN configuration**の**Windows、macOS、Linux 向けのダウンロード**をクリックし、SSL VPNの設定ファイル（ユーザ名__ssl_vpn_config.ovpn）をダウンロードします。
+
+    [![Screenshot](/images/2022-10-19_18-23-51.png)](/images/2022-10-19_18-23-51.png)
+
+### VPN接続の設定ファイルのインポート
+1. Sophos Connectを起動します。
+2. **接続のインポート**をクリックします。
+
+    [![Screenshot](/images/2022-10-11_21-43-41.png)](/images/2022-10-11_21-43-41.png)
+
+3. [SSL VPN configurationのダウンロード](#ssl-vpn-configurationのダウンロード)で取得したVPN接続の設定ファイルを選択します。
+
 ### リモートアクセスVPNの認証（パスワード認証）
+1. **Sophos Connect**を起動します。
+2. インポートした**VPN接続**を選択し、**接続**ボタンをクリックします。 
 
-#### リモートアクセスクライアントのインストール
-Sophos Firewallのリモートアクセスクライアントである、 Check Point Remote Access VPN Clients をインストールしていない場合には、以下よりダウンロードしてインストールします。
+    [![Screenshot](/images/2022-10-19_18-28-09.png)](/images/2022-10-19_18-28-09.png)
 
-[ダウンロード](https://supportcenter.sophos.com/supportcenter/portal?version=&amp;os=&amp;productTab=downloads&amp;product=175&amp;eventSubmit_doShowproductpage=){ target=_blank .md-button .md-button--primary }
+3. [SingleIDのユーザ](#ユーザの情報)の認証情報を入力し、**サインイン**ボタンをクリックします。
 
-#### 接続先の設定
+    [![Screenshot](/images/2022-10-19_18-30-04.png)](/images/2022-10-19_18-30-04.png)
 
-1. Check Point Remote Access VPN Clientsを起動して、新規サイトを作成します。サイトウィザードが表示されたら、**Next**ボタンをクリックします。
+4. RADIUS認証が行われて、接続が成功したことが確認できます。
 
-    [![Screenshot](/images/image-24.png)](/images/image-24.png)
-
-2. **Server address or Name**に、Sophos FirewallのWANのIPアドレスを入力し、**Next**ボタンをクリックします。
-
-    [![Screenshot](/images/image-25.png)](/images/image-25.png)
-
-3. **VPN Client (Default)**が選択されていることを確認し、**Next**ボタンをクリックします。
-
-    [![Screenshot](/images/image-26.png)](/images/image-26.png)
-
-4. **Username and Password**を選択し、**Next**ボタンをクリックします。
-
-    [![Screenshot](/images/image-27.png)](/images/image-27.png)
-
-6. **Site created successfully**が表示されたら、サイトが無事作成されました。**Finish**ボタンをクリックします。
-
-    [![Screenshot](/images/image-29.png)](/images/image-29.png)
-
-#### VPN接続
-
-1. **Connect**ボタンをクリックします。 
-
-    [![Screenshot](/images/image-30.png)](/images/image-30.png)
-
-2. **Site**に、作成した接続先を選択します。
-
-3. **SingleIDのユーザ**[（参照）](#ユーザの情報)でログインを試み、ログインが成功することを確認します。
-
-    [![Screenshot](/images/image-31.png)](/images/image-31.png)
-
-4. **Details**ボタンをクリックすると、詳細が表示され、**SingleIDのユーザ**[（参照）](#ユーザの情報)で、RADIUS認証が行われて、接続が成功したことが確認できます。
-
-    [![Screenshot](/images/image-32.png)](/images/image-32.png)
+    [![Screenshot](/images/2022-10-19_18-31-18.png)](/images/2022-10-19_18-31-18.png)
 

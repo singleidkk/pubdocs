@@ -40,11 +40,11 @@ SingleIDのユーザで、FortiGateへVPNを使ってリモートアクセスし
 
 ### FortiGateの設定
 #### ローカル管理者でログイン
-1. **FortiGate GUI** https://FortiGateの管理IPアドレス/ へアクセスします。
+1. **Fortigate 管理GUI** https://FortiGateの管理IPアドレス/ へアクセスします。
 2. ローカル管理者のユーザ名、パスワードを入力し、**ログイン**をクリックします。
 
 #### SingleIDの中間CA証明書を追加
-1. **FortiGate GUI＞システム＞証明書**画面へ移動します。
+1. **Fortigate 管理GUI＞システム＞証明書**画面へ移動します。
 2. **Create/Import＞CA証明書**ボタンをクリックします。**CA証明書をインポート**画面がポップアップします。
 3. 以下を設定し、**OK**ボタンをクリックします。
 
@@ -61,7 +61,7 @@ SingleIDのユーザで、FortiGateへVPNを使ってリモートアクセスし
     [![Screenshot](/images/fortigate-19.png)](/images/fortigate-19.png)
 
 #### SingleIDの中間CAの証明書失効リスト（CRL）の設定
-1. **FortiGate GUI＞システム＞証明書**画面へ移動します。
+1. **Fortigate 管理GUI＞システム＞証明書**画面へ移動します。
 2. **Create/Import＞CRL**ボタンをクリックします。**CRLをインポート**画面がポップアップします。
 3. 以下を設定し、**OK**ボタンをクリックします。
 
@@ -94,7 +94,7 @@ end
 ```
 
 #### ユーザグループの設定
-1. **FortiGate GUI＞ユーザ＆認証＞ユーザグループ**画面へ移動します。
+1. **Fortigate 管理GUI＞ユーザ＆認証＞ユーザグループ**画面へ移動します。
 2. **新規作成**ボタンをクリックします。**新規ユーザグループ**画面がポップアップします。
 3. 以下を設定します。
 
@@ -109,7 +109,7 @@ end
 4. **OK**を クリックします。
 
 #### SSLVPNの設定
-1. **FortiGate GUI＞VPN＞SSL-VPN設定**画面へ移動します。
+1. **Fortigate 管理GUI＞VPN＞SSL-VPN設定**画面へ移動します。
 2. 以下の項目を設定し、**適用**ボタンをクリックします。
 
     | **設定項目** | **設定内容** |
@@ -123,7 +123,7 @@ end
     [![Screenshot](/images/fortigate-22.png)](/images/fortigate-22.png)
 
 #### ポリシーの設定
-1. SSLVPNの設定を適用すると、上部に以下のようなメッセージが表示されます。リンクをクリックし、ファイアウォールポリシーの設定を行います。表示されない場合には、**FortiGate GUI＞ポリシー＆オブジェクト＞ファイアウォールポリシー**へ移動します。
+1. SSLVPNの設定を適用すると、上部に以下のようなメッセージが表示されます。リンクをクリックし、ファイアウォールポリシーの設定を行います。表示されない場合には、**Fortigate 管理GUI＞ポリシー＆オブジェクト＞ファイアウォールポリシー**へ移動します。
 
     [![Screenshot](/images/fortigate-12.png)](/images/fortigate-12.png)
 
