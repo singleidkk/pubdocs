@@ -13,3 +13,5 @@
 [セキュリティ診断](./singleid-security-check/index.md)
 
 [よくある質問](./faq/index.md)
+
+[MSP管理者ガイド](./singleid-mspguide/index.md)

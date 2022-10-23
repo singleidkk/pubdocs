@@ -104,3 +104,11 @@ nav:
   - ネットワーク機器連携の設定例: singleid-pocguide/index.md
   - セキュリティ診断: singleid-security-check/index.md
   - よくある質問: faq/index.md
+  - MSP管理者ガイド:
+    - はじめに: singleid-mspguide/index.md
+    - ポイント管理:
+      - ポイントコード: singleid-mspguide/point_code.md
+      - ポイント履歴: singleid-mspguide/point_history.md
+    - アカウント管理: 
+      - 顧客アカウント管理: singleid-mspguide/customer_account.md
+      - MSPアカウント管理: singleid-mspguide/msp_account.md
