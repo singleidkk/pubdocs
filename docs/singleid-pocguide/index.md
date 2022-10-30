@@ -4,6 +4,7 @@
 * [Anti Spreader セキュアスイッチ/宝情報](./anti_spreader_switch/)
 * [Buffalo AirStation Pro/バッファロー](./buffalo_airstation_pro/)
 * [Check Point Quantum Spark/チェックポイントソフトウェアテクノロジーズ](./checkpoint/)
+* [Firebox/ウォッチガード・テクノロジー・ジャパン](./firebox/)
 * [Fortigate NGFW/フォーティネットジャパン](./fortigate/)
 * [PacketiX VPN/ソフトイーサ](./packetix_vpn/)
 * [Sophos Firewall/ソフォス](./sophos_firewall/)
