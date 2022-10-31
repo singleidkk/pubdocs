@@ -1,2 +1,2 @@
 ## 本ガイドの対象
-SingleIDのMSP管理者（SingleIDのディストリビュータおよび販売店）を対象としています。
+SingleIDの特権MSP/MSP管理者（SingleIDのディストリビュータおよび販売店）を対象としています。
