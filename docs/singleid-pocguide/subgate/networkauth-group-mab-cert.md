@@ -1,6 +1,6 @@
-# ネットワーク接続の認証（グループによるアクセス制限）-クライアント証明書認証
+# ネットワーク接続の認証（グループによるアクセス制限）とMACアドレス認証バイパス（MAC Authentication Bypass）の併用-クライアント証明書認証
 ## 目的
-SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成されたネットワークにアクセスします。
+SingleIDのユーザで、SubGateにより構成されたネットワークにアクセスします。その際、802.1x認証に対応していないデバイス（プリンターやIP電話など）は、MACアドレスをSingleIDへ登録することで、ユーザ認証を行わないようにします。
 接続する際の認証方式は、クライアント証明書認証（EAP-TLS）です。
 
 ## 環境
@@ -24,10 +24,10 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 | **RADIUSサーバのホスト名** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**です。 |
 | **RADIUSサーバのIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**IPアドレス**です。 |
 | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**です。ここでは、デフォルトUDP1812を使用します。 |
-| **RADIUSクライアントのIPアドレス** | **Anti Spreader セキュアスイッチ**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
-| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**Antispreader-1234**とします。AntiSpreader セキュアスイッチによる仕様により、アルファベット大文字・小文字、数字、記号を各1文字以上使用した9文字以上の文字列を使用します。|
+| **RADIUSクライアントのIPアドレス** | **SubGate**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
+| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**Subgate-1234**とします。SubGateによる仕様により、アルファベット大文字・小文字、数字、記号を各1文字以上使用した9文字以上の文字列を使用します。|
 
-### Anti Spreader セキュアスイッチのポート
+### SubGateのポート
 | **ポート番号** | **ポート名** | **802.1x認証の有効化** |
 | --- | --- | --- |
 | 1 | ge1 | :material-check: |
@@ -66,7 +66,7 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 #### RADIUSの設定
 1. **SingleID 管理者ポータル＞認証＞RADIUS**画面の**簡易設定**タブへ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**Anti Spreader セキュアスイッチ**の**登録**ボタンをクリックします。**Anti Spreader セキュアスイッチ**画面がポップアップします。
+3. カタログから**SubGate**の**登録**ボタンをクリックします。**SubGate**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -82,10 +82,12 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 
 5. **ネットワークアクセスの認証**タブへ移動します。
 6. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
-7. **登録**ボタンをクリックします。
+7. **MACアドレス認証バイパス**タブへ移動します。
+8. 802.1x認証をサポートしていないデバイスの**MACアドレス**を**ハイフン区切り**で入力します。（例：00-E1-5C-68-16-04）
+9. **登録**ボタンをクリックします。
 
-### Anti Spreader セキュアスイッチの設定
-Anti Spreader セキュアスイッチにCLIでログインして設定します。GUIでは、802.1x認証の設定を行うことはできません。
+### SubGateの設定
+SubGateにCLIでログインして設定します。GUIでは、802.1x認証の設定を行うことはできません。
 
 #### mac-floodingの無効化
 mac-floodingが有効の状態では、802.1x認証を有効にできないため、mac-floodingを無効化します。
@@ -130,6 +132,8 @@ SG2412G(config-if-range)#dot1x port-control auto
 % ge1-6 Selected
 SG2412G(config-if-range)#dot1x extension multi-user
 % ge1-6 Selected
+SG2412G(config-if-range)#dot1x extension mac-auth-bypass
+% ge1-6 Selected
 ```
 
 #### 設定を保存
@@ -138,7 +142,7 @@ SG2412G(config)#write memory
 ```
 
 #### サンプルコンフィグ
-[ダウンロード](./networkauth-antispreader-switch-sampleconfig.txt){ target=_blank .md-button .md-button--primary }
+[ダウンロード](./networkauth-subgate-switch-sampleconfig-mab.txt){ target=_blank .md-button .md-button--primary }
 
 ## 動作確認方法
 ### ネットワーク接続の認証（EAP-TLS方式のクライアント証明書認証）
@@ -185,7 +189,7 @@ SG2412G(config)#write memory
 
     [![Screenshot](/images/2022-09-06_15-40-39.png)](/images/2022-09-06_15-40-39.png)
 
-3. PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[Anti Spreader セキュアスイッチのポート](#Anti Spreader セキュアスイッチのポート)の**802.1x認証の有効化**を参照）へ接続します。
+3. PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[SubGateのポート](#SubGateのポート)の**802.1x認証の有効化**を参照）へ接続します。
 
 4. ログイン要求がポップアップします。**サインイン**をクリックします。
 
@@ -224,3 +228,10 @@ SG2412G(config)#write memory
 10. 接続成功したことを確認します。
 
     [![Screenshot](/images/2022-09-06_17-27-56.png)](/images/2022-09-06_17-27-56.png)
+
+### MACアドレス認証バイパス
+1. **802.1x認証を無効にした**PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[SubGateのポート](#SubGateのポート)の**802.1x認証の有効化**を参照）へ接続します。
+2. １分間ほど待ち、ネットワークへ接続できたことを確認します。
+
+    !!! info
+        SubGateで`#show dot1x brief`コマンドを実行して、接続状況を確認できます。

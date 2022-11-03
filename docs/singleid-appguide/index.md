@@ -2,7 +2,7 @@
 * [サイボウズ](cybozu.md)
 * [@pocket](atpocket.md)
 * [AWS IAM](aws_iam.md)
-* [Box](box.md)　近日公開予定
+* [Box](box.md)
 * [Gitea](gitea.md)　近日公開予定
 * [HarmonyConnect](harmonyconnect.md)
 * [Microsoft 365](microsoft_365/)
