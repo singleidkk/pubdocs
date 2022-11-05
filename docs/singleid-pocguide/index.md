@@ -9,6 +9,8 @@
 * [PacketiX VPN/ソフトイーサ](./packetix_vpn/)
 * [Sophos Firewall/ソフォス](./sophos_firewall/)
 * [SubGate AP/サブゲート](./subgate_ap/)
+* [SubGate/サブゲート](./subgate/)
 * [YAMAHA RTXシリーズ/ヤマハ](./yamaha_rtx/)
+* [YAMAHA SWXシリーズ/ヤマハ](./yamaha_swx/)
 * [YAMAHA UTXシリーズ/ヤマハ](./yamaha_utx/)　
 * [YAMAHA WLXシリーズ/ヤマハ](./yamaha_wlx/)
