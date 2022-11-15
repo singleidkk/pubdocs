@@ -90,7 +90,7 @@ SingleIDのユーザで、Fireboxの無線LANアクセスポイントへアク�
     | **ドメイン名** | 任意（例：SingleID_RADIUS） |
     | **RADIUS サーバーの有効化** | 有効 |
     | **IP アドレス** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
-    | **認証** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
+    | **ポート** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
     | **共有シークレット** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
     | **グループ属性** | 11（デフォルト値の11は、Filter-Id属性です。） |
 
