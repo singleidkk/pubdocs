@@ -1,5 +1,7 @@
 # Chatworkのアプリ連携
 ## シングルサインオン
+* シングルサインオンが利用可能なプランは、エンタープライズプランです。詳しくは、[こちら](https://go.chatwork.com/ja/lp/remarketing_09/?adcode=onad_glsm_FV_money_original&utm_source=google&utm_medium=cpc&utm_campaign=brand&utm_term=chatwork&utm_content=602126140268&gclid=CjwKCAiAjs2bBhACEiwALTBWZfWlbO6UJ3S6MxFnsvcPOl6QR3EJ7rGbmt0nd5o8zspyer8Ai2V3FBoCneYQAvD_BwE#section-price){ target=_blank }を参照して下さい。
+
 ### SingleIDのアプリ連携設定
 1. **SingleID 管理者ポータル＞アプリ連携＞アプリ一覧**画面へ移動します。
 2. **カタログ表示**ボタンをクリックします。
