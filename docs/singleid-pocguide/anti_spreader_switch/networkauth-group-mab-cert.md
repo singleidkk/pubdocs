@@ -1,6 +1,7 @@
 # ネットワーク接続の認証（グループによるアクセス制限）とMACアドレス認証バイパス（MAC Authentication Bypass）の併用-クライアント証明書認証
 ## 目的
-SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成されたネットワークにアクセスします。その際、802.1x認証に対応していないデバイス（プリンターやIP電話など）は、MACアドレスをSingleIDへ登録することで、ユーザ認証を行わないようにします。
+SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成されたネットワークにアクセスします。
+その際、802.1x認証に対応していないデバイス（無線LANアクセスポイント、プリンター、IP電話など）は、MACアドレスをSingleIDへ登録することで、ユーザ認証を行わないようにします。
 接続する際の認証方式は、クライアント証明書認証（EAP-TLS）です。
 
 ## 環境
@@ -83,11 +84,14 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 5. **ネットワークアクセスの認証**タブへ移動します。
 6. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
 7. **MACアドレス認証バイパス**タブへ移動します。
-8. 802.1x認証をサポートしていないデバイスの**MACアドレス**を**ハイフン区切り**で入力します。（例：00-E1-5C-68-16-04）
+8. 802.1x認証をサポートしていないデバイスの**MACアドレス**を大文字英数字の**ハイフン区切り**で入力します。（例：00-E1-5C-68-16-04）
 9. **登録**ボタンをクリックします。
 
 ### Anti Spreader セキュアスイッチの設定
-Anti Spreader セキュアスイッチにCLIでログインして設定します。GUIでは、802.1x認証の設定を行うことはできません。
+Anti Spreader セキュアスイッチにCLIでログインして設定します。
+
+!!! warning
+    GUIでは、802.1x認証の設定を行うことはできません。
 
 #### mac-floodingの無効化
 mac-floodingが有効の状態では、802.1x認証を有効にできないため、mac-floodingを無効化します。
@@ -118,22 +122,20 @@ SG2412G(config)ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアド�
 
 ```
 SG2412G(config)#aaa system-aaa-ctrl
-SG2412G(config)#radius-server host <RADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
-SG2412G(config)#radius-server host <RADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
+SG2412G(config)#radius-server host <1つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
+SG2412G(config)#radius-server host <2つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
 SG2412G(config)#ip radius source-interface <送信元のIPアドレス> 1023
 ```
 
 #### 802.1x認証の有効化
+[**Anti Spreader セキュアスイッチのポート**](#anti-spreader-セキュアスイッチのポート)に従い、802.1x認証の設定を行います。
+
 ```
 SG2412G(config)#dot1x system-auth-ctrl
-SG2412G(config)#interface range ge1-6
-% ge1-6 Selected
+SG2412G(config)#interface range <802.1x認証の有効化する物理ポート名>
 SG2412G(config-if-range)#dot1x port-control auto
-% ge1-6 Selected
 SG2412G(config-if-range)#dot1x extension multi-user
-% ge1-6 Selected
 SG2412G(config-if-range)#dot1x extension mac-auth-bypass
-% ge1-6 Selected
 ```
 
 #### 設定を保存

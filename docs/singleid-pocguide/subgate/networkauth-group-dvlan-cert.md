@@ -142,7 +142,7 @@ SG2412G(config)#ip radius source-interface <送信元のIPアドレス> 1023
 ```
 
 #### 802.1x認証の有効化
-**[SubGateのポート]**(#subgateのポート)に従い、802.1x認証の設定を行います。
+[**SubGateのポート**](#subgateのポート)に従い、802.1x認証の設定を行います。
 
 ```
 SG2412G(config)#dot1x system-auth-ctrl

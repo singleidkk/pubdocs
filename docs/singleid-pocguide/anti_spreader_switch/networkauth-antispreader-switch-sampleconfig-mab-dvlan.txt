@@ -10,6 +10,9 @@ no ip domain-lookup
 !
 bridge 1 protocol pvstp
 !
+vlan database
+ vlan range 101 bridge 1
+!
 bridge 1 pvstp vlan 1
 no bridge 1 pvstp enable bridge-forward bpdu-flood
 !
@@ -43,31 +46,46 @@ ip radius source-interface 192.168.100.20 1023
 !
 interface ge1
  dot1x port-control auto
- dot1x extension multi-user
+ dot1x port-control dir in
+ dot1x extension dynamic-vlan
+ dot1x extension mac-auth-bypass
 !
 interface ge2
  dot1x port-control auto
- dot1x extension multi-user
+ dot1x port-control dir in
+ dot1x extension dynamic-vlan
+ dot1x extension mac-auth-bypass
 !
 interface ge3
  dot1x port-control auto
- dot1x extension multi-user
+ dot1x port-control dir in
+ dot1x extension dynamic-vlan
+ dot1x extension mac-auth-bypass
 !
 interface ge4
  dot1x port-control auto
- dot1x extension multi-user
+ dot1x port-control dir in
+ dot1x extension dynamic-vlan
+ dot1x extension mac-auth-bypass
 !
 interface ge5
  dot1x port-control auto
- dot1x extension multi-user
+ dot1x port-control dir in
+ dot1x extension dynamic-vlan
+ dot1x extension mac-auth-bypass
 !
 interface ge6
  dot1x port-control auto
- dot1x extension multi-user
+ dot1x port-control dir in
+ dot1x extension dynamic-vlan
+ dot1x extension mac-auth-bypass
 !
 interface ge7
 !
 interface ge8
+ switchport mode trunk
+ switchport mode trunk acceptable-frame-type all
+ switchport trunk allowed vlan add 101
 !
 interface ge9
 !

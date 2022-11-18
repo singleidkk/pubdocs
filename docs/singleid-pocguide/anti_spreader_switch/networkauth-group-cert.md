@@ -85,7 +85,10 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 7. **登録**ボタンをクリックします。
 
 ### Anti Spreader セキュアスイッチの設定
-Anti Spreader セキュアスイッチにCLIでログインして設定します。GUIでは、802.1x認証の設定を行うことはできません。
+Anti Spreader セキュアスイッチにCLIでログインして設定します。
+
+!!! warning
+    GUIでは、802.1x認証の設定を行うことはできません。
 
 #### mac-floodingの無効化
 mac-floodingが有効の状態では、802.1x認証を有効にできないため、mac-floodingを無効化します。
@@ -116,20 +119,19 @@ SG2412G(config)ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアド�
 
 ```
 SG2412G(config)#aaa system-aaa-ctrl
-SG2412G(config)#radius-server host <RADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
-SG2412G(config)#radius-server host <RADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
+SG2412G(config)#radius-server host <1つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
+SG2412G(config)#radius-server host <2つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
 SG2412G(config)#ip radius source-interface <送信元のIPアドレス> 1023
 ```
 
 #### 802.1x認証の有効化
+[**Anti Spreader セキュアスイッチのポート**](#anti-spreader-セキュアスイッチのポート)に従い、802.1x認証の設定を行います。
+
 ```
 SG2412G(config)#dot1x system-auth-ctrl
-SG2412G(config)#interface range ge1-6
-% ge1-6 Selected
+SG2412G(config)#interface range <802.1x認証の有効化する物理ポート名>
 SG2412G(config-if-range)#dot1x port-control auto
-% ge1-6 Selected
 SG2412G(config-if-range)#dot1x extension multi-user
-% ge1-6 Selected
 ```
 
 #### 設定を保存

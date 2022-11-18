@@ -1,4 +1,4 @@
-# ネットワーク接続の認証（グループによるアクセス制限）とMACアドレス認証バイパス（MAC Authentication Bypass）の併用-パスワード認証
+# ネットワーク接続の認証（グループによるアクセス制限）とダイナミックVLANの併用-パスワード認証
 ## 目的
 SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成されたネットワークにアクセスします。
 その際、802.1x認証に対応していないデバイス（無線LANアクセスポイント、プリンター、IP電話など）は、MACアドレスをSingleIDへ登録することで、ユーザ認証を行わないようにします。
@@ -19,9 +19,9 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
     メールアドレス: 受信可能なメールアドレスを指定してください。
 
 ### グループの情報
-| **グループ名** | **メンバー** |
-| :--- | :--- |
-| singleid-network-access-users | user1 |
+| **グループ名** | **メンバー** | **割当てるVLAN ID** |
+| :--- | :--- | :-- |
+| singleid-network-access-users | user1 | 101 |
 
 ### RADIUSの情報
 
@@ -34,16 +34,16 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 | **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**Antispreader-1234**とします。AntiSpreader セキュアスイッチによる仕様により、アルファベット大文字・小文字、数字、記号を各1文字以上使用した9文字以上の文字列を使用します。|
 
 ### Anti Spreader セキュアスイッチのポート
-| **ポート番号** | **ポート名** | **802.1x認証の有効化** |
-| --- | --- | --- |
-| 1 | ge1 | :material-check: |
-| 2 | ge2 | :material-check: |
-| 3 | ge3 | :material-check: |
-| 4 | ge4 | :material-check: |
-| 5 | ge5 | :material-check: |
-| 6 | ge6 | :material-check: |
-| 7 | ge7 |  |
-| 8 | ge8 |  |
+| **ポート番号** | **ポート名** | **802.1x認証<br>の有効化** | **トランク<br>ポート** | **アップリンク<br>ポート（ルータへ接続）** |
+| :-- | :-- | :-- | :-- | :-- |
+| 1 | ge1 | :material-check: |||
+| 2 | ge2 | :material-check: |||
+| 3 | ge3 | :material-check: |||
+| 4 | ge4 | :material-check: |||
+| 5 | ge5 | :material-check: |||
+| 6 | ge6 | :material-check: |||
+| 7 | ge7 ||||
+| 8 | ge8 || :material-check: (VLAN ID:101)| :material-check: |
 
 ## 設定方法
 ### SingleIDの設定
@@ -80,9 +80,8 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 
 5. **ネットワークアクセスの認証**タブへ移動します。
 6. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
-7. **MACアドレス認証バイパス**タブへ移動します。
-8. 802.1x認証をサポートしていないデバイスの**MACアドレス**を大文字英数字の**ハイフン区切り**で入力します。（例：00-E1-5C-68-16-04）
-9. **登録**ボタンをクリックします。
+7. **許可**へ移動させたグループの同じ行に、**割当てるVLAN ID**[（参照）](#グループの情報)を入力します。
+8. **登録**ボタンをクリックします。
 
 ### Anti Spreader セキュアスイッチの設定
 Anti Spreader セキュアスイッチにCLIでログインして設定します。
@@ -108,6 +107,22 @@ SG2412G(config-if)ip address <送信元のIPアドレス>/<送信元のIPアド�
 SG2412G(config)ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアドレス>
 ```
 
+#### VLANの作成
+**割当てるVLAN ID**[（参照）](#グループの情報)のVLANを作成します。
+``` title="VLANの作成"
+SG2412G(config)#vlan database
+SG2412G(config-vlan)#vlan <VLAN ID> bridge 1
+```
+
+#### アップリンクポートをトランクポートの設定
+[**Anti Spreader セキュアスイッチのポート**](#anti-spreader-セキュアスイッチのポート)に従い、ルータと接続するAnti Spreader セキュアスイッチの物理ポート（アップリンクポート）に対して、トランクの設定をします。
+
+``` title="トランクポートの設定"
+SG2412G(config)#interface <アップリンクポートのインターフェース名>
+SG2412G(config-if)#switchport mode trunk
+SG2412G(config-if)##switchport trunk allowed vlan add <VLAN ID>
+```
+
 #### AAA認証の有効化およびRADIUSサーバの登録
 
 | **設定項目** | **設定内容** |
@@ -131,9 +146,12 @@ SG2412G(config)#ip radius source-interface <送信元のIPアドレス> 1023
 SG2412G(config)#dot1x system-auth-ctrl
 SG2412G(config)#interface range <802.1x認証の有効化する物理ポート名>
 SG2412G(config-if-range)#dot1x port-control auto
-SG2412G(config-if-range)#dot1x extension multi-user
 SG2412G(config-if-range)#dot1x extension mac-auth-bypass
+SG2412G(config-if-range)#dot1x extension dynamic-vlan
 ```
+
+!!! warning
+    `dot1x extension multi-user`と`dot1x extension dynamic-vlan`の両方を同一の物理ポートで同時に有効にできません。
 
 #### 設定を保存
 ```
@@ -141,7 +159,7 @@ SG2412G(config)#write memory
 ```
 
 #### サンプルコンフィグ
-[ダウンロード](./networkauth-antispreader-switch-sampleconfig-mab.txt){ target=_blank .md-button .md-button--primary }
+[ダウンロード](./networkauth-antispreader-switch-sampleconfig-mab-dvlan.txt){ target=_blank .md-button .md-button--primary }
 
 ## 動作確認方法
 ### ネットワーク接続の認証（PEAP(MSCHAPv2)方式のパスワード認証）
@@ -194,10 +212,3 @@ SG2412G(config)#write memory
 10. 接続成功したことを確認します。
 
     [![Screenshot](/images/2022-09-06_17-27-56.png)](/images/2022-09-06_17-27-56.png)
-
-### MACアドレス認証バイパス
-1. **802.1x認証を無効にした**PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[Anti Spreader セキュアスイッチのポート](#Anti Spreader セキュアスイッチのポート)の**802.1x認証の有効化**を参照）へ接続します。
-2. １分間ほど待ち、ネットワークへ接続できたことを確認します。
-
-    !!! info
-        Anti Spreader セキュアスイッチで`#show dot1x brief`コマンドを実行して、接続状況を確認できます。

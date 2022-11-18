@@ -94,7 +94,7 @@ SG2412G(config)#no mds mac-flooding enable
 ```
 
 #### 送信元のIPアドレスとデフォルトルートの設定
-SingleIDのクラウドRADIUSと通信するために、デフォルトVLAN(vlan1.1)に送信元となるIPアドレス　および　デフォルトルートをAnti Spreader セキュアスイッチに設定します。送信元となるIPアドレスおよびデフォルトルートは、環境により異なるため適切なIPアドレスを設定します。
+SingleIDのクラウドRADIUSと通信するために、デフォルトVLAN(vlan1.1)に送信元となるIPアドレス　および　デフォルトルートをSubGateに設定します。送信元となるIPアドレスおよびデフォルトルートは、環境により異なるため適切なIPアドレスを設定します。
 
 ``` title="送信元のIPアドレス設定"
 SG2412G(config)interface vlan1.1
@@ -122,7 +122,7 @@ SG2412G(config)#ip radius source-interface <送信元のIPアドレス> 1023
 ```
 
 #### 802.1x認証の有効化
-**[SubGateのポート]**(#subgateのポート)に従い、802.1x認証の設定を行います。
+[**SubGateのポート**](#subgateのポート)に従い、802.1x認証の設定を行います。
 
 ```
 SG2412G(config)#dot1x system-auth-ctrl
@@ -150,7 +150,7 @@ SG2412G(config)#write memory
 
     [![Screenshot](/images/2022-09-06_15-40-39.png)](/images/2022-09-06_15-40-39.png)
 
-3. PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[SubGateのポート](#SubGateのポート)の**802.1x認証の有効化**を参照）へ接続します。
+3. PCをSubGateの802.1x認証を有効にしたポート（[SubGateのポート](#SubGateのポート)の**802.1x認証の有効化**を参照）へ接続します。
 
 4. ログイン要求がポップアップします。**サインイン**をクリックします。
 
