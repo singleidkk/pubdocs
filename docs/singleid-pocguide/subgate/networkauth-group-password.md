@@ -30,7 +30,7 @@ SingleIDのユーザで、SubGateにより構成されたネットワークに�
 | **RADIUSサーバのIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**IPアドレス**です。 |
 | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**です。ここでは、デフォルトUDP1812を使用します。 |
 | **RADIUSクライアントのIPアドレス** | **SubGate**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
-| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**Subgate-1234**とします。AntiSpreader セキュアスイッチによる仕様により、アルファベット大文字・小文字、数字、記号を各1文字以上使用した9文字以上の文字列を使用します。|
+| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**Subgate-1234**とします。SubGateによる仕様により、アルファベット大文字・小文字、数字、記号を各1文字以上使用した9文字以上の文字列を使用します。|
 
 ### SubGateのポート
 | **ポート番号** | **ポート名** | **802.1x認証の有効化** |
@@ -82,7 +82,10 @@ SingleIDのユーザで、SubGateにより構成されたネットワークに�
 7. **登録**ボタンをクリックします。
 
 ### SubGateの設定
-SubGateにCLIでログインして設定します。GUIでは、802.1x認証の設定を行うことはできません。
+SubGateにCLIでログインして設定します。
+
+!!! warning
+    GUIでは、802.1x認証の設定を行うことはできません。
 
 #### mac-floodingの無効化
 mac-floodingが有効の状態では、802.1x認証を有効にできないため、mac-floodingを無効化します。
@@ -113,20 +116,19 @@ SG2412G(config)ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアド�
 
 ```
 SG2412G(config)#aaa system-aaa-ctrl
-SG2412G(config)#radius-server host <RADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
-SG2412G(config)#radius-server host <RADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
+SG2412G(config)#radius-server host <1つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
+SG2412G(config)#radius-server host <2つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
 SG2412G(config)#ip radius source-interface <送信元のIPアドレス> 1023
 ```
 
 #### 802.1x認証の有効化
+**[SubGateのポート]**(#subgateのポート)に従い、802.1x認証の設定を行います。
+
 ```
 SG2412G(config)#dot1x system-auth-ctrl
-SG2412G(config)#interface range ge1-6
-% ge1-6 Selected
+SG2412G(config)#interface range <802.1x認証の有効化する物理ポート名>
 SG2412G(config-if-range)#dot1x port-control auto
-% ge1-6 Selected
 SG2412G(config-if-range)#dot1x extension multi-user
-% ge1-6 Selected
 ```
 
 #### 設定を保存
@@ -139,8 +141,7 @@ SG2412G(config)#write memory
 
 ## 動作確認方法
 ### ネットワーク接続の認証（PEAP(MSCHAPv2)方式のパスワード認証）
-#### Windows 11 の場合
-
+#### ネットワークへ接続（Windows 11 の場合）
 1. PCのネットワークインターフェースの802.1x認証を有効化する必要があります。Windowsの**サービス設定**画面から**Wired AutoConfig**サービスをダブルクリックします。
 
     [![Screenshot](/images/2022-09-06_15-40-20.png)](/images/2022-09-06_15-40-20.png)
