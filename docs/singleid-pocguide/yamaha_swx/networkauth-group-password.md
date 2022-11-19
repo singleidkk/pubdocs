@@ -1,6 +1,6 @@
 # ネットワーク接続の認証（グループによるアクセス制限）-パスワード認証
 ## 目的
-SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成されたネットワークにアクセスします。
+SingleIDのユーザで、YAMAHA SWXにより構成されたネットワークにアクセスします。
 接続する際の認証方式は、パスワードです。
 
 パスワード認証方式でサポートしている認証プロトコルは以下です。
@@ -29,10 +29,10 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 | **RADIUSサーバのホスト名** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**です。 |
 | **RADIUSサーバのIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**IPアドレス**です。 |
 | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**です。ここでは、デフォルトUDP1812を使用します。 |
-| **RADIUSクライアントのIPアドレス** | **Anti Spreader セキュアスイッチ**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
-| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**Antispreader-1234**とします。AntiSpreader セキュアスイッチによる仕様により、アルファベット大文字・小文字、数字、記号を各1文字以上使用した9文字以上の文字列を使用します。|
+| **RADIUSクライアントのIPアドレス** | **YAMAHA SWX**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
+| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**yamaha**とします。|
 
-### Anti Spreader セキュアスイッチのポート
+### YAMAHA SWXのポート
 | **ポート番号** | **ポート名** | **802.1x認証の有効化** |
 | --- | --- | --- |
 | 1 | ge1 | :material-check: |
@@ -63,7 +63,7 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 #### RADIUSの設定
 1. **SingleID 管理者ポータル＞認証＞RADIUS**画面の**簡易設定**タブへ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**Anti Spreader セキュアスイッチ**の**登録**ボタンをクリックします。**Anti Spreader セキュアスイッチ**画面がポップアップします。
+3. カタログから**YAMAHA SWXシリーズ**の**登録**ボタンをクリックします。**YAMAHA SWXシリーズ**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -81,63 +81,49 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 6. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
 7. **登録**ボタンをクリックします。
 
-### Anti Spreader セキュアスイッチの設定
-Anti Spreader セキュアスイッチにCLIでログインして設定します。
+### YAMAHA SWXの設定
+YAMAHA SWXにCLIでログインして設定します。
 
-!!! warning
-    GUIでは、802.1x認証の設定を行うことはできません。
+!!! info
+    GUIによる設定も可能です。
 
-#### mac-floodingの無効化
-mac-floodingが有効の状態では、802.1x認証を有効にできないため、mac-floodingを無効化します。
-```
-SG2412G(config)#no mds mac-flooding enable
-```
-
-#### 送信元のIPアドレスとデフォルトルートの設定
-SingleIDのクラウドRADIUSと通信するために、デフォルトVLAN(vlan1.1)に送信元となるIPアドレス　および　デフォルトルートをAnti Spreader セキュアスイッチに設定します。送信元となるIPアドレスおよびデフォルトルートは、環境により異なるため適切なIPアドレスを設定します。
-
-``` title="送信元のIPアドレス設定"
-SG2412G(config)interface vlan1.1
-SG2412G(config-if)ip address <送信元のIPアドレス>/<送信元のIPアドレスのネットマスク>
-```
+#### デフォルトルートの設定
+SingleIDのクラウドRADIUSと通信するために、デフォルトルートをYAMAHA SWXに設定します。デフォルトルートは、環境により異なるため適切なIPアドレスを設定します。
 
 ``` title="デフォルートの設定"
-SG2412G(config)ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアドレス>
+(config)#ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアドレス>
 ```
 
-#### AAA認証の有効化およびRADIUSサーバの登録
+#### RADIUSサーバの登録
 
 | **設定項目** | **設定内容** |
 | :--- | :--- |
 | **host** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
 | **auth-port** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
 | **Key** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
-| **source-interface** | [送信元のIPアドレスとデフォルトルートの設定](#送信元のipアドレスとデフォルトルートの設定)の手順で設定した**送信元のIPアドレス**を指定 |
 
 ```
-SG2412G(config)#aaa system-aaa-ctrl
-SG2412G(config)#radius-server host <1つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
-SG2412G(config)#radius-server host <2つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
-SG2412G(config)#ip radius source-interface <送信元のIPアドレス> 1023
+(config)#radius-server host <1つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
+(config)#radius-server host <2つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
 ```
 
 #### 802.1x認証の有効化
-[**Anti Spreader セキュアスイッチのポート**](#anti-spreader-セキュアスイッチのポート)に従い、802.1x認証の設定を行います。
+[**YAMAHA SWXのポート**](#yamaha-swxのポート)に従い、802.1x認証の設定を行います。
 
 ```
-SG2412G(config)#dot1x system-auth-ctrl
-SG2412G(config)#interface range <802.1x認証の有効化する物理ポート名>
-SG2412G(config-if-range)#dot1x port-control auto
-SG2412G(config-if-range)#dot1x extension multi-user
+(config)#aaa authentication dot1x
+(config)#interface <802.1x認証の有効化する物理ポート名（例：ポート1.1～ポート1.6の物理ポートの場合、`port1.1-6`のように指定する。）>
+(config-if)#dot1x port-control auto
+(config-if)#auth host-mode multi-supplicant
 ```
 
 #### 設定を保存
 ```
-SG2412G(config)#write memory
+#save
 ```
 
 #### サンプルコンフィグ
-[ダウンロード](./networkauth-antispreader-switch-sampleconfig.txt){ target=_blank .md-button .md-button--primary }
+[ダウンロード](./networkauth-yamaha_swx-switch-sampleconfig.txt){ target=_blank .md-button .md-button--primary }
 
 ## 動作確認方法
 ### ネットワーク接続の認証（PEAP(MSCHAPv2)方式のパスワード認証）
@@ -150,7 +136,7 @@ SG2412G(config)#write memory
 
     [![Screenshot](/images/2022-09-06_15-40-39.png)](/images/2022-09-06_15-40-39.png)
 
-3. PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[Anti Spreader セキュアスイッチのポート](#Anti Spreader セキュアスイッチのポート)の**802.1x認証の有効化**を参照）へ接続します。
+3. PCをYAMAHA SWXの802.1x認証を有効にしたポート（[YAMAHA SWXのポート](#yamaha-swxのポート)の**802.1x認証の有効化**を参照）へ接続します。
 
 4. ログイン要求がポップアップします。**サインイン**をクリックします。
 

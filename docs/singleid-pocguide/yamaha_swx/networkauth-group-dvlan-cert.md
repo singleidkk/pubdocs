@@ -1,7 +1,7 @@
-# ネットワーク接続の認証（グループによるアクセス制限）-クライアント証明書認証
+# ネットワーク接続の認証（グループによるアクセス制限）とダイナミックVLANの併用-クライアント証明書認証
 ## 目的
-SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成されたネットワークにアクセスします。
-接続する際の認証方式は、クライアント証明書認証（EAP-TLS）です。
+SingleIDのユーザで、YAMAHA SWXにより構成されたネットワークにアクセスします。
+接続する際の認証方式は、クライアント証明書認証（EAP-TLS）です。接続端末にVLAN IDを動的に割り当てます。
 
 ## 環境
 ### ユーザの情報
@@ -13,9 +13,9 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
     メールアドレス: 受信可能なメールアドレスを指定してください。
 
 ### グループの情報
-| **グループ名** | **メンバー** |
-| :--- | :--- |
-| singleid-network-access-users | user1 |
+| **グループ名** | **メンバー** | **割当てるVLAN ID** |
+| :--- | :--- | :-- |
+| singleid-network-access-users | user1 | 101 |
 
 ### RADIUSの情報
 
@@ -24,20 +24,20 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 | **RADIUSサーバのホスト名** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**です。 |
 | **RADIUSサーバのIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**IPアドレス**です。 |
 | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**です。ここでは、デフォルトUDP1812を使用します。 |
-| **RADIUSクライアントのIPアドレス** | **Anti Spreader セキュアスイッチ**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
-| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**Antispreader-1234**とします。AntiSpreader セキュアスイッチによる仕様により、アルファベット大文字・小文字、数字、記号を各1文字以上使用した9文字以上の文字列を使用します。|
+| **RADIUSクライアントのIPアドレス** | **YAMAHA SWX**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
+| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**yamaha**とします。|
 
-### Anti Spreader セキュアスイッチのポート
-| **ポート番号** | **ポート名** | **802.1x認証の有効化** |
-| --- | --- | --- |
-| 1 | ge1 | :material-check: |
-| 2 | ge2 | :material-check: |
-| 3 | ge3 | :material-check: |
-| 4 | ge4 | :material-check: |
-| 5 | ge5 | :material-check: |
-| 6 | ge6 | :material-check: |
-| 7 | ge7 |  |
-| 8 | ge8 |  |
+### YAMAHA SWXのポート
+| **ポート番号** | **ポート名** | **802.1x認証<br>の有効化** | **トランク<br>ポート** | **アップリンク<br>ポート（ルータへ接続）** |
+| :-- | :-- | :-- | :-- | :-- |
+| 1 | ge1 | :material-check: |||
+| 2 | ge2 | :material-check: |||
+| 3 | ge3 | :material-check: |||
+| 4 | ge4 | :material-check: |||
+| 5 | ge5 | :material-check: |||
+| 6 | ge6 | :material-check: |||
+| 7 | ge7 ||||
+| 8 | ge8 || :material-check: (VLAN ID:101)| :material-check: |
 
 ## 設定方法
 ### SingleIDの設定
@@ -66,7 +66,7 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 #### RADIUSの設定
 1. **SingleID 管理者ポータル＞認証＞RADIUS**画面の**簡易設定**タブへ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**Anti Spreader セキュアスイッチ**の**登録**ボタンをクリックします。**Anti Spreader セキュアスイッチ**画面がポップアップします。
+3. カタログから**YAMAHA SWXシリーズ**の**登録**ボタンをクリックします。**YAMAHA SWXシリーズ**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -82,65 +82,72 @@ SingleIDのユーザで、Anti Spreader セキュアスイッチにより構成�
 
 5. **ネットワークアクセスの認証**タブへ移動します。
 6. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
-7. **登録**ボタンをクリックします。
+7. **許可**へ移動させたグループの同じ行に、**割当てるVLAN ID**[（参照）](#グループの情報)を入力します。
+8. **登録**ボタンをクリックします。
 
-### Anti Spreader セキュアスイッチの設定
-Anti Spreader セキュアスイッチにCLIでログインして設定します。
+### YAMAHA SWXの設定
+YAMAHA SWXにCLIでログインして設定します。
 
-!!! warning
-    GUIでは、802.1x認証の設定を行うことはできません。
+!!! info
+    GUIによる設定も可能です。
 
-#### mac-floodingの無効化
-mac-floodingが有効の状態では、802.1x認証を有効にできないため、mac-floodingを無効化します。
-```
-SG2412G(config)#no mds mac-flooding enable
-```
-
-#### 送信元のIPアドレスとデフォルトルートの設定
-SingleIDのクラウドRADIUSと通信するために、デフォルトVLAN(vlan1.1)に送信元となるIPアドレス　および　デフォルトルートをAnti Spreader セキュアスイッチに設定します。送信元となるIPアドレスおよびデフォルトルートは、環境により異なるため適切なIPアドレスを設定します。
-
-``` title="送信元のIPアドレス設定"
-SG2412G(config)interface vlan1.1
-SG2412G(config-if)ip address <送信元のIPアドレス>/<送信元のIPアドレスのネットマスク>
-```
+#### デフォルトルートの設定
+SingleIDのクラウドRADIUSと通信するために、デフォルトルートをYAMAHA SWXに設定します。デフォルトルートは、環境により異なるため適切なIPアドレスを設定します。
 
 ``` title="デフォルートの設定"
-SG2412G(config)ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアドレス>
+(config)#ip route 0.0.0.0/0 <デフォルトゲートウェイのIPアドレス>
 ```
 
-#### AAA認証の有効化およびRADIUSサーバの登録
+#### VLANの作成
+**割当てるVLAN ID**[（参照）](#グループの情報)のVLANを作成します。
+``` title="VLANの作成"
+(config)#vlan database
+(config-vlan)#vlan <VLAN ID>
+```
+
+#### アップリンクポートをトランクポートの設定
+[**YAMAHA SWXのポート**](#yamaha-swxのポート)に従い、ルータと接続するYAMAHA SWXの物理ポート（アップリンクポート）に対して、トランクの設定をします。
+
+``` title="トランクポートの設定"
+(config)#interface <アップリンクポートのインターフェース名>
+(config-if)#switchport mode trunk
+(config-if)#switchport trunk allowed vlan add <VLAN ID>
+```
+
+#### RADIUSサーバの登録
 
 | **設定項目** | **設定内容** |
 | :--- | :--- |
 | **host** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
 | **auth-port** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
 | **Key** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
-| **source-interface** | [送信元のIPアドレスとデフォルトルートの設定](#送信元のipアドレスとデフォルトルートの設定)の手順で設定した**送信元のIPアドレス**を指定 |
 
 ```
-SG2412G(config)#aaa system-aaa-ctrl
-SG2412G(config)#radius-server host <1つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
-SG2412G(config)#radius-server host <2つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
-SG2412G(config)#ip radius source-interface <送信元のIPアドレス> 1023
+(config)#radius-server host <1つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
+(config)#radius-server host <2つめのRADIUSサーバのIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
 ```
 
 #### 802.1x認証の有効化
-[**Anti Spreader セキュアスイッチのポート**](#anti-spreader-セキュアスイッチのポート)に従い、802.1x認証の設定を行います。
+[**YAMAHA SWXのポート**](#yamaha-swxのポート)に従い、802.1x認証の設定を行います。
 
 ```
-SG2412G(config)#dot1x system-auth-ctrl
-SG2412G(config)#interface range <802.1x認証の有効化する物理ポート名>
-SG2412G(config-if-range)#dot1x port-control auto
-SG2412G(config-if-range)#dot1x extension multi-user
+(config)#aaa authentication dot1x
+(config)#aaa authentication auth-mac
+(config)#auth-mac auth-user unformatted lower-case
+(config)#interface <802.1x認証の有効化する物理ポート名（例：ポート1.1～ポート1.6の物理ポートの場合、`port1.1-6`のように指定する。）>
+(config-if)#dot1x port-control auto
+(config-if)#auth host-mode multi-supplicant
+(config-if)#auth-mac enable
+(config-if)# auth dynamic-vlan-creation
 ```
 
 #### 設定を保存
 ```
-SG2412G(config)#write memory
+#save
 ```
 
 #### サンプルコンフィグ
-[ダウンロード](./networkauth-antispreader-switch-sampleconfig.txt){ target=_blank .md-button .md-button--primary }
+[ダウンロード](./networkauth-yamaha_swx-switch-sampleconfig-mab-dvlan.txt){ target=_blank .md-button .md-button--primary }
 
 ## 動作確認方法
 ### ネットワーク接続の認証（EAP-TLS方式のクライアント証明書認証）
@@ -187,7 +194,7 @@ SG2412G(config)#write memory
 
     [![Screenshot](/images/2022-09-06_15-40-39.png)](/images/2022-09-06_15-40-39.png)
 
-3. PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[Anti Spreader セキュアスイッチのポート](#Anti Spreader セキュアスイッチのポート)の**802.1x認証の有効化**を参照）へ接続します。
+3. PCをYAMAHA SWXの802.1x認証を有効にしたポート（[YAMAHA SWXのポート](#yamaha-swxのポート)の**802.1x認証の有効化**を参照）へ接続します。
 
 4. ログイン要求がポップアップします。**サインイン**をクリックします。
 
@@ -226,3 +233,6 @@ SG2412G(config)#write memory
 10. 接続成功したことを確認します。
 
     [![Screenshot](/images/2022-09-06_17-27-56.png)](/images/2022-09-06_17-27-56.png)
+
+    !!! info
+        YAMAHA SWXで`#show auth supplicant`コマンドを実行して、接続状況を確認できます。

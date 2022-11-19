@@ -127,7 +127,7 @@ SG2412G(config-if)##switchport trunk allowed vlan add <VLAN ID>
 | **設定項目** | **設定内容** |
 | :--- | :--- |
 | **host** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
-| **auth-poty** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
+| **auth-port** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
 | **Key** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
 | **source-interface** | [送信元のIPアドレスとデフォルトルートの設定](#送信元のipアドレスとデフォルトルートの設定)の手順で設定した**送信元のIPアドレス**を指定 |
 
