@@ -1,0 +1,4 @@
+﻿名（英字）,姓（英字） ,ユーザ名,パスワードメール送信,パスワード ,メールアドレス,携帯番号,カスタムID1,カスタムID2,カスタムID3,名（漢字）,姓（漢字）,会社名,部署,役職,電話番号,郵便番号,都道府県,市区町村,番地/ビルなど,グループ
+first_name,last_name,user_name,is_password_mail,password,email,mobile_number,id1,id2,id3,mei,sei,company,division,role,tel,postal_code,prefecture,address1,address2,group
+user1,test,user1,1,"qwert12345!""#$%,./\",user1@singleid.jp,9000000000,,,,ユーザ１,テスト,SingleID,営業部,マネージャ,300000000,104-0061,東京都,中央区銀座,1-22-11,group1
+user2,test,user2,1,"qwert12345!""#$%,./\",user2@singleid.jp,9011111111,,,,ユーザ２,テスト,SingleID,技術部,マネージャ,311111111,104-0061,東京都,中央区銀座,1-22-11,group2
