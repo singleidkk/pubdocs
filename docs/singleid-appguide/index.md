@@ -8,6 +8,7 @@
 * [HarmonyConnect](harmonyconnect.md)
 * [Microsoft 365](microsoft_365/)
 * [Nextcloud](nextcloud.md)
+* [Pleasanter](pleasanter.md)　近日公開予定
 * [Redmine](redmine.md)
 * [Salesforce](salesforce.md)
 * [WaWaOffice](wawaoffice.md)
