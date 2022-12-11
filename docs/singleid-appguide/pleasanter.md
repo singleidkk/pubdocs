@@ -56,7 +56,7 @@ Pleasanterのサーバで作業を行います。
     | **LogoutUrl** | null |
     | **AllowUnsolicitedAuthnResponse** | true |
     | **Binding** | HttpPost |
-    | **WantAuthnRequestsSigned** | true |
+    | **WantAuthnRequestsSigned** | false |
     | **DisableOutboundLogoutRequests** | true |
     | **LoadMetadata** | false|
     | **MetadataLocation** | null |
@@ -90,7 +90,7 @@ Pleasanterのサーバで作業を行います。
                     "LogoutUrl": null,
                     "AllowUnsolicitedAuthnResponse": true,
                     "Binding": "HttpPost",
-                    "WantAuthnRequestsSigned": true,
+                    "WantAuthnRequestsSigned": false,
                     "DisableOutboundLogoutRequests": true,
                     "LoadMetadata": false,
                     "MetadataLocation": null,
