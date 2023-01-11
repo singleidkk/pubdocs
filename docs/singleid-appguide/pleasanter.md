@@ -139,7 +139,7 @@ SingleIDおよびPleasanterの両方に存在するユーザのみが、シン�
 
 ## 動作確認
 1. Pleasanterのログイン画面へアクセスします。
-2. ログイン画面に**SSOログイン**ボタンをクリックします。
+2. ログイン画面にある**SSOログイン**ボタンをクリックします。
 3. SingleIDのログイン画面が表示されます。すでに、SingleIDへログイン中であれば、ログイン画面は表示されず、Pleasanterへログインできます。
     
     [![Screenshot](/images/image-7-1024x462.png)](/images/image-7-1024x462.png)
