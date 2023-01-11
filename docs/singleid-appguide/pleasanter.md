@@ -71,6 +71,19 @@ Pleasanterのサーバで作業を行います。
         "Provider": "SAML",
         // ～中略～
         "SamlParameters": {
+            "Attributes": {
+                "Name": "Name",
+                "UserCode": "UserCode",
+                "Birthday": "Birthday",
+                "Gender": "Gender",
+                "Language": "Language",
+                "TimeZone": "TimeZone",
+                "TenantManager": "TenantManager",
+                "DeptCode": "DeptCode",
+                "Dept": "Dept",
+                "Body": "Body",
+                "MailAddress": "{NameId}"
+            },
             "SamlTenantId": 1,
             "SPOptions": {
                 "EntityId": "https://pleasanter.example.com/pleasanter/Saml2",
