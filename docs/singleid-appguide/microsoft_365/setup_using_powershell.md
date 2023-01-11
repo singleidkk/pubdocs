@@ -1,4 +1,4 @@
-# Microsoft 365（M365）連携
+# Microsoft 365（M365）連携 - PowerShellを利用
 
 設定を始める前に、[一般的な考慮事項](./considerations.md)をお読みください。
 
@@ -118,7 +118,6 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 
 15. 以下のアクセス許可を全て追加します。全て選択したら**アクセス許可の追加**ボタンをクリックします。
 
-    * Domain.ReadWrite.All
     * Directory.ReadWrite.All
     * Group.ReadWrite.All
     * GroupMember.ReadWrite.All
@@ -132,35 +131,6 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 17. **はい**をクリックします。
 
     [![Screenshot](/images/2022-09-26_11-52-42.png)](/images/2022-09-26_11-52-42.png)
-
-18. **Azure Active Directory**の**名前|アプリ登録**の部分をクリックして、Azure Active Directoryのルートメニューに戻ります。
-
-    [![Screenshot](/images/2022-12-10_17-56-16.png)](/images/2022-12-10_17-56-16.png)
-
-19. サイドメニューから**ロールと管理者**をクリックします。
-
-    [![Screenshot](/images/2022-12-10_18-27-42.png)](/images/2022-12-10_18-27-42.png)
-
-20. **グローバル管理者**を検索し、検索結果に表示された**グローバル管理者**クリックします。
-
-    [![Screenshot](/images/2022-12-10_18-29-32.png)](/images/2022-12-10_18-29-32.png)
-
-21. **割り当ての追加**をクリックします。
-
-    [![Screenshot](/images/2022-12-10_18-42-49.png)](/images/2022-12-10_18-42-49.png)
-
-22. **メンバーの選択**で、**メンバーが選択されてない**をクリックします。
-
-    [![Screenshot](/images/2022-12-10_18-45-58.png)](/images/2022-12-10_18-45-58.png)
-
-23. 手順6でコピーした**アプリケーション (クライアント) ID**の値で検索します。検索結果に表示された**アプリ名を選択**し、**選択**ボタンをクリックします。
-
-    [![Screenshot](/images/2022-12-10_18-53-35.png)](/images/2022-12-10_18-53-35.png)
-
-24. **次へ**ボタンをクリックします。
-25. 必須項目の**理由の入力**へ「フェデレーション設定のため」と入力します。**割り当て**ボタンをクリックします。
-
-    [![Screenshot](/images/2022-12-10_19-00-02.png)](/images/2022-12-10_19-00-02.png)
 
 ### SingleIDのアプリ連携設定
 1. **SingleID 管理者ポータル＞アプリ連携＞アプリ一覧**画面へ移動します。
@@ -226,17 +196,52 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
             ライセンスの自動割当によりライセンスが割当てられていない場合には、手動で、ユーザにライセンスを割当てるか、[M365ライセンスの自動割当の代替案](./microsoft_365_autoassign.md#m365ライセンスの自動割当の代替案)を検討してください。
 
 ### M365のフェデレーション（SAML）設定
-1. **SingleID 管理者ポータル＞アプリ連携＞アプリ一覧**画面へ移動します。
-2. 登録したアプリの列にある**フェデレーション設定**ボタンをクリックします。
+1. PowerShellで、グローバル管理者としてAzure ADにログインします。
 
-    [![Screenshot](/images/2023-01-11_9-56-43.png)](/images/2023-01-11_9-56-43.png)
+    ``` powershell title="PowerShell"
+    Connect-MsolService
+    ```
 
-3. フェデレーション設定を行いたいカスタムドメインの列にある**構成**ボタンをクリックします。
+2. シングルサインオンするカスタムドメインにフェデレーション（SAML）設定を行います。PowerShellのサンプルスクリプトの変数を環境に合わせて値を変更してから、実行します。
 
-    [![Screenshot](/images/2023-01-11_10-10-29.png)](/images/2023-01-11_10-10-29.png)
+    | PowerShellの変数 | 変数の値 |
+    | :--- | :--- |
+    | $domain | シングルサインオンするカスタムドメイン |
+    | $IdpIssuer | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:EntityDescriptor entityID=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013`） |
+    | $IdpSigningCert | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。 |
 
-    !!! warning
-        複数のカスタムドメインがあっても、フェデレーション設定可能なカスタムドメインは、１つだけです。
+    ``` powershell title="PowerShellのサンプルスクリプト"
+    $domain = "xxxxx.singleid.jp" 
+    $IdpIssuer = "https://auth-02-0001.dev.singleid.jp/auth/realms/90000013" 
+    $IdpSigningCert = "MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw…….." 
+    $BrandName = "SingleID"
+    $IdpEndpoint = $IdpIssuer + "/protocol/saml"
+    $LogOffUrl = $IdpIssuer + "/protocol/openid-connect/logout" 
+    $Protocol = "SAMLP" 
+    Set-MsolDomainAuthentication `
+        -DomainName $domain `
+        -FederationBrandName $BrandName `
+        -Authentication Federated `
+        -PassiveLogOnUri $IdpEndpoint `
+        -ActiveLogOnUri $IdpEndpoint `
+        -SigningCertificate $IdpSigningCert `
+        -IssuerUri $IdpIssuer `
+        -LogOffUri $LogOffUrl `
+        -PreferredAuthenticationProtocol $Protocol
+    ```
+
+3. フェデレーション（SAML）設定が行えたことを確認します。シングルサインオンするカスタムドメイン**Verified Federated**となっていればフェデレーション（SAML）設定がされています。
+
+    ``` powershell title="PowerShell"
+    Get-MsolDomain 
+    ```
+
+    ``` powershell title="レスポンス"
+    Name                            Status   Authentication
+    ----                            ------   --------------
+    xxxxx.onmicrosoft.com         Verified Managed
+    xxxxx.singleid.jp             Verified Federated
+    ```
 
 ### 動作確認（シングルサインオン）
 1. https://portal.office.com へアクセスします。
@@ -287,4 +292,3 @@ M365の**パスワード リセットのセルフサービス**が**有効**と�
 ## その他資料
 * [M365連携機能の仕様](./featuires.md)
 * [M365連携のよくある質問](./faq.md)
-* [ Microsoft 365（M365）連携 - PowerShellを利用](./setup_using_powershell.md)
