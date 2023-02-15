@@ -14,3 +14,4 @@
 * [YAMAHA SWXシリーズ/ヤマハ](./yamaha_swx/)
 * [YAMAHA UTXシリーズ/ヤマハ](./yamaha_utx/)　
 * [YAMAHA WLXシリーズ/ヤマハ](./yamaha_wlx/)
+* [その他の無線LANアクセスポイント](./wlanap.md)
