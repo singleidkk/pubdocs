@@ -12,5 +12,5 @@
 * [リモートアクセスVPN(SSLVPN) グループによるアクセス制限](sslvpn-group-otp_new.md) 
 * [管理者ログイン グループによるアクセス制限](adminlogin-group-otp_new.md)
 
-## ２要素認証（RADIUS連携したパスワード＋クライアント証明書認証）
+## ２要素認証（パスワード＋クライアント証明書認証）
 * [リモートアクセスVPN(SSLVPN) グループによるアクセス制限](sslvpn-group-password-cert_new.md) 
