@@ -15,3 +15,5 @@
 [よくある質問](./faq/index.md)
 
 [MSP管理者ガイド](./singleid-mspguide/index.md)
+
+[リリースノート](./singleid-release-notes/)
