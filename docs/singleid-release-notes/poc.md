@@ -3,6 +3,29 @@
 [](
 | **コンポーネント** | **バージョン** |
 | :-- | :-- |
+| radius | 8.1.0 |
+| radius dictionary | 1.1.0 |
+| www | 3.1.5 |
+| pki | **4.0.3** |
+| report | 1.2.2 |
+| provisioning | 9.0.0 |
+| provisioning appdata | 5.7.5 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 修正
+**PKI**
+
+* ダウンロードリンクの有効期限が正しくない問題を修正 S/DP#1
+
+## 2023-05-07
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
 | radius | **8.1.0** |
 | radius dictionary | 1.1.0 |
 | www | 3.1.5 |
