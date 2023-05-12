@@ -1,3 +1,36 @@
+## 2023-05-12
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.1.0 |
+| radius dictionary | 1.1.0 |
+| www | 3.1.5 |
+| pki | **4.0.5** |
+| report | 1.2.2 |
+| provisioning | 9.0.0 |
+| provisioning appdata | 5.7.5 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 修正
+**PKI**
+
+* PKIから削除された証明書をAPIでダウンロードしようとしたときの処理の修正 S/DP#5
+
+### 新機能または改善
+**PKI**
+
+* Windowsの証明書の自動構成ファイルの改善（ログ出力） S/DP#4
+  
+**IDP**
+
+* TLSv1.3の有効化
+* DHの1024ビットの鍵長を無効化
+
 ## 2023-05-07
 
 [](
