@@ -1,3 +1,53 @@
+## 2023-05-31
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | **8.1.2** |
+| radius dictionary | 1.1.0 |
+| www | **3.1.9** |
+| pki | 4.0.6 |
+| report | 1.2.2 |
+| provisioning | 9.0.0 |
+| provisioning appdata | 5.7.5 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 修正
+**RADIUS**
+
+* 同じサーバ番号内で、RADIUSクライアントIPが重複した場合のエラー表示と関連する問題を修正
+
+## 2023-05-26
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | **8.1.1** |
+| radius dictionary | 1.1.0 |
+| www | 3.1.7 |
+| pki | **4.0.6** |
+| report | 1.2.2 |
+| provisioning | 9.0.0 |
+| provisioning appdata | 5.7.5 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 修正
+**PKI**
+
+* Windowsの証明書の自動構成ツールの文字コードの問題を修正
+
+**RADIUS**
+
+* 指定先のサーバ内に同じRADIUSクライアントIPが存在した場合のエラー処理
+
 ## 2023-05-16
 
 [](

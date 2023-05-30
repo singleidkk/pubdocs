@@ -64,6 +64,9 @@ nav:
   - HOME: index.md
   - 管理者ガイド:
     - はじめに: singleid-adminguide/index.md
+    - ログ:
+      - RADIUS認証ログ: singleid-adminguide/radius_authlog.md
+      - 操作ログ: singleid-adminguide/operation_log.md
     - ユーザ: singleid-adminguide/user.md
     - グループ: singleid-adminguide/group.md
     - 認証:
@@ -76,6 +79,7 @@ nav:
     - 管理:
       - 基本情報（組織アカウント）: singleid-adminguide/accountinfo.md
       - 管理者: singleid-adminguide/admin.md
+      - ネットワーク: singleid-adminguide/network.md
       - 詳細設定: singleid-adminguide/setting.md
   - ユーザガイド:
     - はじめに: singleid-userguide/index.md
@@ -111,3 +115,7 @@ nav:
     - アカウント管理: 
       - 顧客アカウント管理: singleid-mspguide/customer_account.md
       - MSPアカウント管理: singleid-mspguide/msp_account.md
+  - リリースノート:
+    - 製品版: singleid-release-notes/service.md
+    - デモ版: singleid-release-notes/poc.md
+
