@@ -1,3 +1,27 @@
+## 2023-06-06
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.1.2 |
+| radius dictionary | 1.1.0 |
+| www | **3.2.2** |
+| pki | 4.0.6 |
+| report | 1.2.2 |
+| provisioning | 9.0.0 |
+| provisioning appdata | 5.7.5 |
+| tun | 2.0.0 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 修正
+**RADIUS**
+
+* 認証＞RADIUS＞簡易設定のYAMAHA WLXの設定時、クライアント重複のエラーメッセージが正しく表示されない問題を修正
+
 ## 2023-05-31
 
 [](
