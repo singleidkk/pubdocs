@@ -1,3 +1,51 @@
+## 2023-06-26
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.1.3 |
+| radius dictionary | 1.2.0 |
+| www | **3.2.6** |
+| pki | 4.0.8 |
+| report | 1.2.2 |
+| provisioning | 9.0.0 |
+| provisioning appdata | 5.7.5 |
+| tun | 2.0.0 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 修正
+**管理者ポータル**
+
+* 設定画面（モーダル表示）の保存時にまれに設定保存されない問題を修正
+
+## 2023-06-21
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.1.3 |
+| radius dictionary | 1.2.0 |
+| www | 3.2.5 |
+| pki | **4.0.8** |
+| report | 1.2.2 |
+| provisioning | 9.0.0 |
+| provisioning appdata | 5.7.5 |
+| tun | 2.0.0 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 修正
+**PKI**
+
+* プロビジョニング時の中間CAのメタデータの問題の修正
+
 ## 2023-06-14
 
 [](

@@ -117,5 +117,3 @@ nav:
       - MSPアカウント管理: singleid-mspguide/msp_account.md
   - リリースノート:
     - 製品版: singleid-release-notes/service.md
-    - デモ版: singleid-release-notes/poc.md
-
