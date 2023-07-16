@@ -58,6 +58,11 @@
 
 SingleIDおよびGoogle Workspaceの両方に存在するユーザのみが、シングルサインオン可能です。**SingleIDのメールアドレス**と**Google Workspaceのメールアドレス**が一致する必要があります。
 
+[Google Cloud Directory Sync(GCDS)によるユーザ同期](gcds.md)を行うことで、SingleIDのユーザをGoogle Workspaceへ同期することができます。
+
+!!! warning
+    クラウドLDAPが、Google Workspaceと同期できるのはユーザ情報のみです。グループ同期はできません。
+    
 ## アプリにユーザ追加
 1. **SingleID 管理者ポータル＞アプリ連携＞アプリ一覧**画面へ移動します。
 2. 登録したアプリの列にある**チェックボックス**を選択します。
