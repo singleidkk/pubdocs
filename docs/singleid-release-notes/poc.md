@@ -1,4 +1,4 @@
-## 2023-07-13
+## 2023-07-21
 
 [](
 | **コンポーネント** | **バージョン** |
@@ -9,7 +9,7 @@
 | pki | 4.0.8 |
 | report | 1.2.2 |
 | provisioning | 9.0.0 |
-| provisioning appdata | 5.8.0 |
+| provisioning appdata | 5.8.2 |
 | tun | 2.0.0 |
 | auth module | 16.1.1 |
 | ldap module | 2.0.15-1 |
