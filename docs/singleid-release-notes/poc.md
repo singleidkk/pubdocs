@@ -5,6 +5,31 @@
 | :-- | :-- |
 | radius | 8.1.3 |
 | radius dictionary | 1.2.0 |
+| www | **3.5.1** |
+| pki | **6.0.0** |
+| report | 2.0.2 |
+| provisioning | 11.0.0 |
+| provisioning appdata | 7.0.0 |
+| tun | 2.0.0 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 新機能または改善
+**PKI**
+
+* 認証＞証明書＞証明書タブ画面で、サーバ証明書が発行可能（VPNゲートウェイ機器によっては、クライアント証明書認証をする場合に、同じCA局で発行したサーバ証明書をインストールする必要があるため）
+[![Screenshot](/images/2023-08-17_13-19-31.png)](/images/2023-08-17_13-19-31.png)
+
+## 2023-08-04
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.1.3 |
+| radius dictionary | 1.2.0 |
 | www | **3.4.2** |
 | pki | **5.0.2** |
 | report | 2.0.2 |
