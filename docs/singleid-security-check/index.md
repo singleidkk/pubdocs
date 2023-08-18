@@ -7,5 +7,5 @@
 
 ## 設定診断
 * [SingleID Health for AWS](./singleid_health_for_aws.md)
-* [SingleID Health for M365](./singleid_health_for_azure.md)
+* [SingleID Health for Azure](./singleid_health_for_azure.md)
 * [SingleID Health for M365](./singleid_health_for_m365.md)
