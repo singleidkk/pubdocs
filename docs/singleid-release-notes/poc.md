@@ -1,3 +1,28 @@
+## 2023-08-18
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.1.3 |
+| radius dictionary | 1.2.0 |
+| www | 3.5.1 |
+| pki | 6.0.0 |
+| report | **2.1.0** |
+| provisioning | 11.0.0 |
+| provisioning appdata | **7.1.0** |
+| tun | 2.0.0 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 新機能または改善
+**セキュリティ診断**
+
+* SingleID Health for AWSをカタログへ掲載
+* SingleID Health for Azureをカタログへ掲載
+
 ## 2023-08-17
 
 [](
