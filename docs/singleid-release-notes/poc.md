@@ -105,7 +105,7 @@
 ### 新機能または改善
 **セキュリティ診断**
 
-* SingleID Health for M365のサポート
+* SingleID Health for M365をカタログへ掲載
 
 **MSP管理者ポータル**
 

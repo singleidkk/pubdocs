@@ -1,3 +1,42 @@
+## 2023-08-27
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.1.3 |
+| radius dictionary | 1.2.0 |
+| www | **3.5.1** |
+| pki | **6.0.0** |
+| report | **2.1.0** |
+| provisioning | **11.0.0** |
+| provisioning appdata | **7.0.0** |
+| tun | 2.0.0 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+)
+
+### 新機能または改善
+**セキュリティ診断**
+
+* SingleID Health for M365をカタログへ掲載
+* SingleID Health for AWSをカタログへ掲載
+* SingleID Health for Azureをカタログへ掲載
+
+**アプリ連携**
+
+* Google Workspaceのサポート
+
+**PKI**
+
+* 認証＞証明書＞証明書タブ画面で、サーバ証明書が発行可能（VPNゲートウェイ機器によっては、クライアント証明書認証をする場合に、同じCA局で発行したサーバ証明書をインストールする必要があるため）
+[![Screenshot](/images/2023-08-17_13-19-31.png)](/images/2023-08-17_13-19-31.png)
+
+**MSP管理者ポータル**
+
+* ポイント履歴画面のスポット対応の消費ポイント
+
 ## 2023-08-04
 
 [](
