@@ -21,7 +21,7 @@ Pleasanterのシングルサインオン設定の最新情報は、[プリザン
 6. **SSO 有効/無効**を有効に設定します。
 7. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、Pleasanterの設定を行うときに必要となります。
 8. **URL**に、PleasanterのURLを設定します。（例：https://pleasanter.example.com/pleasanter/）
-9.  **NameIDフォーマット(username または email)**に、SAML NameIDフォーマットを指定します。SingleIDユーザのユーザ名でログインする場合には、usernameを入力し、SingleIDユーザのメールアドレスでログインする場合には、emailを入力します。  
+9.  **NameIDフォーマット**に、SAML NameIDフォーマットを指定します。SingleIDユーザのユーザ名でログインする場合には、usernameを入力し、SingleIDユーザのメールアドレスでログインする場合には、emailを入力します。  
 10.  **登録**ボタンをクリックして、アプリを登録します。
     
     [![Screenshot](/images/2022-12-10_23-48-58.png)](/images/2022-12-10_23-48-58.png)
