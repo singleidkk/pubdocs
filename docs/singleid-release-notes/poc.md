@@ -8,7 +8,7 @@
 | www | **3.5.17** |
 | pki | **7.0.1** |
 | report | 2.1.0 |
-| provisioning | 11.0.0 |
+| provisioning | **11.0.1** |
 | provisioning appdata | **7.2.1** |
 | tun | 3.0.0 |
 | auth module | 16.1.1 |
