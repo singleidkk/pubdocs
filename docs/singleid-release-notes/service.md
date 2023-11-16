@@ -1,3 +1,33 @@
+## 2023-11-16
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | **8.5.1** |
+| radius dictionary | 1.2.0 |
+| www | **3.5.18** |
+| pki | **7.2.0** |
+| report | **2.3.1** |
+| provisioning | **11.2.1** |
+| provisioning appdata | 7.2.1 |
+| tun | **3.3.1** |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+| deploy | **1.5.6** |
+)
+
+### 新機能または改善
+**API**
+
+* APIに対するヘルスチェックの改善
+
+### 修正
+**UI**
+
+* RADIUS簡易設定のネットワークスイッチのテンプレートを修正
+
 ## 2023-11-09
 
 [](
@@ -15,6 +45,7 @@
 | ldap module | 2.0.15-1 |
 | log module | 4.4.1-1 |
 | radius module | 3.2.1-1 |
+| deploy | **1.5.5** |
 )
 
 ### 新機能または改善
