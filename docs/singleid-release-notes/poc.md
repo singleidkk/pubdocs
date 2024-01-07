@@ -1,3 +1,32 @@
+## 2023-12-23
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.5.1 |
+| radius dictionary | 1.2.0 |
+| www | **3.5.26** |
+| pki | **7.2.1** |
+| report | 2.3.1 |
+| provisioning | 11.3.0 |
+| provisioning appdata | 7.2.1 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+| deploy | 1.7.3 |
+)
+
+### 新機能または改善
+**PKI**
+
+* 証明書の自動インストールバッチを一般ユーザ権限で実行するように改善
+
+**クラウドRADIUS**
+
+* FortiGateのVPNの認証時に、FortiGateのグループ情報を応答できるように改善
+
 ## 2023-12-14
 
 [](
