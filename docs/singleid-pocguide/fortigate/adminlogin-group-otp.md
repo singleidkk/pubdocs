@@ -42,9 +42,9 @@
 <p>SingleIDの管理者ポータルへログインします。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:embed {"url":"https://www.singleid.jp/product-login/","type":"wp-embed","providerNameSlug":"埋め込み"} -->
+<!-- wp:embed {"url":"https://login.singleid.jp/","type":"wp-embed","providerNameSlug":"埋め込み"} -->
 <figure class="wp-block-embed is-type-wp-embed is-provider-埋め込み wp-block-embed-埋め込み"><div class="wp-block-embed__wrapper">
-https://www.singleid.jp/product-login/
+https://login.singleid.jp/
 </div></figure>
 <!-- /wp:embed -->
 
@@ -268,7 +268,7 @@ end</code></pre></div>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="https://www.singleid.jp/product-login/">https://www.singleid.jp/product-login/</a></p>
+<p><a href="https://login.singleid.jp/">https://login.singleid.jp/</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

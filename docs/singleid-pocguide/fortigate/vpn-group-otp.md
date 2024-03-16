@@ -51,7 +51,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="https://www.singleid.jp/product-login/">https://www.singleid.jp/product-login/</a></p>
+<p><a href="https://login.singleid.jp/">https://login.singleid.jp/</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
@@ -283,7 +283,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="https://www.singleid.jp/product-login/">https://www.singleid.jp/product-login/</a></p>
+<p><a href="https://login.singleid.jp/">https://login.singleid.jp/</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

@@ -30,7 +30,7 @@ SingleIDのユーザで、YAMAHA UTXへ管理者権限でログインします�
 ## 設定方法
 ### SingleIDの設定
 #### 管理者ポータルへログイン
-1. SingleIDの[**管理者ポータル**](https://www.singleid.jp/product-login/){target=_blank}へログインします。
+1. SingleIDの[**管理者ポータル**](https://login.singleid.jp/){target=_blank}へログインします。
 
 #### グループの作成
 1. **SingleID 管理者ポータル＞グループ**画面へ移動します。
@@ -114,7 +114,7 @@ SingleIDのユーザで、YAMAHA UTXへ管理者権限でログインします�
 !!! warning
     **SingleIDへソフトウェアトークンの登録**を行っていないユーザは、ワンタイムパスワードは無効となり、パスワードでの認証となります。
 
-1. **SingleIDのユーザ**[（参照）](#ユーザの情報)で、SingleIDの[**ユーザポータル**](https://www.singleid.jp/product-login/)へログインします。
+1. **SingleIDのユーザ**[（参照）](#ユーザの情報)で、SingleIDの[**ユーザポータル**](https://login.singleid.jp/)へログインします。
 2. **SingleID ユーザポータル＞オーセンティケーター**画面へ移動します。
 3. **QRコード**が表示されていることを確認します。
 

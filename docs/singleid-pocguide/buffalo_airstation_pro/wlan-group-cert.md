@@ -30,7 +30,7 @@ SingleIDのユーザで、Buffalo AirStation Proの無線LANアクセスポイ�
 ## 設定方法
 ### SingleIDの設定
 #### 管理者ポータルへログイン
-1. SingleIDの[**管理者ポータル**](https://www.singleid.jp/product-login/){target=_blank}へログインします。
+1. SingleIDの[**管理者ポータル**](https://login.singleid.jp/){target=_blank}へログインします。
 
 #### グループの作成
 1. **SingleID 管理者ポータル＞グループ**画面へ移動します。
