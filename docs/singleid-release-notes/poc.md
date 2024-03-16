@@ -1,3 +1,39 @@
+## 2024-03-12
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.5.1 |
+| radius dictionary | **1.3.1** |
+| www | **3.6.1** |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.0 |
+| provisioning appdata | **7.2.4** |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+| deploy | **1.8.11** |
+)
+
+### 新機能または改善
+**RADIUS**
+
+* H3Cのベンダー固有アトリビュート（VSA）をサポート
+
+**アプリ連携**
+
+* DropboxのSSOをサポート
+* Sustainsys.SAML2ライブラリのSSOをサポート
+* Spring SecurityフレームワークのSSOをサポート
+
+### 修正
+**MSP管理者ポータルのUI**
+
+* **MSP管理者ポータル＞管理アカウント＞顧客アカウント一覧**のエクスポート機能で、エクスポートされるファイルの契約日項目の不要な文字列を削除
+
 ## 2024-03-05
 
 [](
