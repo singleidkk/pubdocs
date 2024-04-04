@@ -87,7 +87,7 @@ SingleIDのユーザで、STEALTHONE APの無線LANアクセスポイントへ�
     | **無線LAN（SSID）** | [グループの情報](#グループの情報)の**接続可能な無線LANアクセスポイントのSSID**を参照 |
     | **認証セキュリティ設定** | WPA2 |
     | **WPA Mode** | Enterprise(RADIUS) |
-    | **受信/発信** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのホスト名**を参照 |
+    | **受信/発信** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
     | **認証サーバーポート** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
     | **認証サーバーSecretKey** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
 
