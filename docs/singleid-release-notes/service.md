@@ -1,3 +1,36 @@
+## 2024-04-14
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.5.1 |
+| radius dictionary | 1.3.1 |
+| www | **3.6.4** |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.0 |
+| provisioning appdata | **7.3.1** |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+| deploy | **1.8.17** |
+)
+
+### 新機能または改善
+**RADIUS**
+
+* Calling-Station-Id属性の値に、文字列以外が含まれていた場合にそれらを除外
+* FortiGateのカタログでのみでサポートしていた**証明書認証（EAP-TLS）のみ許可**する機能を全てのネットワーク機器でサポート（**無線アクセスの認証**タブと**ネットワークアクセスの認証**タブに、**証明書認証（EAP-TLS）のみ許可**の設定項目を追加）
+
+    [![Screenshot](/images/2023-03-11_19-43-11.png)](/images/2023-03-11_19-43-11.png)
+
+**ネットワーク機器連携カタログ**
+
+* PIOLINK TiFRONT-APの追加
+* ワイズ STEALTHONE APの追加
+
 ## 2024-03-16
 
 [](

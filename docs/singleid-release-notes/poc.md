@@ -1,3 +1,33 @@
+## 2024-04-03
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.5.1 |
+| radius dictionary | 1.3.1 |
+| www | 3.6.4 |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.0 |
+| provisioning appdata | **7.3.1** |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+| deploy | **1.8.17** |
+)
+
+### 新機能または改善
+**RADIUS**
+
+* Calling-Station-Id属性の値に、文字列以外が含まれていた場合にそれらを除外
+
+**ネットワーク機器連携カタログ**
+
+* PIOLINK TiFRONT-APの追加
+* ワイズ STEALTHONE APの追加
+
 ## 2024-03-27
 
 [](
