@@ -1,3 +1,28 @@
+## 2024-04-22
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.6.0 |
+| radius dictionary | 1.4.0 |
+| www | 3.6.6 |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.0 |
+| provisioning appdata | 7.4.0 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+| deploy | **1.10.2** |
+)
+
+### 新機能または改善
+**RADIUS**
+
+* ユーザ名に@（アットマーク）を含み、@よりも後に.（ドット）がない場合に、RADIUS認証を拒否しないように仕様変更
+
 ## 2024-04-19
 
 [](

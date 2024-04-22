@@ -1,3 +1,28 @@
+## 2024-04-16
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 8.5.1 |
+| radius dictionary | 1.3.1 |
+| www | **3.6.5** |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.0 |
+| provisioning appdata | 7.3.1 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.1-1 |
+| deploy | **1.9.0** |
+)
+
+### 修正
+**ユーザ**
+
+* ユーザの一括登録およびエクスポート時の子グループの取り扱いを修正
+
 ## 2024-04-14
 
 [](
