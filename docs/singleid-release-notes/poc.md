@@ -5,7 +5,7 @@
 | :-- | :-- |
 | radius | **10.1.0** |
 | radius dictionary | 1.5.0 |
-| www | **3.6.10** |
+| www | **3.6.12** |
 | pki | 7.2.1 |
 | report | 2.3.1 |
 | provisioning | 11.3.0 |
@@ -15,7 +15,7 @@
 | ldap module | 2.0.15-1 |
 | log module | 4.4.1-1 |
 | radius module | 3.2.3-1 |
-| deploy | **1.13.4** |
+| deploy | **1.13.5** |
 )
 
 ### 修正
