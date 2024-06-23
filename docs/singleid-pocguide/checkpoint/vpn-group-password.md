@@ -1,50 +1,24 @@
 # リモートアクセスVPN-パスワード認証
 ## 目的
-SingleIDのユーザで、Check Point FWへVPNを使ってリモートアクセスします。
-接続する際の認証方式は、パスワードです。
-
-## 環境
-### ユーザの情報
-| **ユーザ名** | **姓（英字）** | **名（英字）** | **メールアドレス** |
-| :--- | :--- | :--- | :--- |
-| user1 | user1 | user1 | user1@poc.singleid.jp |
-
-!!! info
-    メールアドレス: 受信可能なメールアドレスを指定してください。
-
-### グループの情報
-| **グループ名** | **メンバー** | **動作** |
-| :--- | :--- | :--- |
-| singleid-remote-access-users | user1 | リモートアクセス可能 |
-
-### RADIUSの情報
-
-| **設定に必要な情報** | **説明および情報取得の方法など** |
-| :--- | :--- |
-| **RADIUSサーバのホスト名** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**です。 |
-| **RADIUSサーバのIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**IPアドレス**です。 |
-| **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**です。ここでは、デフォルトUDP1812を使用します。 |
-| **RADIUSクライアントのIPアドレス** | **Check Point FW**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
-| **RADIUSクライアントのシークレット** | 任意の文字列を設定します。ここでは、シークレットを**checkpoint**とします。 |
+* SingleIDのユーザで、Check Point Quantum SparkへVPNを使ってリモートアクセスします。
+* 接続する際の認証方式は、パスワードです。
+* SingleIDの標準RADIUSサーバを利用します。
+* ユーザ/グループによるアクセス制限をします。
 
 ## 設定方法
-### SingleIDの設定
-#### 管理者ポータルへログイン
-1. SingleIDの[**管理者ポータル**](https://login.singleid.jp/){target=_blank}へログインします。
-
-#### グループの作成
+### SingleIDのグループの作成
 1. **SingleID 管理者ポータル＞グループ**画面へ移動します。
 2. **グループ追加**をクリックします。**グループ追加**画面がポップアップします。
-3. **グループ名**[（参照）](#グループの情報)を入力し、**登録**ボタンをクリックします。
+3. **グループ名**を入力し、**登録**ボタンをクリックします。
 
-#### ユーザの作成
+### SingleIDのユーザの作成
 1. **SingleID 管理者ポータル＞ユーザ**画面へ移動します。
 2. **登録**ボタンをクリックします。**ユーザ登録**画面がポップアップします。
-3. **ユーザ登録**画面の**基本情報**を入力します。作成するユーザは、[ユーザの情報](#ユーザの情報)を参照します。 **グループ**タブをクリックします。
-4. **参加するグループ**[（参照）](#グループの情報)を選択し、**登録**ボタンをクリックします。
+3. **ユーザ登録**画面の**基本情報**を入力します。**グループ**タブをクリックします。
+4. メンバーとなるグループを選択し、**登録**ボタンをクリックします。
 
-#### RADIUSの設定
-1. **SingleID 管理者ポータル＞認証＞RADIUS**画面の**簡易設定**タブへ移動します。
+### SingleIDのRADIUSサイトの登録
+1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**画面へ移動します。
 2. **カタログ表示**ボタンをクリックします。
 3. カタログから**Check Point Quantum Spark**の**登録**ボタンをクリックします。**Check Point Quantum Spark**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
@@ -52,38 +26,30 @@ SingleIDのユーザで、Check Point FWへVPNを使ってリモートアクセ�
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **有効/無効** | 有効 |
-    | **サーバ** | 1 |
-    | **ワンタイムパスワード強制** | 無効 |
-    | **IP or ホスト名** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのIPアドレス**を参照 |
-    | **シークレット** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
-    
-    !!! info
-        選択するサーバの番号により、RADIUSサーバのポート番号が異なります。サーバが1の場合には、UDP1812です。**SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**RADIUSポート番号**にサーバの番号と通信ポート番号の対応が記載されています。
+    | **サーバ** | 標準 |
+    | **サーバ番号** | 適切なサーバ番号を選択します。選択するサーバの番号により、RADIUSサーバのポート番号が異なります。**SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞RADIUSポート番号**にサーバの番号と通信ポート番号の対応が記載されています。 |
+    | **IP or ホスト名** | **Check Point Quantum Spark**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。 |
+    | **シークレット** | 任意の文字列を設定します。 |        
 
 5. **VPNアクセスの認証**タブへ移動します。
-6. **許可グループ**の設定で**許可したいグループ**[（参照）](#グループの情報)をダブルクリックし、許可へ移動させます。
+6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
 7. **登録**ボタンをクリックします。
 
-### Check Point FWの設定
-#### ローカル管理者でログイン
-1. **Check Point FW GUI** https://Check PointのIP:4434/ へアクセスします。
-2. ローカル管理者のユーザ名、パスワードを入力し、**ログイン**をクリックします。
-
-#### RADIUSサーバの設定
-1. **Check Point FW GUI＞デバイス＞管理者**画面へ移動します。
+### Check Point Quantum SparkのRADIUSサーバの設定
+1. **Check Point Quantum Spark GUI＞デバイス＞管理者**画面へ移動します。
 2. **RADIUSの設定**をクリックします。**RADIUSサーバの設定**画面がポップアップします。
 3. 以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **IPv4アドレス** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのIPアドレス**を参照 |
-    | **ポート** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのポート番号**を参照 |
-    | **共有秘密キー** | [RADIUSの情報](#radiusの情報)の**RADIUSクライアントのシークレット**を参照 |
+    | **IPv4アドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **ポート** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順4の**サーバ番号**に対応したポート番号です。 |
+    | **共有秘密キー** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順4の**シークレット**に設定した文字列です。 |
 
 4. **適用**ボタンをクリックします。
 
-#### リモートアクセスユーザの認証の設定
-1. **Check Point FW GUI＞VPN＞認証サーバ**画面へ移動します。
+### Check Point Quantum Sparkのリモートアクセスユーザの認証の設定
+1. **Check Point Quantum Spark GUI＞VPN＞認証サーバ**画面へ移動します。
 2. **RADIUS ユーザの権限**をクリックします。**RADIUS設定**画面がポップアップします。
 3. **RADIUS認証をユーザ認識、リモートアクセス、ホットスポットに有効にする**を:fontawesome-regular-square-check:し、**適用**ボタンをクリックします。
 
@@ -91,7 +57,7 @@ SingleIDのユーザで、Check Point FWへVPNを使ってリモートアクセ�
 ### リモートアクセスVPNの認証（パスワード認証）
 
 #### リモートアクセスクライアントのインストール
-Check Point FWのリモートアクセスクライアントである、 Check Point Remote Access VPN Clients をインストールしていない場合には、以下よりダウンロードしてインストールします。
+Check Point Quantum Sparkのリモートアクセスクライアントである、 Check Point Remote Access VPN Clients をインストールしていない場合には、以下よりダウンロードしてインストールします。
 
 [ダウンロード](https://supportcenter.checkpoint.com/supportcenter/portal?version=&amp;os=&amp;productTab=downloads&amp;product=175&amp;eventSubmit_doShowproductpage=){ target=_blank .md-button .md-button--primary }
 
@@ -101,7 +67,7 @@ Check Point FWのリモートアクセスクライアントである、 Check Po
 
     [![Screenshot](/images/image-24.png)](/images/image-24.png)
 
-2. **Server address or Name**に、Check Point FWのWANのIPアドレスを入力し、**Next**ボタンをクリックします。
+2. **Server address or Name**に、Check Point Quantum SparkのWANのIPアドレスを入力し、**Next**ボタンをクリックします。
 
     [![Screenshot](/images/image-25.png)](/images/image-25.png)
 
@@ -125,11 +91,11 @@ Check Point FWのリモートアクセスクライアントである、 Check Po
 
 2. **Site**に、作成した接続先を選択します。
 
-3. **SingleIDのユーザ**[（参照）](#ユーザの情報)でログインを試み、ログインが成功することを確認します。
+3. ログインを試み、ログインが成功することを確認します。
 
     [![Screenshot](/images/image-31.png)](/images/image-31.png)
 
-4. **Details**ボタンをクリックすると、詳細が表示され、**SingleIDのユーザ**[（参照）](#ユーザの情報)で、RADIUS認証が行われて、接続が成功したことが確認できます。
+4. **Details**ボタンをクリックすると、詳細が表示され、RADIUS認証が行われて、接続が成功したことが確認できます。
 
     [![Screenshot](/images/image-32.png)](/images/image-32.png)
 
