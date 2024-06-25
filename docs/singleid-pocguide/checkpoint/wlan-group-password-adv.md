@@ -1,6 +1,6 @@
 # 無線LANアクセス-パスワード認証
 ## 目的
-* SingleIDのユーザで、Buffalo AirStation Proの無線LANアクセスポイントへアクセスします。
+* SingleIDのユーザで、Check Point Quantum Sparkの無線LANアクセスポイントへアクセスします。
 * 接続する際の認証方式は、パスワード（PEAP、EAP-TTLS-PAP）です。
 * SingleIDの拡張RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
@@ -28,50 +28,32 @@
 
 3. **登録**ボタンをクリックします。
 
-### Buffalo AirStation Proの設定
-1. **Buffalo AirStation Pro GUI**へアクセスします。
-2. 管理者のユーザ名、パスワードを入力し、**ログイン**をクリックします。
-3. **Buffalo AirStation Pro GUI＞詳細設定＞Wi-Fi設定＞SSID設定**画面へ移動します。
-4. **新規追加**ボタンをクリックします。**SSID設定 - SSIDの編集**画面を表示します。
-5. 以下を設定します。
+### Check Point Quantum SparkのRADIUSサーバの設定
+1. **Check Point Quantum Spark GUI＞デバイス＞管理者**画面へ移動します。
+2. **RADIUSの設定**をクリックします。**RADIUSサーバの設定**画面がポップアップします。
+3. 以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Wi-Fi** | 有効 |
-    | **SSID** | 任意のSSIDを入力します。 |
-    | **使用デバイス** | 環境に応じて選択します。2.4GHz、5GHz |
+    | **IPv4アドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **ポート** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
+    | **共有秘密キー** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順2の**シークレット**に設定した文字列です。 |
 
-    [![Screenshot](/images/2022-09-28_4-25-21.png)](/images/2022-09-28_4-25-21.png)
+4. **適用**ボタンをクリックします。
 
-    | **設定項目** | **設定内容** |    
-    | :--- | :--- |
-    | **Wi-Fiの認証** | WPA2/WPA3 Enterprise |
-    | **RADIUS** | 本画面で個別にRADIUSサーバの設定をする |
-
-    [![Screenshot](/images/2022-09-28_4-27-41.png)](/images/2022-09-28_4-27-41.png)
+### Check Point Quantum Sparkの無線LANアクセスユーザの認証の設定
+1. **Check Point Quantum Spark GUI＞デバイス＞ワイヤレス**画面へ移動します。
+2. **設定の編集**をクリックします。**編集**画面がポップアップします。
+3. **ワイヤレスセキュリティ**ブロックにおいて、**保護されているネットワーク（推奨）**を選択し、以下のように設定し、**適用**ボタンをクリックします。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **プライマリーRADIUSサーバー** | |
-    | **サーバー名** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
-    | **認証ポート** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
-    | **Accounting** | **使用する**のチェックを外す |
-    | **Shared Secret** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順2の**シークレット**に設定した文字列です。 |
-    | **セカンダリーRADIUSサーバー** | |
-    | **サーバー名** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
-    | **認証ポート** | プライマリーRADIUSサーバーの**認証ポート**に設定したポート番号と同じです。 |
-    | **Accounting** | **使用する**のチェックを外す |
-    | **Shared Secret** | プライマリーRADIUSサーバーの**Shared Secret**に設定した文字列と同じです。 |
-    | **Calling-Station-Id** | **"-"（ハイフン区切り、大文字）**を選択 |
-    | **Called-Station-Id** | **"-"（ハイフン区切り、大文字）:SSID**を選択 |
-
-    [![Screenshot](/images/2022-09-28_4-38-50.png)](/images/2022-09-28_4-38-50.png)
-
-6. **修正保存**ボタンをクリックします。
-7. **設定**ボタンをクリックして、設定内容を機器へ適用します。
+    | **セキュリティタイプ** | WPA2（最も安全） |
+    | **暗号化タイプ** | CCMP-AES（最も安全） |
+    | **認証方式** | RADIUSサーバ（エンタープライズモード）|
 
 ### サイト識別する属性の確認方法
-Buffalo AirStation Proが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
+Check Point Quantum Sparkが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
 
 1. [動作確認方法](#動作確認方法)に従って、認証を試みます。
 2. 認証が失敗します。
@@ -81,7 +63,7 @@ Buffalo AirStation Proが送信するNAS-IP-Address属性およびNAS-Identifier
 ### SingleIDのRADIUSサイトの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**画面へ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**Buffalo AirStation Pro**の**登録**ボタンをクリックします。**Buffalo AirStation Pro**画面がポップアップします。
+3. カタログから**Check Point Quantum Spark**の**登録**ボタンをクリックします。**Check Point Quantum Spark**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -103,7 +85,7 @@ Buffalo AirStation Proが送信するNAS-IP-Address属性およびNAS-Identifier
 ## 動作確認方法
 ### 無線LANアクセスの認証（パスワード認証）
 #### Windows 10/11 の場合
-1. Buffalo AirStation Proの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
+1. Check Point Quantum Sparkの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
 
     [![Screenshot](/images/image-34.png)](/images/image-34.png)
 

@@ -1,25 +1,18 @@
-# Check Point FWの設定例一覧
-## パスワード認証
-* [リモートアクセスVPN グループによるアクセス制限](vpn-group-password.md)
-* [無線LANアクセス グループによるアクセス制限](wlan-group-password.md)
-* [無線LANアクセス グループごとに、接続可能な無線LANアクセスポイントをSSIDで制限](wlan-group-ssid-password.md)
-* [管理者ログイン グループによるアクセス制限](adminlogin-group-password.md)
+# Check Point Quantum Sparkの設定例一覧
+### パスワード認証
+* リモートアクセスVPN ユーザ/グループによるアクセス制限 [標準](vpn-group-password.md)/[拡張](vpn-group-password-adv.md) [^1]
+* 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-password.md)/[拡張](wlan-group-password-adv.md) [^1]
+* 管理者ログイン ユーザ/グループによるアクセス制限 [標準](adminlogin-group-password.md)/[拡張](adminlogin-group-password-adv.md) [^1]
 
-## クライアント証明書認証
-* [リモートアクセスVPN グループによるアクセス制限](vpn-group-cert.md)
-* [無線LANアクセス グループによるアクセス制限](wlan-group-cert.md)
-* [無線LANアクセス グループごとに、接続可能な無線LANアクセスポイントをSSIDで制限](wlan-group-ssid-cert.md)
-* 管理者ログイン グループによるアクセス制限（未対応）[^1]
+### クライアント証明書認証
+* [リモートアクセスVPN](vpn-cert.md)
+* 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-cert.md)/[拡張](wlan-group-cert-adv.md) [^1]
 
-[^1]:Check Point FWは、管理者ログインにクライアント証明書認証に対応しておりません。
+### 2要素認証（パスワード認証＋ワンタイムパスワード認証）
+* リモートアクセスVPN ユーザ/グループによるアクセス制限 [標準](vpn-group-otp.md)/[拡張](vpn-group-otp-adv.md) [^1]
+* 管理者ログイン ユーザ/グループによるアクセス制限 [標準](adminlogin-group-otp.md)/[拡張](adminlogin-group-otp-adv.md) [^1]
 
-## ２要素認証（パスワード認証＋ワンタイムパスワード認証）
-* [リモートアクセスVPN グループによるアクセス制限](vpn-group-otp.md)
-* 無線LANアクセス グループによるアクセス制限（未対応）[^2]
-* [管理者ログイン グループによるアクセス制限](adminlogin-group-otp.md)
-
-[^2]:
-  * 一般的に、無線LANアクセス時に、ワンタイムパスワード認証は使用することがないことから、SingleIDでは、無線LANアクセス時のワンタイムパスワードをサポートしておりません。パスワード認証またはクライアント証明書による認証となります。
-  * ２要素認証（パスワード認証＋ワンタイムパスワード）は、**PAP**または**EAP-TLS-PAP**認証時のみ可能となります。その他のパスワード入力タイプの認証方式（CHAP、MSCHAP、PEAP）の場合には、ワンタイムパスワードは利用できません。
-  * **SingleIDへソフトウェアトークンの登録**を行っていないユーザは、認証に失敗します。
-
+[^1]:
+  * 標準：標準RADIUSサーバを利用した設定方法です。
+  * 拡張：拡張RADIUSサーバを利用した設定方法です。
+  * 固定グローバルIPをもたないインターネット接続環境の場合には、拡張RADIUSサーバを利用した設定方法を参考にしてください。
