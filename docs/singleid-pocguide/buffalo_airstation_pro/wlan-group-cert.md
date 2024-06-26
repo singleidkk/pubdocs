@@ -1,6 +1,6 @@
 # 無線LANアクセス-クライアント証明書認証
 ## 目的
-* SingleIDのユーザで、Buffalo AirStation Proの無線LANアクセスポイントへアクセスします。
+* SingleIDのユーザで、無線LANアクセスポイントへアクセスします。
 * 接続する際の認証方式は、クライアント証明書認証（EAP-TLS）です。
 * SingleIDの標準RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
@@ -128,8 +128,7 @@
     [![Screenshot](/images/image-certinstall-6.png)](/images/image-certinstall-6.png)
 
 #### Windows 10/11 の場合
-
-1. Buffalo AirStation Proの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
+1. 無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
 
     [![Screenshot](/images/image-34.png)](/images/image-34.png)
 

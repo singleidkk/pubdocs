@@ -85,7 +85,7 @@ Check Point Quantum Sparkが送信するNAS-IP-Address属性およびNAS-Identif
 ## 動作確認方法
 ### 無線LANアクセスの認証（パスワード認証）
 #### Windows 10/11 の場合
-1. Check Point Quantum Sparkの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
+1. 無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
 
     [![Screenshot](/images/image-34.png)](/images/image-34.png)
 

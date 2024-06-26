@@ -1,6 +1,6 @@
 # 無線LANアクセス-クライアント証明書認証
 ## 目的
-* SingleIDのユーザで、Buffalo AirStation Proの無線LANアクセスポイントへアクセスします。
+* SingleIDのユーザで、YAMAHA WLXの無線LANアクセスポイントへアクセスします。
 * 接続する際の認証方式は、クライアント証明書認証（EAP-TLS）です。
 * SingleIDの拡張RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
@@ -36,47 +36,24 @@
 
 3. **登録**ボタンをクリックします。
 
-### Buffalo AirStation Proの設定
-1. **Buffalo AirStation Pro GUI**へアクセスします。
-2. 管理者のユーザ名、パスワードを入力し、**ログイン**をクリックします。
-3. **Buffalo AirStation Pro GUI＞詳細設定＞Wi-Fi設定＞SSID設定**画面へ移動します。
-4. **新規追加**ボタンをクリックします。**SSID設定 - SSIDの編集**画面を表示します。
-5. 以下を設定します。
+### YAMAHA WLXの設定
+1. **YAMAHA WLX GUI＞無線設定＞SSID管理**画面へ移動します。
+2. **追加**ボタンをクリックします。VAP設定画面を表示します。 
+3. 以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Wi-Fi** | 有効 |
-    | **SSID** | 任意のSSIDを入力します。 |
-    | **使用デバイス** | 環境に応じて選択します。2.4GHz、5GHz |
+    | **SSID**| 任意のSSIDを入力します。 |
+    | **認証方式** | WPA2-EAP |
+    | **暗号化方式** | AES |
+    | **プライマリRADIUSサーバー** | 外部のRADIUSサーバーを使用する<br>IPアドレスは、**SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **プライマリRADIUポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
+    | **プライマリRADIUSシークレット** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順2の**シークレット**に設定した文字列です。 |
+    | **セカンダリRADIUSサーバー** | 外部のRADIUSサーバーを使用する<br>IPアドレスは、**SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **セカンダリRADIUポート番号** | **プライマリRADIUポート番号**に設定したポート番号と同じです。 |
+    | **セカンダリRADIUSシークレット** | **プライマリRADIUSシークレット**に設定した文字列と同じです。 |
 
-    [![Screenshot](/images/2022-09-28_4-25-21.png)](/images/2022-09-28_4-25-21.png)
-
-    | **設定項目** | **設定内容** |    
-    | :--- | :--- |
-    | **Wi-Fiの認証** | WPA2/WPA3 Enterprise |
-    | **RADIUS** | 本画面で個別にRADIUSサーバの設定をする |
-
-    [![Screenshot](/images/2022-09-28_4-27-41.png)](/images/2022-09-28_4-27-41.png)
-
-    | **設定項目** | **設定内容** |
-    | :--- | :--- |
-    | **プライマリーRADIUSサーバー** | |
-    | **サーバー名** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
-    | **認証ポート** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
-    | **Accounting** | **使用する**のチェックを外す |
-    | **Shared Secret** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順2の**シークレット**に設定した文字列です。 |
-    | **セカンダリーRADIUSサーバー** | |
-    | **サーバー名** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
-    | **認証ポート** | プライマリーRADIUSサーバーの**認証ポート**に設定したポート番号と同じです。 |
-    | **Accounting** | **使用する**のチェックを外す |
-    | **Shared Secret** | プライマリーRADIUSサーバーの**Shared Secret**に設定した文字列と同じです。 |
-    | **Calling-Station-Id** | **"-"（ハイフン区切り、大文字）**を選択 |
-    | **Called-Station-Id** | **"-"（ハイフン区切り、大文字）:SSID**を選択 |
-
-    [![Screenshot](/images/2022-09-28_4-38-50.png)](/images/2022-09-28_4-38-50.png)
-
-6. **修正保存**ボタンをクリックします。
-7. **設定**ボタンをクリックして、設定内容を機器へ適用します。
+4. **設定**ボタンをクリックします。
 
 ### サイト識別する属性の確認方法
 Buffalo AirStation Proが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
@@ -89,7 +66,7 @@ Buffalo AirStation Proが送信するNAS-IP-Address属性およびNAS-Identifier
 ### SingleIDのRADIUSサイトの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**画面へ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**Buffalo AirStation Pro**の**登録**ボタンをクリックします。**Buffalo AirStation Pro**画面がポップアップします。
+3. カタログから**YAMAHA WLXシリーズ**の**登録**ボタンをクリックします。**YAMAHA WLXシリーズ**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |

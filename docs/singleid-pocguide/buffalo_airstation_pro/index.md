@@ -1,8 +1,8 @@
 # Buffalo AirStation Proの設定例一覧
-### パスワード認証
+## パスワード認証
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-password.md)/[拡張](wlan-group-password-adv.md) [^1]
 
-### クライアント証明書認証
+## クライアント証明書認証
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-cert.md)/[拡張](wlan-group-cert-adv.md) [^1]
   
 [^1]:

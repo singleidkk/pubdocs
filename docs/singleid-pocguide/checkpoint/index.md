@@ -1,14 +1,14 @@
 # Check Point Quantum Sparkの設定例一覧
-### パスワード認証
+## パスワード認証
 * リモートアクセスVPN ユーザ/グループによるアクセス制限 [標準](vpn-group-password.md)/[拡張](vpn-group-password-adv.md) [^1]
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-password.md)/[拡張](wlan-group-password-adv.md) [^1]
 * 管理者ログイン ユーザ/グループによるアクセス制限 [標準](adminlogin-group-password.md)/[拡張](adminlogin-group-password-adv.md) [^1]
 
-### クライアント証明書認証
+## クライアント証明書認証
 * [リモートアクセスVPN](vpn-cert.md)
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-cert.md)/[拡張](wlan-group-cert-adv.md) [^1]
 
-### 2要素認証（パスワード認証＋ワンタイムパスワード認証）
+## 2要素認証（パスワード認証＋ワンタイムパスワード認証）
 * リモートアクセスVPN ユーザ/グループによるアクセス制限 [標準](vpn-group-otp.md)/[拡張](vpn-group-otp-adv.md) [^1]
 * 管理者ログイン ユーザ/グループによるアクセス制限 [標準](adminlogin-group-otp.md)/[拡張](adminlogin-group-otp-adv.md) [^1]
 
