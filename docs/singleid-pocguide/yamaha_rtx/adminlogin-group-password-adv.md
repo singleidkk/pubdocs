@@ -1,6 +1,6 @@
 # 管理者ログイン-パスワード認証
 ## 目的
-* SingleIDのユーザで、Check Point Quantum Sparkへ管理者権限でログインします。
+* SingleIDのユーザで、YAMAHA RTXへ管理者権限でログインします。
 * 接続する際の認証方式は、パスワードです。
 * SingleIDの拡張RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
@@ -28,33 +28,39 @@
 
 3. **登録**ボタンをクリックします。
 
-### Check Point Quantum SparkのRADIUSサーバの設定
-1. **Check Point Quantum Spark GUI＞デバイス＞管理者**画面へ移動します。
-2. **RADIUSの設定**をクリックします。**RADIUSサーバの設定**画面がポップアップします。
-3. 以下を設定します。
+### YAMAHA RTXのRADIUSサーバの設定
+1. SSHまたはTelnetで、ローカル管理者でYAMAHA RTXのCLIにログインします。
+2. コマンドで以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **IPv4アドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
-    | **ポート** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
-    | **共有秘密キー** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順2の**シークレット**に設定した文字列です。 |
+    | **RADIUSサーバのプライマリIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **RADIUSサーバのセカンダリIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
+    | **RADIUSクライアントのシークレット** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順2の**シークレット**に設定した文字列です。 |
 
-4. **適用**ボタンをクリックします。
+    ``` linenums="1"
+    radius auth on
+    radius auth server <RADIUSサーバのプライマリIPアドレス> <RADIUSサーバのセカンダリIPアドレス>
+    radius auth port <RADIUSサーバのポート番号>
+    radius secret <RADIUSクライアントのシークレット>
+    ```
 
-### Check Point Quantum Sparkの管理者ログインの認証の設定
-1. **Check Point Quantum Spark GUI＞デバイス＞管理者**画面へ移動します。
-2. **権限の編集**をクリックします。**RADIUS認証**画面がポップアップします。
-3. 以下を設定し、**適用**ボタンをクリックします。
-    
-    | **設定項目** | **設定内容** |
-    | :--- | :--- |
-    | **管理者のRADIUS認証を有効にする** | :fontawesome-regular-square-check: |
-    | **RADIUSサーバで定義されたロールを使用** | 選択 |
+    !!! info
+    YAMAHA RTXについては、[**RADIUSを使用したログインユーザーの管理**](http://www.rtpro.yamaha.co.jp/RT/docs/login-radius/index.html){ target=_blank }を参考にさせていただきました。
+
+### サイト識別する属性の確認方法
+YAMAHA RTXが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
+
+1. [動作確認方法](#動作確認方法)に従って、認証を試みます。
+2. 認証が失敗します。
+3. **SingleID 管理者ポータル＞ログ＞RADIUS認証ログ**画面へ移動します。
+4. 認証失敗したログのNAS-IPまたはNAS-IDの項目を確認します。NAS-IPが、NAS-IP-Address属性の属性値です。NAS-IDが、NAS-Identifier属性の属性値です。
 
 ### SingleIDのRADIUSサイトの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**画面へ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**Check Point Quantum Spark**の**登録**ボタンをクリックします。**Check Point Quantum Spark**画面がポップアップします。
+3. カタログから**YAMAHA RTXシリーズ**の**登録**ボタンをクリックします。**YAMAHA RTXシリーズ**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -63,26 +69,24 @@
     | **サーバ** | 拡張 |
     | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)で登録したサーバ番号を選択します。 |
     | **サイト識別する属性** | [サイト識別する属性の確認方法](#サイト識別する属性の確認方法)で確認できた属性を選択します。 |
-    | **属性値** | [サイト識別する属性の確認方法](#サイト識別する属性の確認方法)で確認できた属性の属性値を設定します。 |        
+    | **属性値** | [サイト識別する属性の確認方法](#サイト識別する属性の確認方法)で確認できた属性の属性値を設定します。 |
 
 5. **管理アクセスの認証**タブへ移動します。
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
     
     !!! info
-        * 必要に応じて権限を設定します。権限の詳細については、Check Point Quantum Sparkの管理者ガイドをご確認ください。
+        * 必要に応じて権限を設定します。YAMAHA RTXの管理者ガイドをご確認ください。
 
-            * スーパー管理者
-            * 読み取り専用管理者
-            * ネットワーキング管理者
-            * モバイル管理者
+            * 管理権限
+            * 一般権限
 
 7. **登録**ボタンをクリックします。
 
 ## 動作確認方法
 ### 管理者ログインの認証（パスワード認証）
 
-1. **Check Point Quantum Spark GUI** https://Check PointのIP:4434/ へアクセスします。
+1. **YAMAHA RTX GUI** へアクセスします。
 2. ログインを試み、ログインが成功することを確認します。
 
-    [![Screenshot](/images/image-cp-login.png)](/images/image-cp-login.png)
+    [![Screenshot](/images/image-yamaha-admin.png)](/images/image-yamaha-admin.png)
 
