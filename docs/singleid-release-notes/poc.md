@@ -1,3 +1,54 @@
+## 2024-07-21
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | **10.3.0** |
+| radius dictionary | 1.5.0 |
+| www | 3.6.13 |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.1 |
+| provisioning appdata | 7.4.0 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **1.16.0** |
+)
+
+### 新機能または改善
+
+**RADIUS**
+
+* 拡張RADIUSサーバを利用してサイト登録する場合、**サイト識別する属性**に、NAS-Identifierを選択したときには、その**属性値**の文字列で、送信されてきたRADIUSリクエストのNAS-Identifier属性に対して部分一致検索します。
+
+## 2024-07-14
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 10.2.0 |
+| radius dictionary | 1.5.0 |
+| www | 3.6.13 |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.1 |
+| provisioning appdata | 7.4.0 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **1.14.3** |
+)
+
+### 修正
+**RADIUS**
+
+* Blast RADIUS攻撃（CVE-2024-3596）の脆弱性を修正
+
 ## 2024-06-30
 
 [](
