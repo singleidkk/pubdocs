@@ -1,3 +1,83 @@
+## 2024-09-09
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 10.3.0 |
+| radius dictionary | 1.5.0 |
+| www | **3.7.1** |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.1 |
+| provisioning appdata | 7.4.0 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **1.17.2** |
+)
+
+### 新機能または改善
+
+**顧客管理者ポータル**
+
+* ユーザ一覧画面で、姓の列に、Firstname、名の列にLastnameが表示されていた問題を修正
+
+## 2024-07-24
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 10.3.0 |
+| radius dictionary | 1.5.0 |
+| www | **3.7.0** |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.1 |
+| provisioning appdata | 7.4.0 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **1.17.0** |
+)
+
+### 新機能または改善
+
+**顧客管理者ポータル**
+
+* 登録ユーザが多い場合に、**ユーザ一覧画面の表示**、**RADIUSの簡易サイト登録画面の表示**、**ユーザのCSV/EXCELエクスポート**に時間がかかる問題を改善
+* CSVファイルによるユーザの一括登録時に、親子関係のあるグループの指定方法を変更しました。具体的には、**/親グループ/子グループ**のように親子関係を指定する方法から、**子グループ**だけを指定する方法へ変更しました。
+
+## 2024-07-24
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 10.3.0 |
+| radius dictionary | 1.5.0 |
+| www | 3.6.13 |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.1 |
+| provisioning appdata | 7.4.0 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **1.16.2** |
+)
+
+### 新機能または改善
+
+**RADIUS**
+
+* 拡張RADIUSサーバを利用してサイト登録する場合、**サイト識別する属性**に、NAS-Identifierを選択し、その**属性値**に、`**MACADDR**`を設定するとMACアドレスの小文字ハイフンなしにマッチするようになる。
+* 拡張RADIUSサーバを利用してサイト登録する場合、**サイト識別する属性**に、NAS-Identifierを選択し、その**属性値**に、`**BUFFALO**`を設定するとBuffaloのベンダーコードにマッチするようになる。BuffaloのAirStation Proは、NAS-Identifierに、機器のMACアドレス（小文字ハイフンなし）をRADIUSサーバへ送信しています。
+
 ## 2024-07-21
 
 [](
@@ -22,7 +102,7 @@
 
 **RADIUS**
 
-* 拡張RADIUSサーバを利用してサイト登録する場合、**サイト識別する属性**に、NAS-Identifierを選択したときには、その**属性値**の文字列で、送信されてきたRADIUSリクエストのNAS-Identifier属性に対して部分一致検索します。
+* 拡張RADIUSサーバを利用してサイト登録する場合、**サイト識別する属性**に、NAS-Identifierを選択し、その**属性値**の文字列で、送信されてきたRADIUSリクエストのNAS-Identifier属性に対して部分一致検索するように変更します。
 
 ## 2024-07-14
 
