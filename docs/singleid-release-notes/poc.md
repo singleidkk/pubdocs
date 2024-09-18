@@ -1,3 +1,29 @@
+## 2024-09-18
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 10.3.0 |
+| radius dictionary | 1.5.0 |
+| www | **3.7.3** |
+| pki | 7.2.1 |
+| report | 2.3.1 |
+| provisioning | 11.3.1 |
+| provisioning appdata | 7.4.0 |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **1.17.6** |
+)
+
+### 修正
+
+**顧客/MSP管理者ポータル**
+
+* セッションの有効期限が切れた場合に、Not Foundのエラーがブラウザに表示される問題を修正
+
 ## 2024-09-10
 
 [](
