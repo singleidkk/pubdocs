@@ -48,7 +48,7 @@
 4. **設定**ボタンをクリックします。
 
 ### サイト識別する属性の確認方法
-Buffalo AirStation Proが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
+YAMAHA WLXが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
 
 1. [動作確認方法](#動作確認方法)に従って、認証を試みます。
 2. 認証が失敗します。

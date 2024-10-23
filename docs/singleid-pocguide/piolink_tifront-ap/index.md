@@ -1,14 +1,11 @@
-# PIOLINK TiFRONT-APの設定例一覧
+# PIOLINK TiFRONT-APシリーズの設定例一覧
 ## パスワード認証
-* [無線LANアクセス グループによるアクセス制限](wlan-group-password.md)
-* [無線LANアクセス グループごとに、接続可能な無線LANアクセスポイントをSSIDで制限](wlan-group-ssid-password.md)
+* 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-password.md)/[拡張](wlan-group-password-adv.md) [^1]
 
 ## クライアント証明書認証
-* [無線LANアクセス グループによるアクセス制限](wlan-group-cert.md)
-* [無線LANアクセス グループごとに、接続可能な無線LANアクセスポイントをSSIDで制限](wlan-group-ssid-cert.md)
-
-## ２要素認証（パスワード認証＋ワンタイムパスワード認証）
-* 無線LANアクセス グループによるアクセス制限（未対応）[^1]
+* 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-cert.md)/[拡張](wlan-group-cert-adv.md) [^1]
 
 [^1]:
-  * 一般的に、無線LANアクセス時に、ワンタイムパスワード認証は使用することがないことから、SingleIDでは、無線LANアクセス時のワンタイムパスワードをサポートしておりません。パスワード認証またはクライアント証明書による認証となります。
+  * 標準：標準RADIUSサーバを利用した設定方法です。
+  * 拡張：拡張RADIUSサーバを利用した設定方法です。
+  * 固定グローバルIPをもたないインターネット接続環境の場合には、拡張RADIUSサーバを利用した設定方法を参考にしてください。
