@@ -64,4 +64,4 @@ PAPは認証プロトコルとしてシンプルであるがゆえに、暗号�
 
 RADIUSプロトコルには改ざん防止の機能が組み込まれていますが、新たに公開された「Blast RADIUS」攻撃手法により、改ざんの危険性が指摘されています。SingleIDでは、ネットワーク機器ベンダーの対応状況に依存することなく、RADIUSプロトコルが持つ中間者攻撃（MITM）の脆弱性に対する対策を既に実施しています。
 
-[SingleIDのBlast RADIUS（RADIUSとMD5の脆弱性攻撃）への対応]([/images/2024-11-08_14-37-25.png](https://www.singleid.jp/blast-radius/))
+[SingleIDのBlast RADIUS（RADIUSとMD5の脆弱性攻撃）への対応](https://www.singleid.jp/blast-radius/)
