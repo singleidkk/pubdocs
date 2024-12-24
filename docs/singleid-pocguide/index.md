@@ -17,3 +17,6 @@
 * [YAMAHA UTXシリーズ/ヤマハ](./yamaha_utx/)　
 * [YAMAHA WLXシリーズ/ヤマハ](./yamaha_wlx/)
 * [その他の無線LANアクセスポイント](./wlanap.md)
+
+クライアント端末の設定
+* [Android OS](./android/)
