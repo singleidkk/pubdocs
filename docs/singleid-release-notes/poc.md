@@ -1,3 +1,37 @@
+## 2025-02-15
+
+[](
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 11.0.1 |
+| radius dictionary | 1.5.0 |
+| www | 4.0.20 |
+| pki | **7.3.5** |
+| report | 2.3.1 |
+| provisioning | 12.0.0 |
+| provisioning appdata | **7.7.0** |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **1.21.4** |
+)
+
+### 新機能または改善
+
+**アプリ連携**
+
+* SonicWall Cloud Secure Edgeを追加
+* Check Point Quantum Sparkを追加
+
+### 修正
+
+**PKI**
+
+* mobileconfig形式の証明書をダウンロードしようとしたときに、テキストファイルとして認識されてしまう問題を修正
+* 証明書ダウンロードのエラーメッセージの表示が文字化けしてしまう問題を修正
+
 ## 2025-01-15
 
 [](
