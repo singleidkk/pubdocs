@@ -75,20 +75,26 @@
     [![Screenshot](/images/fortigate-1.png)](/images/fortigate-1.png)
 
 4. **OK**ボタンをクリックします。
-5. **RADIUS認証の通信ポート**と**NAS-ID**を設定するために、FortiGate CLIから以下のように設定します。
+5. FortiGateのRADIUSのNAS-Identifierの属性値を変更するために、**FortiGate 管理GUI＞システム＞設定**画面へ移動します。以下のように設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **ホスト名** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サイトを識別する属性**の**属性値**に設定した文字列です。（例：fortigate） |
+
+    !!! info
+        FortiGateは、ホスト名をRADIUSのNAS-Identifier属性の属性値として、RADIUSリクエストを送信します。
+
+6. FortiGateのRADIUSの認証通信ポートを変更するために、FortiGate CLIから以下のように設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **RADIUSサーバの名前** | 手順3で設定した名前です。（例：SingleID_RADIUS） |
     | **RADIUS認証の通信ポート番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順で割り当てられたポート番号です。**SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**です。 |
-    | **NAS-ID** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サイトを識別する属性**の**属性値**に設定した文字列です。（例：fortigate） |
 
     ``` title="FortiGate CLI"
     config user radius
         edit "<RADIUSサーバの名前>"
             set radius-port <RADIUS認証の通信ポート番号>
-            set nas-id-type custom
-            set nas-id <NAS-ID>
         next
     end
     ```
