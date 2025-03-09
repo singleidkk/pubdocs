@@ -5,7 +5,7 @@
 * [Buffalo AirStation Pro/バッファロー](./buffalo_airstation_pro/)
 * [Check Point Quantum Spark/チェックポイントソフトウェアテクノロジーズ](./checkpoint/)
 * [Firebox/ウォッチガード・テクノロジー・ジャパン](./firebox/)
-* [Fortigate NGFW/フォーティネットジャパン](./fortigate/)
+* [FortiGate NGFW/フォーティネットジャパン](./fortigate/)
 * [PacketiX VPN/ソフトイーサ](./packetix_vpn/)
 * [PIOLINK TiFRONT-AP/パイオリンク](./piolink_tifront-ap/)
 * [Sophos Firewall/ソフォス](./sophos_firewall/)
