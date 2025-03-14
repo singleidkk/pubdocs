@@ -1,4 +1,5 @@
 # SonicWall Cloud Secure Edgeのアプリ連携
+文書更新日:2025-03-14
 
 ## シングルサインオン
 ### SingleIDのアプリ連携設定
@@ -11,16 +12,19 @@
     
     [![Screenshot](/images/2025-01-18_19-06-37.png)](/images/2025-01-18_19-06-37.png)
 
-4. **アプリ登録**画面がポップアップします。**情報**タブの**名前**に、アプリを識別できるような名前を、半角小文字の**英数字**、**-（ハイフン）**、**_（アンダースコア）**で設定します。
-5. **シングルサインオン**タブに移動します。
+4. **アプリ登録**画面がポップアップします。**情報**タブの**名前**に、アプリを識別できるような名前を、半角小文字の**英数字**、**-（ハイフン）**、**_（アンダースコア）**で設定します。**シングルサインオン**タブに移動します。
     
     [![Screenshot](/images/2025-01-18_19-10-58.png)](/images/2025-01-18_19-10-58.png)
 
-6. **SSO 有効/無効**を**有効**に設定します。
-7. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、[SonicWall Cloud Secure EdgeのSAML認証設定](#sonicwall-cloud-secure-edgeのsaml認証設定)を行うときに必要となります。
-8. **SPのエンドポイントURL**に、[SonicWall Cloud Secure EdgeのSAML認証設定](#sonicwall-cloud-secure-edgeのsaml認証設定)の手順4の**Redirect URL**でコピーした内容を貼り付けます。
-9.  **登録**ボタンをクリックして、アプリを登録します。
-    
+5.  以下の内容を設定し、**登録**ボタンをクリックして、アプリを登録します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **SSO 有効/無効** | **有効**を選択します。 |
+    | **IdP エンドポイントメタデータ** | **ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、[SonicWall Cloud Secure EdgeのSAML認証設定](#sonicwall-cloud-secure-edgeのsaml認証設定)の手順を行う際に必要となります。 |
+    | **SPのエンドポイントURL** | [SonicWall Cloud Secure EdgeのSAML認証設定](#sonicwall-cloud-secure-edgeのsaml認証設定)の手順の**Redirect URL**でコピーした内容を貼り付けます。 |
+
+
     [![Screenshot](/images/2025-01-18_19-16-43.png)](/images/2025-01-18_19-16-43.png)
 
 ### SonicWall Cloud Secure EdgeのSAML認証設定
@@ -37,7 +41,7 @@
     | **User Identity Provider** ||
     | **Provider Name** | **Other**を選択し、**SingleID**と入力します。 |
     | **Provider Protocol** | **SAML**を選択します。 |
-    | **Redirect URL** | 変更しないでください。このURLは、[SingleIDのアプリ連携設定](#singleidのアプリ連携設定)の手順8で使用します。 |
+    | **Redirect URL** | 変更しないでください。このURLは、[SingleIDのアプリ連携設定](#singleidのアプリ連携設定)の手順で使用します。 |
     | **Entity Issuer (optional)** | 空欄にします。 |
     | **IDP Settings** ||
     | **IDP Metadata Method** | Manual |
