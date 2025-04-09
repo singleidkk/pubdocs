@@ -1,6 +1,7 @@
 # SubGateの設定例一覧
 ## パスワード認証
 * 有線LANアクセス ユーザ/グループによるアクセス制限 [標準](./networkauth-group-password.md)/[拡張](./networkauth-group-password-adv.md) [^1]
+
 ## クライアント証明書認証
 * 有線LANアクセス ユーザ/グループによるアクセス制限 [標準](./networkauth-group-cert.md)/[拡張](./networkauth-group-cert-adv.md) [^1]
 
