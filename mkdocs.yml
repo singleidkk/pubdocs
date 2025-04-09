@@ -117,3 +117,6 @@ nav:
       - MSPアカウント管理: singleid-mspguide/msp_account.md
   - リリースノート:
     - 製品版: singleid-release-notes/service.md
+
+validation:
+  absolute_links: ignore
