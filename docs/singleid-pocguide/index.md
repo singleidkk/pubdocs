@@ -1,6 +1,7 @@
 認証システムとしてSingleIDを利用したネットワーク機器連携の設定例です。
 
 * [アライドテレシス 無線LANアクセスポイント/アライドテレシス](./allied_telesis_ap/)
+* [アライドテレシス ネットワークスイッチ/アライドテレシス](./allied_telesis_networkswitch/)
 * [Anti Spreader アクセスポイント/宝情報](./anti_spreader_ap/)
 * [Anti Spreader セキュアスイッチ/宝情報](./anti_spreader_switch/)
 * [Buffalo AirStation Pro/バッファロー](./buffalo_airstation_pro/)
