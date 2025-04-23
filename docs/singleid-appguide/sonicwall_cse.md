@@ -57,7 +57,7 @@
     [![Screenshot](/images/2025-01-18_19-44-41.png)](/images/2025-01-18_19-44-41.png)
 
 ## プロビジョニング
-SonicWall Cloud Secure Edgeは、SAMLのJITプロビジョニングに対応しています。上記設定により、SonicWall Cloud Secure Edgeへユーザが自動的に作成されます。その際、SingleIDのグループ情報もプロビジョニングされます。
+SonicWall Cloud Secure Edgeは、SAMLのJITプロビジョニングに対応しています。上記設定により、ユーザがSonicWall Cloud Secure Edgeへ始めてログインしたときに、ユーザが自動的に作成されます。その際、SingleIDのグループ情報もプロビジョニングされます。
 
 ## アプリにユーザ追加
 1. **SingleID 管理者ポータル＞アプリ連携＞アプリ一覧**画面へ移動します。
