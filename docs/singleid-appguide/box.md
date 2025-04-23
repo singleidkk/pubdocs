@@ -52,7 +52,7 @@
 | **What is the attribute for the user's last name?** | lastName |
 | **Who is your Identity Provider?** | **Other with Metadata**を選択 |
 | **Anything else we should know?** | IdP metadata file is attached. <br>（SAMLのJITプロビジョニングを有効化したい場合には、**Enterprise SSO on the fly registrationの有効化**をするようにリクエストしてください。）|
-| **Attachments (maximum attachment size 20MB)** | [SingleIDのアプリ登録およびIdP エンドポイントメタデータのダウンロード](#singleidのアプリ登録およびidp-エンドポイントメタデータのダウンロード)の手順7でダウンロードしたファイルを添付します。 |
+| **Attachments (maximum attachment size 20MB)** | [SingleIDのアプリ登録およびIdP エンドポイントメタデータのダウンロード](#singleidのアプリ登録およびidpエンドポイントメタデータのダウンロード)の手順7でダウンロードしたファイルを添付します。 |
 
 SSOのセットアップ完了の連絡がありましたら、以下の手順を実施します。
 

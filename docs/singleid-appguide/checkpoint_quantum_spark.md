@@ -17,7 +17,7 @@
     [![Screenshot](/images/2025-02-15_18-02-20.png)](/images/2025-02-15_18-02-20.png)
 
 6. **SSO 有効/無効**を**有効**に設定します。
-7. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、[Check Point Quantum SparkのSAML認証設定](#sonicwall-cloud-secure-edgeのsaml認証設定)を行うときに必要となります。
+7. **IdP エンドポイントメタデータ**の**ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、[Check Point Quantum SparkのSAML認証設定](#check-point-quantum-sparkのsaml認証設定)を行うときに必要となります。
 8. **SPのエンティティID**に、[Check Point Quantum SparkのSAML認証設定](#check-point-quantum-sparkのsaml認証設定)の手順3の**一意の識別子 URL**でコピーした内容を貼り付けます。
 9. **SPのエンドポイントURL**に、[Check Point Quantum SparkのSAML認証設定](#check-point-quantum-sparkのsaml認証設定)の手順3の**返信 URL**でコピーした内容を貼り付けます。
 10.  **登録**ボタンをクリックして、アプリを登録します。

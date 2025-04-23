@@ -150,7 +150,7 @@ SG2412G(config)#write memory
 
     [![Screenshot](/images/2022-09-06_15-40-39.png)](/images/2022-09-06_15-40-39.png)
 
-3. PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[Anti Spreader セキュアスイッチのポート](#Anti Spreader セキュアスイッチのポート)の**802.1x認証の有効化**を参照）へ接続します。
+3. PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポート（[Anti Spreader セキュアスイッチのポート](#anti-spreader-セキュアスイッチのポート)の**802.1x認証の有効化**を参照）へ接続します。
 
 4. ログイン要求がポップアップします。**サインイン**をクリックします。
 

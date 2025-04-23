@@ -51,6 +51,14 @@
     | **管理者のRADIUS認証を有効にする** | :fontawesome-regular-square-check: |
     | **RADIUSサーバで定義されたロールを使用** | 選択 |
 
+### サイト識別する属性の確認方法
+YAMAHA RTXが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
+
+1. [動作確認方法](#動作確認方法)に従って、認証を試みます。
+2. 認証が失敗します。
+3. **SingleID 管理者ポータル＞ログ＞RADIUS認証ログ**画面へ移動します。
+4. 認証失敗したログのNAS-IPまたはNAS-IDの項目を確認します。NAS-IPが、NAS-IP-Address属性の属性値です。NAS-IDが、NAS-Identifier属性の属性値です。
+
 ### SingleIDのRADIUSサイトの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**画面へ移動します。
 2. **カタログ表示**ボタンをクリックします。
