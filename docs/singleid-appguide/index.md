@@ -5,6 +5,7 @@
 * [Box](box.md)
 * [Chatwork](chatwork.md)
 * [Check Point HarmonyConnect](harmonyconnect.md)
+* [Check Point Harmony SASE](./checkpoint_harmony_sase.md)
 * [Check Point Quantum Spark](checkpoint_quantum_spark.md)
 * [Dropbox](dropbox.md)
 * [Gitea](gitea.md)　近日公開予定
