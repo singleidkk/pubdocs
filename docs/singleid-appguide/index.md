@@ -9,8 +9,8 @@
 * [Check Point Quantum Spark](checkpoint_quantum_spark.md)
 * [Dropbox](dropbox.md)
 * [Gitea](gitea.md)　近日公開予定
-* [Google Workspace](google_workspace/)
-* [Microsoft 365](microsoft_365/)
+* [Google Workspace](google_workspace/index.md)
+* [Microsoft 365](microsoft_365/index.md)
 * [Nextcloud](nextcloud.md)
 * [NI Collabo 360](ni_collabo_360.md)
 * [Pleasanter](pleasanter.md)　近日公開予定

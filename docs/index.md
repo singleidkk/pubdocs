@@ -16,4 +16,4 @@
 
 [MSP管理者ガイド](./singleid-mspguide/index.md)
 
-[リリースノート](./singleid-release-notes/)
+[リリースノート](./singleid-release-notes/index.md)
