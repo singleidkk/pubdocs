@@ -1,4 +1,30 @@
 # 評価版
+## 2025-04-23
+
+<!--
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 11.0.1 |
+| radius dictionary | 1.5.0 |
+| www | 4.1.2 |
+| pki | 7.3.5 |
+| report | 2.3.1 |
+| provisioning | 12.0.0 |
+| provisioning appdata | **7.12.0** |
+| tun | 3.3.1 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **1.21.15** |
+-->
+
+### 新機能または改善
+
+**アプリカタログ**
+
+* CheckPoint Harmony SASE
+
 ## 2025-04-17
 
 <!--
