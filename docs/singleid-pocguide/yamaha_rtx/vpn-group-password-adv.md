@@ -143,7 +143,9 @@ Windows端末からパスワードによるリモートアクセスVPNの認証�
     [![Screenshot](/images/image-win-vpn-4.png)](/images/image-win-vpn-4.png)
 
 2. 認証情報を入力し、**OK**ボタンをクリックします。
+
     | **設定項目** | **設定内容** |
+    | :--- | :--- |
     | **ユーザ名** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順で許可したユーザです。 |
     | **パスワード** | **ユーザのパスワード**です。 |
 
