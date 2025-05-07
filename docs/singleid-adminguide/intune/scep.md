@@ -7,9 +7,9 @@
 ## プラットフォームごとの構成プロファイルの作成方法
 
 * [Windows 10以降](windows10later.md)
-* [Android](android.md)
-* iPhone/iPad（未対応）
-* Mac（未対応）
-* Linux（未対応）
+* [Android]()
+* iPhone/iPad（対応予定）
+* Mac（対応予定）
+* Linux（予定なし）
 
 ## トラブルシューティング
