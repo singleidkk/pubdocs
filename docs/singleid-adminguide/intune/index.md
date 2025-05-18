@@ -1,8 +1,11 @@
-# IntuneによるSCEP証明書の配布
+# IntuneによるSCEP証明書の配布手順
+
+このドキュメントでは、Microsoft Intune を使って SCEP 証明書をデバイスに配布する手順を説明します。  
+※ 本手順では、対象デバイスがすでに Intune に登録済みであることを前提としています。
 
 ## Microsoft Entra IDへアプリ登録
 1. [Azureポータル](https://portal.azure.com){target=_blank}へグローバル管理者でログインします。
-2. **Microsoft Entra ID**管理画面に移動します。（画面上部の検索ボックスに**entra**と入力し、表示された**Microsoft Entra ID**をクリックします。）
+2. **Microsoft Entra ID**管理画面に移動します。（画面上部の検索ボックスに「**entra**」と入力し、表示された**Microsoft Entra ID**をクリックします。）
 
     [![Screenshot](/images/2025-05-10_18-05-38.png)](/images/2025-05-10_18-05-38.png)
 
@@ -14,7 +17,7 @@
 
     [![Screenshot](/images/2022-09-26_7-53-45.png)](/images/2022-09-26_7-53-45.png)
 
-5. 以下の内容で設定し、**登録**ボタンをクリックします。
+5. 以下の内容を設定し、**登録**ボタンをクリックします。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -35,7 +38,7 @@
 
     [![Screenshot](/images/2022-09-26_8-18-49.png)](/images/2022-09-26_8-18-49.png)
 
-9.  以下の内容で設定し、**追加**ボタンをクリックします。
+9. 以下の内容を設定し、**追加**ボタンをクリックします。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -91,7 +94,7 @@
 
 
 ## SingleID SCEPサーバのエンドポイントの作成
-SingeID SCEPサーバのエンドポイントを作成するために以下の情報をSingleIDテクニカルサポートに提供してください。
+SingeID SCEPサーバのエンドポイントを作成するために以下の情報を**SingleIDテクニカルサポート**に提供してください。
 
 * SingleIDのアカウント番号
 * アプリケーション (クライアント) ID
@@ -107,21 +110,19 @@ SingeID SCEPサーバのエンドポイントを作成するために以下の�
 * iPhone/iPad（マニュアル準備中）
 
 ## トラブルシューティング
-### Windows デバイスのログ
+### Windows デバイスのログ確認  
+[マイクロソフトの公式サイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-windows-devices){target=_blank}
 
-[マイクロソフトのサイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-windows-devices){target=_blank}
+### Android デバイスのログ確認  
+[マイクロソフトの公式サイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-android-devices){target=_blank}
 
-### Android デバイスのログ
+### iOS / iPadOS デバイスのログ確認  
+[マイクロソフトの公式サイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-ios-and-ipados-devices){target=_blank}
 
-[マイクロソフトのサイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-android-devices){target=_blank}
+### macOS デバイスのログ確認
 
-### iOS および iPadOS デバイスのログ
-
-[マイクロソフトのサイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-ios-and-ipados-devices){target=_blank}
-
-### macOS デバイスのログ
 ターミナルから以下のコマンドを実行します。
 
----
+```
 % log show --debug --info | grep "com.apple.ManagedClient:SCEP"
----
+```
