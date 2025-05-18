@@ -93,6 +93,7 @@
 ## SingleID SCEPサーバのエンドポイントの作成
 SingeID SCEPサーバのエンドポイントを作成するために以下の情報をSingleIDテクニカルサポートに提供してください。
 
+* SingleIDのアカウント番号
 * アプリケーション (クライアント) ID
 * ディレクトリ (テナント) ID
 * クライアント シークレットの値
@@ -100,9 +101,27 @@ SingeID SCEPサーバのエンドポイントを作成するために以下の�
 ## プラットフォームごとの構成プロファイルの作成方法
 
 * [Windows 10 以降](windows10later.md)
-* Mac（対応予定）
+* [Mac](mac.md)
 * Linux（予定なし）
 * [Android](android.md)
-* iPhone/iPad（対応予定）
+* iPhone/iPad（マニュアル準備中）
 
 ## トラブルシューティング
+### Windows デバイスのログ
+
+[マイクロソフトのサイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-windows-devices){target=_blank}
+
+### Android デバイスのログ
+
+[マイクロソフトのサイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-android-devices){target=_blank}
+
+### iOS および iPadOS デバイスのログ
+
+[マイクロソフトのサイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-ios-and-ipados-devices){target=_blank}
+
+### macOS デバイスのログ
+ターミナルから以下のコマンドを実行します。
+
+---
+% log show --debug --info | grep "com.apple.ManagedClient:SCEP"
+---
