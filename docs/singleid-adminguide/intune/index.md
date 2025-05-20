@@ -107,7 +107,7 @@ SingeID SCEPサーバのエンドポイントを作成するために以下の�
 * [Mac](mac.md)
 * Linux（予定なし）
 * [Android](android.md)
-* iPhone/iPad（マニュアル準備中）
+* [iOS/iPadOS](ios_ipados.md)
 
 ## トラブルシューティング
 ### Windows デバイスのログ確認  
@@ -116,7 +116,7 @@ SingeID SCEPサーバのエンドポイントを作成するために以下の�
 ### Android デバイスのログ確認  
 [マイクロソフトの公式サイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-android-devices){target=_blank}
 
-### iOS / iPadOS デバイスのログ確認  
+### iOS/iPadOS デバイスのログ確認  
 [マイクロソフトの公式サイト](https://learn.microsoft.com/ja-jp/troubleshoot/mem/intune/certificates/troubleshoot-scep-certificate-profiles#logs-for-ios-and-ipados-devices){target=_blank}
 
 ### macOS デバイスのログ確認
