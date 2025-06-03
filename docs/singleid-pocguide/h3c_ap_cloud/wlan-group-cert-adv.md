@@ -123,7 +123,7 @@
     | :--- | :--- |
     | **SSID**| 任意の文字列を設定します。 |
     | **Wireless Service**| **On**を選択します。 |
-    | **Radio Type**| 2.4GHz、5Ghzのどちらか、または両方を選択します。<br>**注意:** **6GHz**を選択すると、認証方式として802.1Xを選択できません。（2025年5月30日時現） |
+    | **Radio Type**| 2.4GHz、5Ghzのどちらか、または両方を選択します。<br>**注意:** **6GHz**を選択すると、認証方式として802.1Xを選択できません。（2025年5月30日現在） |
     | **Encryption**|  **802.1X**を選択します。 |
     | **Configure AAA**| **External Server**を選択します。先ほど登録した**RADIUS Scheme**（例: singleid_radius）を選択します。 |
     | **Security Mode**| **WPA/WPA2-Compliant**を選択します。<br>**注意:** **WPA3-Enterprise**モード使用時の無線LAN接続の動作確認ができていません。（2025年5月30日現在）  |
