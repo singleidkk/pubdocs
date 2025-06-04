@@ -1,5 +1,5 @@
 # 無線LANアクセス-パスワード認証
-文書更新日:2025-05-30
+文書更新日:2025-06-04
 
 ## 目的
 * SingleIDのユーザで、H3C 無線LANアクセスポイントへアクセスします。
@@ -53,74 +53,114 @@
 7. **登録**ボタンをクリックします。
 
 ### H3C 無線LANアクセスポイントの設定
-
-!!! warning
-    以下の手順を実施する前に、Cloudnetに無線LANアクセスポイントのデバイス登録を行ってください。
-
-1. **[Cloudnet](https://oasiscloud.h3c.com/){ target=_blank }**へログインします。
-2. **Settings＞Cloud APs＞Authentication**画面へ移動します。
-
-    [![Screenshot](/images/2025-05-30_9-32-51.png)](/images/2025-05-30_9-32-51.png)
-
-3. **RADIUS**タブ画面の**RADIUS Scheme**セクションの**Add**ボタンをクリックします。**RADIUS Scheme**画面が表示されます。
-
-    [![Screenshot](/images/2025-05-30_9-43-23.png)](/images/2025-05-30_9-43-23.png)
-
-4. 以下を設定します。
+#### RADIUSサーバの登録
+1. 機器のウェブ管理画面へログインします。
+2. **Network Security＞AAA＞RADIUS**画面へ移動します。
+3. ＋ボタンをクリックし、新しい**RADIUS Scheme**を追加します。以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **RADIUS Scheme**| 任意の文字列を設定します。（例: singleid_radius） |
 
-    * **Auth Server**
+    **Authentication server**
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Primary Server IP** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
-    | **Primary Port Number** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
-    | **Backup Server IP** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
-    | **Backup Port Number** | **Primary Port Number**に設定したポート番号と同じです。 |
-    | **Auth Shared Key** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
+    | **Primary authentication server** ||
+    | **VRF** | **Public network**を選択します。 |
+    | **Type** | **IP address**を選択します。 |
+    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **Port** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サーバ番号**に対応したポート番号です。 |
+    | **State** | **Active**を選択します。 |
+    | **Secondary authentication server** ||
+    | **VRF** | **Public network**を選択します。 |
+    | **Type** | **IP address**を選択します。 |
+    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **Port** | **Primary Port Number**に設定したポート番号と同じです。 |
+    | **State** | **Active**を選択します。 |
+    |||
+    | **The shared key for authentication** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**シークレット**に設定した文字列です。 |
 
-    * **Accounting Server**
-
-    !!! info
-        SingleIDのクラウドRADIUSは、アカウンティングをサポートしていません。そのため、必須となっている以下の項目にダミーで設定します。
-
-    | **設定項目** | **設定内容** |
-    | :--- | :--- |
-    | **Primary Server IP** | 任意の存在しないIPを入力します。（例: 192.0.2.1 このIPは、RFC5737で予約されたドキュメント例示用のIPなので、利用されていないIPです。） |
-    | **Primary Port Number** | 1813 |
-    | **Accounting Shared Key** | 任意の文字列を設定します。（例: secret） |
-    | **ISP Domain Name** | 任意のドメイン名を設定します。(例: example.com) |
-
-    * **Advanced Settings**
+    **Advanced Settings**
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Response Timeout** | デフォルト値の3秒では、インターネットの混雑次第ではタイムアウトする恐れがあります。タイムアウト値を長く設定することをお勧めします。(例: 10) |
+    | **The RADIUS server response timeout time** | デフォルト値の3秒では、インターネットの混雑次第ではタイムアウトする恐れがあります。タイムアウト値を長く設定することをお勧めします。(例: 10) |
 
-5. **OK**ボタンをクリックします。
-6. **Settings＞Cloud APs＞WLAN Settings**画面へ移動します。
-
-    [![Screenshot](/images/2025-05-30_9-32-51-2.png)](/images/2025-05-30_9-32-51-2.png)
-
-7. **Wi-Fi Settings**タブ画面の**Wireless Service Config**セクションの**Add**ボタンをクリックします。**Wi-Fi Settings**画面が表示されます。
-
-    [![Screenshot](/images/2025-05-30_10-51-07.png)](/images/2025-05-30_10-51-07.png)
-
-8. 以下を設定します。それ以外の設定項目は必要に応じて設定します。
+4. **Apply**ボタンをクリックします。
+5. **Network Security＞AAA＞ISP Domain**画面へ移動します。
+6. ＋ボタンをクリックし、新しい**Domain**を追加します。以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **SSID**| 任意の文字列を設定します。 |
-    | **Wireless Service**| **On**を選択します。 |
-    | **Radio Type**| 2.4GHz、5Ghzのどちらか、または両方を選択します。<br>**注意:** **6GHz**を選択すると、認証方式として802.1Xを選択できません。（2025年5月30日現在） |
-    | **Encryption**|  **802.1X**を選択します。 |
-    | **Configure AAA**| **External Server**を選択します。先ほど登録した**RADIUS Scheme**（例: singleid_radius）を選択します。 |
-    | **Security Mode**| **WPA/WPA2-Compliant**を選択します。<br>**注意:** **WPA3-Enterprise**モード使用時の無線LAN接続の動作確認ができていません。（2025年5月30日現在）  |
+    | **Domain** | 自社のドメイン名を設定します。（例: example.com） |
+    | **State** | **Active**を選択します。 |
+    | **Service type** | **LAN Access**を選択します。 |
+    | **AAA for login users** ||
+    | **Authentication** | **RADIUS**を選択します。先ほど登録した**RADIUS Scheme**を**Scheme**に選択します。（例: singleid_radius） |
+    | **Authorization** | **RADIUS**を選択します。先ほど登録した**RADIUS Scheme**を**Scheme**に選択します。（例: singleid_radius） |
 
-9. **OK**ボタンをクリックします。
+7. **Apply**ボタンをクリックします。
+
+#### Wireless serviceの設定（WPA/WPA2エンタープライズの場合）
+機器のウェブ管理画面から設定します。
+
+1. **Wireless ConfigurationWireless＞Services Configuration**画面へ移動します。
+2.  ＋ボタンをクリックし、新しい**Wireless service**を追加します。以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **Basic settings** ||
+    | **Wireless service name** | 任意の文字列を設定します。（例: 20） |
+    | **SSID** | 任意の文字列を設定します。（例: h3c） |
+    | **Wireless Service** | **On**を選択します。 |
+    | **Authentication settings** ||
+    | **Authentication mode** | **802.1X**を選択します。 |
+    | **Security mode** | **WPA or WPA2**を選択します。 |
+    | **Domain name** | 先ほど登録した**ISP Domain**を選択します。（例: example.com） |
+
+3. **Apply and Configure Advanced settings**ボタンをクリックします。
+4. **Binding**タブへ移動します。**Bind to APs**画面で、SSIDに関連付ける周波数帯を選択し、Selectedへ移動させます。
+5. **Apply**ボタンをクリックします。
+6. 画面右上の**SAVE**ボタンをクリックします。
+
+#### Wireless serviceの設定（WPA2/WPA3エンタープライズの場合）
+機器のCLIから設定します。
+
+1. **Wireless service**を登録します。
+
+    ```
+    system-view
+    wlan service-template 20 <= 任意の文字列を設定します。（例: 20）
+    ssid h3c <= 任意の文字列を設定します。（例: h3c）
+    akm mode dot1x
+    cipher-suite ccmp
+    security-ie rsn
+    wpa3 enterprise-transition-mode <= WPA2/WPA3エンタープライズ（下位互換性を考慮し、推奨）
+    client-security authentication-mode dot1x
+    dot1x domain example.com <= 先ほど登録した**ISP Domain**を選択します。（例: example.com）
+    bss transition-management enable
+    service-template enable
+    exit
+    ```
+
+1. **Wireless service**に**周波数帯域**を関連付けます。
+
+
+    ```
+    interface WLAN-Radio1/0/1 <= SSIDに関連付ける周波数帯のインターフェース
+    service-template 20 <= 先ほど登録したWireless service
+    exit
+    interface WLAN-Radio1/0/2 <= SSIDに関連付ける周波数帯のインターフェース
+    service-template 20 <= 先ほど登録したWireless service
+    exit
+    ```
+
+3. 設定を保存します。
+
+    ```
+    save force
+    ```
 
 ## 動作確認方法
 Windows端末からパスワードで無線LANアクセスの認証が可能なことを確認します。
