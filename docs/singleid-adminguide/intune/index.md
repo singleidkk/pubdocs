@@ -103,11 +103,6 @@ SingeID SCEPサーバのエンドポイントを作成するために以下の�
 
 ## プラットフォームごとの構成プロファイルの作成方法
 
-!!! info
- 
-    * Entra ID に存在するユーザを、SingleID 側にもあらかじめ作成しておくこと。
-    * SingleID のユーザ名は Entra ID UPN の “@” より前の部分 と一致させる（例：taro@example.com → taro）。
-
 * [Windows 10 以降](windows10later.md)
 * [Mac](mac.md)
 * Linux（予定なし）
