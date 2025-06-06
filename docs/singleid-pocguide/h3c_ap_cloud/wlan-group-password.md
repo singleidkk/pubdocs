@@ -135,7 +135,6 @@
 
 1. **Wireless service**に**周波数帯域**を関連付けます。
 
-
     ```
     interface WLAN-Radio1/0/1 <= SSIDに関連付ける周波数帯のインターフェース
     service-template 20 <= 先ほど登録したWireless service

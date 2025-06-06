@@ -40,7 +40,7 @@
     | :--- | :--- |
     | **有効/無効** | **有効**を選択します。 |
     | **サーバ** | **拡張**を選択します。 |
-    | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)で登録したサーバ番号を選択します。 |
+    | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順で登録したサーバ番号を選択します。 |
     | **サイト識別する属性** | **NAS-ID**を選択します。 |
     | **属性値** | Cloudnetに登録した無線LANアクセスポイントの**デバイス名**を設定します。<br>**サイト識別する属性**に**NAS-ID**を選択した場合、実際にネットワーク機器から送信される属性値に対して、ここの設定項目で設定した文字列で**部分一致検索**します。 |        
 
@@ -69,13 +69,13 @@
     | **Primary authentication server** ||
     | **VRF** | **Public network**を選択します。 |
     | **Type** | **IP address**を選択します。 |
-    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
     | **Port** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サーバ番号**に対応したポート番号です。 |
     | **State** | **Active**を選択します。 |
     | **Secondary authentication server** ||
     | **VRF** | **Public network**を選択します。 |
     | **Type** | **IP address**を選択します。 |
-    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
     | **Port** | **Primary Port Number**に設定したポート番号と同じです。 |
     | **State** | **Active**を選択します。 |
     |||
@@ -145,7 +145,6 @@
     ```
 
 1. **Wireless service**に**周波数帯域**を関連付けます。
-
 
     ```
     interface WLAN-Radio1/0/1 <= SSIDに関連付ける周波数帯のインターフェース
