@@ -1,5 +1,5 @@
 # 無線LANアクセス-クライアント証明書認証
-文書更新日:2025-06-04
+文書更新日:2025-06-08
 
 ## 目的
 * SingleIDのユーザで、H3C 無線LANアクセスポイントへアクセスします。
@@ -50,7 +50,7 @@
     | **サーバ** | **拡張**を選択します。 |
     | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順で登録したサーバ番号を選択します。 |
     | **サイト識別する属性** | **NAS-ID**を選択します。 |
-    | **属性値** | Cloudnetに登録した無線LANアクセスポイントの**デバイス名**を設定します。<br>**サイト識別する属性**に**NAS-ID**を選択した場合、実際にネットワーク機器から送信される属性値に対して、ここの設定項目で設定した文字列で**部分一致検索**します。 |        
+    | **属性値** | 任意の文字列を設定します。 |
 
 5. **無線アクセスの認証**タブへ移動します。
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
@@ -64,78 +64,100 @@
 ### H3C 無線LANアクセスポイントの設定
 #### RADIUS Schemeの登録
 1. 機器のウェブ管理画面へログインします。
-2. **Network Security＞AAA＞RADIUS**画面へ移動します。
-3. **＋**ボタンをクリックし、新しい**RADIUS Scheme**を追加します。以下を設定します。
+2. **Authentication＞AAA Settings＞RADIUS Settings**画面へ移動します。
+3. **＋Add**ボタンをクリックし、新しい**RADIUS Scheme**を追加します。以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **RADIUS Scheme**| 任意の文字列を設定します。（例: singleid_radius） |
-
-    **Authentication server**
-
-    | **設定項目** | **設定内容** |
-    | :--- | :--- |
-    | **Primary authentication server** ||
-    | **VRF** | **Public network**を選択します。 |
-    | **Type** | **IP address**を選択します。 |
-    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **Address** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
     | **Port** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
-    | **State** | **Active**を選択します。 |
-    | **Secondary authentication server** ||
-    | **VRF** | **Public network**を選択します。 |
-    | **Type** | **IP address**を選択します。 |
-    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
-    | **Port** | **Primary authentication server**の**Port**に設定したポート番号と同じです。 |
-    | **State** | **Active**を選択します。 |
-    |||
-    | **The shared key for authentication** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
+    | **Shared Key** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
 
-    **Advanced Settings**
+4. **Submit**ボタンをクリックします。
+5. 追加した**RADIUS Scheme**の**編集**アイコンをクリックします。**Secondary Authentication Server**セクションの **＋Add**ボタンをクリックします。以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **The RADIUS server response timeout time** | デフォルト値の3秒では、インターネットの混雑次第ではタイムアウトする恐れがあります。タイムアウト値を長く設定することをお勧めします。(例: 10) |
+    | **Address** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **Port** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
+    | **Shared Key** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
+    | **Status** | **On**を選択します。|
 
-4. **Apply**ボタンをクリックします。
+6. **Submit**ボタンをクリックします。
+7. **Advanced Configuration**セクションに以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **Format for Usernames Sent to RADIUS Server** | **Based on User Input**を選択します。 |
+    | **Server Response Timeout Timer** | デフォルト値の3秒では、インターネットの混雑次第ではタイムアウトする恐れがあります。タイムアウト値を長く設定することをお勧めします。(例: 10) |
+
+8. **Submit**ボタンをクリックします。
 
 #### ISP Domainの登録
 機器のウェブ管理画面から設定します。
 
-1. **Network Security＞AAA＞ISP Domain**画面へ移動します。
-2. **＋**ボタンをクリックし、新しい**Domain**を追加します。以下を設定します。
+1. **Authentication＞AAA Settings＞ISP Domains**画面へ移動します。
+2.  **＋Add**ボタンをクリックし、新しい**Domain**を追加します。以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Domain** | 自社のドメイン名を設定します。（例: example.com） |
-    | **State** | **Active**を選択します。 |
-    | **Service type** | **LAN Access**を選択します。 |
-    | **AAA for login users** ||
-    | **Authentication** | **RADIUS**を選択します。先ほど登録した**RADIUS Scheme**を**Scheme**に選択します。（例: singleid_radius） |
-    | **Authorization** | **RADIUS**を選択します。先ほど登録した**RADIUS Scheme**を**Scheme**に選択します。（例: singleid_radius） |
+    | **ISP Domain Name** | 自社のドメイン名を設定します。（例: example.com） |
+    | **ISP Domain State** | **Active**を選択します。 |
+    | **User Access Methods** ||
+    | **Authentication Scheme** | **Main Scheme**に**RADIUS Scheme**を選択します。**Scheme Name**に先ほど登録した**RADIUS Scheme**を選択します。（例: singleid_radius） |
+    | **Authorization Scheme** | **Main Scheme**に**RADIUS Scheme**を選択します。**Scheme Name**に先ほど登録した**RADIUS Scheme**を選択します。（例: singleid_radius） |
 
-3. **Apply**ボタンをクリックします。
+3.  **Submit**ボタンをクリックします。
 
-#### Wireless serviceの設定（WPA/WPA2エンタープライズの場合）
+#### Wireless serviceの設定（WPA2エンタープライズの場合）
 機器のウェブ管理画面から設定します。
 
-1. **Wireless ConfigurationWireless＞Services Configuration**画面へ移動します。
-2.  ＋ボタンをクリックし、新しい**Wireless service**を追加します。以下を設定します。
+1. **Wireless Services＞Wireless Service**画面へ移動します。
+2.  **＋Add**ボタンをクリックし、新しい**Wireless service**を追加します。以下を設定します。
+
+    * **Clone Service**画面
+
+    **Skip**ボタンをクリックします。
+
+    * **Create Service**画面
+
+    以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Basic settings** ||
-    | **Wireless service name** | 任意の文字列を設定します。（例: 20） |
+    | **Wireless service name** | 任意の文字列を設定します。（例: h3c） |
     | **SSID** | 任意の文字列を設定します。（例: h3c） |
-    | **Wireless Service** | **On**を選択します。 |
-    | **Authentication settings** ||
-    | **Authentication mode** | **802.1X**を選択します。 |
-    | **Security mode** | **WPA or WPA2**を選択します。 |
-    | **Domain name** | 先ほど登録した**ISP Domain**を選択します。（例: example.com） |
+    | **Status** | **On**を選択します。 |
+    | **Forwarding Mode** | **Centralized Forwarding**を選択します。 |
 
-3. **Apply and Configure Advanced settings**ボタンをクリックします。
-4. **Binding**タブへ移動します。**Bind to APs**画面で、SSIDに関連付ける周波数帯を選択し、Selectedへ移動させます。
-5. **Apply**ボタンをクリックします。
-6. 画面右上の**SAVE**ボタンをクリックします。
+    **Next**ボタンをクリックします。
+
+    * **AuthN & Encryption**画面
+
+    **Enterprise**を選択します。以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **Security Mechanism** | **802.1X**を選択します。 |
+    | **Identity authentication** | **802.1X Auth(Encrypted)**を選択します。 |
+    | **Encryption Mode** | **WPA2**を選択します。 |
+    | **ISP Domain** | 先ほど登録した**ISP Domain**を選択します。（例: example.com） |
+
+    **Next**ボタンをクリックします。
+
+    * **Bind AP Group**画面
+
+    **+Add**ボタンをクリックします。以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **AP Group Name** | APグループを選択します。（例: default-group） |
+    | **Radio** | SSIDに関連付ける周波数帯を選択します。 |
+
+    **Actions**の**OK**ボタンをクリックします。
+    
+3.  **Submit**ボタンをクリックします。
 
 #### Wireless serviceの設定（WPA2/WPA3エンタープライズの場合）
 機器のCLIから設定します。
@@ -144,7 +166,7 @@
 
     ```
     system-view
-    wlan service-template 20 <= 任意の文字列を設定します。（例: 20）
+    wlan service-template h3c <= 任意の文字列を設定します。（例: h3c）
     ssid h3c <= 任意の文字列を設定します。（例: h3c）
     akm mode dot1x
     cipher-suite ccmp
@@ -157,14 +179,17 @@
     exit
     ```
 
-2. **Wireless service**に**周波数帯域**を関連付けます。
+1. APグループ（例: default-group）の**周波数帯域**に**Wireless service**を関連付けます。
 
     ```
-    interface WLAN-Radio1/0/1 <= SSIDに関連付ける周波数帯のインターフェース
-    service-template 20 <= 先ほど登録したWireless service
+    system-view
+    wlan ap-group default-group
+    radio 2.4
+    service-template h3c-wpa3
     exit
-    interface WLAN-Radio1/0/2 <= SSIDに関連付ける周波数帯のインターフェース
-    service-template 20 <= 先ほど登録したWireless service
+    radio 5g
+    service-template h3c-wpa3
+    exit
     exit
     ```
 
@@ -173,6 +198,18 @@
     ```
     save force
     ```
+
+#### NAS-IDの設定
+機器のウェブ管理画面から設定します。
+
+1. **AP Config＞Global**画面へ移動します。
+2. **Advanced Configuration**セクションの**NAS-ID**セクションに以下を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **NAS-ID** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順のNAS-IDの**属性値**に設定した文字列です。 |
+
+3.  **Submit**ボタンをクリックします。
 
 ## 動作確認方法
 Windows端末からEAP-TLS（クライアント証明書認証）で無線LANアクセスの認証が可能なことを確認します。

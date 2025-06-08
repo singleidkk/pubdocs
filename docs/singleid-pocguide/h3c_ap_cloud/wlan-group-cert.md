@@ -51,10 +51,10 @@
 7. **登録**ボタンをクリックします。
 
 ### H3C 無線LANアクセスポイントの設定
-#### RADIUSサーバの登録
+#### RADIUS Schemeの登録
 1. 機器のウェブ管理画面へログインします。
 2. **Network Security＞AAA＞RADIUS**画面へ移動します。
-3. ＋ボタンをクリックし、新しい**RADIUS Scheme**を追加します。以下を設定します。
+3. **＋**ボタンをクリックし、新しい**RADIUS Scheme**を追加します。以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -74,7 +74,7 @@
     | **VRF** | **Public network**を選択します。 |
     | **Type** | **IP address**を選択します。 |
     | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
-    | **Port** | **Primary Port Number**に設定したポート番号と同じです。 |
+    | **Port** | **Primary authentication server**の**Port**に設定したポート番号と同じです。 |
     | **State** | **Active**を選択します。 |
     |||
     | **The shared key for authentication** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**シークレット**に設定した文字列です。 |
@@ -86,8 +86,12 @@
     | **The RADIUS server response timeout time** | デフォルト値の3秒では、インターネットの混雑次第ではタイムアウトする恐れがあります。タイムアウト値を長く設定することをお勧めします。(例: 10) |
 
 4. **Apply**ボタンをクリックします。
-5. **Network Security＞AAA＞ISP Domain**画面へ移動します。
-6. ＋ボタンをクリックし、新しい**Domain**を追加します。以下を設定します。
+
+#### ISP Domainの登録
+機器のウェブ管理画面から設定します。
+
+1. **Network Security＞AAA＞ISP Domain**画面へ移動します。
+2. **＋**ボタンをクリックし、新しい**Domain**を追加します。以下を設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -98,7 +102,7 @@
     | **Authentication** | **RADIUS**を選択します。先ほど登録した**RADIUS Scheme**を**Scheme**に選択します。（例: singleid_radius） |
     | **Authorization** | **RADIUS**を選択します。先ほど登録した**RADIUS Scheme**を**Scheme**に選択します。（例: singleid_radius） |
 
-7. **Apply**ボタンをクリックします。
+3. **Apply**ボタンをクリックします。
 
 #### Wireless serviceの設定（WPA/WPA2エンタープライズの場合）
 機器のウェブ管理画面から設定します。
@@ -142,7 +146,7 @@
     exit
     ```
 
-1. **Wireless service**に**周波数帯域**を関連付けます。
+2. **Wireless service**に**周波数帯域**を関連付けます。
 
     ```
     interface WLAN-Radio1/0/1 <= SSIDに関連付ける周波数帯のインターフェース
