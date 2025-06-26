@@ -7,7 +7,7 @@ SingleIDのユーザで、PacketiX VPNへVPNを使ってリモートアクセス
 ### ユーザの情報
 | **ユーザ名** | **姓（英字）** | **名（英字）** | **メールアドレス** |
 | :--- | :--- | :--- | :--- |
-| user1 | user1 | user1 | user1@poc.singleid.jp |
+| user1 | user1 | user1 | user1@example.com |
 
 !!! info
     メールアドレス: 受信可能なメールアドレスを指定してください。

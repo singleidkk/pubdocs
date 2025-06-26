@@ -211,7 +211,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     | $IdpSigningCert | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。 |
 
     ``` powershell title="PowerShellのサンプルスクリプト"
-    $domain = "xxxxx.singleid.jp" 
+    $domain = "xxxxx.example.com" 
     $IdpIssuer = "https://auth-02-0001.dev.singleid.jp/auth/realms/90000013" 
     $IdpSigningCert = "MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw…….." 
     $BrandName = "SingleID"
@@ -240,7 +240,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
     Name                            Status   Authentication
     ----                            ------   --------------
     xxxxx.onmicrosoft.com         Verified Managed
-    xxxxx.singleid.jp             Verified Federated
+    xxxxx.example.com             Verified Federated
     ```
 
 ### 動作確認（シングルサインオン）

@@ -42,7 +42,7 @@
     | **Check Point Harmony SASEの設定項目** | **設定内容** |
     | :--- | :--- |
     | **Sign in URL** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location=`　から始まる行のURLを入力します。<br><br>（例：`https://auth-02-0001.poc.singleid.jp/auth/realms/90000013/protocol/saml`） |
-    | **Domain Aliases** | 自組織のドメイン名をFQDNで設定します。（例: singleid.jp） |
+    | **Domain Aliases** | 自組織のドメイン名をFQDNで設定します。（例: example.com） |
     | **X509 Signing Certificate** | SingleIDのIdPエンドポイントメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAg3MDAwMDA4MTA……..`）をコピーして、テキストエディタに貼り付けます。そして、先頭行に、`-----BEGIN CERTIFICATE-----`の文字列をコピーして貼り付け、最終行に、`-----END CERTIFICATE-----`の文字列をコピーして貼り付け、拡張子を.pemとして保存します。<br>そして、そのファイルをアップロードします。 |
 
     [![Screenshot](/images/2025-04-23_10-46-29.png)](/images/2025-04-23_10-46-29.png)
