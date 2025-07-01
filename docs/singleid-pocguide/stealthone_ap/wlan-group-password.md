@@ -95,26 +95,6 @@ SingleIDのユーザで、STEALTHONE APの無線LANアクセスポイントへ�
 3. **適用**ボタンをクリックします。
 
 ## 動作確認方法
-### 無線LANアクセスの認証（EAP-TTLS-PAP方式のパスワード認証）
-#### Windows 10/11 の場合
+以下を参考にクライアントを設定して動作確認します。
 
-1. STEALTHONE APの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
-
-    [![Screenshot](/images/image-34.png)](/images/image-34.png)
-
-2. **SingleIDのユーザ**[参照](#ユーザの情報)の認証情報を入力し、**OK**ボタンをクリックします。
-
-    [![Screenshot](/images/image-41.png)](/images/image-41.png)
-
-3. 接続先が正しいかどうかの確認を要求されます。**証明書の詳しい内容の表示**でRADIUSサーバのサーバ証明書の情報が表示されますので、接続先の確認を行います。接続先が正しければ、**接続**ボタンをクリックします。
-
-    | **項目** | **内容** |
-    | :--- | :--- |
-    | **発行先** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのホスト名** |
-    | **発行元** | R3 |
-
-    [![Screenshot](/images/image-48.png)](/images/image-48.png)
-
-4. 接続成功したことを確認します。
-
-    [![Screenshot](/images/image-39.png)](/images/image-39.png)
+[クライアント接続設定](../clients/index.md)

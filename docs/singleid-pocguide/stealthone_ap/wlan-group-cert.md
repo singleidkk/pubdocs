@@ -93,64 +93,6 @@ SingleIDのユーザで、STEALTHONE APの無線LANアクセスポイントへ�
 3. **適用**ボタンをクリックします。
 
 ## 動作確認方法
-### 無線LANアクセスの認証（EAP-TLS方式のクライアント証明書認証）
-#### クライアント証明書のダウンロード
-1. **SingleIDシステム管理**から届いたメールを開きます。
-2. **ダウンロード**リンクをクリックします。P12形式のクライアント証明書がダウンロードされます。
-    [![Screenshot](/images/2021-09-02_19-10-04-1024x489-1.png)](/images/2021-09-02_19-10-04-1024x489-1.png)
+以下を参考にクライアントを設定して動作確認します。
 
-!!! info
-    もし、PCでメールを受信し、スマートフォンやタブレットにクライアント証明書をインストールしたい場合には、メールに添付されているQRコードを スマートフォンやタブレットで読み取ります。クライアント証明書のダウンロードURLを認識しますので、そのURLへアクセスすることで、 スマートフォンやタブレット にもクライアント証明書をダウンロードできます。
-
-
-#### クライアント証明書のインストール
-1. ダウンロードした**SingleIDのユーザ**[（参照）](#ユーザの情報)の P12形式のクライアント証明書ファイルをダブルクリックします。
-2. 保存場所として**現在のユーザー**を選択し、**次へ**ボタンをクリックします。
-
-    [![Screenshot](/images/image-certinstall-1.png)](/images/image-certinstall-1.png)
-
-3. ダウンロードしたP12形式のファイル名とパスが正しく入力されていることを確認し、**次へ**ボタンをクリックします。
-
-    [![Screenshot](/images/image-certinstall-2.png)](/images/image-certinstall-2.png)
-
-4. **パスワード**に、クライアント証明書のパスワードを入力します。クライアント証明書のパスワードは、ユーザ名[（参照）](#ユーザの情報)と同一です。**次へ**ボタンをクリックします。
-
-    [![Screenshot](/images/image-certinstall-3.png)](/images/image-certinstall-3.png)
-
-5. **証明書の種類に基づいて、自動に証明書ストアを選択する**が選択されていることを確認し、**次へ**ボタンをクリックします。
-
-    [![Screenshot](/images/image-certinstall-4.png)](/images/image-certinstall-4.png)
-
-6. **完了**ボタンをクリックし、証明書をインストールします。
-
-    [![Screenshot](/images/image-certinstall-5.png)](/images/image-certinstall-5.png)
-
-7. クライアント証明書のインストールが成功しました。
-
-    [![Screenshot](/images/image-certinstall-6.png)](/images/image-certinstall-6.png)
-
-#### STEALTHONE APの無線LANアクセスポイントへ接続（Windows 10/11 の場合）
-1. STEALTHONE APの無線LANアクセスポイントのSSIDを選択し、**接続**ボタンをクリックします。
-
-    [![Screenshot](/images/image-34.png)](/images/image-34.png)
-
-2. **証明書を使って接続する**をクリックします。
-
-    [![Screenshot](/images/image-certwifilogin-1.png)](/images/image-certwifilogin-1.png)
-
-3. 認証で使用する**SingleIDのユーザ**[（参照）](#ユーザの情報)のクライアント証明書を選択し、**OK**ボタンをクリックします。
-
-    [![Screenshot](/images/image-certwifilogin-2.png)](/images/image-certwifilogin-2.png)
-
-4. 接続先が正しいかどうかの確認を要求されます。**証明書の詳しい内容の表示**でRADIUSサーバのサーバ証明書の情報が表示されますので、接続先の確認を行います。接続先が正しければ、**接続**ボタンをクリックします。
-
-    | **項目** | **内容** |
-    | :--- | :--- |
-    | **発行先** | [RADIUSの情報](#radiusの情報)の**RADIUSサーバのホスト名** |
-    | **発行元** | R3 |
-
-    [![Screenshot](/images/image-48.png)](/images/image-48.png)
-
-5. 接続成功したことを確認します。
-
-    [![Screenshot](/images/image-39.png)](/images/image-39.png)
+[クライアント接続設定](../clients/index.md)
