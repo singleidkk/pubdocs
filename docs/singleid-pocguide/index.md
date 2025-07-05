@@ -21,7 +21,3 @@
 * [YAMAHA UTXシリーズ/ヤマハ](./yamaha_utx/index.md)　
 * [YAMAHA WLXシリーズ/ヤマハ](./yamaha_wlx/index.md)
 * [RADIUS対応無線LANアクセスポイント](./wifiap/index.md)
-
-クライアント端末の設定
-
-* [Android OS](./android/index.md)
