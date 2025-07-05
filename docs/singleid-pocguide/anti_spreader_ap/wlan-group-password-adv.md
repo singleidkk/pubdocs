@@ -39,10 +39,10 @@
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **暗号化方式**| WPA2-enterprise |
-    | **RADIUS Server** | 外部認証サーバー |
+    | **暗号化方式**| **WPA2-enterprise**を選択します。 |
+    | **RADIUS Server** | **外部認証サーバー**を選択します。 |
     | **RADIUS Server IP** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
-    | **Server Port	** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
+    | **Server Port** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
     | **アクセスパスワード** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
 
 6. **保存**ボタンをクリックします。
