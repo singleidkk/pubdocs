@@ -1,9 +1,9 @@
-# 有線LANアクセス-クライアント証明書認証
-文書更新日:2025-04-09
+# 有線LANアクセス-パスワード認証
+文書更新日:2025-07-06
 
 ## 目的
-* SingleIDのユーザで、SubGateへアクセスします。
-* 接続する際の認証方式は、クライアント証明書認証（EAP-TLS）です。
+* SingleIDのユーザで、Anti Spreader セキュアスイッチへアクセスします。
+* 接続する際の認証方式は、パスワード（PEAP、EAP-TTLS-PAP）です。
 * SingleIDの拡張RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
 
@@ -19,14 +19,6 @@
 3. **ユーザ登録**画面の**基本情報**を入力します。**グループ**タブをクリックします。
 4. メンバーとなるグループを選択し、**登録**ボタンをクリックします。
 
-### SingleIDのクライアント証明書の発行
-1. **SingleID 管理者ポータル＞ユーザ**タブへ移動します。
-2. クライアント証明書を発行したいユーザの行にある**チェックボックス**を選択します。
-3. **選択実行**ボタンの▼をクリックし、プルダウンメニューの**証明書の発行**を選択します。
-4. **証明書発行**画面がポップアップします。
-5. **プロファイル**（例：デフォルト）および**配布形式**（例：一般）を選択します。
-6. **発行**ボタンをクリックして、クライアント証明書を発行します。ユーザのメールアドレス宛に発行されたクライアント証明書のダウンロードリンクが送信されます。
-
 ### SingleIDの拡張RADIUSサーバの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞基本設定**タブへ移動します。
 2. **拡張RADIUSサーバ＞RADIUSポート番号**の**登録**ボタンをクリックします。**拡張RADIUSサーバの登録**画面がポップアップします。
@@ -38,8 +30,8 @@
 
 3. **登録**ボタンをクリックします。専用のRADIUSポート番号が割り当てれます。
 
-### SubGateの設定
-1. SubGateにCLIでログインして設定します。
+### Anti Spreader セキュアスイッチの設定
+1. Anti Spreader セキュアスイッチにCLIでログインして設定します。
 
     !!! info
         GUIでは、802.1x認証の設定を行うことはできません。
@@ -91,7 +83,7 @@
     | **RADIUSサーバのセカンダリIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
     | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
     | **RADIUSクライアントのシークレット** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
-    | **送信元のIPアドレス** | [SubGateの設定](#subgateの設定)の手順で設定した**送信元のIPアドレス**です。 |
+    | **送信元のIPアドレス** | [Anti Spreader セキュアスイッチの設定](#Anti Spreader セキュアスイッチの設定)の手順で設定した**送信元のIPアドレス**です。 |
 
     ```
     SG2412G(config)#aaa system-aaa-ctrl
@@ -131,14 +123,14 @@
     SG2412G(config)#write memory
     ```
 
-[SubGateのサンプルコンフィグ1 ダウンロード](./networkauth-subgate-switch-sampleconfig.txt){ target=_blank .md-button .md-button--primary }
+[Anti Spreader セキュアスイッチのサンプルコンフィグ1 ダウンロード](./networkauth-antispreader-switch-sampleconfig.txt){ target=_blank .md-button .md-button--primary }
 
-[SubGateのサンプルコンフィグ2 ダウンロード](./networkauth-subgate-switch-sampleconfig-mab.txt){ target=_blank .md-button .md-button--primary }
+[Anti Spreader セキュアスイッチのサンプルコンフィグ2 ダウンロード](./networkauth-antispreader-switch-sampleconfig-mab.txt){ target=_blank .md-button .md-button--primary }
 
-[SubGateのサンプルコンフィグ3 ダウンロード](./networkauth-subgate-switch-sampleconfig-mab-dvlan.txt){ target=_blank .md-button .md-button--primary }
+[Anti Spreader セキュアスイッチのサンプルコンフィグ3 ダウンロード](./networkauth-antispreader-switch-sampleconfig-mab-dvlan.txt){ target=_blank .md-button .md-button--primary }
 
 ### サイト識別する属性の確認方法
-SubGateが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
+Anti Spreader セキュアスイッチが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
 
 1. [動作確認方法](#動作確認方法)に従って、認証を試みます。
 2. 認証が失敗します。
@@ -148,7 +140,7 @@ SubGateが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性
 ### SingleIDのRADIUSサイトの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**タブへ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**SubGate**の**登録**ボタンをクリックします。**SubGate**画面がポップアップします。
+3. カタログから**Anti Spreader セキュアスイッチ**の**登録**ボタンをクリックします。**Anti Spreader セキュアスイッチ**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -163,8 +155,7 @@ SubGateが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
 
     !!! info
-        * **証明書認証（EAP-TLS）のみ許可**を**有効**にすると、クライアント証明書認証以外の認証方式のアクセスを拒否します。
-        * 認証したユーザおよびグループにVLAN IDを割り当てたい場合には、**VLAN ID**入力欄に、割り当てたい**VLAN ID**を入力します。
+        認証したユーザおよびグループにVLAN IDを割り当てたい場合には、**VLAN ID**入力欄に、割り当てたい**VLAN ID**を入力します。
 
 7. **MACアドレス認証バイパス**タブへ移動します。
 8. 802.1x認証をサポートしていないデバイスの**MACアドレス**を大文字英数字の**ハイフン区切り**で入力します。（例：00-E1-5C-68-16-04）
@@ -180,8 +171,8 @@ SubGateが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性
 [クライアント接続設定](../clients/index.md)
 
 ### MACアドレス認証バイパス
-1. **802.1x認証を無効にした**PCをSubGateの802.1x認証を有効にしたポートへ接続します。
+1. **802.1x認証を無効にした**PCをAnti Spreader セキュアスイッチの802.1x認証を有効にしたポートへ接続します。
 2. １分間ほど待ち、ネットワークへ接続できたことを確認します。
 
     !!! info
-        SubGateで`#show dot1x brief`コマンドを実行して、接続状況を確認できます。
+        Anti Spreader セキュアスイッチで`#show dot1x brief`コマンドを実行して、接続状況を確認できます。

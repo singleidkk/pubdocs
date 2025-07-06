@@ -130,7 +130,7 @@
 [SubGateのサンプルコンフィグ3 ダウンロード](./networkauth-subgate-switch-sampleconfig-mab-dvlan.txt){ target=_blank .md-button .md-button--primary }
 
 ### サイト識別する属性の確認方法
-YAMAHA WLXが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
+SubGateが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
 
 1. [動作確認方法](#動作確認方法)に従って、認証を試みます。
 2. 認証が失敗します。
