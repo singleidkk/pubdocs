@@ -19,6 +19,13 @@
 2. [Wired AutoConfigサービスの有効化](./windows_setup_wired_auto_config.md)
 3. [クライアント証明書で有線LANアクセスの認証](./windows_setup_wired_cert.md)
 
+## iOS/iPadOS
+### 無線LAN接続
+#### クライアント証明書認証
+
+1. [クライアント証明書のインストール](./ios_ipados_install_cert.md)
+2. [クライアント証明書で無線LANアクセスの認証](./ios_ipados_setup_wlan_cert.md)
+
 ## Android
 ### 無線LAN接続
 #### クライアント証明書認証
