@@ -1,4 +1,4 @@
-# Cisco Meraki 無線LANアクセスポイントの設定例一覧
+# Cisco Meraki 無線LANアクセスポイント(MRシリーズ)の設定例一覧
 
 ## 検証環境
 
