@@ -10,9 +10,6 @@
 | **ソフトウェアバージョン** | MR 30.5 |
 | **検証機種** | MR28 |
 
-## クラウドRADIUSと連携可能な製品の確認方法
-[メーカーの製品ページ](https://meraki.cisco.com/ja-jp/products/wi-fi/models/){ target=_blank }から、各モデルの**Product Datasheet**へアクセスし、**Security**の項目に**EAP-TLS**が記載されている製品です。
-
 ## パスワード認証
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-password.md)/[拡張](wlan-group-password-adv.md) [^1]
 

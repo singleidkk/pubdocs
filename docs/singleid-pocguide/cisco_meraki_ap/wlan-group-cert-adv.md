@@ -50,7 +50,7 @@
     | **サーバ** | **拡張**を選択します。 |
     | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順で登録したサーバ番号を選択します。 |
     | **サイト識別する属性** | **NAS-ID**を選択します。 |
-    | **属性値** | 任意の文字列を設定します。(例: singleid)<br>ここで設定した文字列を[Cisco Meraki 無線LANアクセスポイントの設定](#cisco-meraki-無線lanアクセスポイントの設定)の手順で設定するNAS-IDにも設定します。<br>**サイト識別する属性**に**NAS-ID**を選択した場合、実際にネットワーク機器から送信される属性値に対して、ここの設定項目で設定した文字列で**部分一致検索**します。 |        
+    | **属性値** | 任意の文字列を設定します。(例: cisco_meraki_ap)<br>ここで設定した文字列を[Cisco Meraki 無線LANアクセスポイントの設定](#cisco-meraki-無線lanアクセスポイントの設定)の手順で設定するNAS-IDにも設定します。<br>**サイト識別する属性**に**NAS-ID**を選択した場合、実際にネットワーク機器から送信される属性値に対して、ここの設定項目で設定した文字列で**部分一致検索**します。 |        
 
 5. **無線アクセスの認証**タブへ移動します。
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
@@ -91,7 +91,7 @@
     | **Secret** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
     | **Advanced RADIUS settings** ||  
     | **Called-station-ID** | デフォルトの設定のままにします。(デフォルト設定: 1. **AP MAC Address**、2. **SSID name**) <br>**注意**: 設定を変更すると、SingleIDが正しくRADIUSリクエストを認識できなくなります。 |
-    | **NAS-ID** | デフォルトの設定に、[SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順で設定したNAS-IDの文字列を**Custom**として追加します。(例: **AP MAC Address**、2. **SSID number**、3. **Custom**: singleid) |
+    | **NAS-ID** | デフォルトの設定に、[SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順で設定したNAS-IDの文字列を**Custom**として追加します。(例: **AP MAC Address**、2. **SSID number**、3. **Custom**: cisco_meraki_ap) |
     | **Server timeout** | タイムアウト値を長くします。(推奨値: 10秒、デフォルト値: 1秒) |
 
     * (RADIUS属性のVLAN IDを割り当てる場合)**Client IP and VLAN**
