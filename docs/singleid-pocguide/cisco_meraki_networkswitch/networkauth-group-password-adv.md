@@ -73,7 +73,7 @@
     | **Auth** | チェックボックスにチェックします。 |
     | **Port** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
     | **Connection** ||
-    | **Policy Type** | **Hybrid authentication**を選択します。 |
+    | **Policy Type** | MACアドレス認証バイパスを利用する場合は、**Hybrid authentication**、利用しない場合は、**802.1X**を選択します。 |
     | **Host mode** | **Single-Host**を選択します。<br><br>**注意**: 選択するモードや環境によっては、RADIUSレスポンスに、Cisco-AVPair属性(device-traffic-class=voice)が必要な場合があります。SingleIDは、Cisco-AVPair属性をサポートしておりません。詳細は、[Cisco Merakiの技術情報/MS Switch Access Policies (802.1X)](https://documentation.meraki.com/MS/Access_Control/MS_Switch_Access_Policies_(802.1X)){ target=_blank }を参照してください。 |
     | **802.1X control direction** | **both**を選択します。 |
 
