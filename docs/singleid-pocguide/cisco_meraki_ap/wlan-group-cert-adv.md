@@ -63,29 +63,25 @@
 
 ### Cisco Meraki 無線LANアクセスポイントの設定
 1. Cisco Merakiの管理画面へログインします。
-2. **Wireless＞SSIDs**画面へ移動します。
-3. 未使用のSSIDの列に、以下を設定し、**Save Changes**ボタンをクリックします。
+2. **Wireless＞Access Control**画面へ移動します。
+3. 未使用のSSIDを選択し、以下を設定します。
+
+    * **Basic info**
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Enabled**| **Enabled**を選択します。 |
-    | **Name** | **rename**をクリックし、任意の文字列を設定します。（例: cisco_meraki） |
-
-4. **Access Control**列の**edit settings**をクリックします。**Wireless＞Access control**画面が開きます。
-5. **Basic info**を設定します。
-
-    | **設定項目** | **設定内容** |
-    | :--- | :--- |
+    | **SSID (name)** | 任意の文字列を設定します。（例: cisco_meraki） |
+    | **SSID status**| **Enabled**を選択します。 |
     | **Hide SSID** | SSIDを公開する場合には、チェックボックスのチェックを外します。 |
 
-6. **Security**を設定します。
+    * **Security**
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **Security** | **Enterprise with**を選択し、**My RADIUS Server**を選択します。 |
     | **WPA encryption** | 無線LANクライアントがサポートする暗号方式を選択します。(例: wpa2 only) |
 
-6. **RADIUS**を設定します。
+    * **RADIUS**
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -98,14 +94,14 @@
     | **NAS-ID** | デフォルトの設定に、[SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順で設定したNAS-IDの文字列を**Custom**として追加します。(例: **AP MAC Address**、2. **SSID number**、3. **Custom**: singleid) |
     | **Server timeout** | タイムアウト値を長くします。(推奨値: 10秒、デフォルト値: 1秒) |
 
-7. RADIUS属性のVLAN IDを割り当てる場合には、**Client IP and VLAN**を設定します。
+    * (RADIUS属性のVLAN IDを割り当てる場合)**Client IP and VLAN**
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **方式** | **External DHCP server assigned**を選択します。 |
+    | **DHCP** | **External DHCP server assigned**を選択します。 |
     | **RADIUS override** | **Override VLAN tag**を選択します。 |
 
-8. **Save**ボタンをクリックします。
+4. **Save**ボタンをクリックします。
 
 ## 動作確認方法
 以下を参考にクライアントを設定して動作確認します。
