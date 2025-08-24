@@ -5,6 +5,7 @@
 * [Anti Spreader アクセスポイント/宝情報](./anti_spreader_ap/index.md)
 * [Anti Spreader セキュアスイッチ/宝情報](./anti_spreader_switch/index.md)
 * [Buffalo AirStation Pro/バッファロー](./buffalo_airstation_pro/index.md)
+* [Cisco Meraki 無線LANアクセスポイント/Cisco](./cisco_meraki_ap/index.md)
 * [Check Point Quantum Spark/チェックポイントソフトウェアテクノロジーズ](./checkpoint/index.md)
 * [Firebox/ウォッチガード・テクノロジー・ジャパン](./firebox/index.md)
 * [FortiGate NGFW/フォーティネットジャパン](./fortigate/index.md)
