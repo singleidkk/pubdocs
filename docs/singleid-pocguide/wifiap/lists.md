@@ -9,7 +9,6 @@
 
 * Hypersonix クラウドアクセスポイント/網屋
 * Juniper Mist/Juniper
-* Meraki Wi-Fiアクセス ポイント/Cisco
 * NETGEAR ワイヤレスアクセスポイント/NETGEAR
 * RUCKUS ワイヤレス アクセスポイント/RUCKUS Networks
 * ギガらくWi-Fi/NTT東日本

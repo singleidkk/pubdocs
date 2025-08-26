@@ -10,23 +10,13 @@
 | **ソフトウェアバージョン** | MX 18.211 |
 | **検証機種** | MX67 |
 
-## L2TP/IPSec 共有鍵方式 接続
-### パスワード認証
-* リモートアクセスVPN ユーザ/グループによるアクセス制限 [標準](vpn-group-password.md) [^1]
-
-### 2要素認証（パスワード認証＋ワンタイムパスワード認証）
-* リモートアクセスVPN ユーザ/グループによるアクセス制限 [標準](vpn-group-otp.md) [^1]
-
-## Cisco Secure Client 接続
-### パスワード認証
-
-近日公開
+## パスワード認証
+* リモートアクセスVPN(L2TP/IPSec) グループによるアクセス制限 [標準](vpn-group-password.md) [^1]
+* リモートアクセスVPN(Cisco Secure Client) グループによるアクセス制限 [標準](vpn-group-password-secureconnect.md) [^1]
 
 ## ２要素認証（パスワード＋クライアント証明書認証）
-
-近日公開
+* リモートアクセスVPN(Cisco Secure Client) グループによるアクセス制限 [標準](vpn-group-password-cert-secureconnect.md) [^1]
 
 [^1]:
   * 標準：標準RADIUSサーバを利用した設定方法です。
   * 機器が送信しているRADIUSリクエストにNAS-ID属性はなく、NAS-IDには、機器のIPアドレスが含まれていないため、拡張RADIUSサーバは利用できません。
-  * 固定グローバルIPをもたないインターネット接続環境の場合には、拡張RADIUSサーバを利用した設定方法を参考にしてください。

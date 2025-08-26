@@ -1,8 +1,8 @@
-# リモートアクセスVPN-パスワード認証
+# リモートアクセスVPN(L2TP/IPSec)-パスワード認証
 文書更新日:2025-08-24
 
 ## 目的
-* SingleIDのユーザで、Cisco Meraki セキュリティ&SD-WANへVPNを使ってリモートアクセスします。
+* SingleIDのユーザで、Cisco Meraki セキュリティ&SD-WANへVPN(L2TP/IPSec)を使ってリモートアクセスします。
 * 接続する際の認証方式は、パスワードです。
 * SingleIDの標準RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
