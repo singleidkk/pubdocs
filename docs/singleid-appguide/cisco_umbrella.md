@@ -22,8 +22,7 @@
     | :--- | :--- |
     | **SSO 有効/無効** | **有効**を選択します。 |
     | **IdP エンドポイントメタデータ** | **ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、[Cisco UmbrellaのSAML認証設定](#cisco-umbrellaのsaml認証設定)の手順を行う際に必要となります。 |
-    | **証明書** | [Cisco UmbrellaのSAML認証設定](#cisco-umbrellaのsaml認証設定)の
-    手順でダウンロードしたメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。<br>**注意**: <ds:X509Certificate>のタグが2つある場合には、後の証明書を使用してください。 |    
+    | **証明書** | [Cisco UmbrellaのSAML認証設定](#cisco-umbrellaのsaml認証設定)の手順でダウンロードしたメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。<br>**注意**: <ds:X509Certificate>のタグが2つある場合には、後の証明書を使用してください。 |    
     | **NameIDフォーマット** | **username**を入力します。 |
 
     [![Screenshot](/images/2025-08-27_16-50-29.png)](/images/2025-08-27_16-50-29.png)
