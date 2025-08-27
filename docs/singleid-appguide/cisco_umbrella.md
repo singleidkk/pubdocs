@@ -21,8 +21,9 @@
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **SSO 有効/無効** | **有効**を選択します。 |
-    | **IdP エンドポイントメタデータ** | **ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、[Cisco UmbrellaのSAML認証設定](#check-point-harmony-saseのsaml認証設定)の手順を行う際に必要となります。 |
-    | **証明書** | Cisco Umbrellaからダウンロードしたメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。<br>**注意**: <ds:X509Certificate>のタグが2つある場合には、後の証明書を使用してください。 |    
+    | **IdP エンドポイントメタデータ** | **ダウンロード**ボタンをクリックし、メタデータを取得します。このメタデータは、[Cisco UmbrellaのSAML認証設定](#cisco-umbrellaのsaml認証設定)の手順を行う際に必要となります。 |
+    | **証明書** | [Cisco UmbrellaのSAML認証設定](#cisco-umbrellaのsaml認証設定)の
+    手順でダウンロードしたメタデータのファイルを開きます。<br>`<ds:X509Certificate>`タグ内のMIIで始まる文字列（例：`MIICnzCCAYcCBgF/zubcKTANBgkqhkiG9w0BAQsFADATMREwDw……..`）をコピーして、入力します。<br>**注意**: <ds:X509Certificate>のタグが2つある場合には、後の証明書を使用してください。 |    
     | **NameIDフォーマット** | **username**を入力します。 |
 
     [![Screenshot](/images/2025-08-27_16-50-29.png)](/images/2025-08-27_16-50-29.png)
@@ -46,7 +47,7 @@
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **Other メタデータの設定** | **XMLファイルのアップロード**を選択します。 |
-    | **Umbrellaメタデータファイルのダウンロード** | **XMLファイル**をダウンロードします。 |
+    | **Umbrellaメタデータファイルのダウンロード** | **XMLファイル**をダウンロードします。[SingleIDのアプリ連携設定](#singleidのアプリ連携設定)の手順で必要となります。 |
 
     [![Screenshot](/images/2025-08-27_17-03-24.png)](/images/2025-08-27_17-03-24.png)
 
@@ -54,7 +55,7 @@
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Other メタデータXMLアップロード** | **XMLファイル**をアップロードします。 |
+    | **Other メタデータXMLアップロード** | [SingleIDのアプリ連携設定](#singleidのアプリ連携設定)の手順でダウンロードしたメタデータをアップロードします。 |
 
     [![Screenshot](/images/2025-08-27_17-10-52.png)](/images/2025-08-27_17-10-52.png)
 
@@ -88,13 +89,13 @@
 
 ## 動作確認
 ### SAML連携テスト 
-1. **Cisco UmbrellaのWeb管理コンソール＞導入＞設定＞SAML設定**画面へ移動します。2. 構成ボタンをクリックします。
+1. **Cisco UmbrellaのWeb管理コンソール＞導入＞設定＞SAML設定**画面へ移動します。**テスト構成**ボタンをクリックします。
 
     [![Screenshot](/images/2025-08-27_17-32-41.png)](/images/2025-08-27_17-32-41.png)
 
-2. SingleIDのログイン画面が表示されます。すでに、SingleIDへログイン中であれば、ログイン画面は表示されません。
+3. SingleIDのログイン画面が表示されます。すでに、SingleIDへログイン中であれば、ログイン画面は表示されません。
    
     [![Screenshot](/images/image-7-1024x462.png)](/images/image-7-1024x462.png)
 
-3. SingleIDの認証に成功すると**SAML Configuration Test completed successfully.**と表示されます。
+4. SingleIDの認証に成功すると**SAML Configuration Test completed successfully.**と表示されます。
     [![Screenshot](/images/2025-08-27_17-36-27.png)](/images/2025-08-27_17-36-27.png)
