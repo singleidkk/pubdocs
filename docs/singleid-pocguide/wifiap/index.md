@@ -1,6 +1,6 @@
 # RADIUS対応無線LANアクセスポイントの設定例一覧
 
-[動作実績のある無線LANアクセスポイント一覧](./lists.md)
+[カタログには掲載されていないが、動作実績のある無線LANアクセスポイント一覧](./lists.md)
 
 ## パスワード認証
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-password.md)/[拡張](wlan-group-password-adv.md) [^1]
