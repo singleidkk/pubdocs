@@ -1,3 +1,5 @@
+[![バナー画像](/images/2025-09-29_7-27-28.png)](https://www.singleid.jp/yamaha-rtx-vpn-mfa/)
+
 # YAMAHA WLXの設定例一覧
 ## パスワード認証
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-password.md)/[拡張](wlan-group-password-adv.md) [^1]
