@@ -24,5 +24,3 @@
 * [YAMAHA UTXシリーズ/ヤマハ](./yamaha_utx/index.md)　
 * [YAMAHA WLXシリーズ/ヤマハ](./yamaha_wlx/index.md)
 * [RADIUS対応無線LANアクセスポイント](./wifiap/index.md)
-
-[![バナー画像](/images/2025-09-29_7-27-28.png)](https://www.singleid.jp/yamaha-rtx-vpn-mfa/)
