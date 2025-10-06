@@ -10,9 +10,8 @@
 * 管理者ログイン ユーザ/グループによるアクセス制限 [標準](adminlogin-group-otp.md)/[拡張](adminlogin-group-otp-adv.md) [^1]
 
 !!! info
-  2要素認証に、PAP認証を使用することに不安を感じるお客様へ
-  
-  [誤解されている「PAP認証のリスク」](pap_authentication_risk_misunderstanding.md)をご確認ください。
+    2要素認証に、PAP認証を使用することに不安を感じるお客様へ  
+    [誤解されている「PAP認証のリスク」](pap_authentication_risk_misunderstanding.md)をご確認ください。
 
 
 [^1]:
