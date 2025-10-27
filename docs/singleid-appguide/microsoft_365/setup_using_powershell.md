@@ -51,9 +51,9 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 ## シングルサインオンおよびプロビジョニング設定
 ### M365のアプリ登録
 1. [Azureポータル](https://portal.azure.com){target=_blank}へグローバル管理者でログインします。
-2. **Azure Active Directory**管理画面に移動します。（画面上部の検索ボックスに**Active**と入力し、表示された**Azure Active Directory**をクリックします。）
+2. **Microsoft Entra ID**管理画面に移動します。（画面上部の検索ボックスに**entra**と入力し、表示された**Microsoft Entra ID**をクリックします。）
 
-    [![Screenshot](/images/2022-09-26_7-46-39.png)](/images/2022-09-26_7-46-39.png)
+    [![Screenshot](/images/2025-10-27_14-38-28.png)](/images/2025-10-27_14-38-28.png)
 
 3. サイドメニューから**アプリの登録**をクリックします。
 
@@ -262,9 +262,9 @@ Microsoftのドキュメントによると、フェデレーション（SAML）�
 **セキュリティの既定値**が**有効化**されています。以下の手順に従い、**無効化**します。
 
 1. [Azureポータル](https://portal.azure.com){target=_blank}へグローバル管理者でログインします。
-2. **Azure Active Directory**管理画面に移動します。（画面上部の検索ボックスに**Active**と入力し、表示された**Azure Active Directory**をクリックします。）
+2. **Microsoft Entra ID**管理画面に移動します。（画面上部の検索ボックスに**entra**と入力し、表示された**Microsoft Entra ID**をクリックします。）
 
-    [![Screenshot](/images/2022-09-26_7-46-39.png)](/images/2022-09-26_7-46-39.png)
+    [![Screenshot](/images/2025-10-27_14-38-28.png)](/images/2025-10-27_14-38-28.png)
 
 3. サイドメニューから**プロパティ**をクリックします。
 4. **セキュリティの既定値の管理**をクリックします。
@@ -279,9 +279,9 @@ Microsoftのドキュメントによると、フェデレーション（SAML）�
 M365の**パスワード リセットのセルフサービス**が**有効**となっています。SingleIDで認証するユーザに対して、M365のセルフパスワードリセットを**無効化**します。
 
 1. [Azureポータル](https://portal.azure.com){target=_blank}へグローバル管理者でログインします。
-2. **Azure Active Directory**管理画面に移動します。（画面上部の検索ボックスに**Active**と入力し、表示された**Azure Active Directory**をクリックします。）
+2. **Microsoft Entra ID**管理画面に移動します。（画面上部の検索ボックスに**entra**と入力し、表示された**Microsoft Entra ID**をクリックします。）
 
-    [![Screenshot](/images/2022-09-26_7-46-39.png)](/images/2022-09-26_7-46-39.png)
+    [![Screenshot](/images/2025-10-27_14-38-28.png)](/images/2025-10-27_14-38-28.png)
 
 3. サイドメニューから**ユーザ**をクリックします。
 4. サイドメニューから**パスワードリセット**をクリックします。
