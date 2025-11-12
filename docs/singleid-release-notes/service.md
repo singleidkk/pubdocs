@@ -1,4 +1,31 @@
 # 製品版
+## 2025-11-12
+
+<!--
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 11.1.1 |
+| radius dictionary | 1.5.0 |
+| www | 4.1.9 |
+| pki | 8.0.1 |
+| scep | 1.1.3 |
+| scep_intune | 1.0.1 |
+| report | 2.3.1 |
+| provisioning | **12.0.2** |
+| provisioning appdata | 7.15.1 |
+| tun | 3.4.5 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **2.6.2** |
+-->
+
+### 修正
+**アプリ連携**
+
+* groupTypes属性のないグループがEntraIDに存在するとEntraIDへのユーザ同期に失敗する問題を修正 
+
 ## 2025-10-02
 
 <!--
