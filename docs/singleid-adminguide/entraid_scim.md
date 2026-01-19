@@ -1,4 +1,4 @@
-# Microsoft Entra ID（SCIM）による SingleID ユーザー／グループ同期マニュアル（ドラフト）
+# Microsoft Entra ID（SCIM）による SingleID ユーザー／グループ同期
 
 ## 1. 目的と概要
 
@@ -228,12 +228,26 @@ SingleID 連携では、基本的に**デフォルトのマッピングのまま
 
 ## 8. プロビジョニング動作仕様
 
+### 8.0 同期のキー（重要）
+
+SingleID の SCIM プロキシ実装では、Microsoft Entra ID からの SCIM リクエストに含まれる **userName（通常は UPN）** を、SingleID の **username** として取り込み、これを既存ユーザー判定のキーとして利用します。
+
+* 既存ユーザー判定：`GET /Users?filter=userName eq "xxx@domain"` の `userName` を参照し、SingleID 側では `xxx`（`@` 以降を除いた値）で検索します。
+* ユーザー作成：リクエストボディの `userName` が SingleID の `username` にマッピングされます（`@` 以降は除外）。
+* ユーザー更新/無効化：作成・検索結果として返却された SingleID の `id`（`/Users/{id}`）をキーに処理します。
+* `externalId`：本同期処理では参照しません。
+
+!!! warning
+    `@` 以降が切り捨てられるため、`userName` のローカル部（`@` より前）が重複するユーザーが存在すると、意図しないユーザーに紐づく可能性があります。Microsoft Entra ID 側で `userName`（UPN）の運用ルールを確認してください。
+
 ### 8.1 同期される操作
 
 | Microsoft Entra ID 操作 | SingleID 側の動作 |
 | --- | --- |
 | ユーザー追加 | ユーザー作成 |
-| 属性変更 | ユーザー更新 |
+| ユーザー属性変更 | ユーザー更新 |
+| ユーザー割当解除 / ユーザー無効化 / ユーザー論理削除 | ユーザー無効化 |
+| ユーザー物理削除 | ユーザー削除 |
 | グループ作成 | グループ作成 |
 | メンバー追加/削除 | グループメンバー更新 |
 
