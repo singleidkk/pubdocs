@@ -1,4 +1,5 @@
 # Microsoft Entra ID（SCIM）による SingleID ユーザー／グループ同期
+文書更新日:2026-01-19
 
 ## 1. 目的と概要
 
@@ -15,11 +16,26 @@
 
 ## 2. 前提条件
 
-以下の条件を満たしている必要があります。
+この手順を実施する前に、以下を確認してください。
+
+### 必要な権限・準備
 
 * Microsoft Entra ID（Microsoft Entra テナント）が利用可能であること
-* SingleID にて **SCIM エンドポイントが有効化** されていること
-* Microsoft Entra ID にて **エンタープライズ アプリケーションを作成できる権限** を有していること
+* Microsoft Entra ID にて、**エンタープライズ アプリケーションの作成**および**プロビジョニング設定**ができる権限を有していること
+* SingleID テクニカルサポートへ連絡できること（シークレット トークン発行のため）
+* SingleID のアカウント番号、Microsoft Entra ID のテナント ID を確認できること
+
+### UPN の運用（重要）
+
+SingleID では、Microsoft Entra ID の**ユーザー プリンシパル名（UPN）**を元にユーザーを識別します（SingleID 側のユーザー名は UPN の`@`より前の部分が利用されます）。
+
+* 同期対象ユーザーの UPN の`@`より前の部分が、テナント内で重複していないこと
+
+    例：`user1@a.example` と `user1@b.example` は重複扱い
+* 同期開始後に、同期対象ユーザーの UPN を変更しない運用にできること
+
+!!! warning
+    上記が満たせない場合、SCIM 連携が正常に動作しない（または意図しないユーザーに紐づく）可能性があります。
 
 ### 対応エディション（Microsoft Entra ID）
 
@@ -176,22 +192,6 @@ SingleID 連携では、基本的に**デフォルトのマッピングのまま
 | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:department | department |
 | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:manager | manager |
 
-#### SingleIDへ同期されるユーザー項目
-
-* ユーザー名：Microsoft Entra ID の**ユーザー プリンシパル名（UPN）**の`@`より前の部分
-* 名：`givenName`
-* 姓：`surname`
-* メールアドレス：`mail`
-* 携帯電話：`mobile`
-* 勤務先の電話番号：`telephoneNumber`
-* 郵便番号：`postalCode`
-* 都道府県：`state`
-* 市区町村：`city`
-* 番地：`streetAddress`
-* 部署：`department`
-* 役職：`jobTitle`
-* アカウントの有効/無効：`active`
-
 ---
 
 ### 6.2 グループ属性マッピング（Groups）
@@ -244,22 +244,37 @@ SingleID 連携では、基本的に**デフォルトのマッピングのまま
 
 ## 8. プロビジョニング動作仕様
 
-### 8.0 同期のキー（重要）
+この章では、同期の動作（どの項目が同期されるか／どの操作が反映されるか）を説明します。
 
-SingleID の SCIM プロキシ実装では、Microsoft Entra ID からの SCIM リクエストに含まれる **userName（通常は UPN）** を、SingleID の **username** として取り込み、これを既存ユーザー判定のキーとして利用します。
+### 8.0 SingleIDへ同期されるユーザー項目
 
-* 既存ユーザー判定：`GET /Users?filter=userName eq "xxx@domain"` の `userName` を参照し、SingleID 側では `xxx`（`@` 以降を除いた値）で検索します。
-* ユーザー作成：リクエストボディの `userName` が SingleID の `username` にマッピングされます（`@` 以降は除外）。
-* ユーザー更新/無効化：作成・検索結果として返却された SingleID の `id`（`/Users/{id}`）をキーに処理します。
-* `externalId`：本同期処理では参照しません。
+SingleID に同期される主なユーザー項目は以下です。
+
+* ユーザー名：Microsoft Entra ID の**ユーザー プリンシパル名（UPN）**の`@`より前の部分
+* 名：`givenName`
+* 姓：`surname`
+* メールアドレス：`mail`
+* 携帯電話：`mobile`
+* 勤務先の電話番号：`telephoneNumber`
+* 郵便番号：`postalCode`
+* 都道府県：`state`
+* 市区町村：`city`
+* 番地：`streetAddress`
+* 部署：`department`
+* 役職：`jobTitle`
+* アカウントの有効/無効：`active`
+
+### 8.1 同期のキー（重要）
+
+SingleID では、Microsoft Entra ID から同期されるユーザーを **ユーザー プリンシパル名（UPN）** を元に識別します。SingleID 側のユーザー名は、UPN の `@` より前の部分が利用されます。
 
 !!! warning
-    `@` 以降が切り捨てられるため、`userName` のローカル部（`@` より前）が重複するユーザーが存在すると、意図しないユーザーに紐づく可能性があります。Microsoft Entra ID 側で `userName`（UPN）の運用ルールを確認してください。
+    UPN の `@` より前の部分が同じユーザーが複数いると、意図しないユーザーに紐づく可能性があります。UPN の運用ルール（重複しないこと）を確認してください。
 
 !!! warning
-    Microsoft Entra ID 側で `userName`（UPN）を変更した場合、SingleID 側ではユーザ名（username）の変更が許可されていないため、不整合が発生します。運用上、同期対象ユーザーの UPN を変更しないでください。
+    UPN を変更すると、SingleID 側のユーザー名と一致しなくなり不整合が発生します。運用上、同期対象ユーザーの UPN は変更しないでください。
 
-### 8.1 同期される操作
+### 8.2 同期される操作
 
 | Microsoft Entra ID 操作 | SingleID 側の動作 |
 | --- | --- |
@@ -272,7 +287,7 @@ SingleID の SCIM プロキシ実装では、Microsoft Entra ID からの SCIM �
 
 ---
 
-### 8.2 同期タイミング
+### 8.3 同期タイミング
 
 * 初回同期：プロビジョニング有効化後に自動実行
 * 定期同期／反映タイミング：Microsoft Entra ID 側の仕様に従います（最新情報は Microsoft の公式ドキュメントを参照してください）
