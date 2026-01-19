@@ -176,6 +176,22 @@ SingleID 連携では、基本的に**デフォルトのマッピングのまま
 | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:department | department |
 | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:manager | manager |
 
+#### SingleIDへ同期されるユーザー項目
+
+* ユーザー名：Microsoft Entra ID の**ユーザー プリンシパル名（UPN）**の`@`より前の部分
+* 名：`givenName`
+* 姓：`surname`
+* メールアドレス：`mail`
+* 携帯電話：`mobile`
+* 勤務先の電話番号：`telephoneNumber`
+* 郵便番号：`postalCode`
+* 都道府県：`state`
+* 市区町村：`city`
+* 番地：`streetAddress`
+* 部署：`department`
+* 役職：`jobTitle`
+* アカウントの有効/無効：`active`
+
 ---
 
 ### 6.2 グループ属性マッピング（Groups）
@@ -239,6 +255,9 @@ SingleID の SCIM プロキシ実装では、Microsoft Entra ID からの SCIM �
 
 !!! warning
     `@` 以降が切り捨てられるため、`userName` のローカル部（`@` より前）が重複するユーザーが存在すると、意図しないユーザーに紐づく可能性があります。Microsoft Entra ID 側で `userName`（UPN）の運用ルールを確認してください。
+
+!!! warning
+    Microsoft Entra ID 側で `userName`（UPN）を変更した場合、SingleID 側ではユーザ名（username）の変更が許可されていないため、不整合が発生します。運用上、同期対象ユーザーの UPN を変更しないでください。
 
 ### 8.1 同期される操作
 
