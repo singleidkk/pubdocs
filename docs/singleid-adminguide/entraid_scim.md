@@ -32,6 +32,7 @@ SingleID では、Microsoft Entra ID の**ユーザー プリンシパル名（U
 * 同期対象ユーザーの UPN の`@`より前の部分が、テナント内で重複していないこと
 
     例：`user1@a.example` と `user1@b.example` は重複扱い
+
 * 同期開始後に、同期対象ユーザーの UPN を変更しない運用にできること
 
 !!! warning
@@ -46,9 +47,7 @@ SingleID の SCIM 連携機能は、以下の Microsoft Entra ID エディショ
 * Microsoft Entra ID Governance
 * Microsoft Entra Suite（P1 / P2 機能を含む）
 
-以下は動作保証外（サポート対象外）です。
-
-* Microsoft Entra ID Free
+Microsoft Entra ID Free については、グループ プロビジョニングが利用できないため、本書の前提（ユーザー／グループ同期）を満たしません。ユーザー プロビジョニングは可能な場合がありますが、SingleID では Free エディションでの検証を行っていないため推奨しません（検証予定）。
 
 参考（Microsoft Learn）
 
@@ -126,10 +125,11 @@ SingleID から、以下の情報が提供されます（Microsoft Entra ID 側�
     | **割り当てが必要ですか?** | **はい** |
     | **ユーザーに表示しますか?** | **いいえ** |
 
-設定理由：
-
-* 本アプリは SCIM 同期用途のため、エンドユーザーのサインインや表示は不要です。
-* 同期対象をアプリに割り当てたユーザー／グループに限定するため、**割り当てが必要**は **はい**のままにします。
+    !!! info
+        設定理由：
+            
+            * 本アプリは SCIM 同期用途のため、エンドユーザーのサインインや表示は不要です。
+            * 同期対象をアプリに割り当てたユーザー／グループに限定するため、**割り当てが必要**は **はい**のままにします。
 
 ---
 
@@ -141,9 +141,10 @@ SingleID から、以下の情報が提供されます（Microsoft Entra ID 側�
 
     | 項目 | 設定値 |
     | --- | --- |
-    | 認証方法の選択 | **ベアラー認証** |
-    | テナントのURL | 本書記載の [**SCIM エンドポイントURL**](#4-singleid-側の設定scim-エンドポイント用のシークレット-トークン発行) |
-    | シークレット トークン | SingleID から提供された **シークレット トークン** |
+    | **認証方法の選択** | **ベアラー認証**を選択します。 |
+    | **テナントのURL** | 本書記載の [**SCIM エンドポイントURL**](#4-singleid-側の設定scim-エンドポイント用のシークレット-トークン発行)を設定します。 |
+    | **シークレット トークン** | SingleID から提供された **シークレット トークン**を設定します。 |
+
 4. **テスト接続**ボタンをクリックし、接続テストが成功することを確認します。
 5. **作成**ボタンをクリックします。
 6. 作成完了後、アプリの**概要（プレビュー）**画面が表示されます。
@@ -161,58 +162,50 @@ SingleID から、以下の情報が提供されます（Microsoft Entra ID 側�
 マッピングは、サイドメニューの**属性マッピング（プレビュー）**から設定します。
 
 1. サイドメニューから**属性マッピング（プレビュー）**をクリックします。
-2. 一覧から **Provision Microsoft Entra ID Users** をクリックします。
+2. 一覧から **Provision Microsoft Entra ID Users** をクリックします。Microsoft Entra ID のユーザー属性を SingleID の SCIM ユーザー属性にマッピングします。SingleID 連携では、基本的に**デフォルトのマッピングのままで動作します**。以下はデフォルトのマッピング例です。
 
-Microsoft Entra ID のユーザー属性を SingleID の SCIM ユーザー属性にマッピングします。
-
-SingleID 連携では、基本的に**デフォルトのマッピングのままで動作します**。以下はデフォルトのマッピング例です。
-
-| customappsso 属性 | Microsoft Entra ID 属性 |
-| --- | --- |
-| userName | userPrincipalName |
-| active | `Switch([IsSoftDeleted], , "False", "True", "True", "False")` |
-| displayName | displayName |
-| title | jobTitle |
-| emails[type eq "work"].value | mail |
-| preferredLanguage | preferredLanguage |
-| name.givenName | givenName |
-| name.familyName | surname |
-| name.formatted | `Join(" ", [givenName], [surname])` |
-| addresses[type eq "work"].formatted | physicalDeliveryOfficeName |
-| addresses[type eq "work"].streetAddress | streetAddress |
-| addresses[type eq "work"].locality | city |
-| addresses[type eq "work"].region | state |
-| addresses[type eq "work"].postalCode | postalCode |
-| addresses[type eq "work"].country | country |
-| phoneNumbers[type eq "work"].value | telephoneNumber |
-| phoneNumbers[type eq "mobile"].value | mobile |
-| phoneNumbers[type eq "fax"].value | facsimileTelephoneNumber |
-| externalId | mailNickname |
-| urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:employeeNumber | employeeId |
-| urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:department | department |
-| urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:manager | manager |
+    | customappsso 属性 | Microsoft Entra ID 属性 |
+    | --- | --- |
+    | userName | userPrincipalName |
+    | active | `Switch([IsSoftDeleted], , "False", "True", "True", "False")` |
+    | displayName | displayName |
+    | title | jobTitle |
+    | emails[type eq "work"].value | mail |
+    | preferredLanguage | preferredLanguage |
+    | name.givenName | givenName |
+    | name.familyName | surname |
+    | name.formatted | `Join(" ", [givenName], [surname])` |
+    | addresses[type eq "work"].formatted | physicalDeliveryOfficeName |
+    | addresses[type eq "work"].streetAddress | streetAddress |
+    | addresses[type eq "work"].locality | city |
+    | addresses[type eq "work"].region | state |
+    | addresses[type eq "work"].postalCode | postalCode |
+    | addresses[type eq "work"].country | country |
+    | phoneNumbers[type eq "work"].value | telephoneNumber |
+    | phoneNumbers[type eq "mobile"].value | mobile |
+    | phoneNumbers[type eq "fax"].value | facsimileTelephoneNumber |
+    | externalId | mailNickname |
+    | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:employeeNumber | employeeId |
+    | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:department | department |
+    | urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:manager | manager |
 
 ---
 
 ### 6.2 グループ属性マッピング（Groups）
 
 1. サイドメニューから**属性マッピング（プレビュー）**をクリックします。
-2. 一覧から **Provision Microsoft Entra ID Groups** をクリックします。
+2. 一覧から **Provision Microsoft Entra ID Groups** をクリックします。Microsoft Entra ID のグループ属性を SingleID の SCIM グループ属性にマッピングします。SingleID 連携では、基本的に**デフォルトのマッピングのままで動作します**。以下はデフォルトのマッピング例です。
 
-Microsoft Entra ID のグループ属性を SingleID の SCIM グループ属性にマッピングします。
+    | customappsso 属性 | Microsoft Entra ID 属性 |
+    | --- | --- |
+    | displayName | displayName |
+    | externalId | objectId |
+    | members | members |
 
-SingleID 連携では、基本的に**デフォルトのマッピングのままで動作します**。以下はデフォルトのマッピング例です。
+!!! warning
 
-| customappsso 属性 | Microsoft Entra ID 属性 |
-| --- | --- |
-| displayName | displayName |
-| externalId | objectId |
-| members | members |
-
-**注意：**
-
-* Microsoft Entra ID の SCIM では、グループの入れ子（グループのメンバーに別グループが含まれる状態）は**展開されません**。
-* SingleID に同期されるのは、割り当てたグループの**直下のメンバー（直接メンバー）**のみです。
+    * Microsoft Entra ID の SCIM では、グループの入れ子（グループのメンバーに別グループが含まれる状態）は**展開されません**。
+    * SingleID に同期されるのは、割り当てたグループの**直下のメンバー（直接メンバー）**のみです。
 
 ---
 
@@ -225,7 +218,8 @@ SingleID 連携では、基本的に**デフォルトのマッピングのまま
 3. 同期したい **ユーザーまたはグループ** を選択します。
 4. **割り当て**ボタンをクリックします。
 
-> ⚠️ 割り当てられていないユーザー／グループは SCIM 同期されません。
+!!! note
+    割り当てられていないユーザー／グループは SCIM 同期されません。
 
 !!! warning
     **グループを含むグループ（入れ子になっているグループ）**を割り当て対象に選択しないでください。SingleID に同期されるのは、割り当てたグループの**直下のメンバー（直接メンバー）**のみです。グループを割り当てる場合は、メンバーが**ユーザーのみ**のグループを選択してください。
