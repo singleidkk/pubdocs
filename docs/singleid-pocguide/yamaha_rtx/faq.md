@@ -49,12 +49,11 @@ SingleID のクラウド RADIUS はインターネット経由で利用します
 
 RADIUS における PAP は、**共有シークレットとランダム値（Request Authenticator）を用いてパスワードを保護する仕様**であり、単純に平文のまま送信されるわけではありません。
 
-この点については、**世界的に最も広く利用されているオープンソース RADIUS 実装である FreeRADIUS** の  
-開発・メンテナンスを行っている **InkBridge Networks** も、「PAP はよく誤解されているが、RADIUS の文脈では適切に保護されている」と技術的に解説しています。  
+この点については、**世界的に最も広く利用されているオープンソース RADIUS 実装である FreeRADIUS** の開発・メンテナンスを行っている **InkBridge Networks** も、「PAP はよく誤解されているが、RADIUS の文脈では適切に保護されている」と技術的に解説しています。  
 
-- 参考: [Is PAP secure?（InkBridge Networks）](https://www.inkbridgenetworks.com/blog/blog-10/is-pap-secure-54)  
+- 参考: [Is PAP secure? Yes. Yes it is.（InkBridge Networks）](https://www.inkbridgenetworks.com/blog/blog-10/is-pap-secure-54){ target=_blank }  
 
-SingleID では、この前提を踏まえたうえで、**PAP 単体に依存せず、ワンタイムパスワード（OTP）を組み合わせた多要素認証を前提**としています。これにより、仮にパスワード情報が漏洩した場合でも、不正認証が成立しにくい構成となります。
+SingleID では、この前提を踏まえたうえで、**PAP 単体に依存せず、ワンタイムパスワード（OTP）を組み合わせた多要素認証を前提**としています。これにより、万が一にパスワード情報が漏洩した場合でも、不正認証が困難な状況となります。
 
 この考え方については、SingleID の公式ドキュメント [誤解されている「PAP認証のリスク」](pap_authentication_risk_misunderstanding.md) でも整理しています。
 
