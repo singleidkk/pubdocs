@@ -8,7 +8,7 @@ YAMAHA RTX と SingleID を組み合わせた「リモートアクセスVPNの�
 - 設定例（パスワード認証）: [リモートアクセスVPN-パスワード認証](vpn-group-password.md)
 - 設定例（2要素認証）: [リモートアクセスVPN-2要素認証（パスワード認証＋ワンタイムパスワード認証）](vpn-group-otp.md)
 - 技術解説: [誤解されている「PAP認証のリスク」](pap_authentication_risk_misunderstanding.md)
-- 事例・解説: [YAMAHA RTX向け2要素認証（FAN）](https://www.singleid.jp/yamaha-rtx-fan-two-factor-auth/){ target=_blank }
+- 事例・解説: [YAMAHA RTX向け2要素認証](https://www.singleid.jp/yamaha-rtx-fan-two-factor-auth/){ target=_blank }
 - 導入事例: [RescueNow 導入事例](https://www.singleid.jp/rescuenow-case-study/){ target=_blank }
 
 ---
@@ -29,7 +29,7 @@ OTP（ワンタイムパスワード）を追加する運用では、原則と�
 また、OTP は都度変わるため、**リモートアクセスVPN クライアント側にパスワードを「事前保存」したまま運用する前提とは相性が良くありません**（OTP の入力が必要になるため）。
 
 !!! tip
-    RTX × SingleID の 2 要素認証（パスワード＋OTP）では、Windows 標準のリモートアクセスVPN クライアントの入力例として `password:123456` のように、パスワードと OTP を `:`（コロン）で連結して入力します。  
+    RTX × SingleID の 2 要素認証（パスワード＋OTP）では、リモートアクセスVPN クライアントの入力例として `password:123456` のように、パスワードと OTP を `:`（コロン）で連結して入力します。  
     具体例は [リモートアクセスVPN-2要素認証（パスワード認証＋ワンタイムパスワード認証）](vpn-group-otp.md) を参照してください。
 
 なお、WLX に搭載されている RADIUS／自己 CA 機能は、SingleID 利用時のような OTP を用いた 2 要素認証を提供するものではありません。  
