@@ -4,9 +4,6 @@
 本 FAQ は、YAMAHA × SingleID 共同セミナー等で実際にいただいたご質問と、その回答を整理したものです。  
 YAMAHA RTX と SingleID を組み合わせた「リモートアクセスVPNの認証強化」を検討する際の、よくある疑問点をまとめています。
 
-!!! info
-    本ページは、主に `docs/singleid-pocguide/yamaha_rtx/` 配下の設定例（RTX830／L2TP/IPsec／RADIUS 連携）を前提にしています。
-
 ## 関連ドキュメント
 - 設定例（パスワード認証）: [リモートアクセスVPN-パスワード認証](vpn-group-password.md)
 - 設定例（2要素認証）: [リモートアクセスVPN-2要素認証（パスワード認証＋ワンタイムパスワード認証）](vpn-group-otp.md)
