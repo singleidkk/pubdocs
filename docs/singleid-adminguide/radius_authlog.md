@@ -23,6 +23,10 @@
 
 Android11において、EAP方式が、PEAPまたはTLSの場合に、**ドメイン**への入力内容が正しくない場合に発生します。**ドメイン**には、**SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**を入力します。
 
+#### `eap_tls: (TLS) Alert read:fatal:unknown CA`
+
+接続デバイス側で、RADIUSサーバ証明書の検証に使用するCAの設定が誤っている場合に発生します。RADIUSサーバ証明書は[Let's Encrypt](https://letsencrypt.org/certificates/){target=_blank}（サブジェクト: ISRG Root X1）のCAで発行されているため、接続デバイス側でも同CAで検証するよう設定してください。
+
 #### `No Auth-Type found: rejecting the user via Post-Auth-Type = Reject`
 
 以下の場合に発生します。
