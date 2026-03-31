@@ -52,7 +52,7 @@
     | **RADIUSサーバで定義されたロールを使用** | 選択 |
 
 ### サイト識別する属性の確認方法
-YAMAHA RTXが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
+Check Point Quantum Sparkが送信するNAS-IP-Address属性およびNAS-Identifier属性の属性値を確認します。
 
 1. [動作確認方法](#動作確認方法)に従って、認証を試みます。
 2. 認証が失敗します。
@@ -93,4 +93,3 @@ YAMAHA RTXが送信するNAS-IP-Address属性およびNAS-Identifier属性の属
 2. ログインを試み、ログインが成功することを確認します。
 
     [![Screenshot](/images/image-cp-login.png)](/images/image-cp-login.png)
-
