@@ -109,7 +109,7 @@
     | **RADIUSサーバのセカンダリIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
     | **RADIUSサーバのポート番号** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サーバ番号**に対応したポート番号です。 |
     | **RADIUSクライアントのシークレット** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**シークレット**に設定した文字列です。 |
-    | **送信元のIPアドレス** | [Anti Spreader セキュアスイッチの設定](#Anti Spreader セキュアスイッチの設定)の手順で設定した**送信元のIPアドレス**です。 |
+    | **送信元のIPアドレス** | [Anti Spreader セキュアスイッチの設定](#anti-spreader-セキュアスイッチの設定)の手順で設定した**送信元のIPアドレス**です。 |
 
     ```
     SG2412G(config)#aaa system-aaa-ctrl
