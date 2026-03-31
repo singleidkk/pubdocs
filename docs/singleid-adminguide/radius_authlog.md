@@ -13,11 +13,26 @@
 !!! warning
     RADIUSに設定したRADIUSクライアントのIPおよび共有シークレットが誤っている場合には、RADIUSリクエストがあってもRADIUS認証ログには表示されません。
 
+!!! info
+    RADIUS認証ログの表示には、認証実行後から5分程度時間がかかる場合があります。
+
 ### ログのダウンロード
 
 **ログ表示期間**を設定し、**CSVダウンロード**または**EXCELダウンロード**ボタンをクリックします。
 
 ### 認証エラーのトラブルシューティング
+
+#### `Rejected: There is no sites assosiated with sent NAS-IP-Address/NAS-Identifier.`
+
+拡張RADIUSサーバを利用している場合に、**サイト識別する属性**または**属性値**が、実際にネットワーク機器から送信された**NAS-IP-Address**または**NAS-Identifier**と一致しない場合に発生します。
+
+以下を確認してください。
+
+* **認証＞RADIUS＞簡易設定**で登録したサイトの**サイト識別する属性**が適切か
+* **属性値**が、実際に送信された**NAS-IP**または**NAS-ID**と一致しているか
+* **NAS-Identifier**を利用している場合には、部分一致で吸収できる安定した共通文字列を設定できないか
+
+詳細な確認方法については、[RADIUSクライアントのサイト識別する属性の確認方法](./radius.md#radiusクライアントのサイト識別する属性の確認方法)を参照してください。
 
 #### `eap_peap: TLS Alert read:fatal:internal error`
 
