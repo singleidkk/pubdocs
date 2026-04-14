@@ -1,9 +1,14 @@
 # リモートアクセスVPN-パスワード認証
-文書更新日:2025-03-09
+文書更新日:2026-04-14
+
+!!! info
+    本設定ガイドは、FortiGate v7.6.6およびFortiClient 7.4.3.4726を用いて動作確認した内容に基づいて作成しています。
+    IKEv2の自動トランスポートモードでTCPへのフォールバックを利用するには、FortiClient 7.4.1以降が必要です。
 
 ## 目的
 * SingleIDのユーザで、FortiGateへVPNを使ってリモートアクセスします。
 * 接続する際の認証方式は、パスワードです。
+* VPNトンネルは、**IKEv2の自動トランスポートモード**を利用します。
 * SingleIDの標準RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
 
@@ -22,7 +27,7 @@
 ### SingleIDのRADIUSサイトの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**タブへ移動します。
 2. **カタログ表示**ボタンをクリックします。
-3. カタログから**FortiGate NGFW**の**登録**ボタンをクリックします。**FortiGate NGFW**画面がポップアップします。
+3. カタログから**FortiGate NGFW(IPsec IKEv2対応)**の**登録**ボタンをクリックします。**FortiGate NGFW(IPsec IKEv2対応)**画面がポップアップします。
 4. **基本情報**タブに、以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -81,44 +86,81 @@
 4. **OK**ボタンをクリックします。
 
 ### FortiGateのVPNの設定
-1. **FortiGate 管理GUI＞VPN＞IPsecウィザード**画面へ移動します。
-2. 以下の項目を設定し、**次へ**ボタンをクリックします。
+!!! info
+    IKEv2の自動トランスポートモードの設定は、Fortinet公式ドキュメントの「[LDAP authentication with IKEv2 using UDP or TCP as transport](https://docs.fortinet.com/document/fortigate/7.6.6/administration-guide/442351/ldap-authentication-with-ikev2-using-udp-or-tcp-as-transport)」および「[Dialup IPsec VPN using custom TCP port](https://docs.fortinet.com/document/fortigate/7.6.6/administration-guide/567401/dialup-ipsec-vpn-using-custom-tcp-port)」を参考にしています。
+
+1. **FortiGate 管理GUI＞VPN＞VPNウィザード**画面へ移動します。
+2. 以下の項目を設定し、**開始**ボタンをクリックします。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **名前** | 任意の文字列を設定します。（例：IPsecVPN） |
-    | **テンプレートタイプ** | **リモートアクセス**を選択します。 |
-    | **リモートデバイスタイプ** | **クライアントベース**　**FortiClient**を選択します。 |
+    | **テンプレートを選択** | **リモートアクセス**を選択します。 |
 
-    [![Screenshot](/images/fortigate-3.png)](/images/fortigate-3.png)
-
-3. 以下の項目を設定し、**次へ**ボタンをクリックします。
+3. 以下の項目を設定し、**次**ボタンをクリックします。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **着信インターフェース** | FortiGateのWAN側のインターフェースです。環境により異なります。 |
+    | **VPN クライアントの種類** | **FortiClient**を選択します。 |
     | **認証方式** | **事前共有鍵**を選択します。 |
     | **事前共有鍵** | 任意の文字列を設定します。 |
-    | **ユーザグループ** | [FortiGateのユーザグループの設定](#fortigateのユーザグループの設定)の手順で設定したユーザグループの名前を選択します。（例：SingleID） |
+    | **IKE** | **バージョン2**を選択します。 |
+    | **トランスポート** | **自動**を選択します。 |
+    | **Fortinet カプセル化を使用する** | **無効**を選択します。 |
+    | **NAT トラバーサル** | **有効**を選択します。 |
+    | **ユーザー認証方法** | **フェーズ1インターフェース**を選択します。[FortiGateのユーザグループの設定](#fortigateのユーザグループの設定)の手順で設定したユーザグループの名前を選択します。（例：SingleID） |
 
-    [![Screenshot](/images/fortigate-4.png)](/images/fortigate-4.png)
+    [![Screenshot](/images/2026-04-13_18-56-57.png)](/images/2026-04-13_18-56-57.png)
 
-4. 以下の項目を設定し、**次へ**ボタンを クリックします。
+4. 以下の項目を設定し、**次**ボタンを クリックします。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **ローカルインターフェース** | FortiGateのLAN側のインターフェースです。環境により異なります。 |
-    | **ローカルアドレス** | LAN側ネットワークを指定します。（例：internal） |
-    | **クライアントアドレス範囲** | VPNクライアントに割り当てるIPアドレスの範囲です。環境により異なります。 |
-    | **サブネットマスク** | **255.255.255.255**を設定します。 |
+    | **接続されたエンドポイントに割り当てるアドレス** | VPNクライアントに割り当てるIPアドレスの範囲です。環境により異なります。（例：192.168.100.200-192.168.100.210） |
+    | **接続されたエンドポイントのサブネット** | **255.255.255.255**を設定します。 |
 
-    [![Screenshot](/images/fortigate-5.png)](/images/fortigate-5.png)
+    [![Screenshot](/images/2026-04-13_19-34-47.png)](/images/2026-04-13_19-34-47.png)
 
-5. **次へ**ボタンをクリックします。
+5. 以下の項目を設定し、**次**ボタンを クリックします。
 
-    [![Screenshot](/images/fortigate-6.png)](/images/fortigate-6.png)
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **トンネルにバインドする着信インターフェイス** | FortiGateのWAN側のインターフェースです。環境により異なります。（例：wan1） |
+    | **ローカルインターフェース** | FortiGateのLAN側のインターフェースです。環境により異なります。（例：internal） |
+    | **ローカルアドレス** | LAN側ネットワークを指定します。（例：all） |
 
-6. 設定を確認し、**作成**ボタンをクリックします。
+    [![Screenshot](/images/2026-04-13_19-42-11.png)](/images/2026-04-13_19-42-11.png)
+
+
+6. 設定を確認し、**サブミット**ボタンをクリックします。
+
+    [![Screenshot](/images/2026-04-14_3-47-22.png)](/images/2026-04-14_3-47-22.png)
+
+    !!! info
+        FortiGate v7.6.6のVPNウィザードで作成した設定例は、以下を参照してください。<br>[ウィザード作成後のphase1-interface設定サンプル](./vpn-group-password-ikev2-phase1-sample.txt)<br>[ウィザード作成後のphase2-interface設定サンプル](./vpn-group-password-ikev2-phase2-sample.txt)
+
+7. 自動モードでは、通常はUDPを使用し、UDPが利用できない場合にTCPへフォールバックします。デフォルト設定のまま利用する場合は、UDP側が**500**、TCP側が**443**であることを確認します。
+
+    ``` title="FortiGate CLI"
+    show full-configuration system settings | grep ike-
+        set ike-port 500
+        set ike-tcp-port 443
+    ```
+
+8. 自動モードでTCPポート443へフォールバックする場合、GUI管理ポートもポート443を使用していると、IPsecトンネルにバインドされているインターフェースのGUIアクセスに影響が出る可能性があります。必要に応じて管理アクセスポートを変更します。（例：10443）
+
+    ``` title="FortiGate CLI"
+    config system global
+        set admin-sport 10443
+    end
+    ```
+
+    !!! warning
+        管理GUIへのアクセスが拒否されるため、管理GUIにアクセスするには、https://<FortiGateの管理IPアドレス>:10443/ でログインしなおします。
+
+    !!! info
+        TCPポート443は、GUI管理アクセスのほか、ZTNAやAgentless VPNなど他の機能と競合する場合があります。FortiGateで利用している受信ポートとの競合がないか事前に確認してください。
+
 
 ## 動作確認方法
 Windows端末からパスワードによるリモートアクセスVPNの認証が可能なことを確認します。
@@ -139,9 +181,24 @@ FortiGateのリモートアクセスクライアントである、FortiClientを
     | **リモートGW** | VPNクライアントが接続するIPアドレスです。 |
     | **認証方法** | **事前共有鍵**を選択します。 |
     | **事前共有鍵** | [FortiGateのVPNの設定](#fortigateのvpnの設定)の手順で設定した事前共有鍵です。 |
-    | **認証（XAuth）** | **ユーザ名入力**を選択します。 |
+    | **認証（EAP）** | **ユーザ名入力**を選択します。 |
 
-    [![Screenshot](/images/fortigate-7.png)](/images/fortigate-7.png)
+    [![Screenshot](/images/2026-04-14_5-49-19.png)](/images/2026-04-14_5-49-19.png)
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **IKE** | **バージョン2**を選択します。 |
+    | **Address Assignment** | **モードコンフィグ**を選択します。 |
+    | **Encapsulation** | **Auto**を選択します。 |
+    | **IKE UDP Port** | **500**を設定します。 |
+    | **IKE TCP Port** | **443**を設定します。 |
+
+    [![Screenshot](/images/2026-04-14_5-49-55.png)](/images/2026-04-14_5-49-55.png)
+
+    フェーズ1およびフェーズ2の設定値は、FortiGate側のVPN設定に合わせてください。
+
+    [![Screenshot](/images/2026-04-14_5-50-24.png)](/images/2026-04-14_5-50-24.png)
+    [![Screenshot](/images/2026-04-14_5-50-49.png)](/images/2026-04-14_5-50-49.png)
 
 2. **保存**ボタンをクリックします。
 
@@ -152,12 +209,22 @@ FortiGateのリモートアクセスクライアントである、FortiClientを
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **VPN名称** | [接続先の設定](#vpn接続)の手順で作成した接続先を選択します。（例：SingleID） |
+    | **VPN名称** | [接続先の設定](#接続先の設定)の手順で作成した接続先を選択します。（例：SingleID） |
     | **ユーザ名** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順で許可したユーザです。 |
     | **パスワード** | **ユーザのパスワード**です。 |
 
-    [![Screenshot](/images/fortigate-8.png)](/images/fortigate-8.png)
+    [![Screenshot](/images/2026-04-14_8-54-48.png)](/images/2026-04-14_8-54-48.png)
 
 2. ログインが成功することを確認します。
 
-    [![Screenshot](/images/fortigate-9.png)](/images/fortigate-9.png)
+    [![Screenshot](/images/2026-04-14_6-00-01.png)](/images/2026-04-14_6-00-01.png)
+
+3. FortiGate CLIで以下のコマンドを実行し、接続中のセッションが**UDP**か**TCP**かを確認します。
+
+    ``` title="FortiGate CLI"
+    diagnose vpn ike gateway list
+    ```
+
+    !!! info
+        通常は`transport: UDP`となり、UDPが利用できないネットワーク環境では`transport: TCP`へ自動で切り替わります。
+        サンプル出力は、[UDP接続時の出力例](./vpn-group-password-ikev2-diagnose-udp-sample.txt) および [TCP接続時の出力例](./vpn-group-password-ikev2-diagnose-tcp-sample.txt) を参照してください。
