@@ -139,8 +139,6 @@
 
 6. 設定を確認し、**サブミット**ボタンをクリックします。
 
-    [![Screenshot](/images/2026-04-14_3-47-22.png)](/images/2026-04-14_3-47-22.png)
-
     !!! info
         FortiGate v7.6.6のVPNウィザードで作成した設定例は、以下を参照してください。<br>[ウィザード作成後のphase1-interface設定サンプル](./vpn-group-password-ikev2-phase1-sample.txt)<br>[ウィザード作成後のphase2-interface設定サンプル](./vpn-group-password-ikev2-phase2-sample.txt)
 
