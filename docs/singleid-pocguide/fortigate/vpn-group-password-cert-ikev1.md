@@ -148,18 +148,37 @@
     | **IP/名前** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
     | **シークレット** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**シークレット**に設定した文字列です。 |
 
-    !!! info
-        **接続をテスト**ボタンをクリックし、接続が成功しない場合には、以下をご確認ください。
-        
-        * 設定内容が間違いないこと
-        * FortiGateからSingleIDのRADIUSサーバのIPアドレスへ接続可能であること
-
-    !!! warning
-        SingleIDのRADIUSサーバでは、FortiGateのVPNアクセスや管理アクセスのみ認証可能となるように制限をかけているため、**ユーザクレデンシャルをテスト**ボタンをクリックし、正しいユーザ情報を入力しても成功となりませんが、問題ではありません。
-
     [![Screenshot](/images/fortigate-1.png)](/images/fortigate-1.png)
 
 4. **OK**ボタンをクリックします。
+5. [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)で**サーバ番号2～10**を選択した場合は、FortiGate CLIからRADIUS認証の通信ポート番号を設定します。**サーバ番号1**を選択した場合は、FortiGateの初期値であるUDP 1812を使用するため、この手順は不要です。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **RADIUSサーバの名前** | 手順3で設定した名前です。（例：SingleID_RADIUS） |
+    | **RADIUS認証の通信ポート番号** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)で選択したサーバ番号のポート番号です。**SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞RADIUSポート番号**を確認してください。 |
+
+    ``` title="FortiGate CLI"
+    config user radius
+        edit "<RADIUSサーバの名前>"
+            set radius-port <RADIUS認証の通信ポート番号>
+        next
+    end
+    ```
+
+    !!! info
+        FortiGateのRADIUSサーバ設定画面で**接続をテスト**ボタンをクリックします。実行するタイミングは、選択したサーバ番号により異なります。
+
+        * **サーバ番号1**を選択した場合：RADIUSサーバを作成した後
+        * **サーバ番号2～10**を選択した場合：RADIUS認証の通信ポート番号を設定した後
+
+        接続が成功しない場合には、以下をご確認ください。
+
+        * 設定内容が間違いないこと
+        * FortiGateからSingleIDのRADIUSサーバのIPアドレスおよびRADIUS認証の通信ポート番号へ接続可能であること
+
+    !!! warning
+        SingleIDのRADIUSサーバでは、FortiGateのVPNアクセスや管理アクセスのみ認証可能となるように制限をかけているため、**ユーザクレデンシャルをテスト**ボタンをクリックし、正しいユーザ情報を入力しても成功となりませんが、問題ではありません。
 
 ### FortiGateのユーザグループの設定
 1. **FortiGate 管理GUI＞ユーザ＆認証＞ユーザグループ**画面へ移動します。
