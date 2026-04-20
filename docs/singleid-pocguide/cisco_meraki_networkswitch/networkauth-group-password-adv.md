@@ -58,6 +58,9 @@
 
 9. **登録**ボタンをクリックします。
 
+    !!! info
+        設定がシステムに反映されるまで最大で15分かかります。
+
 ### Cisco Meraki ネットワークスイッチの設定
 1. Cisco Merakiの管理画面へログインします。
 2. **Swiching＞Access Policies**画面へ移動します。**Add Policy**ボタンをクリックします。**Access Policy Detail**画面が表示されます。

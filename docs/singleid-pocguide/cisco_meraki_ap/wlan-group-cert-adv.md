@@ -61,6 +61,9 @@
 
 7. **登録**ボタンをクリックします。
 
+    !!! info
+        設定がシステムに反映されるまで最大で15分かかります。
+
 ### Cisco Meraki 無線LANアクセスポイントの設定
 1. Cisco Merakiの管理画面へログインします。
 2. **Wireless＞Access Control**画面へ移動します。
