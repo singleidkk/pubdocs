@@ -2,8 +2,9 @@
 文書更新日:2026-04-14
 
 !!! info
-    本設定ガイドは、FortiGate v7.6.6およびFortiClient 7.4.3.4726を用いて動作確認した内容に基づいて作成しています。
+    本設定ガイドは、FortiGate v7.6.6およびFortiClient 7.4.3.4726（ライセンス版）を用いて動作確認した内容に基づいて作成しています。
     IKEv2の自動トランスポートモードでTCPへのフォールバックを利用するには、FortiClient 7.4.1以降が必要です。
+    Fortinet公式ドキュメントの「[FortiClient standalone and licensed version feature comparison](https://docs.fortinet.com/document/forticlient/7.4.3/administration-guide/269675/forticlient-standalone-and-licensed-version-feature-comparison)」によると、FortiClient 7.4系の無償Standalone版はIPsec over TCPをサポートしていません。UDPが利用できない環境でTCP接続まで確認する場合は、ライセンス版のFortiClientを使用してください。
 
 ## 目的
 * SingleIDのユーザで、FortiGateへVPNを使ってリモートアクセスします。
