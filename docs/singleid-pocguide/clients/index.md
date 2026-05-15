@@ -7,8 +7,9 @@
 
 #### クライアント証明書認証
 - 手順1. [クライアント証明書のインストール](./windows_install_cert.md)
-- 手順2. [クライアント証明書で無線LANアクセスの認証](./windows_setup_wlan_cert.md)
-- 手順2. [クライアント証明書で無線LANアクセスの認証（詳細設定）](./windows_setup_wlan_cert2.md)
+- 手順2. 接続設定
+    - [通常設定](./windows_setup_wlan_cert.md)
+    - [詳細設定](./windows_setup_wlan_cert2.md)
 
 ### 有線LAN接続
 #### パスワード認証
@@ -18,8 +19,9 @@
 #### クライアント証明書認証
 - 手順1. [クライアント証明書のインストール](./windows_install_cert.md)
 - 手順2. [Wired AutoConfigサービスの有効化](./windows_setup_wired_auto_config.md)
-- 手順3. [クライアント証明書で有線LANアクセスの認証](./windows_setup_wired_cert.md)
-- 手順3. [クライアント証明書で有線LANアクセスの認証（詳細設定）](./windows_setup_wired_cert2.md)
+- 手順3. 接続設定
+    - [通常設定](./windows_setup_wired_cert.md)
+    - [詳細設定](./windows_setup_wired_cert2.md)
 
 ## iOS/iPadOS
 ### 無線LAN接続
