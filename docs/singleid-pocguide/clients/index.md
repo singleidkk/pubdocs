@@ -8,6 +8,7 @@
 #### クライアント証明書認証
 - 手順1. [クライアント証明書のインストール](./windows_install_cert.md)
 - 手順2. [クライアント証明書で無線LANアクセスの認証](./windows_setup_wlan_cert.md)
+- 手順2. [クライアント証明書で無線LANアクセスの認証（詳細設定）](./windows_setup_wlan_cert2.md)
 
 ### 有線LAN接続
 #### パスワード認証
