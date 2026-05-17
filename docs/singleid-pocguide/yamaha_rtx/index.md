@@ -14,7 +14,7 @@
 
     技術的な説明は [誤解されている「PAP認証のリスク」](pap_authentication_risk_misunderstanding.md) をご確認ください。
 
-    SCS評価制度の観点での説明は [SCS評価制度におけるリモートアクセスVPN認証強化の考え方](pap_authentication_policy_scs.md) をご確認ください。
+    SCS評価制度の観点での説明は [SCS評価制度におけるYAMAHA RTXのVPN認証・管理者認証強化の考え方](scs_authentication_policy.md) をご確認ください。
 
 
 [^1]:
