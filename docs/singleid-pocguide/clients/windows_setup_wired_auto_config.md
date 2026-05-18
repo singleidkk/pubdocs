@@ -1,5 +1,7 @@
 # Windows: Wired AutoConfigサービスの有効化
 
+この手順では、Windowsの有線LAN 802.1X認証で使用するWired AutoConfigサービスを有効化します。
+
 1. PCのネットワークインターフェースの802.1X認証を有効化する必要があります。Windowsの**サービス設定**画面から**Wired AutoConfig**サービスをダブルクリックします。
 
     [![Screenshot](/images/2022-09-06_15-40-20.png)](/images/2022-09-06_15-40-20.png)
