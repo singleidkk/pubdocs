@@ -1,6 +1,6 @@
 [![バナー画像](/images/2025-09-29_7-27-28.png)](https://www.singleid.jp/yamaha-rtx-vpn-mfa/)
 
-# YAMAHA RTX830の設定例一覧
+# YAMAHA RTX830の設定例一覧 
 ## パスワード認証
 * リモートアクセスVPN ユーザ/グループによるアクセス制限 [標準](vpn-group-password.md)/[拡張](vpn-group-password-adv.md) [^1]
 * 管理者ログイン ユーザ/グループによるアクセス制限 [標準](adminlogin-group-password.md)/[拡張](adminlogin-group-password-adv.md) [^1]
