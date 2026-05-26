@@ -16,6 +16,9 @@
 * リモートアクセスVPN(IPSec) グループによるアクセス制限（IKEv1） [標準](vpn-group-password-cert-ikev1.md)/[拡張](vpn-group-password-cert-ikev1-adv.md) [^1]
 * リモートアクセスVPN(IPSec) グループによるアクセス制限（IKEv2自動トランスポートモード） [標準](vpn-group-password-cert-ikev2.md)/[拡張](vpn-group-password-cert-ikev2-adv.md) [^1]
 
+## 検証メモ
+* [リモートアクセスVPN RadSec検証メモ](vpn-radsec-validation.md)
+
 [^1]:
   * 標準：標準RADIUSサーバを利用した設定方法です。
   * 拡張：拡張RADIUSサーバを利用した設定方法です。
