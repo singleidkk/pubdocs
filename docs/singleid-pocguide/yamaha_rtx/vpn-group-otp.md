@@ -89,7 +89,11 @@
 4. 一時的に任意の**名前**と**パスワード**でユーザを登録します（**名前**はSingleIDに登録したユーザ名と重複しないものにします）。**次へ**ボタンをクリックします。**入力内容の確認**画面へ移動します。
 
     !!! warning
-        SingleIDに登録されたユーザでリモートアクセスを行いますが、YAMAHA RTXでリモートアクセスVPNの設定をGUIで完了するには、少なくとも１ユーザのユーザ登録が必要です。ここで登録したユーザは、後で、トンネル設定に登録されたユーザ情報（`pp auth username`）のみをCLIから削除してもよいですし、削除しない場合には、複雑なパスワードを設定しておくことをお勧めします。
+        YAMAHA RTXでリモートアクセスVPNの設定をGUIで完了するには、少なくとも1ユーザの登録が必要です。このユーザ名は、SingleIDに登録したユーザ名と重複しないものにしてください。
+
+        SingleID連携ではRADIUSサーバで認証するため、SingleID利用ユーザ分の`pp auth username`をRTXに登録する必要はありません。同じユーザ名がRTXのローカルユーザに登録されていると、SingleIDのRADIUS認証ではなくローカルユーザ認証で処理される場合があります。
+
+        GUIで登録した一時ユーザは、後でトンネル設定に登録されたユーザ情報（`pp auth username`）のみをCLIから削除してもかまいません。
 
         削除コマンド例：
 
@@ -98,6 +102,15 @@
         ```
 
 5. 設定内容を確認し、**設定の確定**ボタンをクリックし、設定を完了します。
+
+    !!! info
+        L2TP/IPsecで複数ユーザを同時接続させる場合は、想定する同時接続数分のトンネルを`anonymous` PPにバインドします。GUIで作成された設定を確認し、必要に応じて同時接続数に合わせて調整してください。たとえば、10同時接続を想定する場合は、以下のように設定します。
+
+        ``` linenums="1"
+        pp select anonymous
+        pp bind tunnel1-tunnel10
+        pp auth request pap
+        ```
 
 !!! info
     YAMAHA RTXの設定については、[**L2TP/IPsecを使用したリモートアクセス : Web GUI設定**](https://network.yamaha.com/setting/router_firewall/vpn/vpn_client/vpn-smartphone-setup-rtx1210){ target=_blank }を参考にさせていただきました。
