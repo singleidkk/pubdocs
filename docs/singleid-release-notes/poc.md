@@ -1,4 +1,38 @@
 # 評価版
+## 2026-06-21
+
+<!--
+| **コンポーネント** | **バージョン** |
+| :-- | :-- |
+| radius | 12.0.2 |
+| radius dictionary | 1.5.0 |
+| www | **4.2.10** |
+| pki | 8.0.1 |
+| scep | 1.1.4 |
+| scep_intune | 1.0.1 |
+| scim | 4.0.1 |
+| report | 2.3.1 |
+| provisioning | 12.0.2 |
+| provisioning appdata | 7.16.0 |
+| tun | 4.0.0 |
+| auth module | 16.1.1 |
+| ldap module | 2.0.15-1 |
+| log module | 4.4.1-1 |
+| radius module | 3.2.3-1 |
+| deploy | **3.2.9** |
+-->
+
+### 修正
+
+**SingleID 管理者ポータル**
+
+* **ログ＞RADIUS認証ログ**画面で、セッション切れ後にログの再読み込みやページ送りを行った場合に、ログ一覧を正しく表示できないことがある問題を修正
+
+**RADIUS**
+
+* SCEP証明書を配布する環境で、Entra IDのユーザUPNのプリフィックスに大文字が含まれる場合に、該当ユーザをRADIUSの許可ポリシーへ追加していても、EAP-TLS認証時にユーザが許可されない問題を修正
+* EAP-TLS認証が成功しているにもかかわらず、`-/The user account was not found.` と表示されることがある問題を修正
+
 ## 2026-06-13
 
 <!--
