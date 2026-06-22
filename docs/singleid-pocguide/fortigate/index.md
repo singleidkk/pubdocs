@@ -9,8 +9,10 @@
 
 ## ２要素認証（パスワード認証＋ワンタイムパスワード認証）
 * リモートアクセスVPN(IPSec) グループによるアクセス制限（IKEv1） [標準](vpn-group-otp-ikev1.md)/[拡張](vpn-group-otp-ikev1-adv.md) [^1]
-* リモートアクセスVPN(IPSec) グループによるアクセス制限（IKEv2自動トランスポートモード） [標準](vpn-group-otp-ikev2.md)/[拡張](vpn-group-otp-ikev2-adv.md) [^1]
 * 管理者ログイン グループによるアクセス制限 [標準](adminlogin-group-otp_new2.md)/[拡張](adminlogin-group-otp_new2-adv.md) [^1]
+
+!!! warning
+    リモートアクセスVPN(IPSec) の **IKEv2自動トランスポートモード**では、PAP 認証を利用できないため、SingleID の 2要素認証（パスワード認証＋ワンタイムパスワード認証）は利用できません。
 
 ## ２要素認証（パスワード＋クライアント証明書認証）
 * リモートアクセスVPN(IPSec) グループによるアクセス制限（IKEv1） [標準](vpn-group-password-cert-ikev1.md)/[拡張](vpn-group-password-cert-ikev1-adv.md) [^1]
