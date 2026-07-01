@@ -108,13 +108,13 @@ RADIUSサーバ証明書は[Let's Encrypt](https://letsencrypt.org/certificates/
 
 以下の場合に発生します。
 
-* 接続デバイスが、SingleIDまたはRADIUSサーバ側で信頼していないCAから発行されたクライアント証明書を提示した場合
+* 適切な中間証明書で署名されていないクライアント証明書
 
 #### `eap_tls: (TLS) OpenSSL says error 66 : EE certificate key too weak`
 
 以下の場合に発生します。
 
-* 接続デバイスが、SingleID以外で発行された鍵長の弱いクライアント証明書を提示した場合
+* 適切な中間証明書で署名されていないクライアント証明書
 
 #### `Rejected: User-Name contains whitespace`
 
