@@ -127,7 +127,7 @@ SingleIDのユーザで、FireboxへVPNを使ってリモートアクセスし�
 2.  **IKEv2**の**ウィザード**により、自動的に、**Allow IKEv2-Users**ポリシーが作成されていることを確認します。
 
 !!! warning
-    **Allow IKEv2-Users**ポリシーの送信元の**IKEv2-Users**グループには、Mobile VPN with IKEv2で接続成功したすべてのユーザーおよびグループが含まれています。そのため、意図に反して、すべてのモバイルユーザーがそのポリシーで指定されたリソースにアクセスできるようになってしまいます。**vpngroup**グループのような特定のグループに対してのみ適用するポリシーを作成することをお勧めします。詳しくは、[IKEv2 ポリシーについて](https://www.watchguard.com/help/docs/help-center/ja-JP/Content/en-US/Fireware/mvpn/ikev2/mvpn_ikev2_vpn_policies_c.html){ target=_blank }を参照ください。
+    **Allow IKEv2-Users**ポリシーの送信元の**IKEv2-Users**グループには、Mobile VPN with IKEv2で接続成功したすべてのユーザおよびグループが含まれています。そのため、意図に反して、すべてのモバイルユーザがそのポリシーで指定されたリソースにアクセスできるようになってしまいます。**vpngroup**グループのような特定のグループに対してのみ適用するポリシーを作成することをお勧めします。詳しくは、[IKEv2 ポリシーについて](https://www.watchguard.com/help/docs/help-center/ja-JP/Content/en-US/Fireware/mvpn/ikev2/mvpn_ikev2_vpn_policies_c.html){ target=_blank }を参照ください。
 
 ## 動作確認方法
 ### VPN接続の設定

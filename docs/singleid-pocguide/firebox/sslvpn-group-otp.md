@@ -1,7 +1,7 @@
 # リモートアクセスVPN-パスワード認証
 ## 目的
 SingleIDのユーザで、FireboxへVPNを使ってリモートアクセスします。
-接続する際の認証方式は、２要素認証（パスワード認証＋ワンタイムパスワード認証）です。
+接続する際の認証方式は、2要素認証（パスワード認証＋ワンタイムパスワード認証）です。
 
 ## 環境
 ### ユーザの情報
@@ -126,7 +126,7 @@ SingleIDのユーザで、FireboxへVPNを使ってリモートアクセスし�
 2.  **SSL**の**ウィザード**により、自動的に、**Allow SSLVPN-Users**ポリシーが作成されていることを確認します。
 
 !!! warning
-    **Allow SSLVPN-Users**ポリシーの送信元の**SSLVPN-Users**グループには、Mobile VPN with SSLで接続成功したすべてのユーザーおよびグループが含まれています。そのため、意図に反して、すべてのモバイルユーザーがそのポリシーで指定されたリソースにアクセスできるようになってしまいます。**vpngroup**グループのような特定のグループに対してのみ適用するポリシーを作成することをお勧めします。詳しくは、[Mobile VPN with SSL ポリシーについて](https://www.watchguard.com/help/docs/help-center/ja-JP/Content/en-US/Fireware/mvpn/ssl/mvpn_ssl_policies.html?TocPath=%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B%7CMobile%20VPN%20%E3%83%88%E3%83%B3%E3%83%8D%E3%83%AB%7CMobile%20VPN%20with%20SSL%7CMobile%20VPN%20with%20SSL%20%E7%94%A8%E3%81%AB%20Firebox%20%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B%7C_____7){ target=_blank }を参照ください。
+    **Allow SSLVPN-Users**ポリシーの送信元の**SSLVPN-Users**グループには、Mobile VPN with SSLで接続成功したすべてのユーザおよびグループが含まれています。そのため、意図に反して、すべてのモバイルユーザがそのポリシーで指定されたリソースにアクセスできるようになってしまいます。**vpngroup**グループのような特定のグループに対してのみ適用するポリシーを作成することをお勧めします。詳しくは、[Mobile VPN with SSL ポリシーについて](https://www.watchguard.com/help/docs/help-center/ja-JP/Content/en-US/Fireware/mvpn/ssl/mvpn_ssl_policies.html?TocPath=%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B%7CMobile%20VPN%20%E3%83%88%E3%83%B3%E3%83%8D%E3%83%AB%7CMobile%20VPN%20with%20SSL%7CMobile%20VPN%20with%20SSL%20%E7%94%A8%E3%81%AB%20Firebox%20%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B%7C_____7){ target=_blank }を参照ください。
 
 ## 動作確認方法
 ### ソフトウェアトークンのインストール

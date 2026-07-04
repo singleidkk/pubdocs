@@ -95,8 +95,8 @@ SingleIDのユーザで、Sophos FirewallへVPNを使ってリモートアクセ
     | **ユーザーポータルの認証方法** | [RADIUSサーバの設定](#radiusサーバの設定)で追加した認証サーバを選択します。ユーザポータルからユーザ自身でSophos Connect（VPNクライアントソフトウェア）をダウンロードするために、ユーザポータルへアクセス可能とするためです。 |
     | **VPN (IPsec/dial-in/L2TP/PPTP) 認証方法** | [RADIUSサーバの設定](#radiusサーバの設定)で追加した認証サーバを選択します。 |
 
-#### リモートアクセスVPN（IPSec）の設定
-1. **Sophos Firewall 管理GUI＞設定＞リモートアクセスVPN＞IPSec**画面へ移動します。
+#### リモートアクセスVPN（IPsec）の設定
+1. **Sophos Firewall 管理GUI＞設定＞リモートアクセスVPN＞IPsec**画面へ移動します。
 2. 以下を設定します。
 
     | **設定項目** | **設定内容** |
@@ -138,7 +138,7 @@ SingleIDのユーザで、Sophos FirewallへVPNを使ってリモートアクセ
 
     [![Screenshot](/images/2022-10-11_21-43-41.png)](/images/2022-10-11_21-43-41.png)
 
-3. [リモートアクセスVPN（IPSec）の設定](#リモートアクセスvpnipsecの設定)の手順5で解凍したVPN接続の設定ファイルを選択します。
+3. [リモートアクセスVPN（IPsec）の設定](#リモートアクセスvpnipsecの設定)の手順5で解凍したVPN接続の設定ファイルを選択します。
 
 ### リモートアクセスVPNの認証（パスワード認証）
 1. **Sophos Connect**を起動します。

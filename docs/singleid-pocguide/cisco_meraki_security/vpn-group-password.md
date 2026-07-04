@@ -1,8 +1,8 @@
-# リモートアクセスVPN(L2TP/IPSec)-パスワード認証
+# リモートアクセスVPN(L2TP/IPsec)-パスワード認証
 文書更新日:2025-08-24
 
 ## 目的
-* SingleIDのユーザで、Cisco Meraki セキュリティ&SD-WANへVPN(L2TP/IPSec)を使ってリモートアクセスします。
+* SingleIDのユーザで、Cisco Meraki セキュリティ&SD-WANへVPN(L2TP/IPsec)を使ってリモートアクセスします。
 * 接続する際の認証方式は、パスワードです。
 * SingleIDの標準RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
@@ -47,7 +47,7 @@
     | **Client VPN server** | **Enabled**を選択します。 |
     | **Hostname** | グローバルIPが動的の場合には、ここに表示されているホスト名を[SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**IP or ホスト名**に設定します。 |
     | **Subnet** | VPNクライアントに割り当てるIPアドレスのネットワークです。必要に応じて、ネットワークを作成してください。 |
-    | **Shared secret** | IPSec事前共有鍵として任意の文字列を設定します。 |
+    | **Shared secret** | IPsec事前共有鍵として任意の文字列を設定します。 |
     | **Authentication** | **RADIUS**を選択します。 |
     | **RADIUS servers** | **Add server**をクリックし、**プライマリ**および**セカンダリ**のRADIUSサーバを登録します。 |
     | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**プライマリ**および**セカンダリ**です。 |
@@ -71,7 +71,7 @@ Windows端末からパスワードによるリモートアクセスVPNの認証�
     | :--- | :--- |
     | **接続名** | 任意の文字列を設定します。（例：SingleID） |
     | **サーバまたはアドレス** | VPNクライアントが接続するIPアドレスまたはホスト名(FQDN)です。 |
-    | **VPNの種類** | **事前共有キーを使ったL2TP/IPSec**を選択します。 |
+    | **VPNの種類** | **事前共有キーを使ったL2TP/IPsec**を選択します。 |
     | **事前共有キー** | [Cisco Meraki セキュリティ&SD-WANのRADIUSサーバの設定](#cisco-meraki-セキュリティsd-wanのradiusサーバの設定)の手順の**Shared secret**に設定した文字列です。 |
     | **サインイン情報の種類** | **ユーザ名とパスワード**を選択します。 |
 
@@ -91,7 +91,7 @@ Windows端末からパスワードによるリモートアクセスVPNの認証�
     [![Screenshot](/images/image-win-vpn-7.png)](/images/image-win-vpn-7.png)
 
     !!! info
-        Cisco Meraki セキュリティ&SD-WANのクライアントVPN(L2TP over IPSec)は、PAPのみサポートしています。詳細は、[Cisco Merakiの技術情報/Client VPN Overview](https://documentation.meraki.com/MX/Client_VPN/Client_VPN_Overview){ target=_blank }を参照してください。
+        Cisco Meraki セキュリティ&SD-WANのクライアントVPN(L2TP over IPsec)は、PAPのみサポートしています。詳細は、[Cisco Merakiの技術情報/Client VPN Overview](https://documentation.meraki.com/MX/Client_VPN/Client_VPN_Overview){ target=_blank }を参照してください。
 
 8. **OK**をクリックし、VPNの設定は完了です。
 

@@ -46,7 +46,7 @@ SingleIDのユーザの組織のメールアドレスのメールドメインを
 グローバル管理者が、シングルサインオンするカスタムドメインにしかいない場合、フェデレーション（SAML）による認証ができない状況に陥ると、グローバル管理者としてM365にログインすることができなくなってしまいます。そのため、必ず、緊急アクセス用アカウントとして、**xxxxx.onmicrosoft.comドメインにグローバル管理者のロールを割当てたユーザを作成**しておきます。
 
 !!! info
-    緊急アクセス用アカウントには、様々な要件があります。詳しくは、[Azure AD で緊急アクセス用管理者アカウントを管理する](https://learn.microsoft.com/ja-jp/azure/active-directory/roles/security-emergency-access){target=_blank}を参照してください。
+    緊急アクセス用アカウントには、様々な要件があります。詳しくは、[Microsoft Entra ID で緊急アクセス用管理者アカウントを管理する](https://learn.microsoft.com/ja-jp/azure/active-directory/roles/security-emergency-access){target=_blank}を参照してください。
 
 ## シングルサインオンおよびプロビジョニング設定
 ### M365のアプリ登録

@@ -11,10 +11,10 @@
 | **検証機種** | MX67 |
 
 ## パスワード認証
-* リモートアクセスVPN(L2TP/IPSec) グループによるアクセス制限 [標準](vpn-group-password.md) [^1]
+* リモートアクセスVPN(L2TP/IPsec) グループによるアクセス制限 [標準](vpn-group-password.md) [^1]
 * リモートアクセスVPN(Cisco Secure Client) グループによるアクセス制限 [標準](vpn-group-password-secureconnect.md) [^1]
 
-## ２要素認証（パスワード＋クライアント証明書認証）
+## 2要素認証（パスワード＋クライアント証明書認証）
 * リモートアクセスVPN(Cisco Secure Client) グループによるアクセス制限 [標準](vpn-group-password-cert-secureconnect.md) [^1]
 
 [^1]:

@@ -10,11 +10,11 @@ SingleIDのルートCA証明書ファイルと中間CA証明書ファイルを�
 [取得方法](../pki.md/#基本情報)
 
 #### Entra ID ユーザー属性の前提
-SCEP 証明書プロファイルで `CN={{UserName}}` や `E={{EmailAddress}}` を使用する場合、Microsoft Entra ID 側の属性値が参照されます。以下の値は SingleID 側のユーザー情報と一致させてください。不一致または未設定（空値）の場合、証明書発行が失敗します。
+SCEP 証明書プロファイルで `CN={{UserName}}` や `E={{EmailAddress}}` を使用する場合、Microsoft Entra ID 側の属性値が参照されます。以下の値は SingleID 側のユーザ情報と一致させてください。不一致または未設定（空値）の場合、証明書発行が失敗します。
 
 | SCEP で使用する値 | Microsoft Entra ID で参照される属性 | 前提 |
 | :--- | :--- | :--- |
-| `{{UserName}}` | `userPrincipalName` の `@` より前の部分 | SingleID のユーザー名と一致していること |
+| `{{UserName}}` | `userPrincipalName` の `@` より前の部分 | SingleID のユーザ名と一致していること |
 | `{{EmailAddress}}` | `mail` | SingleID のメールアドレスと一致していること |
 
 ### SingleIDのルートCA証明書
@@ -48,7 +48,7 @@ SCEP 証明書プロファイルで `CN={{UserName}}` や `E={{EmailAddress}}` �
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **名前** | 任意です。（例: SingleIDユーザー証明書-android） |
+    | **名前** | 任意です。（例: SingleIDユーザ証明書-android） |
     | **プラットフォーム** | **Android Enterprise**を選択します。 |
     | **プロファイルの種類** | **SCEP 証明書（テンプレート）**<br>⚠️ **注意:** 使用しているAndroidデバイスの登録プロファイル（フル マネージド、専用、会社所有の仕事用プロファイル　または　個人所有の仕事用プロファイル）に適したテンプレートを選択します。 |
     | **証明書の種類** | **ユーザー**を選択します。 |
