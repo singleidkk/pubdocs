@@ -116,6 +116,9 @@ nav:
     - アカウント管理: 
       - 顧客アカウント管理: singleid-mspguide/customer_account.md
       - MSPアカウント管理: singleid-mspguide/msp_account.md
+    - 特別運用:
+      - PoC実施ガイドライン: singleid-mspguide/special/poc_request.md
+      - SingleIDクラウドアシスト: singleid-mspguide/special/cloudassist_request.md
   - リリースノート:
     - 製品版: singleid-release-notes/service.md
 
