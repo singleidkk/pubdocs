@@ -1,22 +1,27 @@
-**SingleID 管理者ポータル＞ログ**画面では、以下のログに関する操作を行うことができます。
+# RADIUS認証ログ
+文書更新日:2026-07-10
 
-* RADIUS認証ログの表示/ダウンロード
+**SingleID 管理者ポータル＞ログ＞RADIUS認証ログ**画面では、RADIUS認証ログの検索、表示、CSVエクスポートを行うことができます。
 
-## RADIUS認証ログ
-### ログの表示
+## ログの検索・表示
 
-**ログ表示期間**を設定し、**表示**ボタンをクリックします。
+**ログ表示期間**と検索条件を設定し、**表示**ボタンをクリックします。主に以下の項目で検索できます。
 
-!!! info
-    少なくとも１か月分のログを表示可能です。
+* ユーザ名
+* RADIUSクライアントIP
+* NAS ID
+* SSID
+* 認証タイプ
+* エラーメッセージ
 
-!!! warning
-    RADIUSに設定したRADIUSクライアントのIPおよび共有シークレットが誤っている場合には、RADIUSリクエストがあってもRADIUS認証ログには表示されません。
+検索結果はページ単位で表示されます。ページ送りを行うことで、前後の認証ログを確認できます。
 
-!!! info
-    RADIUS認証ログの表示には、認証実行後から5分程度時間がかかる場合があります。
+!!! info "ログ表示に関する注意"
+    * 少なくとも1か月分のログを表示できます。
+    * RADIUS認証ログが表示されるまで、認証実行後から5分程度かかる場合があります。
+    * RADIUSクライアントのIPアドレスまたは共有シークレットが誤っている場合、RADIUSリクエストがあってもログには表示されません。
 
-### ログのダウンロード
+## CSVエクスポート
 
 **ログ表示期間**を設定し、**CSVエクスポート**ボタンをクリックします。
 
@@ -33,14 +38,14 @@
 
 **待機中**のエクスポートはキャンセルできます。**完了**したエクスポートは、**ダウンロード**ボタンからCSVファイルをダウンロードできます。
 
-!!! info
+!!! info "CSVエクスポートに関する注意"
     * CSVエクスポートできるRADIUS認証ログは最大100万件です。
     * 作成されたエクスポートファイルのダウンロード有効期限は7日間です。
     * CSVエクスポートは検索条件を引き継ぎません。ログ表示期間内の全件を対象に作成します。
 
-### 認証エラーのトラブルシューティング
+## 認証エラーのトラブルシューティング
 
-#### `Rejected: There is no sites assosiated with sent NAS-IP-Address/NAS-Identifier.`
+### `Rejected: There is no sites assosiated with sent NAS-IP-Address/NAS-Identifier.`
 
 以下の場合に発生します。
 
@@ -54,7 +59,7 @@
 
 詳細な確認方法については、[RADIUSクライアントのサイト識別する属性の確認方法](./radius.md#radiusクライアントのサイト識別する属性の確認方法)を参照してください。
 
-#### `eap_peap: TLS Alert read:fatal:internal error`
+### `eap_peap: TLS Alert read:fatal:internal error`
 
 以下の場合に発生します。
 
@@ -62,7 +67,7 @@
 
 **ドメイン**には、**SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**を入力します。
 
-#### `eap_tls: (TLS) Alert read:fatal:unknown CA`
+### `eap_tls: (TLS) Alert read:fatal:unknown CA`
 
 以下の場合に発生します。
 
@@ -70,77 +75,77 @@
 
 RADIUSサーバ証明書は[Let's Encrypt](https://letsencrypt.org/certificates/){target=_blank}（サブジェクト: ISRG Root X1）のCAで発行されているため、接続デバイス側でも同CAで検証するよう設定してください。
 
-#### `No Auth-Type found: rejecting the user via Post-Auth-Type = Reject`
+### `No Auth-Type found: rejecting the user via Post-Auth-Type = Reject`
 
 以下の場合に発生します。
 
 * PAP認証を試み、そのユーザが存在しない場合
 * ユーザが無効化されている場合
 
-#### `pap: Cleartext password does not match "known good" password`
+### `pap: Cleartext password does not match "known good" password`
 
 以下の場合に発生します。
 
 * PAP認証を試み、そのユーザのパスワードが間違っている場合
 
-#### `chap: &control:Cleartext-Password is required for authentication`
+### `chap: &control:Cleartext-Password is required for authentication`
 
 以下の場合に発生します。
 
 * CHAP認証を試み、そのユーザが存在しない場合
 * ユーザが無効化されている場合
 
-#### `chap: Password comparison failed: password is incorrect`
+### `chap: Password comparison failed: password is incorrect`
 
 以下の場合に発生します。
 
 * CHAP認証を試み、そのユーザのパスワードが間違っている場合
 
-#### `mschap: FAILED: No NT-Password. Cannot perform authentication`
+### `mschap: FAILED: No NT-Password. Cannot perform authentication`
 
 以下の場合に発生します。
 
 * MS-CHAP認証を試み、そのユーザが存在しない場合
 * ユーザが無効化されている場合
 
-#### `mschap: MS-CHAP2-Response is incorrect`
+### `mschap: MS-CHAP2-Response is incorrect`
 
 以下の場合に発生します。
 
 * MS-CHAP認証を試み、そのユーザのパスワードが間違っている場合
 
-#### `eap_tls: Program returned code (2) and output 'error /var/run/radiusd/radiusd.client.XXXXXXXX: verification failed'`
+### `eap_tls: Program returned code (2) and output 'error /var/run/radiusd/radiusd.client.XXXXXXXX: verification failed'`
 
 以下の場合に発生します。
 
 * 適切な中間証明書で署名されていないクライアント証明書
 * 失効されたクライアント証明書
 
-#### `eap_tls: (TLS) OpenSSL says error 20 : unable to get local issuer certificate`
+### `eap_tls: (TLS) OpenSSL says error 20 : unable to get local issuer certificate`
 
 以下の場合に発生します。
 
 * 適切な中間証明書で署名されていないクライアント証明書
 
-#### `eap_tls: (TLS) OpenSSL says error 19 : self signed certificate in certificate chain`
+### `eap_tls: (TLS) OpenSSL says error 19 : self signed certificate in certificate chain`
 
 以下の場合に発生します。
 
 * 適切な中間証明書で署名されていないクライアント証明書
 
-#### `eap_tls: (TLS) OpenSSL says error 66 : EE certificate key too weak`
+### `eap_tls: (TLS) OpenSSL says error 66 : EE certificate key too weak`
 
 以下の場合に発生します。
 
-* 適切な中間証明書で署名されていないクライアント証明書
+* 接続デバイスが、SingleID以外で発行された鍵長の弱いクライアント証明書を提示した場合
 
-#### `Rejected: User-Name contains whitespace`
+### `Rejected: User-Name contains whitespace`
 
 以下の場合に発生します。
 
 * RADIUSリクエストの `User-Name` 属性に空白文字が含まれている場合
 
-#### `Rejected: The reject rule is matched.`
+### `Rejected: The reject rule is matched.`
 
 以下の場合に発生します。
 
