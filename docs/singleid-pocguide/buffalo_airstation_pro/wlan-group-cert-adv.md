@@ -1,5 +1,5 @@
 # 無線LANアクセス-クライアント証明書認証
-文書更新日:2025-04-09
+文書更新日:2026-07-11
 
 ## 目的
 * SingleIDのユーザで、Buffalo AirStation Proの無線LANアクセスポイントへアクセスします。
@@ -98,7 +98,7 @@
     | **属性値** | `**BUFFALO**`を設定します。 |
 
     !!! info
-        * BuffaloのAirStation Proは、NAS-Identifier属性の属性値に機器のMACアドレス（小文字ハイフンなし）を設定し、RADIUSサーバへ送信しています。すべてのBuffalo製品に同一のルール設定を行いたい場合には、**サイト識別する属性**に、NAS-Identifierを設定し、**属性値**に、`**BUFFALO**`を設定します。`**BUFFALO**`は、Buffaloのベンダーコードにマッチさせるための特別な値です。
+        * BuffaloのAirStation Proは、NAS-Identifier属性の属性値に機器のMACアドレス（小文字ハイフンなし）を設定し、RADIUSサーバへ送信しています。対応するBUFFALO製品に同一のルールを設定する場合は、**サイト識別する属性**に**NAS-Identifier**、**属性値**に `**BUFFALO**` を設定します。対応するベンダーコードと、一覧にない機器の設定方法は、[RADIUS管理者ガイド](../../singleid-adminguide/radius.md#buffaloで判定できるベンダーコード)を参照してください。
 
 5. **無線アクセスの認証**タブへ移動します。
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。

@@ -31,7 +31,8 @@
 
 **RADIUS**
 
-* RADIUSサイト判定で、NAS-IPアドレスに `0.0.0.0` を指定した場合に、任意のIPv4 NAS-IPアドレスに一致するよう改善
+* RADIUSサイト判定で、NAS-IP-Addressに `0.0.0.0` を指定した場合に、任意のIPv4 NAS-IP-Addressに一致するよう改善
+* RADIUSサイト判定で、NAS-Identifierに `**BUFFALO**` を指定した場合に判定対象となるBUFFALO製ネットワーク機器を追加（追加ベンダーコード: `4c858a`、`7498f4`、`88c22d`、`d056f2`、`ec5a31`、`f89497`）
 
 ### 修正
 
