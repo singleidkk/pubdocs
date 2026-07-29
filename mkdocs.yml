@@ -91,20 +91,20 @@ nav:
   - サポートセンター:
     - はじめに: supportcenter/index.md
     - お客様向け: 
-      - 新規のお問い合わせ: supportcenter/new_ticket.md
-      - 進捗状況の確認: supportcenter/status_check.md
-      - コメントの追加: supportcenter/add_comment.md
-    - MSP提供事業者様向け:
+      - 新しいチケットの作成: supportcenter/new_ticket.md
+      - チケットの進捗状況の確認: supportcenter/status_check.md
+      - チケットへのコメントの追加: supportcenter/add_comment.md
+    - MSP提供事業者向け:
       - サポートフロー: supportcenter/msp_flow.md
-      - 新規お問い合わせ内容の確認: supportcenter/msp_check_new_ticket.md
+      - 新規チケット内容の確認: supportcenter/msp_check_new_ticket.md
       - サポート担当者の割り当て: supportcenter/msp_assign_support_rep.md
       - ステータスの変更: supportcenter/msp_change_status.md
       - 担当者の変更: supportcenter/msp_change_support_rep.md
       - コメントの追加: supportcenter/msp_add_comment.md
       - エスカレーション: supportcenter/msp_escalation.md
-      - お問い合わせ終了: supportcenter/msp_close.md
+      - チケットの終了: supportcenter/msp_close.md
     - 用語:
-      - お問い合わせのステータス: supportcenter/status.md
+      - チケットのステータス: supportcenter/status.md
   - アプリ連携ガイド: singleid-appguide/index.md
   - ネットワーク機器連携の設定例: singleid-pocguide/index.md
   - セキュリティ診断: singleid-security-check/index.md
