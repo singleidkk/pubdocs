@@ -14,9 +14,9 @@
 
 ## 関連する設定ガイド
 
-* [SCEP証明書の配布（Microsoft Intune連携）](intune/index.md)
-* [Microsoft Entra証明書ベース認証](microsoft_entra_cba.md)
-* [Microsoft EntraでパスワードとSingleIDクライアント証明書による2要素認証を検証する](microsoft_entra_cba_mfa.md)
+* [SCEP証明書の配布（Microsoft Intune連携）](microsoft_entra/intune/index.md)
+* [Microsoft Entra CBA（SingleIDクライアント証明書）](microsoft_entra/cba.md)
+* [Microsoft Entra 2要素認証（パスワード＋SingleIDクライアント証明書）](microsoft_entra/cba_mfa.md)
 
 ## 基本情報
 **SingleID 管理者ポータル＞認証＞証明書**画面の**基本情報**タブでは、以下の３つのブロックがあります。

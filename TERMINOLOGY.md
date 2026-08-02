@@ -37,6 +37,17 @@
 * 旧称を補足する必要がある場合のみ、`Microsoft Entra ID（旧 Azure Active Directory）` と記載します。
 * `EntraID`、`Azure AD`、`Azure Active Directory` は、画面名や引用を除き、新規文書では使用しません。
 
+## Microsoft Entraの証明書認証
+
+| 表記 | 使用する場面 |
+| --- | --- |
+| Microsoft Entra CBA | Microsoft Entra IDの証明書ベース認証を本文で説明する場合 |
+| 証明書ベースの認証 | Microsoft Entra 管理センターの項目名を記載する場合 |
+| SingleIDクライアント証明書 | SingleIDが発行したクライアント証明書を明示する場合 |
+| Microsoft Entra 2要素認証（パスワード＋SingleIDクライアント証明書） | パスワードとSingleIDクライアント証明書を組み合わせる構成のページタイトルまたはリンク名 |
+
+証明書一般を説明する場合は、`クライアント証明書`を使用します。Microsoftなど外部サービスのページ名やUI表記を引用する場合は、外部サービス側の表記を優先します。
+
 ## 2要素認証
 
 * `2要素認証` を使用します。

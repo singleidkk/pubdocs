@@ -1,14 +1,14 @@
-# SingleIDクライアント証明書によるMicrosoft Entra証明書ベース認証
+# Microsoft Entra CBA（SingleIDクライアント証明書）
 
 文書更新日:2026-08-02
 
-本書では、SingleIDで発行したクライアント証明書を使用して、Microsoft Entra証明書ベース認証（CBA）を設定する手順を説明します。
+本書では、SingleIDクライアント証明書を使用して、Microsoft Entra CBA（証明書ベース認証）を設定する手順を説明します。
 
 !!! info
     * MicrosoftのFAQでは、Microsoft Entra CBAは無料の機能であり、Microsoft Entra IDのすべてのエディションに含まれると案内されています（2026-08-02参照）。最新のライセンス要件は、[Microsoft Entra CBA FAQ（Microsoft）](https://learn.microsoft.com/ja-jp/entra/identity/authentication/certificate-based-authentication-faq){target=_blank}を確認してください。
     * 本書では、SingleIDクライアント証明書のサブジェクト代替名（SAN）に設定されたメールアドレスを、Microsoft Entra IDのユーザー プリンシパル名（UPN）へ対応付けます。
 
-本書では、クライアント証明書を単一要素認証として使用します。パスワードとクライアント証明書を組み合わせる構成の検証情報は、[Microsoft EntraでパスワードとSingleIDクライアント証明書による2要素認証を検証する](microsoft_entra_cba_mfa.md)を参照してください。
+本書では、SingleIDクライアント証明書を単一要素認証として使用します。パスワードとSingleIDクライアント証明書を組み合わせる構成の検証情報は、[Microsoft Entra 2要素認証（パスワード＋SingleIDクライアント証明書）](cba_mfa.md)を参照してください。
 
 ## 設定概要
 
@@ -26,7 +26,7 @@
 * Microsoft Entra IDのユーザー プリンシパル名（UPN）と、SingleIDユーザのメールアドレスが一致していること
 * Microsoft Entra CBAを利用するユーザーを登録したMicrosoft Entra IDのグループがあること
 * Microsoft Entra IDのグローバル管理者アカウントを利用できること
-* SingleIDで発行した有効なクライアント証明書を、利用するデバイスへインストールできること
+* 有効なSingleIDクライアント証明書を、利用するデバイスへインストールできること
 
 !!! warning
     最初からすべてのユーザーをCBAの対象にしないでください。クライアント証明書を利用できるテストユーザーのグループから段階的に適用してください。また、CBA設定の影響を受けない緊急アクセス用アカウントを用意してください。
@@ -59,7 +59,7 @@
 5. CBA用の証明書プロファイルを選択し、**発行**ボタンをクリックします。
 6. 発行されたPKCS#12形式のクライアント証明書を、利用するデバイスへインストールします。
 
-Windowsへのインストール手順は、[Windows: クライアント証明書のインストール](../singleid-pocguide/clients/windows_install_cert.md)を参照してください。
+Windowsへのインストール手順は、[Windows: クライアント証明書のインストール](../../singleid-pocguide/clients/windows_install_cert.md)を参照してください。
 
 ## Microsoft Entra IDへのCA登録
 
@@ -136,7 +136,7 @@ Windowsへのインストール手順は、[Windows: クライアント証明書
 1. CBA対象ユーザーのクライアント証明書がインストールされたデバイスで新しいブラウザー セッションを開始し、[マイ アプリ ポータル](https://myapps.microsoft.com/){target=_blank}へアクセスします。
 2. Microsoft Entra IDのUPNを入力し、**次へ**ボタンをクリックします。
 3. **証明書を使用してサインイン**を選択します。
-4. SingleIDで発行したクライアント証明書を選択します。
+4. SingleIDクライアント証明書を選択します。
 5. マイ アプリ ポータルへサインインできることを確認します。
 6. **Microsoft Entra 管理センター＞Entra ID＞監視＞サインイン ログ**画面で、対象ユーザーの認証結果と証明書情報を確認します。
 
@@ -153,5 +153,5 @@ Windowsへのインストール手順は、[Windows: クライアント証明書
 * [Microsoft Entra証明書ベース認証用に証明機関を構成する（Microsoft）](https://learn.microsoft.com/ja-jp/entra/identity/authentication/how-to-configure-certificate-authorities){target=_blank}
 * [Microsoft Entra CBAの概要（Microsoft）](https://learn.microsoft.com/ja-jp/entra/identity/authentication/concept-certificate-based-authentication){target=_blank}
 * [Microsoft Entra CBAに関するFAQ（Microsoft）](https://learn.microsoft.com/ja-jp/entra/identity/authentication/certificate-based-authentication-faq){target=_blank}
-* [証明書の管理](pki.md)
-* [クライアント証明書の発行](user.md#証明書の発行失効)
+* [証明書の管理](../pki.md)
+* [クライアント証明書の発行](../user.md#証明書の発行失効)

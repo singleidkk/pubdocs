@@ -159,7 +159,7 @@
 ## Entra ID (SCIM) 連携
 Microsoft Entra ID から SingleID にユーザを同期するための設定手順は、以下を参照してください。
 
-[Microsoft Entra ID (SCIM) 連携](./entraid_scim.md)
+[Microsoft Entra ID（SCIM）連携](microsoft_entra/scim.md)
 
 ## ユーザのエクスポート
 

@@ -70,6 +70,7 @@ nav:
       - 操作ログ: singleid-adminguide/operation_log.md
     - ユーザ: singleid-adminguide/user.md
     - グループ: singleid-adminguide/group.md
+    - Microsoftクラウド連携: singleid-adminguide/microsoft_entra/index.md
     - 認証:
       - LDAP: singleid-adminguide/ldap.md
       - RADIUS: singleid-adminguide/radius.md
