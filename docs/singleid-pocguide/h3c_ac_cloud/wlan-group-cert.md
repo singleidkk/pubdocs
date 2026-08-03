@@ -1,5 +1,5 @@
 # 無線LANアクセス-クライアント証明書認証
-文書更新日:2025-06-08
+文書更新日:2026-08-03
 
 ## 目的
 * SingleIDのユーザで、H3C 無線LANアクセスポイントへアクセスします。
@@ -59,7 +59,7 @@
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **RADIUS Scheme**| 任意の文字列を設定します。（例: singleid_radius） |
-    | **Address** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **Address** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
     | **Port** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サーバ番号**に対応したポート番号です。 |
     | **Shared Key** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**シークレット**に設定した文字列です。 |
 
@@ -68,7 +68,7 @@
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **Address** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **Address** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
     | **Port** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サーバ番号**に対応したポート番号です。 |
     | **Shared Key** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**シークレット**に設定した文字列です。 |
     | **Status** | **On**を選択します。|

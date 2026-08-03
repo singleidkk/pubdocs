@@ -1,5 +1,5 @@
 # 無線LANアクセス-クライアント証明書認証
-文書更新日:2025-06-04
+文書更新日:2026-08-03
 
 ## 目的
 * SingleIDのユーザで、H3C 無線LANアクセスポイントへアクセスします。
@@ -67,13 +67,13 @@
     | **Primary authentication server** ||
     | **VRF** | **Public network**を選択します。 |
     | **Type** | **IP address**を選択します。 |
-    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
     | **Port** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サーバ番号**に対応したポート番号です。 |
     | **State** | **Active**を選択します。 |
     | **Secondary authentication server** ||
     | **VRF** | **Public network**を選択します。 |
     | **Type** | **IP address**を選択します。 |
-    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
     | **Port** | **Primary authentication server**の**Port**に設定したポート番号と同じです。 |
     | **State** | **Active**を選択します。 |
     |||
@@ -107,7 +107,7 @@
 #### Wireless serviceの設定（WPA/WPA2エンタープライズの場合）
 機器のウェブ管理画面から設定します。
 
-1. **Wireless ConfigurationWireless＞Services Configuration**画面へ移動します。
+1. **Wireless Configuration＞Wireless Services＞Wireless Services Configuration**画面へ移動します。
 2.  ＋ボタンをクリックし、新しい**Wireless service**を追加します。以下を設定します。
 
     | **設定項目** | **設定内容** |

@@ -1,5 +1,5 @@
 # 無線LANアクセス-クライアント証明書認証
-文書更新日:2025-06-04
+文書更新日:2026-08-03
 
 ## 目的
 * SingleIDのユーザで、H3C 無線LANアクセスポイントへアクセスします。
@@ -49,8 +49,8 @@
     | **有効/無効** | **有効**を選択します。 |
     | **サーバ** | **拡張**を選択します。 |
     | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順で登録したサーバ番号を選択します。 |
-    | **サイト識別する属性** | **NAS-ID**を選択します。 |
-    | **属性値** | Cloudnetに登録した無線LANアクセスポイントの**デバイス名**を設定します。<br>**サイト識別する属性**に**NAS-ID**を選択した場合、実際にネットワーク機器から送信される属性値に対して、ここの設定項目で設定した文字列で**部分一致検索**します。 |        
+    | **サイト識別する属性** | **NAS-Identifier**を選択します。 |
+    | **属性値** | Cloudnetに登録した無線LANアクセスポイントの**デバイス名**を設定します。<br>**サイト識別する属性**に**NAS-Identifier**を選択した場合、実際にネットワーク機器から送信される属性値に対して、ここの設定項目で設定した文字列で**部分一致検索**します。 |
 
 5. **無線アクセスの認証**タブへ移動します。
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
@@ -81,13 +81,13 @@
     | **Primary authentication server** ||
     | **VRF** | **Public network**を選択します。 |
     | **Type** | **IP address**を選択します。 |
-    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
     | **Port** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
     | **State** | **Active**を選択します。 |
     | **Secondary authentication server** ||
     | **VRF** | **Public network**を選択します。 |
     | **Type** | **IP address**を選択します。 |
-    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**画面の**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **Host** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
     | **Port** | **Primary authentication server**の**Port**に設定したポート番号と同じです。 |
     | **State** | **Active**を選択します。 |
     |||
@@ -121,7 +121,7 @@
 #### Wireless serviceの設定（WPA/WPA2エンタープライズの場合）
 機器のウェブ管理画面から設定します。
 
-1. **Wireless ConfigurationWireless＞Services Configuration**画面へ移動します。
+1. **Wireless Configuration＞Wireless Services＞Wireless Services Configuration**画面へ移動します。
 2.  ＋ボタンをクリックし、新しい**Wireless service**を追加します。以下を設定します。
 
     | **設定項目** | **設定内容** |
