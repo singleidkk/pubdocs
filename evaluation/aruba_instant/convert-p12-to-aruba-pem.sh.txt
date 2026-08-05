@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+# Authentication Survivability evaluation helper.
+set -euo pipefail
+
+if [[ $# -lt 1 || $# -gt 3 ]]; then
+    echo "Usage: $0 <P12 file> [server PEM file] [trusted CA PEM file]" >&2
+    exit 1
+fi
+
+command -v openssl >/dev/null 2>&1 || {
+    echo "OpenSSL is required." >&2
+    exit 1
+}
+
+p12_path=$1
+output_path=${2:-aruba-auth-server.pem}
+trusted_ca_output_path=${3:-aruba-trusted-ca.pem}
+
+if [[ ! -f "$p12_path" ]]; then
+    echo "P12 file not found: $p12_path" >&2
+    exit 1
+fi
+
+umask 077
+work_dir=$(mktemp -d)
+trap 'rm -rf "$work_dir"' EXIT
+
+read -r -s -p "Enter the password for the P12 file: " p12_password
+echo
+export P12_PASSWORD=$p12_password
+unset p12_password
+
+openssl pkcs12 -in "$p12_path" -clcerts -nokeys \
+    -passin env:P12_PASSWORD -out "$work_dir/server-raw.pem"
+openssl pkcs12 -in "$p12_path" -cacerts -nokeys \
+    -passin env:P12_PASSWORD -out "$work_dir/ca-raw.pem"
+openssl pkcs12 -in "$p12_path" -nocerts -nodes \
+    -passin env:P12_PASSWORD -out "$work_dir/key-raw.pem"
+unset P12_PASSWORD
+
+openssl x509 -in "$work_dir/server-raw.pem" -out "$work_dir/server.pem"
+openssl pkey -in "$work_dir/key-raw.pem" -out "$work_dir/private-key.pem"
+
+awk -v dir="$work_dir" '
+    /-----BEGIN CERTIFICATE-----/ {
+        count++
+        file = sprintf("%s/ca-%03d.pem", dir, count)
+    }
+    file != "" { print > file }
+    /-----END CERTIFICATE-----/ {
+        close(file)
+        file = ""
+    }
+' "$work_dir/ca-raw.pem"
+
+mapfile -t ca_files < <(find "$work_dir" -maxdepth 1 -name 'ca-[0-9][0-9][0-9].pem' -print | sort)
+if [[ ${#ca_files[@]} -eq 0 ]]; then
+    echo "No CA certificates were found in the P12 file." >&2
+    exit 1
+fi
+
+certificate_subject() {
+    openssl x509 -in "$1" -noout -subject -nameopt RFC2253 | sed 's/^subject= *//'
+}
+
+certificate_issuer() {
+    openssl x509 -in "$1" -noout -issuer -nameopt RFC2253 | sed 's/^issuer= *//'
+}
+
+ordered_ca_files=()
+current_issuer=$(certificate_issuer "$work_dir/server.pem")
+
+while :; do
+    match=""
+    for ca_file in "${ca_files[@]}"; do
+        already_used=false
+        for used_file in "${ordered_ca_files[@]}"; do
+            if [[ "$ca_file" == "$used_file" ]]; then
+                already_used=true
+                break
+            fi
+        done
+
+        if [[ "$already_used" == false ]] && [[ $(certificate_subject "$ca_file") == "$current_issuer" ]]; then
+            if [[ -n "$match" ]]; then
+                echo "The certificate chain in the P12 file is ambiguous." >&2
+                exit 1
+            fi
+            match=$ca_file
+        fi
+    done
+
+    if [[ -z "$match" ]]; then
+        echo "The certificate chain in the P12 file could not be ordered." >&2
+        exit 1
+    fi
+
+    ordered_ca_files+=("$match")
+    subject=$(certificate_subject "$match")
+    issuer=$(certificate_issuer "$match")
+    if [[ "$subject" == "$issuer" ]]; then
+        break
+    fi
+    current_issuer=$issuer
+done
+
+if [[ ${#ordered_ca_files[@]} -ne ${#ca_files[@]} ]]; then
+    echo "The P12 file contains a certificate that is not part of the server certificate chain." >&2
+    exit 1
+fi
+
+{
+    cat "$work_dir/server.pem"
+    for ca_file in "${ordered_ca_files[@]}"; do
+        cat "$ca_file"
+    done
+    cat "$work_dir/private-key.pem"
+} > "$output_path"
+
+{
+    for ca_file in "${ordered_ca_files[@]}"; do
+        cat "$ca_file"
+    done
+} > "$trusted_ca_output_path"
+
+chmod 600 "$output_path"
+chmod 600 "$trusted_ca_output_path"
+echo "Created: $output_path"
+echo "Created: $trusted_ca_output_path"

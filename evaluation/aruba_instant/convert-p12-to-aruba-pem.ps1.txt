@@ -1,0 +1,128 @@
+# Authentication Survivability evaluation helper.
+param(
+    [Parameter(Mandatory = $true)]
+    [string]$P12Path,
+
+    [string]$OutputPath = (Join-Path (Get-Location) "aruba-auth-server.pem"),
+
+    [string]$TrustedCaOutputPath = (Join-Path (Get-Location) "aruba-trusted-ca.pem"),
+
+    [System.Security.SecureString]$P12Password
+)
+
+$ErrorActionPreference = "Stop"
+
+if ($PSVersionTable.PSVersion -lt [System.Version]"7.2") {
+    throw "This script requires PowerShell 7.2 or later."
+}
+
+$resolvedP12Path = (Resolve-Path -LiteralPath $P12Path).Path
+if ($null -eq $P12Password) {
+    $P12Password = Read-Host "Enter the password for the P12 file" -AsSecureString
+}
+
+$certificates = [System.Security.Cryptography.X509Certificates.X509Certificate2Collection]::new()
+$flags = (
+    [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable -bor
+    [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::EphemeralKeySet
+)
+$passwordPointer = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($P12Password)
+try {
+    $password = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($passwordPointer)
+    $certificates.Import($resolvedP12Path, $password, $flags)
+} finally {
+    $password = $null
+    [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($passwordPointer)
+}
+
+$serverCertificates = @($certificates | Where-Object { $_.HasPrivateKey })
+if ($serverCertificates.Count -ne 1) {
+    throw "The P12 file must contain exactly one certificate with a private key."
+}
+
+$serverCertificate = $serverCertificates[0]
+$caCertificates = @($certificates | Where-Object { $_.Thumbprint -ne $serverCertificate.Thumbprint })
+$orderedCertificates = [System.Collections.Generic.List[System.Security.Cryptography.X509Certificates.X509Certificate2]]::new()
+$orderedCertificates.Add($serverCertificate)
+
+$currentCertificate = $serverCertificate
+$usedThumbprints = @{}
+while ($currentCertificate.Subject -ne $currentCertificate.Issuer) {
+    $issuerCertificates = @(
+        $caCertificates | Where-Object {
+            $_.Subject -eq $currentCertificate.Issuer -and
+            -not $usedThumbprints.ContainsKey($_.Thumbprint)
+        }
+    )
+
+    if ($issuerCertificates.Count -ne 1) {
+        throw "The certificate chain in the P12 file could not be ordered."
+    }
+
+    $currentCertificate = $issuerCertificates[0]
+    $usedThumbprints[$currentCertificate.Thumbprint] = $true
+    $orderedCertificates.Add($currentCertificate)
+}
+
+if ($orderedCertificates.Count -ne $certificates.Count) {
+    throw "The P12 file contains a certificate that is not part of the server certificate chain."
+}
+
+$pem = [System.Text.StringBuilder]::new()
+foreach ($certificate in $orderedCertificates) {
+    [void]$pem.AppendLine($certificate.ExportCertificatePem().TrimEnd())
+}
+
+$privateKey = [System.Security.Cryptography.X509Certificates.RSACertificateExtensions]::GetRSAPrivateKey($serverCertificate)
+if ($null -eq $privateKey) {
+    $privateKey = [System.Security.Cryptography.X509Certificates.ECDsaCertificateExtensions]::GetECDsaPrivateKey($serverCertificate)
+}
+if ($null -eq $privateKey) {
+    throw "The private key type is not supported."
+}
+
+try {
+    [void]$pem.AppendLine($privateKey.ExportPkcs8PrivateKeyPem().TrimEnd())
+} finally {
+    $privateKey.Dispose()
+}
+
+$resolvedOutputPath = [System.IO.Path]::GetFullPath($OutputPath)
+[System.IO.File]::WriteAllText($resolvedOutputPath, $pem.ToString(), [System.Text.Encoding]::ASCII)
+
+if ($IsWindows) {
+    $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+    $acl = [System.Security.AccessControl.FileSecurity]::new()
+    $acl.SetOwner($currentUser.User)
+    $acl.SetAccessRuleProtection($true, $false)
+    $acl.AddAccessRule(
+        [System.Security.AccessControl.FileSystemAccessRule]::new(
+            $currentUser.User,
+            [System.Security.AccessControl.FileSystemRights]::FullControl,
+            [System.Security.AccessControl.InheritanceFlags]::None,
+            [System.Security.AccessControl.PropagationFlags]::None,
+            [System.Security.AccessControl.AccessControlType]::Allow
+        )
+    )
+    [System.IO.FileSystemAclExtensions]::SetAccessControl(
+        [System.IO.FileInfo]::new($resolvedOutputPath),
+        $acl
+    )
+} else {
+    $mode = (
+        [System.IO.UnixFileMode]::UserRead -bor
+        [System.IO.UnixFileMode]::UserWrite
+    )
+    [System.IO.File]::SetUnixFileMode($resolvedOutputPath, $mode)
+}
+
+Write-Host "Created: $resolvedOutputPath"
+
+$trustedCaPem = [System.Text.StringBuilder]::new()
+foreach ($certificate in $orderedCertificates | Select-Object -Skip 1) {
+    [void]$trustedCaPem.AppendLine($certificate.ExportCertificatePem().TrimEnd())
+}
+
+$resolvedTrustedCaOutputPath = [System.IO.Path]::GetFullPath($TrustedCaOutputPath)
+[System.IO.File]::WriteAllText($resolvedTrustedCaOutputPath, $trustedCaPem.ToString(), [System.Text.Encoding]::ASCII)
+Write-Host "Created: $resolvedTrustedCaOutputPath"

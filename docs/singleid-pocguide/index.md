@@ -4,6 +4,7 @@
 * [アライドテレシス ネットワークスイッチ/アライドテレシス](./allied_telesis_networkswitch/index.md)
 * [Anti Spreader アクセスポイント/宝情報](./anti_spreader_ap/index.md)
 * [Anti Spreader セキュアスイッチ/宝情報](./anti_spreader_switch/index.md)
+* [Aruba Instant 無線LANアクセスポイント/日本ヒューレット・パッカード合同会社](./aruba_instant/index.md)
 * [Buffalo AirStation Pro/バッファロー](./buffalo_airstation_pro/index.md)
 * [Cisco Meraki 無線LANアクセスポイント(MRシリーズ)/シスコシステムズ合同会社](./cisco_meraki_ap/index.md)
 * [Cisco Meraki ネットワークスイッチ(MSシリーズ)/シスコシステムズ合同会社](./cisco_meraki_networkswitch/index.md)
