@@ -1,5 +1,5 @@
 # 管理者ログイン-パスワード認証
-文書更新日:2025-04-09
+文書更新日:2026-08-05
 
 ## 目的
 * SingleIDのユーザで、YAMAHA RTXへ管理者権限でログインします。
@@ -61,6 +61,7 @@
     radius auth server <RADIUSサーバのプライマリIPアドレス> <RADIUSサーバのセカンダリIPアドレス>
     radius auth port <RADIUSサーバのポート番号>
     radius secret <RADIUSクライアントのシークレット>
+    save
     ```
 
     !!! info

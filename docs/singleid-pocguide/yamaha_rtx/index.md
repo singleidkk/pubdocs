@@ -7,6 +7,7 @@
 
 ## 2要素認証（パスワード認証＋ワンタイムパスワード認証）
 * リモートアクセスVPN ユーザ/グループによるアクセス制限 [標準](vpn-group-otp.md)/[拡張](vpn-group-otp-adv.md) [^1]
+* [既存のYAMAHA RTXリモートアクセスVPNに2要素認証を設定する](vpn-existing-local-auth-otp.md)
 * 管理者ログイン ユーザ/グループによるアクセス制限 [標準](adminlogin-group-otp.md)/[拡張](adminlogin-group-otp-adv.md) [^1]
 
 ## FAQ

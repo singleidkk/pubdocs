@@ -1,5 +1,5 @@
 # リモートアクセスVPN-パスワード認証
-文書更新日:2026-01-16
+文書更新日:2026-08-05
 
 ## 目的
 * SingleIDのユーザで、YAMAHA RTXへVPNを使ってリモートアクセスします。
@@ -46,6 +46,7 @@
     radius auth server <RADIUSサーバのプライマリIPアドレス> <RADIUSサーバのセカンダリIPアドレス>
     radius auth port <RADIUSサーバのポート番号>
     radius secret <RADIUSクライアントのシークレット>
+    save
     ```
 
 ### YAMAHA RTXのリモートアクセスユーザの認証の設定
@@ -69,7 +70,9 @@
         削除コマンド例：
 
         ```
-        no pp auth username <username> <password>
+        pp select anonymous
+        no pp auth username <username>
+        save
         ```
 
 5. 設定内容を確認し、**設定の確定**ボタンをクリックし、設定を完了します。

@@ -1,5 +1,5 @@
 # リモートアクセスVPN-2要素認証（パスワード認証＋ワンタイムパスワード認証）
-文書更新日:2026-05-26
+文書更新日:2026-08-05
 
 ## 目的
 * SingleIDのユーザで、YAMAHA RTXへVPNを使ってリモートアクセスします。
@@ -19,7 +19,7 @@
 
     iPhone/iPadの標準VPNクライアントは、PAPを明示的に選択できないため対象外です。
 
-    Android 12以降は、標準機能でL2TP/IPsecを利用できないため対象外です。Android 11以前は、RTX側をPAPのみに設定した状態で実機検証してください。
+    Android 12以降は、標準機能でL2TP/IPsecを利用できないため対象外です。
 
 ## 設定方法
 ### SingleIDのグループの作成
@@ -45,6 +45,10 @@
 3. **登録**ボタンをクリックします。専用のRADIUSポート番号が割り当てれます。
 
 ### YAMAHA RTXのRADIUSサーバの設定
+
+!!! info
+    既存のL2TP/IPsecリモートアクセスVPNをローカルユーザ認証で運用している場合は、リモートアクセスVPNを新規作成せず、[既存のYAMAHA RTXリモートアクセスVPNに2要素認証を設定する](vpn-existing-local-auth-otp.md)を参照してください。
+
 1. SSHまたはTelnetで、ローカル管理者でYAMAHA RTXのCLIにログインします。
 2. コマンドで以下を設定します。
 
@@ -60,6 +64,7 @@
     radius auth server <RADIUSサーバのプライマリIPアドレス> <RADIUSサーバのセカンダリIPアドレス>
     radius auth port <RADIUSサーバのポート番号>
     radius secret <RADIUSクライアントのシークレット>
+    save
     ```
 
 ### YAMAHA RTXのリモートアクセスユーザの認証の設定
@@ -80,14 +85,16 @@
     !!! warning
         YAMAHA RTXでリモートアクセスVPNの設定をGUIで完了するには、少なくとも1ユーザの登録が必要です。このユーザ名は、SingleIDに登録したユーザ名と重複しないものにしてください。
 
-        SingleID連携ではRADIUSサーバで認証するため、SingleID利用ユーザ分の`pp auth username`をRTXに登録する必要はありません。同じユーザ名がRTXのローカルユーザに登録されていると、SingleIDのRADIUS認証ではなくローカルユーザ認証で処理される場合があります。
+        SingleID連携ではRADIUSサーバで認証するため、SingleID利用ユーザ分の`pp auth username`をYAMAHA RTXに登録する必要はありません。同じユーザ名がYAMAHA RTXのローカルユーザに登録されていると、SingleIDのRADIUS認証ではなくローカルユーザ認証で処理される場合があります。
 
         GUIで登録した一時ユーザは、後でトンネル設定に登録されたユーザ情報（`pp auth username`）のみをCLIから削除してもかまいません。
 
         削除コマンド例：
 
         ```
-        no pp auth username <username> <password>
+        pp select anonymous
+        no pp auth username <username>
+        save
         ```
 
 5. 設定内容を確認し、**設定の確定**ボタンをクリックし、設定を完了します。
@@ -99,6 +106,7 @@
         pp select anonymous
         pp bind tunnel1-tunnel10
         pp auth request pap
+        save
         ```
 
 !!! info
