@@ -76,10 +76,10 @@
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **Name** | 任意の名前を設定します。（例: `SingleID-RADIUS-Primary`） |
-    | **IP Address** | SingleIDの拡張RADIUSサーバのプライマリIPアドレスです。 |
+    | **IP Address** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
     | **RadSec** | 無効にします。 |
-    | **Auth port** | SingleIDの拡張RADIUSサーバに割り当てられたRADIUSポート番号です。（デフォルト値: 1812） |
-    | **Shared key** | SingleIDの拡張RADIUSサーバに設定したシークレットです。 |
+    | **Auth port** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
+    | **Shared key** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
     | **Retype key** | **Shared key**と同じ値です。 |
     | **Timeout** | **10秒**を設定します。（デフォルト値: 5秒） |
     | **NAS-Identifier** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順で設定したNAS-Identifierの文字列です。（例: `aruba_instant_ap`、デフォルト値: 空欄） |
@@ -128,8 +128,8 @@
     | :--- | :--- |
     | **Security Level** | **Enterprise**を選択します。 |
     | **Key Management** | 検証対象に応じて**WPA2-Enterprise**または**WPA3-Enterprise (CCM 128)**を選択します。 |
-    | **Authentication server 1** | 登録したプライマリRADIUSサーバを選択します。 |
-    | **Authentication server 2** | 登録したセカンダリRADIUSサーバを選択します。 |
+    | **Authentication server 1** | [RADIUSサーバの設定](#radiusサーバの設定)で登録したプライマリRADIUSサーバを選択します。（例: `SingleID-RADIUS-Primary`） |
+    | **Authentication server 2** | [RADIUSサーバの設定](#radiusサーバの設定)で登録したセカンダリRADIUSサーバを選択します。（例: `SingleID-RADIUS-Secondary`） |
     | **EAP Offload** | デフォルトで無効です。無効であることを確認し、EAP-TLSをSingleIDのRADIUSサーバで処理します。 |
     | **Reauth interval** | `1440` **min.**を設定します。（デフォルト値: 0分） |
     | **Opportunistic Key Caching (OKC)** | 有効にします。（デフォルト値: 無効） |
