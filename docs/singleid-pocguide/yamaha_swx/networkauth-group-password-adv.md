@@ -4,7 +4,7 @@
 ## 目的
 * SingleIDのユーザで、YAMAHA SWXシリーズ ネットワークスイッチへアクセスします。
 * 接続する際の認証方式は、パスワード（PEAP、EAP-TTLS-PAP）です。
-* SingleIDの標準RADIUSサーバを利用します。
+* SingleIDの拡張RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
 
 ## 設定方法
@@ -19,6 +19,17 @@
 3. **ユーザ登録**画面の**基本情報**を入力します。**グループ**タブをクリックします。
 4. メンバーとなるグループを選択し、**登録**ボタンをクリックします。
 
+### SingleIDの拡張RADIUSサーバの登録
+1. **SingleID 管理者ポータル＞認証＞RADIUS＞基本設定**タブへ移動します。
+2. **拡張RADIUSサーバ＞RADIUSポート番号**の**登録**ボタンをクリックします。**拡張RADIUSサーバの登録**画面がポップアップします。
+
+    | **設定項目** | **設定内容** |
+    | :-- | :-- |
+    | **使用するプロトコル** | **UDP**を選択します。 |
+    | **シークレット** | 任意の文字列を設定します。英大文字、英小文字、数字、記号を組み合わせて、最低でも14文字以上の複雑な文字列を設定することをお勧めします。 |
+
+3. **登録**ボタンをクリックします。専用のRADIUSポート番号が割り当てられます。
+
 ### SingleIDのRADIUSサイトの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**タブへ移動します。
 2. **カタログ表示**ボタンをクリックします。
@@ -28,10 +39,10 @@
     | **設定項目** | **設定内容** |
     | :--- | :--- |
     | **有効/無効** | **有効**を選択します。 |
-    | **サーバ** | **標準**を選択します。 |
-    | **サーバ番号** | 適切なサーバ番号を選択します。選択するサーバの番号により、RADIUSサーバのポート番号が異なります。**SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞RADIUSポート番号**にサーバの番号と通信ポート番号の対応が記載されています。 |
-    | **IP or ホスト名** | **YAMAHA SWXシリーズ ネットワークスイッチ**側の**グローバルIPアドレス**です。インターネットに出ていくときの送信元のIPアドレスです。グローバルIPアドレスが動的の場合には、DDNS（ダイナミックDNS）を利用して**ホスト名（FQDN）**を設定します。<br><br>**注意:** グローバルIPアドレスにIPv4の共用IPアドレスが使用されるインターネット接続サービス（IPv6インターネット接続、マンションタイプのインターネット接続、CATVインターネット、モバイルインターネット）の場合やDDNSサービスを利用できない場合には、拡張RADIUSサーバの利用を検討してください。 |
-    | **シークレット** | 任意の文字列を設定します。英大文字、英小文字、数字、記号を組み合わせて、最低でも14文字以上の複雑な文字列を設定することをお勧めします。 |
+    | **サーバ** | **拡張**を選択します。 |
+    | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順で登録したサーバ番号を選択します。 |
+    | **サイト識別する属性** | **NAS-Identifier**を選択します。 |
+    | **属性値** | YAMAHA SWXシリーズ ネットワークスイッチを識別する任意の文字列を設定します。（例：`singleid-yamaha-swx`）<br>ここで設定した文字列を[YAMAHA SWXシリーズ ネットワークスイッチの設定](#yamaha-swxシリーズ-ネットワークスイッチの設定)の手順で設定する**NAS-Identifier**にも設定します。実際にネットワーク機器から送信される属性値に対して、ここで設定した文字列で**部分一致検索**します。 |
 
 5. **ネットワークアクセスの認証**タブへ移動します。
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
@@ -46,6 +57,9 @@
         MACアドレスにVLAN IDを割り当てたい場合には、**VLAN ID**入力欄に、割り当てたい**VLAN ID**を入力します。
 
 9. **登録**ボタンをクリックします。
+
+    !!! info
+        設定がシステムに反映されるまで最大で15分かかります。
 
 ### YAMAHA SWXシリーズ ネットワークスイッチの設定
 1. YAMAHA SWXシリーズ ネットワークスイッチにCLIでログインして設定します。
@@ -63,17 +77,35 @@
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
-    | **RADIUSサーバのプライマリIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
-    | **RADIUSサーバのセカンダリIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**標準RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
-    | **RADIUSサーバのポート番号** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**サーバ番号**に対応したポート番号です。 |
-    | **RADIUSクライアントのシークレット** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**シークレット**に設定した文字列です。 |
+    | **RADIUSサーバのプライマリIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**プライマリ**です。 |
+    | **RADIUSサーバのセカンダリIPアドレス** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞IPアドレス**の**セカンダリ**です。 |
+    | **RADIUSサーバのポート番号** | **SingleID 管理者ポータル＞認証＞RADIUS＞基本情報**タブの**拡張RADIUSサーバ＞RADIUSポート番号**のポート番号です。 |
+    | **RADIUSクライアントのシークレット** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順の**シークレット**に設定した文字列です。 |
 
     ``` title="RADIUSサーバの登録"
     SWX2310(config)# radius-server host <RADIUSサーバのプライマリIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
     SWX2310(config)# radius-server host <RADIUSサーバのセカンダリIPアドレス> auth-port <RADIUSサーバのポート番号> key <RADIUSクライアントのシークレット>
     ```
 
-4. **802.1X認証**を**有効化**します。
+4. **NAS-Identifier**を設定します。
+
+    | **設定項目** | **設定内容** |
+    | :--- | :--- |
+    | **NAS-Identifier** | [SingleIDのRADIUSサイトの登録](#singleidのradiusサイトの登録)の手順の**属性値**に設定した文字列です。（例：`singleid-yamaha-swx`） |
+
+    ``` title="NAS-Identifierの設定"
+    SWX2310(config)# auth radius attribute nas-identifier <NAS-Identifier>
+    ```
+
+    !!! info
+        初期設定ではNAS-Identifierは送信されません。`auth radius attribute nas-identifier`コマンドを設定すると、RADIUSリクエストでNAS-Identifierが送信されます。
+
+        参考: [NAS-Identifier属性の設定](https://www.rtpro.yamaha.co.jp/RT/manual/swx2310/cmdref/interface/auth/auth_radius_att_nas-identifier.html){ target=_blank }
+
+    !!! warning
+        NAS-Identifierは部分一致で検索されます。複数のRADIUSサイトを登録する場合は、互いの文字列を含まないNAS-Identifierを設定してください。
+
+5. **802.1X認証**を**有効化**します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -92,7 +124,7 @@
 
         参考: [RADIUSサーバー全体の応答待ち時間の設定](https://www.rtpro.yamaha.co.jp/RT/manual/swx2310/cmdref/interface/auth/auth_timeout_server-timeout.html){ target=_blank }、[RADIUSサーバー1台あたりの応答待ち時間の設定](https://www.rtpro.yamaha.co.jp/RT/manual/swx2310/cmdref/interface/auth/radius-server_timeout.html){ target=_blank }、[RADIUSサーバーホストの設定](https://www.rtpro.yamaha.co.jp/RT/manual/swx2310/cmdref/interface/auth/radius-server_host.html){ target=_blank }
 
-5. （MACアドレス認証バイパスを利用する場合）**MACベース認証**を**有効化**します。
+6. （MACアドレス認証バイパスを利用する場合）**MACベース認証**を**有効化**します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -105,7 +137,7 @@
     SWX2310(config-if)# auth-mac enable
     ```
 
-6. （ダイナミックVLANを利用する場合）VLANを作成します。
+7. （ダイナミックVLANを利用する場合）VLANを作成します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -116,7 +148,7 @@
     SWX2310(config-vlan)# vlan <VLAN ID>
     ```
 
-7. （ダイナミックVLANを利用する場合）アップリンクポートをトランクポートに設定します。
+8. （ダイナミックVLANを利用する場合）アップリンクポートをトランクポートに設定します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -129,7 +161,7 @@
     SWX2310(config-if)# switchport trunk allowed vlan add <VLAN ID>
     ```
 
-8. （ダイナミックVLANを利用する場合）**ダイナミックVLAN**を**有効化**します。
+9. （ダイナミックVLANを利用する場合）**ダイナミックVLAN**を**有効化**します。
 
     | **設定項目** | **設定内容** |
     | :--- | :--- |
@@ -140,14 +172,15 @@
     SWX2310(config-if)# auth dynamic-vlan-creation
     ```
 
-9. 設定を保存します。
+10. 設定を保存します。
 
     ```
     SWX2310# save
     ```
 
 !!! info
-    YAMAHA SWXシリーズ ネットワークスイッチの設定については、[**SWX2310 コマンドリファレンス：ポート認証機能**](https://www.rtpro.yamaha.co.jp/SW/docs/swx2310/Rev_2_04_09/interface/interface_port_auth.html?category=interface&rev=2.04.09){ target=_blank }を参考にさせていただきました。
+    * YAMAHA SWXシリーズ ネットワークスイッチの設定については、[**SWX2310 コマンドリファレンス：ポート認証機能**](https://www.rtpro.yamaha.co.jp/SW/docs/swx2310/Rev_2_04_09/interface/interface_port_auth.html?category=interface&rev=2.04.09){ target=_blank }を参考にさせていただきました。
+    * 拡張RADIUSサーバを利用する場合は、サンプルコンフィグにNAS-Identifierの設定を追加してください。
 
 [SWX2310-10Gのサンプルコンフィグ ダウンロード](./networkauth-yamaha_swx-switch-sampleconfig-mab-dvlan.txt){ target=_blank .md-button .md-button--primary }
 

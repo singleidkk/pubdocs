@@ -1,10 +1,22 @@
-# YAMAHA SWX(SWX2310-10G)の設定例一覧
+# YAMAHA SWXシリーズの設定例一覧
+文書更新日:2026-08-24
+
+## 検証環境
+
+本設定ガイドは、下記の機器で動作確認を行っています。
+機種が異なる場合、設定項目が一部異なることがあります。
+
+| **項目** | **内容** |
+| :--- | :--- |
+| **検証機種** | SWX2310-10G |
+
 ## パスワード認証
-* [**ネットワーク接続の認証**（グループによるアクセス制限）](networkauth-group-password.md)
-* [**ネットワーク接続の認証**（グループによるアクセス制限）と**MACアドレス認証バイパス**（MAC Authentication Bypass）の併用](networkauth-group-mab-password.md)
-* [**ネットワーク接続の認証**（グループによるアクセス制限）と**ダイナミックVLAN**の併用](networkauth-group-dvlan-password.md)
+* 有線LANアクセス ユーザ/グループによるアクセス制限 [標準](./networkauth-group-password.md)/[拡張](./networkauth-group-password-adv.md) [^1]
 
 ## クライアント証明書認証
-* [**ネットワーク接続の認証**（グループによるアクセス制限）](networkauth-group-cert.md)
-* [**ネットワーク接続の認証**（グループによるアクセス制限）と**MACアドレス認証バイパス**（MAC Authentication Bypass）の併用](networkauth-group-mab-cert.md)
-* [**ネットワーク接続の認証**（グループによるアクセス制限）と**ダイナミックVLAN**の併用](networkauth-group-dvlan-cert.md)
+* 有線LANアクセス ユーザ/グループによるアクセス制限 [標準](./networkauth-group-cert.md)/[拡張](./networkauth-group-cert-adv.md) [^1]
+
+[^1]:
+  * 標準：標準RADIUSサーバを利用した設定方法です。
+  * 拡張：拡張RADIUSサーバを利用した設定方法です。
+  * 固定グローバルIPをもたないインターネット接続環境の場合には、拡張RADIUSサーバを利用した設定方法を参考にしてください。
