@@ -1,5 +1,5 @@
 # 有線LANアクセス-パスワード認証
-文書更新日:2025-04-21
+文書更新日:2026-08-24
 
 ## 目的
 * SingleIDのユーザで、アライドテレシス ネットワークスイッチへアクセスします。
@@ -28,7 +28,7 @@
     | **使用するプロトコル** | **UDP**を選択します。 |
     | **シークレット** | 任意の文字列を設定します。英大文字、英小文字、数字、記号を組み合わせて、最低でも14文字以上の複雑な文字列を設定することをお勧めします。 |
 
-3. **登録**ボタンをクリックします。専用のRADIUSポート番号が割り当てれます。
+3. **登録**ボタンをクリックします。専用のRADIUSポート番号が割り当てられます。
 
 ### SingleIDのRADIUSサイトの登録
 1. **SingleID 管理者ポータル＞認証＞RADIUS＞簡易設定**タブへ移動します。
@@ -42,7 +42,7 @@
     | **サーバ** | **拡張**を選択します。 |
     | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)で登録したサーバ番号を選択します。 |
     | **サイト識別する属性** | **NAS-Identifier**を選択します。 |
-    | **属性値** | 任意の文字列を設定します。（例：allied-telesis_networkswitch） |        
+    | **属性値** | 任意の文字列を設定します。（例：allied-telesis_networkswitch） |
 
 5. **ネットワークアクセスの認証**タブへ移動します。
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
@@ -79,7 +79,7 @@
     ```
 
     ``` title="RADIUSサーバのグループ化"
-    awplus(config)#aaa group server radius <RADIUSグループ名>
+    awplus(config)# aaa group server radius <RADIUSグループ名>
     awplus(config-sg)# server <RADIUSサーバのプライマリIPアドレス> auth-port <RADIUSサーバのポート番号>
     awplus(config-sg)# server <RADIUSサーバのセカンダリIPアドレス> auth-port <RADIUSサーバのポート番号>
     ```
@@ -110,7 +110,7 @@
     awplus(config-if)# spanning-tree edgeport
     ```
 
-    !!! Info
+    !!! info
         * 認証機能の有効なポートでは認証成功時にスパニングツリープロトコルのトポロジーチェンジが発生します。これを回避するには、該当ポートをエッジポートに設定しておきます
         * この設定例では、Single-Hostモード（単一ホストモード）で設定しています。
 
@@ -126,7 +126,7 @@
     awplus(config-if)# auth timeout reauth-period 86400
     ```
 
-    !!! Info
+    !!! info
         アライドテレシス スイッチは、認証成功後に再認証は行われません。一定期間で再認証させたい場合には、設定変更が必要です。
 
 6. （MACベース認証を利用する場合）**MACベース認証**を**有効化**します。
@@ -142,7 +142,7 @@
     awplus(config-if)# auth-mac enable
     ```
 
-    !!! Info
+    !!! info
         MACベース認証時の初期値の認証方式は、PAPです。
 
 7. （MACベース認証を利用する場合）**スパニングツリー**を**無効化**します。
@@ -153,13 +153,13 @@
     awplus(config)# no spanning-tree mstp enable
     ```
 
-    !!! Info
+    !!! info
         同一ポート上でスパニングツリープロトコルとMACベース認証は併用できないため、スパニングツリープロトコルを無効にします。
 
 8. （MACベース認証を利用する場合）MACベース認証時のユーザ名・パスワードの形式を変更します。
 
     ``` title="MACベース認証時のユーザ名、パスワードの形式を変更"
-    awplus(config)# awplus(config)#auth-mac username unformatted lower-case
+    awplus(config)# auth-mac username unformatted lower-case
     ```
 
 9. （ダイナミックVLANを利用する場合）VLANを作成します。
@@ -169,8 +169,8 @@
     | **VLAN ID** | ダイナミックVLANで割り当てるVLAN IDです。（例: 101） |
 
     ``` title="VLANの作成"
-    awplus(config)#vlan database
-    awplus(config-vlan)#vlan <VLAN ID>
+    awplus(config)# vlan database
+    awplus(config-vlan)# vlan <VLAN ID>
     ```
 
 10. （ダイナミックVLANを利用する場合）アップリンクポートをトランクポートに設定します。
@@ -181,9 +181,9 @@
     | **VLAN ID** | ダイナミックVLANで割り当てるVLAN IDです。（例: 101） |
 
     ``` title="トランクポートの設定"
-    awplus(config)#interface <アップリンクポートのインターフェース名>
-    awplus(config-if)#switchport mode trunk
-    awplus(config-if)#switchport trunk allowed vlan add <VLAN ID>
+    awplus(config)# interface <アップリンクポートのインターフェース名>
+    awplus(config-if)# switchport mode trunk
+    awplus(config-if)# switchport trunk allowed vlan add <VLAN ID>
     ```
 
 11. （ダイナミックVLANを利用する場合）**ダイナミックVLAN**を**有効化**にします。
@@ -198,11 +198,11 @@
     awplus(config-if)# auth timeout connect-timeout 120
     ```
 
-    !!! Info
+    !!! info
         アライドテレシス スイッチの設定ガイドに従い、`auth timeout connect-timeout`を初期値から変更します。<br><br>**アライドテレシスの設定ガイドからの抜粋**<br>Note - Web認証、ダイナミックvlan使用時は、auth timeout connect-timeoutコマンドを使用し、デフォルトの30秒より長い時間を設定してください。（例：auth timeout connect-timeout 120）
 
 12. 設定を保存します。
-    
+
     ```
     awplus# write memory
     ```
