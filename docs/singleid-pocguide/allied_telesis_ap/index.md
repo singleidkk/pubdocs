@@ -10,7 +10,7 @@ GUIで設定可能なAT-TQおよびAT-TQmシリーズの設定例です。AT-TQR
 
 ## クライアント証明書認証
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-cert.md)/[拡張](wlan-group-cert-adv.md) [^1]
-  
+
 [^1]:
   * 標準：標準RADIUSサーバを利用した設定方法です。
   * 拡張：拡張RADIUSサーバを利用した設定方法です。
