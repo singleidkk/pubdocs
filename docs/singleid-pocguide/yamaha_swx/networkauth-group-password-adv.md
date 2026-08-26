@@ -1,5 +1,5 @@
 # 有線LANアクセス-パスワード認証
-文書更新日:2026-08-24
+文書更新日:2026-08-26
 
 ## 目的
 * SingleIDのユーザで、YAMAHA SWXシリーズ ネットワークスイッチへアクセスします。
@@ -42,7 +42,10 @@
     | **サーバ** | **拡張**を選択します。 |
     | **サーバ番号** | [SingleIDの拡張RADIUSサーバの登録](#singleidの拡張radiusサーバの登録)の手順で登録したサーバ番号を選択します。 |
     | **サイト識別する属性** | **NAS-Identifier**を選択します。 |
-    | **属性値** | YAMAHA SWXシリーズ ネットワークスイッチを識別する任意の文字列を設定します。（例：`singleid-yamaha-swx`）<br>ここで設定した文字列を[YAMAHA SWXシリーズ ネットワークスイッチの設定](#yamaha-swxシリーズ-ネットワークスイッチの設定)の手順で設定する**NAS-Identifier**にも設定します。実際にネットワーク機器から送信される属性値に対して、ここで設定した文字列で**部分一致検索**します。 |
+    | **属性値** | YAMAHA SWXシリーズ ネットワークスイッチを識別する任意の文字列を設定します。（例：`singleid-yamaha-swx`）<br>ここで設定した文字列を[YAMAHA SWXシリーズ ネットワークスイッチの設定](#yamaha-swxシリーズ-ネットワークスイッチの設定)の手順で設定する**NAS-Identifier**にも設定します。 |
+
+    !!! warning
+        NAS-Identifierは部分一致で検索されます。複数のRADIUSサイトを登録する場合は、ネットワーク機器が送信する1つのNAS-Identifierに複数サイトの属性値が一致しないように設定してください。
 
 5. **ネットワークアクセスの認証**タブへ移動します。
 6. **許可したいユーザ**および**許可したいグループ**をダブルクリックし、許可へ移動させます。
@@ -101,9 +104,6 @@
         初期設定ではNAS-Identifierは送信されません。`auth radius attribute nas-identifier`コマンドを設定すると、RADIUSリクエストでNAS-Identifierが送信されます。
 
         参考: [NAS-Identifier属性の設定](https://www.rtpro.yamaha.co.jp/RT/manual/swx2310/cmdref/interface/auth/auth_radius_att_nas-identifier.html){ target=_blank }
-
-    !!! warning
-        NAS-Identifierは部分一致で検索されます。複数のRADIUSサイトを登録する場合は、互いの文字列を含まないNAS-Identifierを設定してください。
 
 5. **802.1X認証**を**有効化**します。
 
