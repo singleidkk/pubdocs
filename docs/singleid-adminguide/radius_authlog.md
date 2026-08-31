@@ -1,5 +1,5 @@
 # RADIUS認証ログ
-文書更新日:2026-07-10
+文書更新日:2026-08-31
 
 **SingleID 管理者ポータル＞ログ＞RADIUS認証ログ**画面では、RADIUS認証ログの検索、表示、CSVエクスポートを行うことができます。
 
@@ -45,108 +45,6 @@
 
 ## 認証エラーのトラブルシューティング
 
-### `Rejected: There is no sites assosiated with sent NAS-IP-Address/NAS-Identifier.`
+RADIUS認証に失敗した場合は、認証を試行した時刻のログを確認してください。
 
-以下の場合に発生します。
-
-* 拡張RADIUSサーバを利用している場合に、**サイト識別する属性**または**属性値**が、実際にネットワーク機器から送信された**NAS-IP-Address**または**NAS-Identifier**と一致しない場合
-
-以下を確認してください。
-
-* **認証＞RADIUS＞簡易設定**で登録したサイトの**サイト識別する属性**が適切か
-* **属性値**が、実際に送信された**NAS-IP**または**NAS-ID**と一致しているか
-* **NAS-Identifier**を利用している場合には、部分一致で吸収できる安定した共通文字列を設定できないか
-
-詳細な確認方法については、[RADIUSクライアントのサイト識別する属性の確認方法](./radius.md#radiusクライアントのサイト識別する属性の確認方法)を参照してください。
-
-### `eap_peap: TLS Alert read:fatal:internal error`
-
-以下の場合に発生します。
-
-* Android11において、EAP方式が、PEAPまたはTLSの場合に、**ドメイン**への入力内容が正しくない場合
-
-**ドメイン**には、**SingleID 管理者ポータル＞認証＞RADIUS**画面の**基本情報**タブの**ホスト名**を入力します。
-
-### `eap_tls: (TLS) Alert read:fatal:unknown CA`
-
-以下の場合に発生します。
-
-* 接続デバイス側で、RADIUSサーバ証明書の検証に使用するCAの設定が誤っている場合
-
-RADIUSサーバ証明書は[Let's Encrypt](https://letsencrypt.org/certificates/){target=_blank}（サブジェクト: ISRG Root X1）のCAで発行されているため、接続デバイス側でも同CAで検証するよう設定してください。
-
-### `No Auth-Type found: rejecting the user via Post-Auth-Type = Reject`
-
-以下の場合に発生します。
-
-* PAP認証を試み、そのユーザが存在しない場合
-* ユーザが無効化されている場合
-
-### `pap: Cleartext password does not match "known good" password`
-
-以下の場合に発生します。
-
-* PAP認証を試み、そのユーザのパスワードが間違っている場合
-
-### `chap: &control:Cleartext-Password is required for authentication`
-
-以下の場合に発生します。
-
-* CHAP認証を試み、そのユーザが存在しない場合
-* ユーザが無効化されている場合
-
-### `chap: Password comparison failed: password is incorrect`
-
-以下の場合に発生します。
-
-* CHAP認証を試み、そのユーザのパスワードが間違っている場合
-
-### `mschap: FAILED: No NT-Password. Cannot perform authentication`
-
-以下の場合に発生します。
-
-* MS-CHAP認証を試み、そのユーザが存在しない場合
-* ユーザが無効化されている場合
-
-### `mschap: MS-CHAP2-Response is incorrect`
-
-以下の場合に発生します。
-
-* MS-CHAP認証を試み、そのユーザのパスワードが間違っている場合
-
-### `eap_tls: Program returned code (2) and output 'error /var/run/radiusd/radiusd.client.XXXXXXXX: verification failed'`
-
-以下の場合に発生します。
-
-* 適切な中間証明書で署名されていないクライアント証明書
-* 失効されたクライアント証明書
-
-### `eap_tls: (TLS) OpenSSL says error 20 : unable to get local issuer certificate`
-
-以下の場合に発生します。
-
-* 適切な中間証明書で署名されていないクライアント証明書
-
-### `eap_tls: (TLS) OpenSSL says error 19 : self signed certificate in certificate chain`
-
-以下の場合に発生します。
-
-* 適切な中間証明書で署名されていないクライアント証明書
-
-### `eap_tls: (TLS) OpenSSL says error 66 : EE certificate key too weak`
-
-以下の場合に発生します。
-
-* 接続デバイスが、SingleID以外で発行された鍵長の弱いクライアント証明書を提示した場合
-
-### `Rejected: User-Name contains whitespace`
-
-以下の場合に発生します。
-
-* RADIUSリクエストの `User-Name` 属性に空白文字が含まれている場合
-
-### `Rejected: The reject rule is matched.`
-
-以下の場合に発生します。
-
-* SingleID側の拒否ルールに一致した場合
+エラーメッセージごとの確認観点は、[RADIUS認証ログのエラー確認](./radius_authlog_errors.md)を参照してください。
