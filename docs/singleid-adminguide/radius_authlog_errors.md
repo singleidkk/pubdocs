@@ -3,11 +3,12 @@
 
 RADIUS認証に失敗した場合は、まず**SingleID 管理者ポータル＞ログ＞RADIUS認証ログ**画面で、認証を試行した時刻のログを確認してください。
 
-RADIUS認証ログでは、SingleID が認証要求を処理した結果を確認できます。利用端末またはネットワーク機器に表示されるエラーだけでは、原因を特定できない場合があります。
+RADIUS認証ログでは、SingleIDが認証要求を処理した結果を確認できます。利用端末またはネットワーク機器に表示されるエラーだけでは、原因を特定できない場合があります。
 
 本ページでは、SingleIDで確認した代表的なRADIUS認証ログのエラーと確認観点を掲載しています。すべてのエラーメッセージを網羅するものではありません。
 
-> RADIUS認証ログが表示されるまで、認証実行後から5分程度かかる場合があります。認証直後にログが見つからない場合は、少し時間をおいて再度検索してください。
+!!! info "ログ表示に関する注意"
+    RADIUS認証ログが表示されるまで、認証実行後から5分程度かかる場合があります。認証直後にログが見つからない場合は、少し時間をおいて再度検索してください。
 
 ## 認証結果の一覧
 
@@ -33,7 +34,7 @@ RADIUS認証ログでは、SingleID が認証要求を処理した結果を確�
 | `Access-Reject` | `eap_xxxxxxxx/TTLS` | `eap_xxxxxxxx: Failed continuing EAP TTLS (21) session.  EAP sub-module failed/-`、`eap_xxxxxxxx: Failed continuing EAP TTLS (21) session.  EAP sub-module failed/The user account was found.`、または `eap_xxxxxxxx: Failed continuing EAP TTLS (21) session.  EAP sub-module failed/The user account was not found.` | EAP内側の認証またはOTP認証が拒否された | 後半のメッセージに従い、ユーザID、パスワード、OTPを確認します。 |
 | `Access-Reject` | `eap_xxxxxxxx/TLS` | `-/The user account was not found.` | 証明書CNに対応するユーザが見つからない | 証明書CNとSingleIDのユーザIDを確認します。 |
 | `Access-Reject` | `eap_xxxxxxxx/TLS` | `eap_tls: (TLS) TLS - Alert read:fatal:unknown CA/-` | 利用端末で、RADIUSサーバ証明書の検証に使用するCAが正しく設定されていない | 利用端末で、SingleIDのRADIUSサーバ証明書を検証できるCAを設定します。 |
-| `Access-Reject` | `eap_xxxxxxxx/TLS` | `eap_tls: Program returned code (2) and output 'error /var/run/radiusd/radiusd.client.XXXXXXXX: verification failed'/-` | クライアント証明書が失効している、またはSingleIDが信頼していない発行元の証明書 | 証明書の失効状態、発行元、証明書チェーンを確認します。 |
+| `Access-Reject` | `eap_xxxxxxxx/TLS` | `eap_tls: Program returned code (2) ... verification failed/-` | クライアント証明書が失効している、またはSingleIDが信頼していない発行元の証明書 | 証明書の失効状態、発行元、証明書チェーンを確認します。 |
 | `Access-Reject` | `eap_xxxxxxxx/TLS` | `eap_tls: (TLS) OpenSSL says error 18 : self signed certificate/-` | 自己署名のクライアント証明書 | SingleIDが信頼する発行元のクライアント証明書を使用します。 |
 | `Access-Reject` | `eap_xxxxxxxx/TLS` | `eap_tls: (TLS) OpenSSL says error 20 : unable to get local issuer certificate/-` | SingleIDが信頼していない発行元のクライアント証明書 | クライアント証明書の発行元と証明書チェーンを確認します。 |
 | `Access-Reject` | `eap_xxxxxxxx/TLS` | `eap_tls: (TLS) OpenSSL says error 19 : self signed certificate in certificate chain/-` | クライアント証明書チェーンに自己署名証明書が含まれる | SingleIDが信頼する発行元のクライアント証明書を使用します。 |
@@ -52,7 +53,7 @@ RADIUS認証ログでは、SingleID が認証要求を処理した結果を確�
 | 項目 | 確認内容 |
 | --- | --- |
 | パケットタイプ | RADIUS の最終応答です。`Access-Accept` は成功、`Access-Reject` は拒否です。 |
-| 認証タイプ | SingleID が処理した認証方式です。`PAP/-`、`CHAP/-`、`MS-CHAP/-`、`eap_xxxxxxxx/TLS`、`otp_xxxxxxxx/-` などが表示されます。`xxxxxxxx` の数字部分は環境によって異なります。 |
+| 認証タイプ | SingleIDが処理した認証方式です。`PAP/-`、`CHAP/-`、`MS-CHAP/-`、`eap_xxxxxxxx/TLS`、`otp_xxxxxxxx/-` などが表示されます。`xxxxxxxx` の数字部分は環境によって異なります。 |
 | エラーメッセージ | `/` の前後を含めて表示されます。`-` は該当するメッセージがないことを表します。 |
 | RADIUSクライアントIP、NAS ID、SSID | 認証要求を送信した機器・接続先を特定するための情報です。想定した機器・サイトからの認証要求か確認してください。 |
 
