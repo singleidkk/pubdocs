@@ -1,0 +1,2855 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://pubdocs.singleid.jp/singleid-adminguide/radius_authlog_errors/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>RADIUS認証ログのエラー確認 - SingleID Document</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#radius認証ログのエラー確認" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="https://www.singleid.jp/" title="SingleID Document" class="md-header__button md-logo" aria-label="SingleID Document" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SingleID Document
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RADIUS認証ログのエラー確認
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://www.singleid.jp/" title="SingleID Document" class="md-nav__button md-logo" aria-label="SingleID Document" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SingleID Document
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HOME
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    管理者ガイド
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    管理者ガイド
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    はじめに
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ログ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ログ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radius_authlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RADIUS認証ログ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operation_log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    操作ログ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    グループ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microsoft_entra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoftクラウド連携
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    認証
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    認証
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ldap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RADIUS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    証明書
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アプリ連携
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    アプリ連携
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アプリ一覧
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    セキュリティ診断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    管理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    管理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accountinfo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本情報（組織アカウント）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    管理者
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    詳細設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザガイド
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ユーザガイド
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-userguide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    はじめに
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-userguide/account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アカウント
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-userguide/password/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    パスワード
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-userguide/authenticator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    オーセンティケーター
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-userguide/session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    セッション
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    サポートセンター
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    サポートセンター
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    はじめに
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    お客様向け
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    お客様向け
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/new_ticket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新しいチケットの作成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/status_check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チケットの進捗状況の確認
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/add_comment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チケットへのコメントの追加
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSP提供事業者向け
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSP提供事業者向け
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/msp_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    サポートフロー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/msp_check_new_ticket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新規チケット内容の確認
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/msp_assign_support_rep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    サポート担当者の割り当て
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/msp_change_status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ステータスの変更
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/msp_change_support_rep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    担当者の変更
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/msp_add_comment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コメントの追加
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/msp_escalation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エスカレーション
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/msp_close/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チケットの終了
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用語
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    用語
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supportcenter/status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チケットのステータス
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-appguide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アプリ連携ガイド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-pocguide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク機器連携の設定例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-security-check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    セキュリティ診断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    よくある質問
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSP管理者ガイド
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSP管理者ガイド
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-mspguide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    はじめに
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ポイント管理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ポイント管理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-mspguide/point_history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ポイント履歴
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アカウント管理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    アカウント管理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-mspguide/customer_account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    顧客アカウント管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-mspguide/msp_account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSPアカウント管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-mspguide/pending_account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    承認待ちアカウント管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特別運用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    特別運用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-mspguide/special/poc_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PoC実施ガイドライン
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-mspguide/special/cloudassist_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SingleIDクラウドアシスト
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    リリースノート
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    リリースノート
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../singleid-release-notes/service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    製品版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#認証結果の一覧" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        認証結果の一覧
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ログ項目の見方" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ログ項目の見方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radius認証ログがない場合" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RADIUS認証ログがない場合
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RADIUS認証ログがない場合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radius認証処理が開始または完了していない" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RADIUS認証処理が開始または完了していない
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radius認証要求を送信しているがsingleidまで到達していない" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RADIUS認証要求を送信しているがSingleIDまで到達していない
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RADIUS認証要求を送信しているがSingleIDまで到達していない">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#標準radiusサーバを利用している場合" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        標準RADIUSサーバを利用している場合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#singleidに到達した後に認証ログが記録される前に破棄されている" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SingleIDに到達した後に認証ログが記録される前に破棄されている
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#問い合わせ時に必要な情報" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        問い合わせ時に必要な情報
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="radius認証ログのエラー確認">RADIUS認証ログのエラー確認<a class="headerlink" href="#radius認証ログのエラー確認" title="Permanent link"></a></h1>
+<p>文書更新日:2026-09-01</p>
+<p>RADIUS認証に失敗した場合は、まず<strong>SingleID 管理者ポータル＞ログ＞RADIUS認証ログ</strong>画面で、認証を試行した時刻のログを確認してください。</p>
+<p>RADIUS認証ログでは、SingleIDが認証要求を処理した結果を確認できます。利用端末またはネットワーク機器に表示されるエラーだけでは、原因を特定できない場合があります。</p>
+<p>本ページでは、SingleIDで確認した代表的なRADIUS認証ログのエラーと確認観点を掲載しています。すべてのエラーメッセージを網羅するものではありません。</p>
+<div class="admonition info">
+<p class="admonition-title">ログ表示に関する注意</p>
+<p>RADIUS認証ログが表示されるまで、認証実行後から5分程度かかる場合があります。認証直後にログが表示されない場合は、少し時間をおいてから再度確認してください。</p>
+</div>
+<h2 id="認証結果の一覧">認証結果の一覧<a class="headerlink" href="#認証結果の一覧" title="Permanent link"></a></h2>
+<table>
+<thead>
+<tr>
+<th>パケットタイプ</th>
+<th>認証タイプ</th>
+<th>エラーメッセージ</th>
+<th>考えられる原因</th>
+<th>確認・対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Access-Accept</code></td>
+<td><code>Accept/-</code>、<code>eap_xxxxxxxx/MD5</code>、<code>eap_xxxxxxxx/TTLS</code>、<code>otp_xxxxxxxx/-</code></td>
+<td><code>-/-</code></td>
+<td>MABまたはOTPを含む認証成功</td>
+<td>認証後の接続に失敗する場合は、RADIUSクライアント側の認可設定、アドレス払い出し、接続先設定を確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Accept</code></td>
+<td><code>PAP/-</code>、<code>CHAP/-</code>、<code>MS-CHAP/-</code>、<code>eap_xxxxxxxx/MSCHAPv2</code>、<code>eap_xxxxxxxx/PEAP</code>、<code>eap_xxxxxxxx/TLS</code>、<code>eap_xxxxxxxx/TTLS</code></td>
+<td><code>-/The user account was found.</code></td>
+<td>通常のユーザ認証成功</td>
+<td>認証自体は成功しています。RADIUSクライアント側の後続処理を確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>otp_xxxxxxxx/-</code></td>
+<td><code>-/-</code></td>
+<td>OTPまたはパスワードが誤り</td>
+<td>パスワードと6桁のOTPを <code>パスワード:123456</code> の形式で入力していること、端末時刻が正しいことを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>otp_xxxxxxxx/-</code></td>
+<td><code>otp_xxxxxxxx: Server returned:/-</code></td>
+<td>ユーザ無効、OTP未登録、またはOTP入力形式不正</td>
+<td>ユーザが有効であること、OTPが登録済みであること、入力形式を確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>PAP/-</code></td>
+<td><code>No Auth-Type found: rejecting the user via Post-Auth-Type = Reject/The user account was not found.</code></td>
+<td>ユーザが見つからない</td>
+<td>ユーザIDを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>-/-</code></td>
+<td><code>No Auth-Type found: rejecting the user via Post-Auth-Type = Reject/The user account was found.</code></td>
+<td>PAPパスワードが空</td>
+<td>利用端末またはネットワーク機器でパスワードが設定されていることを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>PAP/-</code></td>
+<td><code>pap: Cleartext password does not match "known good" password/The user account was found.</code></td>
+<td>ユーザパスワード不正。または、Message-Authenticatorを含まない要求ではRADIUS共有シークレット不一致</td>
+<td>ユーザパスワードとRADIUSクライアントに保存された資格情報を確認します。Message-Authenticatorを送信しない機器では、RADIUS共有シークレットも確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>CHAP/-</code></td>
+<td><code>chap: &amp;control:Cleartext-Password is required for authentication/The user account was not found.</code></td>
+<td>ユーザが見つからない</td>
+<td>ユーザIDを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>CHAP/-</code></td>
+<td><code>chap: Password comparison failed: password is incorrect/The user account was found.</code></td>
+<td>パスワード不正</td>
+<td>パスワードを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>MS-CHAP/-</code></td>
+<td><code>mschap: FAILED: No NT-Password.  Cannot perform authentication/The user account was not found.</code></td>
+<td>ユーザが見つからない</td>
+<td>ユーザIDを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>MS-CHAP/-</code></td>
+<td><code>mschap: MS-CHAP2-Response is incorrect/The user account was found.</code></td>
+<td>パスワード不正</td>
+<td>パスワードを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/MD5</code></td>
+<td><code>eap_md5: Cleartext-Password is required for EAP-MD5 authentication/-</code></td>
+<td>MABのMACアドレスが未登録、またはユーザ名とMACアドレスが不一致</td>
+<td>MACアドレスとMABルールを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/MD5</code></td>
+<td><code>-/-</code></td>
+<td>登録済みMACアドレスに対するEAP-MD5パスワード不正</td>
+<td>MABのMACアドレスと、機器が送信するEAP-MD5パスワードを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/MSCHAPv2</code></td>
+<td><code>mschap: FAILED: No NT-Password.  Cannot perform authentication/-</code> または <code>mschap: FAILED: No NT-Password.  Cannot perform authentication/The user account was not found.</code></td>
+<td>ユーザ未登録、またはサイト条件により認証情報を取得できない</td>
+<td>ユーザIDとRADIUSサイトの条件を確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/MSCHAPv2</code></td>
+<td><code>mschap: MS-CHAP2-Response is incorrect/The user account was found.</code></td>
+<td>パスワード不正</td>
+<td>パスワードを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/PEAP</code></td>
+<td><code>eap_peap: The users session was previously rejected: returning reject (again.)/The user account was found.</code> または <code>eap_peap: The users session was previously rejected: returning reject (again.)/The user account was not found.</code></td>
+<td>EAP内側の認証が拒否された</td>
+<td>後半のメッセージに従い、ユーザIDまたはパスワードを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>eap_tls: (TLS) TLS - Alert read:fatal:internal error/-</code></td>
+<td>利用端末のRADIUSサーバ名またはドメインの検証条件が一致しない</td>
+<td>利用端末のRADIUSサーバ名またはドメインに、SingleID 管理者ポータルの <strong>認証＞RADIUS＞基本情報</strong> に表示されるホスト名を設定します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TTLS</code></td>
+<td><code>eap_xxxxxxxx: Failed continuing EAP TTLS (21) session.  EAP sub-module failed/-</code>、<code>eap_xxxxxxxx: Failed continuing EAP TTLS (21) session.  EAP sub-module failed/The user account was found.</code>、または <code>eap_xxxxxxxx: Failed continuing EAP TTLS (21) session.  EAP sub-module failed/The user account was not found.</code></td>
+<td>EAP内側の認証またはOTP認証が拒否された</td>
+<td>後半のメッセージに従い、ユーザID、パスワード、OTPを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>-/The user account was not found.</code></td>
+<td>証明書CNに対応するユーザが見つからない</td>
+<td>証明書CNとSingleIDのユーザIDを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>eap_tls: (TLS) TLS - Alert read:fatal:unknown CA/-</code></td>
+<td>利用端末で、RADIUSサーバ証明書の検証に使用するCAが正しく設定されていない</td>
+<td>利用端末で、SingleIDのRADIUSサーバ証明書を検証できるCAを設定します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>eap_tls: Program returned code (2) ... verification failed/-</code></td>
+<td>クライアント証明書が失効している、またはSingleIDが信頼していない発行元の証明書</td>
+<td>証明書の失効状態、発行元、証明書チェーンを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>eap_tls: (TLS) OpenSSL says error 18 : self signed certificate/-</code></td>
+<td>自己署名のクライアント証明書</td>
+<td>SingleIDが信頼する発行元のクライアント証明書を使用します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>eap_tls: (TLS) OpenSSL says error 20 : unable to get local issuer certificate/-</code></td>
+<td>SingleIDが信頼していない発行元のクライアント証明書</td>
+<td>クライアント証明書の発行元と証明書チェーンを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>eap_tls: (TLS) OpenSSL says error 19 : self signed certificate in certificate chain/-</code></td>
+<td>クライアント証明書チェーンに自己署名証明書が含まれる</td>
+<td>SingleIDが信頼する発行元のクライアント証明書を使用します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>eap_tls: (TLS) OpenSSL says error 10 : certificate has expired/-</code></td>
+<td>クライアント証明書の有効期限切れ</td>
+<td>有効なクライアント証明書を使用します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TLS</code></td>
+<td><code>eap_tls: (TLS) OpenSSL says error 9 : certificate is not yet valid/-</code></td>
+<td>クライアント証明書がまだ有効開始前</td>
+<td>有効開始日を過ぎたクライアント証明書を使用します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>-/-</code>、<code>CHAP/-</code>、<code>MS-CHAP/-</code>、<code>eap_xxxxxxxx/Identity</code>、<code>eap_xxxxxxxx/TLS</code></td>
+<td><code>-/The user account is locked.</code></td>
+<td>ユーザが無効</td>
+<td>管理者ポータルで対象ユーザを有効にします。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/PEAP</code></td>
+<td><code>eap_peap: The users session was previously rejected: returning reject (again.)/The user account is locked.</code></td>
+<td>ユーザが無効</td>
+<td>管理者ポータルで対象ユーザを有効にします。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>eap_xxxxxxxx/TTLS</code></td>
+<td><code>eap_xxxxxxxx: Failed continuing EAP TTLS (21) session.  EAP sub-module failed/The user account is locked.</code></td>
+<td>ユーザが無効</td>
+<td>管理者ポータルで対象ユーザを有効にします。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>Reject/-</code>、<code>Reject/MSCHAPv2</code>、<code>Reject/PEAP</code>、<code>Reject/TTLS</code>、<code>Reject/TLS</code></td>
+<td><code>Rejected: The reject rule is matched./The user account was found.</code> または <code>Rejected: The reject rule is matched./-</code></td>
+<td>RADIUSサイトの拒否ルールに一致</td>
+<td>許可ユーザ、許可グループ、条件、ルール順序、NAS ID、SSID、NASポートタイプを確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>-/-</code></td>
+<td><code>Rejected: There is no sites assosiated with sent NAS-IP-Address/NAS-Identifier./-</code></td>
+<td>拡張RADIUSで、サイト識別の属性または属性値が、RADIUSクライアントから送信されたNAS-IP-AddressまたはNAS-Identifierと一致しない</td>
+<td>サイトの識別属性と属性値を確認します。NAS-Identifierを使う場合は、安定した共通文字列を部分一致条件として設定できるか確認します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>-/-</code></td>
+<td><code>Rejected: User-Name contains whitespace/-</code></td>
+<td>ユーザIDに空白文字がある</td>
+<td>利用端末またはRADIUSクライアントのユーザID設定から空白を除去します。</td>
+</tr>
+<tr>
+<td><code>Access-Reject</code></td>
+<td><code>-/-</code></td>
+<td><code>Rejected: Multiple @ in User-Name/-</code>、<code>Rejected: Realm begins with a dot/-</code>、<code>Rejected: Realm ends with a dot/-</code>、<code>Rejected: User-Name contains multiple ..s/-</code></td>
+<td>ユーザIDまたはrealmの形式が不正</td>
+<td>ユーザIDの形式を確認します。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ログ項目の見方">ログ項目の見方<a class="headerlink" href="#ログ項目の見方" title="Permanent link"></a></h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>確認内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>パケットタイプ</td>
+<td>RADIUS の最終応答です。<code>Access-Accept</code> は成功、<code>Access-Reject</code> は拒否です。</td>
+</tr>
+<tr>
+<td>認証タイプ</td>
+<td>SingleIDが処理した認証方式です。<code>PAP/-</code>、<code>CHAP/-</code>、<code>MS-CHAP/-</code>、<code>eap_xxxxxxxx/TLS</code>、<code>otp_xxxxxxxx/-</code> などが表示されます。<code>xxxxxxxx</code> の数字部分は環境によって異なります。</td>
+</tr>
+<tr>
+<td>エラーメッセージ</td>
+<td><code>/</code> の前後を含めて表示されます。<code>-</code> は該当するメッセージがないことを表します。</td>
+</tr>
+<tr>
+<td>RADIUSクライアントIP、NAS ID、SSID</td>
+<td>認証要求を送信した機器・接続先を特定するための情報です。想定した機器・サイトからの認証要求か確認してください。</td>
+</tr>
+</tbody>
+</table>
+<p>エラーメッセージが <code>-/-</code> の場合は、追加のメッセージが記録されていないことを示します。<code>-/-</code> 自体は成功を意味しません。パケットタイプと認証タイプをあわせて判断してください。</p>
+<h2 id="radius認証ログがない場合">RADIUS認証ログがない場合<a class="headerlink" href="#radius認証ログがない場合" title="Permanent link"></a></h2>
+<p>該当時刻にRADIUS認証ログがない場合は、SingleIDが認証結果を記録する段階までRADIUS認証処理が進んでいない可能性があります。</p>
+<p>まず、RADIUSクライアントとなるネットワーク機器から、RADIUS認証要求が送信されているかを確認してください。</p>
+<h3 id="radius認証処理が開始または完了していない">RADIUS認証処理が開始または完了していない<a class="headerlink" href="#radius認証処理が開始または完了していない" title="Permanent link"></a></h3>
+<p>利用端末とネットワーク機器の間で、RADIUS認証を開始する前の処理に失敗している場合があります。</p>
+<p>たとえば、次のような原因が考えられます。</p>
+<ul>
+<li>Wi-Fiへの接続や802.1X認証の開始前に失敗している</li>
+<li>利用端末の802.1X、EAP、証明書などの設定に問題がある</li>
+<li>VPNで、IKE/IPsecやL2TPなど、RADIUS認証より前の接続処理に失敗している</li>
+<li>VPNクライアントとネットワーク機器で、PAP、CHAP、MS-CHAPv2などの認証方式が一致していない</li>
+<li>ネットワーク機器側でRADIUS認証を使用する設定になっていない</li>
+<li>認証対象となるSSID、VPN、ポートなどにRADIUS設定が適用されていない</li>
+</ul>
+<p>この場合、SingleIDにRADIUS認証要求が送信されないか、一連の認証処理が完了しないため、RADIUS認証ログが記録されないことがあります。</p>
+<p>ネットワーク機器の認証ログ、システムログ、デバッグログなどを確認し、RADIUS Access-Requestが送信されているか、応答後に認証処理が中断していないか確認してください。</p>
+<h3 id="radius認証要求を送信しているがsingleidまで到達していない">RADIUS認証要求を送信しているがSingleIDまで到達していない<a class="headerlink" href="#radius認証要求を送信しているがsingleidまで到達していない" title="Permanent link"></a></h3>
+<p>ネットワーク機器からRADIUS認証要求が送信されている場合は、次の項目を確認してください。</p>
+<ul>
+<li>ネットワーク機器に設定されているRADIUSサーバのアドレスおよび認証ポートが正しいこと</li>
+<li>ファイアウォール、ルータ、NAT、アクセス制御などによりRADIUS通信が遮断されていないこと</li>
+</ul>
+<h4 id="標準radiusサーバを利用している場合">標準RADIUSサーバを利用している場合<a class="headerlink" href="#標準radiusサーバを利用している場合" title="Permanent link"></a></h4>
+<p>上記に加えて、SingleIDから見えるRADIUSパケットの送信元グローバルIPアドレスが、SingleIDに登録しているRADIUSクライアントのIPアドレスと一致していることを確認してください。</p>
+<h3 id="singleidに到達した後に認証ログが記録される前に破棄されている">SingleIDに到達した後に認証ログが記録される前に破棄されている<a class="headerlink" href="#singleidに到達した後に認証ログが記録される前に破棄されている" title="Permanent link"></a></h3>
+<p>RADIUS認証要求がSingleIDまで到達していても、RADIUS共有シークレットの不一致などにより、認証ログが記録される前に要求が破棄される場合があります。</p>
+<p>RADIUS共有シークレットが、ネットワーク機器側とSingleID側で一致していることを確認してください。</p>
+<p>EAPを利用する場合や、ネットワーク機器がMessage-Authenticator属性を付与する場合、共有シークレットが一致していないとRADIUS認証要求が破棄され、認証ログが記録されないことがあります。</p>
+<p>また、一部のネットワーク機器では、共有シークレットに使用する特殊文字の扱いによって、設定した文字列と実際に使用される共有シークレットが一致しない場合があります。共有シークレットの不一致が疑われる場合は、十分な長さの半角英数字のみの文字列に変更して確認してください。</p>
+<h2 id="問い合わせ時に必要な情報">問い合わせ時に必要な情報<a class="headerlink" href="#問い合わせ時に必要な情報" title="Permanent link"></a></h2>
+<p>原因調査が必要な場合は、次の情報を添えて問い合わせてください。</p>
+<ul>
+<li>対象ユーザID</li>
+<li>認証を試行した日時とタイムゾーン</li>
+<li>RADIUS認証ログの該当行、または該当ログがないこと</li>
+<li>RADIUSクライアントIP、NAS ID、SSID、認証タイプ</li>
+<li>利用端末の種類、OS、RADIUS認証の設定内容</li>
+<li>RADIUSクライアントの機器名、ソフトウェアバージョン、構成概要</li>
+<li>利用端末またはRADIUSクライアントに表示されたエラー内容</li>
+<li>特定の端末、回線、時間帯でのみ発生するか</li>
+</ul>
+<p>パスワード、ワンタイムパスワード、RADIUS共有シークレット、秘密鍵、証明書ファイルは問い合わせに記載または添付しないでください。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021 - 2022 SingleID K.K.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
