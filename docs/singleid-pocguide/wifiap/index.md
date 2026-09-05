@@ -7,6 +7,12 @@
 
 ## クライアント証明書認証
 * 無線LANアクセス ユーザ/グループによるアクセス制限 [標準](wlan-group-cert.md)/[拡張](wlan-group-cert-adv.md) [^1]
+
+## 検証チェックシート
+
+自社の無線LANアクセスポイントについて、SingleIDのネットワーク機器連携カタログまたはネットワーク機器連携の設定例への掲載を希望するネットワーク機器ベンダー向けの検証チェックシートです。
+
+[無線LANアクセスポイント検証チェックシート ダウンロード](./check_sheets/wireless_ap_validation_check_sheets.zip){ .md-button .md-button--primary }
   
 [^1]:
   * 標準：標準RADIUSサーバを利用した設定方法です。
