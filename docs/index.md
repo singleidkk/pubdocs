@@ -14,6 +14,8 @@
 
 [よくある質問](./faq/index.md)
 
+[お知らせ・メンテナンス・障害一覧](./singleid-notifications/index.md)
+
 [MSP管理者ガイド](./singleid-mspguide/index.md)
 
 [リリースノート](./singleid-release-notes/index.md)

@@ -110,6 +110,11 @@ nav:
   - ネットワーク機器連携の設定例: singleid-pocguide/index.md
   - セキュリティ診断: singleid-security-check/index.md
   - よくある質問: faq/index.md
+  - お知らせ・メンテナンス・障害一覧:
+    - はじめに: singleid-notifications/index.md
+    - お知らせ一覧: singleid-notifications/notices/index.md
+    - メンテナンス一覧: singleid-notifications/maintenance/index.md
+    - 障害一覧: singleid-notifications/incidents/index.md
   - MSP管理者ガイド:
     - はじめに: singleid-mspguide/index.md
     - ポイント管理:
