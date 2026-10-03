@@ -10,7 +10,7 @@ YAMAHA RTXとSingleIDのRADIUSサーバを連携し、パスワードとOTPに�
 ```text
 syslog debug on
 l2tp syslog on
-ipsec ike log <gateway_id> message-info payload-info
+ipsec ike log <gateway_id> message-info
 ```
 
 DEBUGログは大量に出力されるため、確認後はトラブルシューティング前の設定へ戻してください。今回の確認のために各設定を有効にした場合は、次のコマンドで無効化します。複数の`gateway_id`に設定した場合は、それぞれに`no ipsec ike log`を実行してください。
