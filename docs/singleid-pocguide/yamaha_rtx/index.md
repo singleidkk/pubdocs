@@ -13,6 +13,9 @@
 ## FAQ
 * [FAQ｜YAMAHA RTX × SingleID（リモートアクセスVPNの認証強化）](faq.md)
 
+## トラブルシューティング
+* [YAMAHA RTX リモートアクセスVPN 2要素認証のトラブルシューティング](troubleshooting-radius.md)
+
 !!! info
     2要素認証に、PAP認証を使用することに不安を感じるお客様へ
 
