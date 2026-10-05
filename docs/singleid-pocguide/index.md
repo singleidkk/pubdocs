@@ -1,5 +1,7 @@
 認証システムとしてSingleIDを利用したネットワーク機器連携の設定例です。
 
+SCS評価制度の要求事項とSingleIDを利用した認証構成の関係については、[SCS評価制度に向けた認証強化](./scs/index.md)を参照してください。
+
 * [アライドテレシス 無線LANアクセスポイント/アライドテレシス](./allied_telesis_ap/index.md)
 * [アライドテレシス ネットワークスイッチ/アライドテレシス](./allied_telesis_networkswitch/index.md)
 * [Anti Spreader アクセスポイント/宝情報](./anti_spreader_ap/index.md)
