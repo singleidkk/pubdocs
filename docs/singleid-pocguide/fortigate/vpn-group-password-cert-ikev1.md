@@ -1,5 +1,5 @@
 # リモートアクセスVPN-2要素認証（パスワード認証＋クライアント証明書認証）（IKEv1）
-文書更新日:2026-04-14
+文書更新日:2026-11-05
 
 ## 目的
 * SingleIDのユーザで、FortiGateへVPNを使ってリモートアクセスします。
@@ -7,6 +7,18 @@
 * VPNトンネルは、**IKEv1**を利用します。
 * SingleIDの標準RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
+
+!!! warning
+    本書では、Windows版FortiClient VPNを利用する場合の設定方法と動作確認方法を説明します。
+
+    Fortinetの資料では、Windows版およびmacOS版FortiClient 7.4.4以降はIKEv1をサポートしないと説明されています。FortiClientの対応バージョンについては、[FortinetのIKEバージョンに関する資料](https://docs.fortinet.com/document/fortigate/7.4.4/ssl-vpn-to-ipsec-vpn-migration/883534/ikev1-or-ikev2){ target=_blank }を確認してください。
+
+    VPNクライアントの設定については、以下を参照してください。
+
+    * Windows、macOS: [FortiClientのIPsec VPN設定](https://docs.fortinet.com/document/forticlient/7.4.3/administration-guide/494391/configuring-an-ipsec-vpn-connection){ target=_blank }
+    * Android: [FortiClientのIKEv1接続](https://docs.fortinet.com/document/forticlient/7.4.0/android-administration-guide/834699/creating-an-ipsec-vpn-ikev1-connection){ target=_blank }
+    * iOS/iPadOS（標準VPNクライアント）: [AppleデバイスのCisco IPsec VPN設定](https://support.apple.com/ja-jp/guide/deployment/depdf31db478/web){ target=_blank }
+    * iOS/iPadOS（有償版FortiClient）: [FortiClientのIPsec VPN設定](https://docs.fortinet.com/document/forticlient/8.0.0/ios-administration-guide/189805/ipsec-vpn){ target=_blank }。Fortinetの資料では、IKEv1のアグレッシブモードをサポートせず、メインモードを使用すると説明されています。
 
 ## 設定方法
 ### SingleIDのグループの作成

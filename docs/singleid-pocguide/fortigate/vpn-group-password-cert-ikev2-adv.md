@@ -1,9 +1,9 @@
 # リモートアクセスVPN-2要素認証（パスワード認証＋クライアント証明書認証）（IKEv2自動トランスポートモード）
-文書更新日:2026-08-26
+文書更新日:2026-11-05
 
 !!! info
     * 本設定ガイドは、FortiGate v7.6.6およびFortiClient 7.4.3.4726（ライセンス版）を用いて動作確認した内容に基づいて作成しています。
-    * IKEv2の自動トランスポートモードでTCPへのフォールバックを利用するには、FortiClient 7.4.1以降が必要です。
+    * Fortinetの資料では、IKEv2の自動トランスポートモードでTCPへのフォールバックを利用するには、FortiClient 7.4.1以降が必要と説明されています。詳細は、[IPsec VPN over TCP](https://docs.fortinet.com/document/forticlient/7.4.0/new-features/914884/ipsec-vpn-over-tcp-on-windows-macos-and-linux-7-4-1){ target=_blank }を確認してください。
     * Fortinet公式ドキュメントの「[FortiClient standalone and licensed version feature comparison](https://docs.fortinet.com/document/forticlient/7.4.3/administration-guide/269675/forticlient-standalone-and-licensed-version-feature-comparison)」によると、FortiClient 7.4系の無償Standalone版はIPsec over TCPをサポートしていません。UDPが利用できない環境でTCP接続まで確認する場合は、ライセンス版のFortiClientを使用してください。
 
 ## 目的
@@ -12,6 +12,11 @@
 * VPNトンネルは、**IKEv2の自動トランスポートモード**を利用します。
 * SingleIDの拡張RADIUSサーバを利用します。
 * ユーザ/グループによるアクセス制限をします。
+
+!!! warning
+    本書では、Windows版FortiClientを利用する場合の設定方法と動作確認方法を説明します。
+
+    Fortinetの資料では、Android版FortiClientのIKEv2接続は複数の認証方式を組み合わせることができないと説明されています。そのため、本構成では利用できません。詳細は、[FortiClient（Android）のIKEv2接続](https://docs.fortinet.com/document/forticlient/latest/android-administration-guide/189805/creating-an-ipsec-vpn-ikev2-connection){ target=_blank }を確認してください。
 
 ## 設定方法
 ### SingleIDのグループの作成
