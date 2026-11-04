@@ -1,5 +1,5 @@
 # リモートアクセスVPN-2要素認証（パスワード認証＋ワンタイムパスワード認証）
-文書更新日:2026-08-05
+文書更新日:2026-11-05
 
 ## 目的
 * SingleIDのユーザで、YAMAHA RTXへVPNを使ってリモートアクセスします。
@@ -17,9 +17,11 @@
 
     YAMAHA RTXでRADIUS連携によるリモートアクセスVPNを利用する場合、VPN方式はL2TP/IPsecです。また、本構成ではYAMAHA RTX側のユーザ認証方式としてPAPを選択します。L2TP/IPsecまたはPAP認証を利用できないVPNクライアントは対象外です。
 
-    iPhone/iPadの標準VPNクライアントは、PAPを明示的に選択できないため対象外です。
+    iPhone/iPadおよびMac（macOS）の標準VPNクライアントは、L2TP/IPsecのユーザ認証にMS-CHAPV2を使用するため対象外です。
 
     Android 12以降は、標準機能でL2TP/IPsecを利用できないため対象外です。
+
+    参考: [VPN（仮想プライベートネットワーク）のセキュリティ（Apple）](https://support.apple.com/ja-jp/guide/security/sec802e8ab55/web){ target=_blank }、[Androidからリモートアクセスする（YAMAHA）](https://network.yamaha.com/setting/router_firewall/vpn/vpn_client/android/){ target=_blank }
 
 ## 設定方法
 ### SingleIDのグループの作成

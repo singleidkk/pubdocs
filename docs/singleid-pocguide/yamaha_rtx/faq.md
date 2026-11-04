@@ -1,5 +1,5 @@
 # FAQ｜YAMAHA RTX × SingleID（リモートアクセスVPNの認証強化）
-文書更新日: 2026-08-05
+文書更新日:2026-11-05
 
 本FAQは、YAMAHA RTXとSingleIDを組み合わせてリモートアクセスVPNの認証を強化する場合の、よくある疑問点を整理したものです。
 具体的な設定手順は、関連ドキュメントの設定例を参照してください。
@@ -113,7 +113,7 @@ SingleIDはオープンプライスのため、このFAQでは価格を明示し
 
 ---
 
-## Q11. iPhone/iPadやAndroid端末をVPN接続端末として利用できますか？
+## Q11. Mac、iPhone/iPad、Android端末をVPN接続端末として利用できますか？
 
 **A.**
 本構成のVPN接続端末は、Windows端末を前提としています。スマートフォンやタブレットは、ソフトウェアトークンアプリを表示する端末として利用できます。
@@ -125,12 +125,12 @@ SingleIDはオープンプライスのため、このFAQでは価格を明示し
 
 YAMAHA RTXでRADIUS連携によるリモートアクセスVPNを利用する場合、VPN方式はL2TP/IPsecです。また、本構成ではYAMAHA RTX側でPAP認証を利用します。そのため、L2TP/IPsecまたはPAP認証を利用できないVPNクライアントは対象外です。
 
-iPhone/iPadの標準VPNクライアントは、PAPを明示的に選択できないため対象外です。
+iPhone/iPadおよびMac（macOS）の標準VPNクライアントは、L2TP/IPsecのユーザ認証にMS-CHAPV2を使用するため対象外です。
 
 Android 12以降は、標準機能でL2TP/IPsecを利用できないため対象外です。
 
 !!! info
-    Apple公式資料では、iOS/iPadOSのL2TP/IPsecは**MS-CHAPV2パスワードによるユーザ認証**として説明されています。YAMAHA公式資料では、Android 12以降でL2TP/IPsec機能を利用できないと説明されています。
+    Apple公式資料では、iOS、iPadOS、macOSのL2TP/IPsecは**MS-CHAPV2パスワードによるユーザ認証**として説明されています。YAMAHA公式資料では、Android 12以降でL2TP/IPsec機能を利用できないと説明されています。
 
     参考: [VPN（仮想プライベートネットワーク）のセキュリティ（Apple）](https://support.apple.com/ja-jp/guide/security/sec802e8ab55/web){ target=_blank }、[Androidからリモートアクセスする（YAMAHA）](https://network.yamaha.com/setting/router_firewall/vpn/vpn_client/android/){ target=_blank }
 
