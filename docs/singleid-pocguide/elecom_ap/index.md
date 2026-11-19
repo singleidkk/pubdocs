@@ -1,5 +1,5 @@
 # ELECOM 無線LANアクセスポイントの設定例一覧
-文書更新日:2026-10-21
+文書更新日:2026-11-19
 
 !!! warning
     本設定ガイドはレビュー中のドラフトです。記載内容は変更する場合があります。
@@ -40,5 +40,9 @@ WAB-BE187-Mで標準RADIUSおよび拡張RADIUSを使用した詳細な動作確
 
 ## 参考情報
 
-* [WAB-BE187-M ユーザーズマニュアル](https://www.elecom.co.jp/support/manual/network/wireless-lan/ap/wab-be187-m/WAB-BE187-M_UM_v04.pdf){ target=_blank }
-* [WAB-BE72-M/WAB-BE36-M/WAB-BE36-S ユーザーズマニュアル](https://www.elecom.co.jp/support/manual/network/wireless-lan/ap/wab-be36-s/WAB-BE36-S_UM_v03.pdf){ target=_blank }
+各製品ページの**マニュアル**から、**ユーザーズマニュアル**を確認してください。
+
+* [WAB-BE187-M 製品情報](https://www.elecom.co.jp/products/WAB-BE187-M.html){ target=_blank }
+* [WAB-BE72-M 製品情報](https://www.elecom.co.jp/products/WAB-BE72-M.html){ target=_blank }
+* [WAB-BE36-M 製品情報](https://www.elecom.co.jp/products/WAB-BE36-M.html){ target=_blank }
+* [WAB-BE36-S 製品情報](https://www.elecom.co.jp/products/WAB-BE36-S.html){ target=_blank }
